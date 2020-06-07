@@ -1,3 +1,12 @@
+# ALERT: WORK IN PROGRESS 🚧
+## This is a fork and rename of [rubocop](https://github.com/rubocop-hq/rubocop)
+## It is in the process of being renamed to `ruby_lint` in all of the places
+### The goal of this project is for the rubocop folks to merge this back into rubocop project, and rename its org/repo/domain/etc
+### The goal is NOT to maintain an ongoing parity fork of an active project
+# PRs are welcome and appreciated ❤️
+
+***
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/rubocop-hq/rubocop/master/logo/rubo-logo-horizontal.png" alt="RuboCop Logo"/>
 </p>
