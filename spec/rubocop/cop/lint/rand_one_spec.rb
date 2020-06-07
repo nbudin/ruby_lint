@@ -7,7 +7,7 @@ RSpec.describe RuboCop::Rule::Lint::RandOne do
     describe source do
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(
+        expect(rule.messages).to eq(
           [
             "`#{source}` always returns `0`. " \
             'Perhaps you meant `rand(2)` or `rand`?'

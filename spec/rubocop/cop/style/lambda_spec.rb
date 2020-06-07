@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::Lambda, :config do
       inspect_source(source)
 
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages).to eq([message])
+      expect(rule.messages).to eq([message])
     end
   end
 

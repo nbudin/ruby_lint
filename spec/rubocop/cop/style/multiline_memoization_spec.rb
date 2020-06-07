@@ -12,7 +12,7 @@ RSpec.describe RuboCop::Rule::Style::MultilineMemoization, :config do
 
     it 'registers an offense' do
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages).to eq([message])
+      expect(rule.messages).to eq([message])
     end
 
     it 'auto-corrects' do

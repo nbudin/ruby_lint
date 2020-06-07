@@ -140,7 +140,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
           it 'registers an offense' do
             expect(rule.offenses.size).to eq(1)
-            expect(cop.messages).to eq(['test_case.rb should define a class ' \
+            expect(rule.messages).to eq(['test_case.rb should define a class ' \
                                         'or module called `File::TestCase`.'])
           end
         end
@@ -151,7 +151,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
         it 'registers an offense' do
           expect(rule.offenses.size).to eq(1)
-          expect(cop.messages).to eq(['test_case.rb should define a class ' \
+          expect(rule.messages).to eq(['test_case.rb should define a class ' \
                                       'or module called `TestCase`.'])
         end
       end
@@ -163,7 +163,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq(['blah.rb should define a class ' \
+        expect(rule.messages).to eq(['blah.rb should define a class ' \
                                     'or module called `RuboCop::Blah`.'])
       end
     end
@@ -174,7 +174,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['The name of this source file (`a file.rb`) ' \
                   'should use snake_case.'])
       end
@@ -195,7 +195,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
           it 'registers an offense' do
             expect(rule.offenses.size).to eq(1)
-            expect(cop.messages).to eq(['b.rb should define a class ' \
+            expect(rule.messages).to eq(['b.rb should define a class ' \
                                         'or module called `C::B`.'])
           end
         end
@@ -222,7 +222,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
         it 'registers an offense' do
           expect(rule.offenses.size).to eq(1)
-          expect(cop.messages).to eq(['e.rb should define a class ' \
+          expect(rule.messages).to eq(['e.rb should define a class ' \
                                       'or module called `E`.'])
         end
       end
@@ -311,7 +311,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq(['image_collection.rb should define a ' \
+        expect(rule.messages).to eq(['image_collection.rb should define a ' \
                                     'class or module called ' \
                                     '`ImageCollection`.'])
       end
@@ -323,7 +323,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq(['foo.rb should define a class ' \
+        expect(rule.messages).to eq(['foo.rb should define a class ' \
                                     'or module called `Foo`.'])
       end
     end
@@ -391,7 +391,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq(
+        expect(rule.messages).to eq(
           ['`z.rb` should match `(?i-mx:\\A[aeiou]\\z)`.']
         )
       end

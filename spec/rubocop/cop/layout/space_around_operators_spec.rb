@@ -251,7 +251,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundOperators do
         RUBY
         inspect_source(src)
         expect(rule.offenses.map(&:line)).to eq([1, 2])
-        expect(cop.messages).to eq(
+        expect(rule.messages).to eq(
           ['Surrounding space missing for operator `=`.'] * 2
         )
 
@@ -601,7 +601,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundOperators do
         RUBY
         inspect_source(src)
         expect(rule.offenses.map(&:line)).to eq([1, 2])
-        expect(cop.messages).to eq(
+        expect(rule.messages).to eq(
           ['Operator `=` should be surrounded by a single space.'] * 2
         )
 

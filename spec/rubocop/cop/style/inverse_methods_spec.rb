@@ -88,14 +88,14 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
     it "registers an offense for calling !#{variable}.none?" do
       inspect_source("!#{variable}.none?")
 
-      expect(cop.messages).to eq(['Use `any?` instead of inverting `none?`.'])
+      expect(rule.messages).to eq(['Use `any?` instead of inverting `none?`.'])
       expect(rule.highlights).to eq(["!#{variable}.none?"])
     end
 
     it "registers an offense for calling not #{variable}.none?" do
       inspect_source("not #{variable}.none?")
 
-      expect(cop.messages).to eq(['Use `any?` instead of inverting `none?`.'])
+      expect(rule.messages).to eq(['Use `any?` instead of inverting `none?`.'])
       expect(rule.highlights).to eq(["not #{variable}.none?"])
     end
 
@@ -132,7 +132,7 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
       it "registers an offense for !foo.#{method}" do
         inspect_source("!foo.#{method}")
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
       end
 
@@ -152,14 +152,14 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
     it "registers an offense for !(foo #{method} bar)" do
       inspect_source("!(foo #{method} bar)")
 
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
     end
 
     it "registers an offense for not (foo #{method} bar)" do
       inspect_source("not (foo #{method} bar)")
 
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
     end
 
@@ -208,7 +208,7 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
       it "registers an offense for foo.#{method} { |e| !e }" do
         inspect_source("foo.#{method} { |e| !e }")
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
       end
 
@@ -221,7 +221,7 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
           end
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
       end
 
@@ -241,7 +241,7 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
           end
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
       end
 
@@ -250,7 +250,7 @@ RSpec.describe RuboCop::Rule::Style::InverseMethods do
           y.#{method} { |key, _value| !(key =~ /c\d/) }
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Use `#{inverse}` instead of inverting `#{method}`."])
       end
 

@@ -289,7 +289,7 @@ module RuboCop
       def enabled_line?(line_number)
         return true if @options[:ignore_disable_comments] || !@processed_source
 
-        @processed_source.comment_config.cop_enabled_at_line?(self, line_number)
+        @processed_source.comment_config.rule_enabled_at_line?(self, line_number)
       end
 
       def find_severity(_node, severity)

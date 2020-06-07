@@ -2,25 +2,25 @@
 
 module RuboCop
   module Rule
-    # Identifier of all cops containing a department and cop name.
+    # Identifier of all rules containing a department and rule name.
     #
-    # All cops are identified by their badge. For example, the badge for
+    # All rules are identified by their badge. For example, the badge for
     # `RuboCop::Rule::Layout::IndentationStyle` is `Layout/IndentationStyle`.
-    # Badges can be parsed as either `Department/CopName` or just `CopName` to
+    # Badges can be parsed as either `Department/RuleName` or just `RuleName` to
     # allow for badge references in source files that omit the department for
     # RuboCop to infer.
     class Badge
       # Error raised when a badge parse fails.
       class InvalidBadge < Error
         MSG = 'Invalid badge %<badge>p. ' \
-              'Expected `Department/CopName` or `CopName`.'
+              'Expected `Department/RuleName` or `RuleName`.'
 
         def initialize(token)
           super(format(MSG, badge: token))
         end
       end
 
-      attr_reader :department, :cop_name
+      attr_reader :department, :rule_name
 
       def self.for(class_name)
         new(*class_name.split('::').last(2))
@@ -38,9 +38,9 @@ module RuboCop
         end
       end
 
-      def initialize(department, cop_name)
+      def initialize(department, rule_name)
         @department = department.to_sym if department
-        @cop_name   = cop_name
+        @rule_name   = rule_name
       end
 
       def ==(other)
@@ -49,16 +49,16 @@ module RuboCop
       alias eql? ==
 
       def hash
-        [department, cop_name].hash
+        [department, rule_name].hash
       end
 
       def match?(other)
-        cop_name == other.cop_name &&
+        rule_name == other.rule_name &&
           (!qualified? || department == other.department)
       end
 
       def to_s
-        qualified? ? "#{department}/#{cop_name}" : cop_name
+        qualified? ? "#{department}/#{rule_name}" : rule_name
       end
 
       def qualified?
@@ -66,7 +66,7 @@ module RuboCop
       end
 
       def with_department(department)
-        self.class.new(department, cop_name)
+        self.class.new(department, rule_name)
       end
     end
   end

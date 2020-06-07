@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
 
     it 'registers an offense for an incorrect EOL' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
-      expect(cop.messages).to eq(messages)
+      expect(rule.messages).to eq(messages)
       expect(rule.offenses.map(&:line))
         .to eq([RuboCop::Platform.windows? ? 1 : 3])
     end
@@ -39,7 +39,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
 
     it 'registers an offense for CR+LF' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
-      expect(cop.messages).to eq(messages)
+      expect(rule.messages).to eq(messages)
       expect(rule.offenses.map(&:line)).to eq([1])
     end
 
@@ -69,7 +69,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
           y=1
         RUBY
 
-        expect(cop.messages.size).to eq(1)
+        expect(rule.messages.size).to eq(1)
       end
 
       include_examples 'iso-8859-15', ''
@@ -98,7 +98,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
       it 'registers an offense' do
         inspect_source("x=0\ny=1")
 
-        expect(cop.messages).to eq(['Carriage return character missing.'])
+        expect(rule.messages).to eq(['Carriage return character missing.'])
       end
     end
   end
@@ -110,7 +110,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
 
     it 'registers an offense for CR+LF' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
-      expect(cop.messages).to eq(['Carriage return character detected.'])
+      expect(rule.messages).to eq(['Carriage return character detected.'])
       expect(rule.offenses.map(&:line)).to eq([3])
     end
 
@@ -121,7 +121,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
 
     it 'registers an offense for CR at end of file' do
       inspect_source_file("x=0\r")
-      expect(cop.messages).to eq(['Carriage return character detected.'])
+      expect(rule.messages).to eq(['Carriage return character detected.'])
     end
 
     it 'does not register offenses after __END__' do
@@ -135,7 +135,7 @@ RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
     context 'and there are many lines ending with CR+LF' do
       it 'registers only one offense' do
         inspect_source_file(['x=0', '', 'y=1'].join("\r\n"))
-        expect(cop.messages.size).to eq(1)
+        expect(rule.messages.size).to eq(1)
       end
 
       include_examples 'iso-8859-15', "\r"

@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::Sample do
   shared_examples 'offense' do |wrong, right|
     it "when using #{wrong}" do
       inspect_source("[1, 2, 3].#{wrong}")
-      expect(cop.messages).to eq(["Use `#{right}` instead of `#{wrong}`."])
+      expect(rule.messages).to eq(["Use `#{right}` instead of `#{wrong}`."])
     end
 
     context 'corrects' do

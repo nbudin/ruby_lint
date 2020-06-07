@@ -88,11 +88,11 @@ RSpec.describe RuboCop::Rule::Registry do
     end
   end
 
-  describe '#qualified_cop_name' do
+  describe '#qualified_rule_name' do
     let(:origin) { '/app/.rubocop.yml' }
 
     it 'gives back already properly qualified names' do
-      result = registry.qualified_cop_name(
+      result = registry.qualified_rule_name(
         'Layout/FirstArrayElementIndentation',
         origin
       )
@@ -105,7 +105,7 @@ RSpec.describe RuboCop::Rule::Registry do
       qualified = nil
 
       expect do
-        qualified = registry.qualified_cop_name('MethodLength', origin)
+        qualified = registry.qualified_rule_name('MethodLength', origin)
       end.to output(warning).to_stderr
 
       expect(qualified).to eql('Metrics/MethodLength')
@@ -116,7 +116,7 @@ RSpec.describe RuboCop::Rule::Registry do
       qualified = nil
 
       expect do
-        qualified = registry.qualified_cop_name('Foo', origin)
+        qualified = registry.qualified_rule_name('Foo', origin)
       end.to output(warning).to_stderr
 
       expect(qualified).to eql('RSpec/Foo')
@@ -128,7 +128,7 @@ RSpec.describe RuboCop::Rule::Registry do
       qualified = nil
 
       expect do
-        qualified = registry.qualified_cop_name('Style/MethodLength', origin)
+        qualified = registry.qualified_rule_name('Style/MethodLength', origin)
       end.to output(warning).to_stderr
 
       expect(qualified).to eql('Metrics/MethodLength')
@@ -136,7 +136,7 @@ RSpec.describe RuboCop::Rule::Registry do
 
     it 'raises an error when a cop name is ambiguous' do
       cop_name = 'FirstArrayElementIndentation'
-      expect { registry.qualified_cop_name(cop_name, origin) }
+      expect { registry.qualified_rule_name(cop_name, origin) }
         .to raise_error(RuboCop::Rule::AmbiguousCopName)
         .with_message(
           'Ambiguous cop name `FirstArrayElementIndentation` used in ' \
@@ -149,7 +149,7 @@ RSpec.describe RuboCop::Rule::Registry do
     end
 
     it 'returns the provided name if no namespace is found' do
-      expect(registry.qualified_cop_name('NotReal', origin)).to eql('NotReal')
+      expect(registry.qualified_rule_name('NotReal', origin)).to eql('NotReal')
     end
   end
 

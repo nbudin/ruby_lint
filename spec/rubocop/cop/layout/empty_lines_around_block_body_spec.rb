@@ -14,7 +14,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
           #{close}
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Extra empty line detected at block body beginning.'])
       end
 
@@ -39,7 +39,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
             #{close}
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Extra empty line detected at block body end.'])
       end
 
@@ -62,7 +62,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
           #{close}
         RUBY
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Extra empty line detected at block body beginning.'])
       end
 
@@ -86,7 +86,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
           #{close}
         RUBY
 
-        expect(cop.messages).to eq(['Empty line missing at block body '\
+        expect(rule.messages).to eq(['Empty line missing at block body '\
                                     'beginning.',
                                     'Empty line missing at block body end.'])
       end

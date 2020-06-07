@@ -1197,7 +1197,7 @@ RSpec.describe RuboCop::Rule::Layout::IndentationWidth do
               end
             end
           RUBY
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq([indented_internal_methods_offense_message] * 2)
           expect(rule.offenses.map(&:line)).to eq([9, 14])
         end
@@ -1223,7 +1223,7 @@ RSpec.describe RuboCop::Rule::Layout::IndentationWidth do
             end
           RUBY
 
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq([indented_internal_methods_offense_message] * 2)
           expect(rule.offenses.map(&:line)).to eq([9, 14])
         end
@@ -1300,7 +1300,7 @@ RSpec.describe RuboCop::Rule::Layout::IndentationWidth do
             end
           end
         RUBY
-        expect(cop.messages).to eq(['Use 2 (not 0) spaces for indentation.',
+        expect(rule.messages).to eq(['Use 2 (not 0) spaces for indentation.',
                                     'Use 2 (not 1) spaces for indentation.',
                                     'Use 2 (not 1) spaces for indentation.',
                                     'Use 2 (not 3) spaces for indentation.',
@@ -1358,7 +1358,7 @@ RSpec.describe RuboCop::Rule::Layout::IndentationWidth do
               end
             end
           RUBY
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq([indented_internal_methods_offense_message])
         end
       end

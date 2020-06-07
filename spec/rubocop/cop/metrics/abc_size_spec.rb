@@ -148,7 +148,7 @@ RSpec.describe RuboCop::Rule::Metrics::AbcSize, :config do
         inspect_source(['def method_name',
                         *code,
                         'end'].join("\n"))
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Assignment Branch Condition size for method_name is too ' \
                   "high. [#{presentation}]"])
       end

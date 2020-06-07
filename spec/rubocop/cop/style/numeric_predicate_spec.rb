@@ -17,7 +17,7 @@ RSpec.describe RuboCop::Rule::Style::NumericPredicate, :config do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       if (expected = options[:expected])

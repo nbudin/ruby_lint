@@ -154,7 +154,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `%r` around regular expression.'])
+        expect(rule.messages).to eq(['Use `%r` around regular expression.'])
       end
 
       it 'auto-corrects' do
@@ -233,7 +233,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `//` around regular expression.'])
+        expect(rule.messages).to eq(['Use `//` around regular expression.'])
       end
 
       it 'auto-corrects' do
@@ -266,7 +266,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
         it 'registers an offense' do
           inspect_source(source)
-          expect(cop.messages).to eq(['Use `//` around regular expression.'])
+          expect(rule.messages).to eq(['Use `//` around regular expression.'])
         end
 
         it 'auto-corrects' do
@@ -329,7 +329,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `%r` around regular expression.'])
+        expect(rule.messages).to eq(['Use `%r` around regular expression.'])
       end
 
       it 'auto-corrects' do
@@ -350,7 +350,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `%r` around regular expression.'])
+        expect(rule.messages).to eq(['Use `%r` around regular expression.'])
       end
 
       it 'auto-corrects' do
@@ -444,7 +444,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `%r` around regular expression.'])
+        expect(rule.messages).to eq(['Use `%r` around regular expression.'])
       end
 
       it 'auto-corrects' do
@@ -465,7 +465,7 @@ RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
 
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.messages).to eq(['Use `%r` around regular expression.'])
+        expect(rule.messages).to eq(['Use `%r` around regular expression.'])
       end
 
       it 'auto-corrects' do

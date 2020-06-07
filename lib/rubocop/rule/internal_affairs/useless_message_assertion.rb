@@ -8,13 +8,13 @@ module RuboCop
       # @example
       #
       #     # bad
-      #     expect(cop.messages).to eq([described_class::MSG])
+      #     expect(rule.messages).to eq([described_class::MSG])
       #
       #     # good
-      #     expect(cop.messages).to eq(['Do not write bad code like that.'])
+      #     expect(rule.messages).to eq(['Do not write bad code like that.'])
       #
       class UselessMessageAssertion < Rule
-        MSG = 'Do not specify cop behavior using `described_class::MSG`.'
+        MSG = 'Do not specify rule behavior using `described_class::MSG`.'
 
         def_node_search :described_class_msg, <<~PATTERN
           (const (send nil? :described_class) :MSG)

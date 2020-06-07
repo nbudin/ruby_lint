@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAfterComma do
   shared_examples 'ends with an item' do |items, correct_items|
     it 'registers an offense' do
       inspect_source(source.call(items))
-      expect(cop.messages).to eq(
+      expect(rule.messages).to eq(
         ['Space missing after comma.']
       )
     end

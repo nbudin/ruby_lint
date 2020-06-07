@@ -14,7 +14,7 @@ module StatementModifierHelper
         b
       end
     RUBY
-    expect(cop.messages).to eq(
+    expect(rule.messages).to eq(
       ["Favor modifier `#{keyword}` usage when having a single-line body."]
     )
     expect(rule.offenses.map { |o| o.location.source }).to eq([keyword])

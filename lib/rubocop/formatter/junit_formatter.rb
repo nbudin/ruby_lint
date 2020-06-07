@@ -34,16 +34,16 @@ module RuboCop
         # https://github.com/mikian/rubocop-junit-formatter/blob/v0.1.4/lib/rubocop/formatter/junit_formatter.rb#L9
         #
         # In the future, it would be preferable to return only enabled cops.
-        Cop::Cop.all.each do |cop|
-          target_offenses = offenses_for_cop(offenses, cop)
+        Rule::Rule.all.each do |rule|
+          target_offenses = offenses_for_rule(offenses, rule)
 
           next unless relevant_for_output?(options, target_offenses)
 
           REXML::Element.new('testcase', @testsuite).tap do |testcase|
             testcase.attributes['classname'] = classname_attribute_value(file)
-            testcase.attributes['name'] = cop.cop_name
+            testcase.attributes['name'] = rule.rule_name
 
-            add_failure_to(testcase, target_offenses, cop.cop_name)
+            add_failure_to(testcase, target_offenses, rule.rule_name)
           end
         end
       end
@@ -52,9 +52,9 @@ module RuboCop
         !options[:display_only_failed] || target_offenses.any?
       end
 
-      def offenses_for_cop(all_offenses, cop)
+      def offenses_for_rule(all_offenses, cop)
         all_offenses.select do |offense|
-          offense.cop_name == cop.cop_name
+          offense.rule_name == cop.rule_name
         end
       end
 
@@ -68,12 +68,12 @@ module RuboCop
 
       private
 
-      def add_failure_to(testcase, offenses, cop_name)
+      def add_failure_to(testcase, offenses, rule_name)
         # One failure per offense. Zero failures is a passing test case,
         # for most surefire/nUnit parsers.
         offenses.each do |offense|
           REXML::Element.new('failure', testcase).tap do |failure|
-            failure.attributes['type'] = cop_name
+            failure.attributes['type'] = rule_name
             failure.attributes['message'] = offense.message
             failure.add_text(offense.location.to_s)
           end

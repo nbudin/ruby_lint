@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::RedundantParentheses do
   shared_examples 'redundant' do |expr, correct, type, highlight = nil|
     it "registers an offense for parentheses around #{type}" do
       inspect_source(expr)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Don't use parentheses around #{type}."])
       expect(rule.highlights).to eq([highlight || expr])
     end

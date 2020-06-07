@@ -6,9 +6,9 @@ RSpec.describe RuboCop::Rule::InternalAffairs::UselessMessageAssertion do
   it 'registers an offense for specs that assert using the MSG' do
     expect_offense(<<~RUBY, 'example_spec.rb')
       it 'uses described_class::MSG to specify the expected message' do
-        inspect_source(cop, 'foo')
-        expect(cop.messages).to eq([described_class::MSG])
-                                    ^^^^^^^^^^^^^^^^^^^^ Do not specify cop behavior using `described_class::MSG`.
+        inspect_source(rule, 'foo')
+        expect(rule.messages).to eq([described_class::MSG])
+                                     ^^^^^^^^^^^^^^^^^^^^ Do not specify rule behavior using `described_class::MSG`.
       end
     RUBY
   end
@@ -16,7 +16,7 @@ RSpec.describe RuboCop::Rule::InternalAffairs::UselessMessageAssertion do
   it 'registers an offense for described_class::MSG in let' do
     expect_offense(<<~RUBY, 'example_spec.rb')
       let(:msg) { described_class::MSG }
-                  ^^^^^^^^^^^^^^^^^^^^ Do not specify cop behavior using `described_class::MSG`.
+                  ^^^^^^^^^^^^^^^^^^^^ Do not specify rule behavior using `described_class::MSG`.
     RUBY
   end
 

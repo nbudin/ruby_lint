@@ -27,7 +27,7 @@ shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
         it "registers an offense for #{type} not beginning "\
           'and ending with a blank line' do
           inspect_source(source)
-          expect(cop.messages).to eq([missing_begin, missing_end])
+          expect(rule.messages).to eq([missing_begin, missing_end])
         end
 
         it 'autocorrects the offenses' do
@@ -143,7 +143,7 @@ shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
 
         it "registers an offense for #{type} not ending with a blank line" do
           inspect_source(source)
-          expect(cop.messages).to eq([missing_def, missing_end])
+          expect(rule.messages).to eq([missing_def, missing_end])
         end
 
         it 'autocorrects the offenses' do
@@ -173,7 +173,7 @@ shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
 
         it "registers an offense for #{type} beginning with a blank line" do
           inspect_source(source)
-          expect(cop.messages).to eq([extra_begin, missing_def])
+          expect(rule.messages).to eq([extra_begin, missing_def])
         end
 
         it 'autocorrects the offenses' do
@@ -204,7 +204,7 @@ shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
 
         it "registers an offense for #{type} beginning with a blank line" do
           inspect_source(source)
-          expect(cop.messages).to eq([extra_begin, missing_def])
+          expect(rule.messages).to eq([extra_begin, missing_def])
         end
 
         it 'autocorrects the offenses' do
@@ -392,7 +392,7 @@ shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
 
       it 'registers offenses' do
         inspect_source(source)
-        expect(cop.messages).to eq([missing_type,
+        expect(rule.messages).to eq([missing_type,
                                     missing_begin,
                                     missing_end,
                                     missing_end])

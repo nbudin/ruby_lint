@@ -16,7 +16,7 @@ RSpec.describe RuboCop::Rule::Style::RedundantConditional do
           'This conditional expression '\
           "can just be replaced by `#{message_expression || expected}`."
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages).to eq([expected_message])
+        expect(rule.messages).to eq([expected_message])
       end
 
       it 'auto-corrects' do

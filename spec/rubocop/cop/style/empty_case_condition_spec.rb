@@ -10,7 +10,7 @@ RSpec.describe RuboCop::Rule::Style::EmptyCaseCondition do
   shared_examples 'detect/correct empty case, accept non-empty case' do
     it 'registers an offense' do
       inspect_source(source)
-      expect(cop.messages).to eq [message]
+      expect(rule.messages).to eq [message]
     end
 
     it 'correctly autocorrects' do

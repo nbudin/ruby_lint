@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     expect(rule.offenses.empty?).to be(true)
   end
 
-  describe '.qualified_cop_name' do
+  describe '.qualified_rule_name' do
     before do
       $stderr = StringIO.new
     end
@@ -19,39 +19,39 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     it 'adds namespace if the cop name is found in exactly one namespace' do
-      expect(described_class.qualified_cop_name('LineLength', '--only'))
+      expect(described_class.qualified_rule_name('LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
     it 'returns the given cop name if it is not found in any namespace' do
-      expect(described_class.qualified_cop_name('UnknownCop', '--only'))
+      expect(described_class.qualified_rule_name('UnknownCop', '--only'))
         .to eq('UnknownCop')
     end
 
     it 'returns the given cop name if it already has a namespace' do
-      expect(described_class.qualified_cop_name('Layout/LineLength', '--only'))
+      expect(described_class.qualified_rule_name('Layout/LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
     it 'returns the cop name in a different namespace if the provided ' \
        'namespace is incorrect' do
-      expect(described_class.qualified_cop_name('Style/LineLength', '--only'))
+      expect(described_class.qualified_rule_name('Style/LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
     # `Rails/SafeNavigation` was extracted to rubocop-rails gem,
     # there were no cop whose names overlapped.
     xit 'raises an error if the cop name is in more than one namespace' do
-      expect { described_class.qualified_cop_name('SafeNavigation', '--only') }
+      expect { described_class.qualified_rule_name('SafeNavigation', '--only') }
         .to raise_error(RuboCop::Rule::AmbiguousCopName)
     end
 
     it 'returns the given cop name if it already has a namespace even when ' \
        'the cop exists in multiple namespaces' do
-      qualified_cop_name =
-        described_class.qualified_cop_name('Style/SafeNavigation', '--only')
+      qualified_rule_name =
+        described_class.qualified_rule_name('Style/SafeNavigation', '--only')
 
-      expect(qualified_cop_name).to eq('Style/SafeNavigation')
+      expect(qualified_rule_name).to eq('Style/SafeNavigation')
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     before do
-      allow(processed_source.comment_config).to receive(:cop_enabled_at_line?)
+      allow(processed_source.comment_config).to receive(:rule_enabled_at_line?)
         .and_return(false)
     end
 

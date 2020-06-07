@@ -2,17 +2,17 @@
 
 require 'rubocop'
 
-desc 'Generate a new cop template'
-task :new_cop, [:cop] do |_task, args|
-  cop_name = args.fetch(:cop) do
-    warn 'usage: bundle exec rake new_cop[Department/Name]'
+desc 'Generate a new rule template'
+task :new_rule, [:rule] do |_task, args|
+  rule_name = args.fetch(:rule) do
+    warn 'usage: bundle exec rake new_rule[Department/Name]'
     exit!
   end
 
   github_user = `git config github.user`.chop
   github_user = 'your_id' if github_user.empty?
 
-  generator = RuboCop::Rule::Generator.new(cop_name, github_user)
+  generator = RuboCop::Rule::Generator.new(rule_name, github_user)
 
   generator.write_source
   generator.write_spec

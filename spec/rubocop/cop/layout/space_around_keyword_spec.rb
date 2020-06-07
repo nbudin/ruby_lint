@@ -7,7 +7,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundKeyword do
     it 'registers an offense for missing space before keyword in ' \
        "`#{expr}`" do
       inspect_source(expr)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Space before keyword `#{highlight}` is missing."])
       expect(rule.highlights).to eq([highlight])
     end
@@ -21,7 +21,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundKeyword do
     it 'registers an offense for missing space after keyword in ' \
        "`#{expr}`" do
       inspect_source(expr)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Space after keyword `#{highlight}` is missing."])
       expect(rule.highlights).to eq([highlight])
     end

@@ -613,7 +613,7 @@ RSpec.describe RuboCop::Rule::Style::HashSyntax, :config do
     it 'registers an offense when keys have special symbols and '\
       'mix styles' do
       inspect_source('x = { :"\tab" => 1, b: 1 }')
-      expect(cop.messages).to eq(["Don't mix styles in the same hash."])
+      expect(rule.messages).to eq(["Don't mix styles in the same hash."])
       expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
     end
 

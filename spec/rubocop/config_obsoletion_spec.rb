@@ -11,10 +11,10 @@ RSpec.describe RuboCop::ConfigObsoletion do
   describe '#validate', :isolated_environment do
     let(:configuration_path) { '.rubocop.yml' }
 
-    context 'when the configuration includes any obsolete cop name' do
+    context 'when the configuration includes any obsolete rule name' do
       let(:hash) do
         {
-          # Renamed cops
+          # Renamed rules
           'Layout/AlignArguments' => { 'Enabled': true },
           'Layout/AlignArray' => { 'Enabled': true },
           'Layout/AlignHash' => { 'Enabled': true },
@@ -50,7 +50,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
           'Style/UnneededInterpolation' => { 'Enabled': true },
           'Style/UnneededPercentQ' => { 'Enabled': true },
           'Style/UnneededSort' => { 'Enabled': true },
-          # Moved cops
+          # Moved rules
           'Lint/BlockAlignment' => { 'Enabled': true },
           'Lint/DefEndAlignment' => { 'Enabled': true },
           'Lint/EndAlignment' => { 'Enabled': true },
@@ -65,7 +65,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
           'Style/PredicateName' => { 'Enabled': true },
           'Style/VariableName' => { 'Enabled': true },
           'Style/VariableNumber' => { 'Enabled': true },
-          # Removed cops
+          # Removed rules
           'Layout/SpaceAfterControlKeyword' => { 'Enabled': true },
           'Layout/SpaceBeforeModifierKeyword' => { 'Enabled': true },
           'Lint/InvalidCharacterLiteral' => { 'Enabled': true },
@@ -76,128 +76,128 @@ RSpec.describe RuboCop::ConfigObsoletion do
           'Style/SpaceBeforeModifierKeyword' => { 'Enabled': true },
           'Style/TrailingComma' => { 'Enabled': true },
           'Style/TrailingCommaInLiteral' => { 'Enabled': true },
-          # Split cops
+          # Split rules
           'Style/MethodMissing' => { 'Enabled': true }
         }
       end
 
       let(:expected_message) do
         <<~OUTPUT.chomp
-          The `Layout/AlignArguments` cop has been renamed to `Layout/ArgumentAlignment`.
+          The `Layout/AlignArguments` rule has been renamed to `Layout/ArgumentAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/AlignArray` cop has been renamed to `Layout/ArrayAlignment`.
+          The `Layout/AlignArray` rule has been renamed to `Layout/ArrayAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/AlignHash` cop has been renamed to `Layout/HashAlignment`.
+          The `Layout/AlignHash` rule has been renamed to `Layout/HashAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/AlignParameters` cop has been renamed to `Layout/ParameterAlignment`.
+          The `Layout/AlignParameters` rule has been renamed to `Layout/ParameterAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentArray` cop has been renamed to `Layout/FirstArrayElementIndentation`.
+          The `Layout/IndentArray` rule has been renamed to `Layout/FirstArrayElementIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentAssignment` cop has been renamed to `Layout/AssignmentIndentation`.
+          The `Layout/IndentAssignment` rule has been renamed to `Layout/AssignmentIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentFirstArgument` cop has been renamed to `Layout/FirstArgumentIndentation`.
+          The `Layout/IndentFirstArgument` rule has been renamed to `Layout/FirstArgumentIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentFirstArrayElement` cop has been renamed to `Layout/FirstArrayElementIndentation`.
+          The `Layout/IndentFirstArrayElement` rule has been renamed to `Layout/FirstArrayElementIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentFirstHashElement` cop has been renamed to `Layout/FirstHashElementIndentation`.
+          The `Layout/IndentFirstHashElement` rule has been renamed to `Layout/FirstHashElementIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentFirstParameter` cop has been renamed to `Layout/FirstParameterIndentation`.
+          The `Layout/IndentFirstParameter` rule has been renamed to `Layout/FirstParameterIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentHash` cop has been renamed to `Layout/FirstHashElementIndentation`.
+          The `Layout/IndentHash` rule has been renamed to `Layout/FirstHashElementIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/IndentHeredoc` cop has been renamed to `Layout/HeredocIndentation`.
+          The `Layout/IndentHeredoc` rule has been renamed to `Layout/HeredocIndentation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/LeadingBlankLines` cop has been renamed to `Layout/LeadingEmptyLines`.
+          The `Layout/LeadingBlankLines` rule has been renamed to `Layout/LeadingEmptyLines`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/Tab` cop has been renamed to `Layout/IndentationStyle`.
+          The `Layout/Tab` rule has been renamed to `Layout/IndentationStyle`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/TrailingBlankLines` cop has been renamed to `Layout/TrailingEmptyLines`.
+          The `Layout/TrailingBlankLines` rule has been renamed to `Layout/TrailingEmptyLines`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/DuplicatedKey` cop has been renamed to `Lint/DuplicateHashKey`.
+          The `Lint/DuplicatedKey` rule has been renamed to `Lint/DuplicateHashKey`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/HandleExceptions` cop has been renamed to `Lint/SuppressedException`.
+          The `Lint/HandleExceptions` rule has been renamed to `Lint/SuppressedException`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/MultipleCompare` cop has been renamed to `Lint/MultipleComparison`.
+          The `Lint/MultipleCompare` rule has been renamed to `Lint/MultipleComparison`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/StringConversionInInterpolation` cop has been renamed to `Lint/RedundantStringCoercion`.
+          The `Lint/StringConversionInInterpolation` rule has been renamed to `Lint/RedundantStringCoercion`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/UnneededCopDisableDirective` cop has been renamed to `Lint/RedundantCopDisableDirective`.
+          The `Lint/UnneededCopDisableDirective` rule has been renamed to `Lint/RedundantCopDisableDirective`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/UnneededCopEnableDirective` cop has been renamed to `Lint/RedundantCopEnableDirective`.
+          The `Lint/UnneededCopEnableDirective` rule has been renamed to `Lint/RedundantCopEnableDirective`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/UnneededRequireStatement` cop has been renamed to `Lint/RedundantRequireStatement`.
+          The `Lint/UnneededRequireStatement` rule has been renamed to `Lint/RedundantRequireStatement`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/UnneededSplatExpansion` cop has been renamed to `Lint/RedundantSplatExpansion`.
+          The `Lint/UnneededSplatExpansion` rule has been renamed to `Lint/RedundantSplatExpansion`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Naming/UncommunicativeBlockParamName` cop has been renamed to `Naming/BlockParameterName`.
+          The `Naming/UncommunicativeBlockParamName` rule has been renamed to `Naming/BlockParameterName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Naming/UncommunicativeMethodParamName` cop has been renamed to `Naming/MethodParameterName`.
+          The `Naming/UncommunicativeMethodParamName` rule has been renamed to `Naming/MethodParameterName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/DeprecatedHashMethods` cop has been renamed to `Style/PreferredHashMethods`.
+          The `Style/DeprecatedHashMethods` rule has been renamed to `Style/PreferredHashMethods`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/MethodCallParentheses` cop has been renamed to `Style/MethodCallWithoutArgsParentheses`.
+          The `Style/MethodCallParentheses` rule has been renamed to `Style/MethodCallWithoutArgsParentheses`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/OpMethod` cop has been renamed to `Naming/BinaryOperatorParameterName`.
+          The `Style/OpMethod` rule has been renamed to `Naming/BinaryOperatorParameterName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/SingleSpaceBeforeFirstArg` cop has been renamed to `Layout/SpaceBeforeFirstArg`.
+          The `Style/SingleSpaceBeforeFirstArg` rule has been renamed to `Layout/SpaceBeforeFirstArg`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/UnneededCapitalW` cop has been renamed to `Style/RedundantCapitalW`.
+          The `Style/UnneededCapitalW` rule has been renamed to `Style/RedundantCapitalW`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/UnneededCondition` cop has been renamed to `Style/RedundantCondition`.
+          The `Style/UnneededCondition` rule has been renamed to `Style/RedundantCondition`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/UnneededInterpolation` cop has been renamed to `Style/RedundantInterpolation`.
+          The `Style/UnneededInterpolation` rule has been renamed to `Style/RedundantInterpolation`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/UnneededPercentQ` cop has been renamed to `Style/RedundantPercentQ`.
+          The `Style/UnneededPercentQ` rule has been renamed to `Style/RedundantPercentQ`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/UnneededSort` cop has been renamed to `Style/RedundantSort`.
+          The `Style/UnneededSort` rule has been renamed to `Style/RedundantSort`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/Eval` cop has been moved to `Security/Eval`.
+          The `Lint/Eval` rule has been moved to `Security/Eval`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/ClassAndModuleCamelCase` cop has been moved to `Naming/ClassAndModuleCamelCase`.
+          The `Style/ClassAndModuleCamelCase` rule has been moved to `Naming/ClassAndModuleCamelCase`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/ConstantName` cop has been moved to `Naming/ConstantName`.
+          The `Style/ConstantName` rule has been moved to `Naming/ConstantName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/FileName` cop has been moved to `Naming/FileName`.
+          The `Style/FileName` rule has been moved to `Naming/FileName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/MethodName` cop has been moved to `Naming/MethodName`.
+          The `Style/MethodName` rule has been moved to `Naming/MethodName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/PredicateName` cop has been moved to `Naming/PredicateName`.
+          The `Style/PredicateName` rule has been moved to `Naming/PredicateName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/VariableName` cop has been moved to `Naming/VariableName`.
+          The `Style/VariableName` rule has been moved to `Naming/VariableName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/VariableNumber` cop has been moved to `Naming/VariableNumber`.
+          The `Style/VariableNumber` rule has been moved to `Naming/VariableNumber`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/AccessorMethodName` cop has been moved to `Naming/AccessorMethodName`.
+          The `Style/AccessorMethodName` rule has been moved to `Naming/AccessorMethodName`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/AsciiIdentifiers` cop has been moved to `Naming/AsciiIdentifiers`.
+          The `Style/AsciiIdentifiers` rule has been moved to `Naming/AsciiIdentifiers`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/BlockAlignment` cop has been moved to `Layout/BlockAlignment`.
+          The `Lint/BlockAlignment` rule has been moved to `Layout/BlockAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/EndAlignment` cop has been moved to `Layout/EndAlignment`.
+          The `Lint/EndAlignment` rule has been moved to `Layout/EndAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/DefEndAlignment` cop has been moved to `Layout/DefEndAlignment`.
+          The `Lint/DefEndAlignment` rule has been moved to `Layout/DefEndAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/FlipFlop` cop has been moved to `Lint/FlipFlop`.
+          The `Style/FlipFlop` rule has been moved to `Lint/FlipFlop`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/SpaceAfterControlKeyword` cop has been removed. Please use `Layout/SpaceAroundKeyword` instead.
+          The `Layout/SpaceAfterControlKeyword` rule has been removed. Please use `Layout/SpaceAroundKeyword` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Layout/SpaceBeforeModifierKeyword` cop has been removed. Please use `Layout/SpaceAroundKeyword` instead.
+          The `Layout/SpaceBeforeModifierKeyword` rule has been removed. Please use `Layout/SpaceAroundKeyword` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/RescueWithoutErrorClass` cop has been removed. Please use `Style/RescueStandardError` instead.
+          The `Lint/RescueWithoutErrorClass` rule has been removed. Please use `Style/RescueStandardError` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Rails/DefaultScope` cop has been removed.
+          The `Rails/DefaultScope` rule has been removed.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/SpaceAfterControlKeyword` cop has been removed. Please use `Layout/SpaceAroundKeyword` instead.
+          The `Style/SpaceAfterControlKeyword` rule has been removed. Please use `Layout/SpaceAroundKeyword` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/SpaceBeforeModifierKeyword` cop has been removed. Please use `Layout/SpaceAroundKeyword` instead.
+          The `Style/SpaceBeforeModifierKeyword` rule has been removed. Please use `Layout/SpaceAroundKeyword` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/TrailingComma` cop has been removed. Please use `Style/TrailingCommaInArguments`, `Style/TrailingCommaInArrayLiteral`, and/or `Style/TrailingCommaInHashLiteral` instead.
+          The `Style/TrailingComma` rule has been removed. Please use `Style/TrailingCommaInArguments`, `Style/TrailingCommaInArrayLiteral`, and/or `Style/TrailingCommaInHashLiteral` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/TrailingCommaInLiteral` cop has been removed. Please use `Style/TrailingCommaInArrayLiteral` and/or `Style/TrailingCommaInHashLiteral` instead.
+          The `Style/TrailingCommaInLiteral` rule has been removed. Please use `Style/TrailingCommaInArrayLiteral` and/or `Style/TrailingCommaInHashLiteral` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/InvalidCharacterLiteral` cop has been removed since it was never being actually triggered.
+          The `Lint/InvalidCharacterLiteral` rule has been removed since it was never being actually triggered.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/SpaceBeforeFirstArg` cop has been removed since it was a duplicate of `Layout/SpaceBeforeFirstArg`. Please use `Layout/SpaceBeforeFirstArg` instead.
+          The `Lint/SpaceBeforeFirstArg` rule has been removed since it was a duplicate of `Layout/SpaceBeforeFirstArg`. Please use `Layout/SpaceBeforeFirstArg` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
           The `Style/MethodMissing` cop has been split into `Style/MethodMissingSuper` and `Style/MissingRespondToMissing`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
@@ -206,7 +206,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
 
       it 'prints a warning message' do
         begin
-          config_obsoletion.reject_obsolete_cops_and_parameters
+          config_obsoletion.reject_obsolete_rules_and_parameters
           raise 'Expected a RuboCop::ValidationError'
         rescue RuboCop::ValidationError => e
           expect(expected_message).to eq(e.message)
@@ -245,11 +245,11 @@ RSpec.describe RuboCop::ConfigObsoletion do
 
       let(:expected_message) do
         <<~OUTPUT.chomp
-          The `Lint/BlockAlignment` cop has been moved to `Layout/BlockAlignment`.
+          The `Lint/BlockAlignment` rule has been moved to `Layout/BlockAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/EndAlignment` cop has been moved to `Layout/EndAlignment`.
+          The `Lint/EndAlignment` rule has been moved to `Layout/EndAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Lint/DefEndAlignment` cop has been moved to `Layout/DefEndAlignment`.
+          The `Lint/DefEndAlignment` rule has been moved to `Layout/DefEndAlignment`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
           obsolete parameter MultiSpaceAllowedForOperators (for Layout/SpaceAroundOperators) found in example/.rubocop.yml
           If your intention was to allow extra spaces for alignment, please use AllowForAlignment: true instead.
@@ -290,7 +290,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
 
       it 'prints a warning message' do
         begin
-          config_obsoletion.reject_obsolete_cops_and_parameters
+          config_obsoletion.reject_obsolete_rules_and_parameters
           raise 'Expected a RuboCop::ValidationError'
         rescue RuboCop::ValidationError => e
           expect(expected_message).to eq(e.message)

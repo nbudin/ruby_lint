@@ -15,7 +15,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Keep a blank line before and after `#{access_modifier}`."])
       end
 
@@ -29,7 +29,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Keep a blank line before and after `#{access_modifier}`."])
       end
 
@@ -225,7 +225,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Keep a blank line after `#{access_modifier}`."])
       end
 
@@ -260,7 +260,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
               end
             RUBY
             expect(rule.offenses.size).to eq(1)
-            expect(cop.messages)
+            expect(rule.messages)
               .to eq(["Keep a blank line after `#{access_modifier}`."])
           end
         end
@@ -329,7 +329,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
         RUBY
 
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Keep a blank line after `#{access_modifier}`."])
       end
 
@@ -373,7 +373,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
         RUBY
 
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Remove a blank line after `#{access_modifier}`."])
       end
 
@@ -422,7 +422,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(["Keep a blank line before `#{access_modifier}`."])
       end
 

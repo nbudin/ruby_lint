@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::OneLineConditional do
   shared_examples 'offense' do |condition|
     it 'registers an offense' do
       inspect_source(source)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Favor the ternary operator (`?:`)' \
                 " over `#{condition}/then/else/end` constructs."])
     end

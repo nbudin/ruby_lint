@@ -36,7 +36,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantSplatExpansion do
     it 'registers an offense for ' do
       inspect_source("a = *#{literal}")
 
-      expect(cop.messages).to eq([message])
+      expect(rule.messages).to eq([message])
       expect(rule.highlights).to eq(["*#{literal}"])
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantSplatExpansion do
       it 'registers an offense' do
         inspect_source("array.push(*#{literal})")
 
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Pass array contents as separate arguments.'])
         expect(rule.highlights).to eq(["*#{literal}"])
       end
@@ -60,7 +60,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantSplatExpansion do
       it 'registers an offense' do
         inspect_source("array.push(*#{literal})")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
         expect(rule.highlights).to eq(["*#{literal}"])
       end
     end

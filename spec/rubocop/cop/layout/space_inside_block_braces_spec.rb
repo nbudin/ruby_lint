@@ -352,7 +352,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceInsideBlockBraces, :config do
           RUBY
 
           expect(rule.offenses.size).to eq(1)
-          expect(cop.messages).to eq(['Space inside } detected.'])
+          expect(rule.messages).to eq(['Space inside } detected.'])
         end
       end
     end

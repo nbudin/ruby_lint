@@ -12,7 +12,7 @@ RSpec.describe RuboCop::Rule::Lint::MultipleComparison do
     it "registers an offense for #{bad_source}" do
       inspect_source(bad_source)
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Use the `&&` operator to compare multiple values.'])
     end
 

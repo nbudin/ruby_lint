@@ -162,7 +162,7 @@ RSpec.describe RuboCop::Rule::Style::IfUnlessModifier do
       expect("#{body} if #{condition}".length).to eq(80)
 
       inspect_source(source)
-      expect(cop.messages).to eq(
+      expect(rule.messages).to eq(
         ['Favor modifier `if` usage when having a single-line' \
          ' body. Another good alternative is the usage of control flow' \
          ' `&&`/`||`.']
@@ -539,7 +539,7 @@ RSpec.describe RuboCop::Rule::Style::IfUnlessModifier do
           expect("#{body} if #{condition}".length).to eq(10)
 
           inspect_source(source)
-          expect(cop.messages).to eq(
+          expect(rule.messages).to eq(
             ['Favor modifier `if` usage when having a single-line' \
              ' body. Another good alternative is the usage of control flow' \
              ' `&&`/`||`.']

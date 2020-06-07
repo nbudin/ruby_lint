@@ -7,7 +7,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
     it 'registers an offense assigning any variable type to ternary' do
       inspect_source("#{variable} = foo? ? 1 : 2")
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'allows assigning any variable type inside ternary' do
@@ -26,7 +26,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'registers an offense assigning any variable type to if elsif else' do
@@ -41,7 +41,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'registers an offense assigning any variable type to if else' \
@@ -55,7 +55,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'allows assigning any variable type inside if else' \
@@ -97,7 +97,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'allows assigning any variable type inside unless else' do
@@ -121,7 +121,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'allows assigning any variable type inside case when' do
@@ -225,7 +225,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
     it 'registers an offense for any assignment to ternary' do
       inspect_source("bar #{assignment} (foo? ? 1 : 2)")
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'registers an offense any assignment to if else' do
@@ -238,7 +238,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'allows any assignment to if without else' do
@@ -259,7 +259,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     it 'registers an offense any assignment to case when' do
@@ -273,7 +273,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Assign variables inside of conditionals'])
+      expect(rule.messages).to eq(['Assign variables inside of conditionals'])
     end
 
     context 'auto-correct' do
@@ -358,7 +358,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'assigning any variable type to an if else with multiline ' \
@@ -373,7 +373,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'assigning any variable type to a multiline if elsif else' do
@@ -394,7 +394,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'assigning any variable type to a multiline unless else' do
@@ -409,7 +409,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'assigning any variable type to a multiline case when' do
@@ -425,7 +425,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
   end
 
@@ -442,7 +442,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'any assignment to a multiline unless else' do
@@ -457,7 +457,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
 
     it 'any assignment to a multiline case when' do
@@ -473,7 +473,7 @@ RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
       RUBY
       inspect_source(source)
 
-      expect(cop.messages).to eq(expected)
+      expect(rule.messages).to eq(expected)
     end
   end
 

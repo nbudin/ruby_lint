@@ -23,7 +23,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceInsideArrayPercentLiteral do
           inspect_source(source)
           expect(rule.offenses.size).to eq(1)
           expect(rule.highlights).to eq(['   '])
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
           expect_corrected(source, code_example('1 2'))
         end
 

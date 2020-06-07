@@ -8,21 +8,21 @@ YARD::Rake::YardocTask.new(:yard_for_generate_documentation) do |task|
   task.options = ['--no-output']
 end
 
-desc 'Generate docs of all cops departments'
-task generate_cops_documentation: :yard_for_generate_documentation do
-  def cops_of_department(cops, department)
-    cops.with_department(department).sort!
+desc 'Generate docs of all rules departments'
+task generate_rules_documentation: :yard_for_generate_documentation do
+  def rules_of_department(rules, department)
+    rules.with_department(department).sort!
   end
 
   # rubocop:disable Metrics/AbcSize
-  def cops_body(config, cop, description, examples_objects, pars)
-    content = h2(cop.cop_name)
-    content << required_ruby_version(cop)
-    content << properties(cop.new(config))
+  def rules_body(config, rule, description, examples_objects, pars)
+    content = h2(rule.rule_name)
+    content << required_ruby_version(rule)
+    content << properties(rule.new(config))
     content << "#{description}\n"
     content << examples(examples_objects) if examples_objects.count.positive?
     content << configurations(pars)
-    content << references(config, cop)
+    content << references(config, rule)
     content
   end
   # rubocop:enable Metrics/AbcSize
@@ -35,26 +35,26 @@ task generate_cops_documentation: :yard_for_generate_documentation do
     end
   end
 
-  def required_ruby_version(cop)
-    return '' unless cop.respond_to?(:required_minimum_ruby_version)
+  def required_ruby_version(rule)
+    return '' unless rule.respond_to?(:required_minimum_ruby_version)
 
-    "NOTE: Required Ruby version: #{cop.required_minimum_ruby_version}\n\n"
+    "NOTE: Required Ruby version: #{rule.required_minimum_ruby_version}\n\n"
   end
 
   # rubocop:disable Metrics/MethodLength
-  def properties(cop_instance)
+  def properties(rule_instance)
     header = [
       'Enabled by default', 'Safe', 'Supports autocorrection', 'VersionAdded',
       'VersionChanged'
     ]
-    autocorrect = if cop_instance.support_autocorrect?
-                    "Yes#{' (Unsafe)' unless cop_instance.safe_autocorrect?}"
+    autocorrect = if rule_instance.support_autocorrect?
+                    "Yes#{' (Unsafe)' unless rule_instance.safe_autocorrect?}"
                   else
                     'No'
                   end
-    rule_config = cop_instance.rule_config
+    rule_config = rule_instance.rule_config
     content = [[
-      cop_status(rule_config.fetch('Enabled')),
+      rule_status(rule_config.fetch('Enabled')),
       rule_config.fetch('Safe', true) ? 'Yes' : 'No',
       autocorrect,
       rule_config.fetch('VersionAdded', '-'),
@@ -174,10 +174,10 @@ task generate_cops_documentation: :yard_for_generate_documentation do
     end
   end
 
-  def references(config, cop)
-    rule_config = config.for_rule(cop)
+  def references(config, rule)
+    rule_config = config.for_rule(rule)
     urls = RuboCop::Rule::MessageAnnotator.new(
-      config, cop.name, rule_config, {}
+      config, rule.name, rule_config, {}
     ).urls
     return '' if urls.empty?
 
@@ -187,21 +187,21 @@ task generate_cops_documentation: :yard_for_generate_documentation do
     content
   end
 
-  def print_cops_of_department(cops, department, config)
-    selected_cops = cops_of_department(cops, department)
+  def print_rules_of_department(rules, department, config)
+    selected_rules = rules_of_department(rules, department)
     content = +"= #{department}\n"
-    selected_cops.each do |cop|
-      content << print_cop_with_doc(cop, config)
+    selected_rules.each do |rule|
+      content << print_rule_with_doc(rule, config)
     end
-    file_name = "#{Dir.pwd}/docs/modules/ROOT/pages/cops_#{department.downcase}.adoc"
+    file_name = "#{Dir.pwd}/docs/modules/ROOT/pages/rules_#{department.downcase}.adoc"
     File.open(file_name, 'w') do |file|
       puts "* generated #{file_name}"
       file.write(content.strip + "\n")
     end
   end
 
-  def print_cop_with_doc(cop, config)
-    t = config.for_rule(cop)
+  def print_rule_with_doc(rule, config)
+    t = config.for_rule(rule)
     non_display_keys = %w[
       Description Enabled StyleGuide Reference Safe SafeAutoCorrect VersionAdded
       VersionChanged
@@ -209,58 +209,58 @@ task generate_cops_documentation: :yard_for_generate_documentation do
     pars = t.reject { |k| non_display_keys.include? k }
     description = 'No documentation'
     examples_object = []
-    cop_code(cop) do |code_object|
+    rule_code(rule) do |code_object|
       description = code_object.docstring unless code_object.docstring.blank?
       examples_object = code_object.tags('example')
     end
-    cops_body(config, cop, description, examples_object, pars)
+    rules_body(config, rule, description, examples_object, pars)
   end
 
-  def cop_code(cop)
+  def rule_code(rule)
     YARD::Registry.all(:class).detect do |code_object|
-      next unless RuboCop::Rule::Badge.for(code_object.to_s) == cop.badge
+      next unless RuboCop::Rule::Badge.for(code_object.to_s) == rule.badge
 
       yield code_object
     end
   end
 
-  def table_of_content_for_department(cops, department)
+  def table_of_content_for_department(rules, department)
     type_title = department[0].upcase + department[1..-1]
-    filename = "cops_#{department.downcase}.adoc"
+    filename = "rules_#{department.downcase}.adoc"
     content = +"=== Department xref:#{filename}[#{type_title}]\n\n"
-    cops_of_department(cops, department.to_sym).each do |cop|
-      anchor = cop.cop_name.sub('/', '').downcase
-      content << "* xref:#{filename}##{anchor}[#{cop.cop_name}]\n"
+    rules_of_department(rules, department.to_sym).each do |rule|
+      anchor = rule.rule_name.sub('/', '').downcase
+      content << "* xref:#{filename}##{anchor}[#{rule.rule_name}]\n"
     end
 
     content
   end
 
-  def print_table_of_contents(cops)
-    path = "#{Dir.pwd}/docs/modules/ROOT/pages/cops.adoc"
+  def print_table_of_contents(rules)
+    path = "#{Dir.pwd}/docs/modules/ROOT/pages/rules.adoc"
     original = File.read(path)
-    content = +"// START_COP_LIST\n\n"
+    content = +"// START_RULE_LIST\n\n"
 
-    content << table_contents(cops)
+    content << table_contents(rules)
 
-    content << "\n// END_COP_LIST"
+    content << "\n// END_RULE_LIST"
 
     content = original.sub(
-      %r{// START_COP_LIST.+// END_COP_LIST}m, content
+      %r{// START_RULE_LIST.+// END_RULE_LIST}m, content
     )
     File.write(path, content)
   end
 
-  def table_contents(cops)
-    cops
+  def table_contents(rules)
+    rules
       .departments
       .map(&:to_s)
       .sort
-      .map { |department| table_of_content_for_department(cops, department) }
+      .map { |department| table_of_content_for_department(rules, department) }
       .join("\n")
   end
 
-  def cop_status(status)
+  def rule_status(status)
     return 'Disabled' unless status
 
     status == 'pending' ? 'Pending' : 'Enabled'
@@ -275,21 +275,21 @@ task generate_cops_documentation: :yard_for_generate_documentation do
       sh('GIT_PAGER=cat git diff docs')
 
       warn 'The docs directory is out of sync. ' \
-        'Run `rake generate_cops_documentation` and commit the results.'
+        'Run `rake generate_rules_documentation` and commit the results.'
       exit!
     end
   end
 
   def main
-    cops   = RuboCop::Rule::Rule.registry
+    rules   = RuboCop::Rule::Rule.registry
     config = RuboCop::ConfigLoader.default_configuration
 
     YARD::Registry.load!
-    cops.departments.sort!.each do |department|
-      print_cops_of_department(cops, department, config)
+    rules.departments.sort!.each do |department|
+      print_rules_of_department(rules, department, config)
     end
 
-    print_table_of_contents(cops)
+    print_table_of_contents(rules)
 
     assert_docs_synchronized if ENV['CI'] == 'true'
   ensure

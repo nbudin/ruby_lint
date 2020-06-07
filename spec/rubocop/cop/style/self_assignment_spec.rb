@@ -7,7 +7,7 @@ RSpec.describe RuboCop::Rule::Style::SelfAssignment do
     it "registers an offense for non-shorthand assignment #{op} and #{var}" do
       inspect_source("#{var} = #{var} #{op} y")
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Use self-assignment shorthand `#{op}=`."])
     end
 

@@ -10,7 +10,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundMethodBody do
         do_something
       end
     RUBY
-    expect(cop.messages)
+    expect(rule.messages)
       .to eq(['Extra empty line detected at method body beginning.'])
   end
 
@@ -46,7 +46,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundMethodBody do
         do_something
       end
     RUBY
-    expect(cop.messages)
+    expect(rule.messages)
       .to eq(['Extra empty line detected at method body beginning.'])
   end
 
@@ -71,7 +71,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundMethodBody do
 
       end
     RUBY
-    expect(cop.messages)
+    expect(rule.messages)
       .to eq(['Extra empty line detected at method body end.'])
   end
 
@@ -82,7 +82,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundMethodBody do
 
       end
     RUBY
-    expect(cop.messages)
+    expect(rule.messages)
       .to eq(['Extra empty line detected at method body end.'])
   end
 

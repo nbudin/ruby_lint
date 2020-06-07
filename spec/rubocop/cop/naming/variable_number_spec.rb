@@ -5,7 +5,7 @@ RSpec.describe RuboCop::Rule::Naming::VariableNumber, :config do
     it "registers an offense for #{Array(variable).first} in #{style}" do
       inspect_source(Array(variable).map { |v| "#{v} = 1" }.join("\n"))
 
-      expect(cop.messages).to eq(["Use #{style} for variable numbers."])
+      expect(rule.messages).to eq(["Use #{style} for variable numbers."])
       expect(rule.highlights).to eq(Array(variable)[0, 1])
       config_to_allow_offenses =
         if style_to_allow_offenses

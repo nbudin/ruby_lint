@@ -8,7 +8,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBeginBody do
   shared_examples 'offense' do |name, message, code, correction|
     it "registers an offense for #{name} with a blank" do
       inspect_source(code)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Extra empty line detected at `begin` body #{message}."])
     end
 

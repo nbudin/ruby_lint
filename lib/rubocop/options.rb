@@ -94,7 +94,7 @@ module RuboCop
             ['']
           else
             list.split(',').map do |c|
-              Cop::Cop.qualified_cop_name(c, "--#{option} option")
+              Cop::Cop.qualified_rule_name(c, "--#{option} option")
             end
           end
       end

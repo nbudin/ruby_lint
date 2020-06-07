@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
           bar
         )
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -20,7 +20,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
 
         )
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -32,7 +32,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
           qux: 0
         )
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -48,7 +48,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
         )
       RUBY
       expect(rule.offenses.size).to eq 3
-      expect(cop.messages.uniq)
+      expect(rule.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -58,7 +58,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
 
             baz: 0)
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -75,7 +75,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
         )
       RUBY
       expect(rule.offenses.size).to eq 1
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -96,7 +96,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
       RUBY
       expect(rule.offenses.size).to eq 1
       expect(rule.offenses.first.location.line).to eq 8
-      expect(cop.messages.uniq)
+      expect(rule.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -119,7 +119,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
       expect(rule.offenses.size).to eq 2
       expect(rule.offenses[0].location.line).to eq 5
       expect(rule.offenses[1].location.line).to eq 11
-      expect(cop.messages.uniq)
+      expect(rule.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end
 
@@ -131,7 +131,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
             bar
           )
         RUBY
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq(['Empty line detected around arguments.'])
       end
     end

@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::MultilineIfModifier do
   shared_examples 'offense' do |modifier|
     it 'registers an offense' do
       inspect_source(source)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Favor a normal #{modifier}-statement over a modifier" \
                 ' clause in a multiline statement.'])
     end

@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Rule::Style::ParallelAssignment, :config do
     it "registers an offense for: #{source.gsub(/\s*\n\s*/, '; ')}" do
       inspect_source(source)
 
-      expect(cop.messages).to eq(['Do not use parallel assignment.'])
+      expect(rule.messages).to eq(['Do not use parallel assignment.'])
     end
   end
 

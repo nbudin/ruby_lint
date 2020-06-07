@@ -37,7 +37,7 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
 
       RUBY
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages).to eq(['3 trailing blank lines detected.'])
+      expect(rule.messages).to eq(['3 trailing blank lines detected.'])
     end
 
     it 'registers an offense for multiple blank lines in an empty file' do
@@ -48,12 +48,12 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
 
       RUBY
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages).to eq(['3 trailing blank lines detected.'])
+      expect(rule.messages).to eq(['3 trailing blank lines detected.'])
     end
 
     it 'registers an offense for no final newline after assignment' do
       inspect_source('x = 0')
-      expect(cop.messages).to eq(['Final newline missing.'])
+      expect(rule.messages).to eq(['Final newline missing.'])
     end
 
     it 'registers an offense for no final newline after block comment' do
@@ -61,7 +61,7 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
                      "after block comments'\n\n=begin\nfirst line\nsecond " \
                      "line\nthird line\n=end")
 
-      expect(cop.messages).to eq(['Final newline missing.'])
+      expect(rule.messages).to eq(['Final newline missing.'])
     end
 
     it 'auto-corrects unwanted blank lines' do
@@ -102,7 +102,7 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
         x = 0
       RUBY
 
-      expect(cop.messages).to eq(['Trailing blank line missing.'])
+      expect(rule.messages).to eq(['Trailing blank line missing.'])
     end
 
     it 'registers an offense for multiple trailing blank lines' do
@@ -113,7 +113,7 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
 
       RUBY
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['3 trailing blank lines instead of 1 detected.'])
     end
 
@@ -125,13 +125,13 @@ RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
 
       RUBY
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['3 trailing blank lines instead of 1 detected.'])
     end
 
     it 'registers an offense for no final newline' do
       inspect_source('x = 0')
-      expect(cop.messages).to eq(['Final newline missing.'])
+      expect(rule.messages).to eq(['Final newline missing.'])
     end
 
     it 'accepts final blank line' do

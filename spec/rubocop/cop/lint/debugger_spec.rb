@@ -5,7 +5,7 @@ RSpec.describe RuboCop::Rule::Lint::Debugger, :config do
     it "reports an offense for a #{name} call" do
       inspect_source(src)
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Remove debugger entry point `#{src}`."])
       expect(rule.highlights).to eq([src])
     end

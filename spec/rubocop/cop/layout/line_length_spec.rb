@@ -40,7 +40,7 @@ RSpec.describe RuboCop::Rule::Layout::LineLength, :config do
     inspect_source(['#' * 150,
                     '__END__',
                     '#' * 200].join("\n"))
-    expect(cop.messages).to eq(['Line is too long. [150/80]'])
+    expect(rule.messages).to eq(['Line is too long. [150/80]'])
   end
 
   context 'when line is indented with tabs' do

@@ -40,7 +40,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceBeforeFirstArg, :config do
         a.something'hello world'
       RUBY
 
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(['Put one space between the method name and the first ' \
                 'argument.'] * 2)
     end
@@ -64,7 +64,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceBeforeFirstArg, :config do
           obj.no_parenthesized'asdf'
         RUBY
 
-        expect(cop.messages).to eq(
+        expect(rule.messages).to eq(
           ['Put one space between the method name and the first argument.']
         )
       end

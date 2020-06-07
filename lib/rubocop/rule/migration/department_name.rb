@@ -15,8 +15,8 @@ module RuboCop
 
         # The token that makes up a disable comment.
         # The allowed specification for comments after `# rubocop: disable` is
-        # `DepartmentName/CopName` or` all`.
-        DISABLING_COPS_CONTENT_TOKEN = %r{[A-z]+/[A-z]+|all}.freeze
+        # `DepartmentName/RuleName` or` all`.
+        DISABLING_RULES_CONTENT_TOKEN = %r{[A-z]+/[A-z]+|all}.freeze
 
         def investigate(processed_source)
           processed_source.each_comment do |comment|
@@ -41,13 +41,13 @@ module RuboCop
         def autocorrect(range)
           shall_warn = false
           cop_name = range.source
-          qualified_cop_name = Cop.registry.qualified_cop_name(cop_name,
+          qualified_rule_name = Rule.registry.qualified_rule_name(rule_name,
                                                                nil, shall_warn)
-          unless qualified_cop_name.include?('/')
-            qualified_cop_name = qualified_legacy_cop_name(cop_name)
+          unless qualified_rule_name.include?('/')
+            qualified_rule_name = qualified_legacy_rule_name(rule_name)
           end
 
-          ->(corrector) { corrector.replace(range, qualified_cop_name) }
+          ->(corrector) { corrector.replace(range, qualified_rule_name) }
         end
 
         private
@@ -65,18 +65,18 @@ module RuboCop
 
         def valid_content_token?(content_token)
           /\W+/.match?(content_token) ||
-            DISABLING_COPS_CONTENT_TOKEN.match?(content_token)
+            DISABLING_RULES_CONTENT_TOKEN.match?(content_token)
         end
 
         def contain_unexpected_character_for_department_name?(name)
           name.match?(%r{[^A-z/, ]})
         end
 
-        def qualified_legacy_cop_name(cop_name)
-          legacy_cop_names = RuboCop::ConfigObsoletion::OBSOLETE_COPS.keys
+        def qualified_legacy_rule_name(rule_name)
+          legacy_rule_names = RuboCop::ConfigObsoletion::OBSOLETE_RULES.keys
 
-          legacy_cop_names.detect do |legacy_cop_name|
-            legacy_cop_name.split('/')[1] == cop_name
+          legacy_rule_names.detect do |legacy_rule_name|
+            legacy_rule_name.split('/')[1] == rule_name
           end
         end
       end

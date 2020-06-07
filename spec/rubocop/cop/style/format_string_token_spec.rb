@@ -74,7 +74,7 @@ RSpec.describe RuboCop::Rule::Style::FormatStringToken, :config do
       it 'gives a helpful error message' do
         inspect_source(source)
 
-        expect(cop.messages.first).to eql(message)
+        expect(rule.messages.first).to eql(message)
       end
     end
   end

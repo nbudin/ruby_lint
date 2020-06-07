@@ -22,7 +22,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceInsidePercentLiteralDelimiters do
           source = code_example(' 1 2  ')
           inspect_source(source)
           expect(rule.offenses.size).to eq(2)
-          expect(cop.messages.uniq).to eq([message])
+          expect(rule.messages.uniq).to eq([message])
           expect(rule.highlights).to eq([' ', '  '])
           expect_corrected(source, code_example('1 2'))
         end

@@ -3,7 +3,7 @@
 RSpec.describe RuboCop::CommentConfig do
   subject(:comment_config) { described_class.new(parse_source(source)) }
 
-  describe '#cop_enabled_at_line?' do
+  describe '#rule_enabled_at_line?' do
     let(:source) do
       [
         '# rubocop:disable Metrics/MethodLength with a comment why',
@@ -62,7 +62,7 @@ RSpec.describe RuboCop::CommentConfig do
 
     def disabled_lines_of_cop(cop)
       (1..source.size).each_with_object([]) do |line_number, disabled_lines|
-        enabled = comment_config.cop_enabled_at_line?(cop, line_number)
+        enabled = comment_config.rule_enabled_at_line?(cop, line_number)
         disabled_lines << line_number unless enabled
       end
     end

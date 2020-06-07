@@ -86,7 +86,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::SAME_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::SAME_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on different line from last element' do
@@ -114,7 +114,7 @@ shared_examples_for 'multiline literal brace layout' do
               inspect_source(source)
 
               expect(rule.highlights).to eq([close])
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq([described_class::SAME_LINE_MESSAGE])
             end
 
@@ -152,7 +152,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::NEW_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::NEW_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on same line from last element' do
@@ -181,7 +181,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
       it 'detects closing brace on same line as last multiline element' do
@@ -190,7 +190,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on same line as last element' do
@@ -220,7 +220,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on same line from last element' do
@@ -249,7 +249,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 
       it 'detects closing brace on different line from multiline element' do
@@ -258,7 +258,7 @@ shared_examples_for 'multiline literal brace layout' do
 
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on different line as last element' do
@@ -286,7 +286,7 @@ shared_examples_for 'multiline literal brace layout' do
               inspect_source(source)
 
               expect(rule.highlights).to eq([close])
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
             end
 
@@ -323,7 +323,7 @@ shared_examples_for 'multiline literal brace layout' do
         inspect_source(src)
         expect(rule.offenses.size).to eq(1)
         expect(rule.highlights).to eq([close])
-        expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
+        expect(rule.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 
       it 'autocorrects closing brace on different line from last element' do

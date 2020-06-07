@@ -15,7 +15,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -44,7 +44,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -73,7 +73,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -86,7 +86,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -115,7 +115,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -130,7 +130,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} v == 1"])
     end
 
@@ -145,7 +145,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -158,7 +158,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -171,7 +171,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -184,7 +184,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -197,7 +197,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -210,7 +210,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -225,7 +225,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -240,7 +240,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -255,7 +255,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+      expect(rule.messages).to eq(['Use `next` to skip iteration.'])
       expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
@@ -362,7 +362,7 @@ RSpec.describe RuboCop::Rule::Style::Next, :config do
       it "registers an offense for modifier #{condition}" do
         inspect_source(source)
 
-        expect(cop.messages).to eq(['Use `next` to skip iteration.'])
+        expect(rule.messages).to eq(['Use `next` to skip iteration.'])
         expect(rule.highlights).to eq(["puts o #{condition} o == 1"])
       end
 

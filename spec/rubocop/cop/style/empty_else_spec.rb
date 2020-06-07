@@ -36,7 +36,7 @@ RSpec.describe RuboCop::Rule::Style::EmptyElse do
   shared_examples_for 'offense registration' do
     it 'registers an offense with correct message' do
       inspect_source(source)
-      expect(cop.messages).to eq(['Redundant `else`-clause.'])
+      expect(rule.messages).to eq(['Redundant `else`-clause.'])
     end
 
     it 'registers an offense with correct location' do

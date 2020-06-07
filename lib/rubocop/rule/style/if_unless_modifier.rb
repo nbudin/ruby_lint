@@ -118,7 +118,7 @@ module RuboCop
 
         def line_length_enabled_at_line?(line)
           processed_source.comment_config
-                          .cop_enabled_at_line?('Layout/LineLength', line)
+                          .rule_enabled_at_line?('Layout/LineLength', line)
         end
 
         def named_capture_in_condition?(node)

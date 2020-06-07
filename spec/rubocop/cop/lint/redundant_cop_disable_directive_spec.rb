@@ -2,22 +2,22 @@
 
 RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
   describe '.check' do
-    let(:cop_options) { { auto_correct: true } }
+    let(:rule_options) { { auto_correct: true } }
     let(:comments) { processed_source.comments }
     let(:corrected_source) do
       RuboCop::Rule::Corrector
-        .new(processed_source.buffer, cop.corrections)
+        .new(processed_source.buffer, rule.corrections)
         .rewrite
     end
 
     before do
       $stderr = StringIO.new # rubocop:disable RSpec/ExpectOutput
-      cop.check(offenses, cop_disabled_line_ranges, comments)
+      rule.check(offenses, rule_disabled_line_ranges, comments)
     end
 
     context 'when there are no disabled lines' do
       let(:offenses) { [] }
-      let(:cop_disabled_line_ranges) { {} }
+      let(:rule_disabled_line_ranges) { {} }
       let(:source) { '' }
 
       it 'returns an empty array' do
@@ -30,21 +30,21 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
         let(:offenses) { [] }
 
         context 'and a comment disables' do
-          context 'one cop' do
+          context 'one rule' do
             let(:source) { "# rubocop:disable Metrics/MethodLength\n" }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Metrics/MethodLength' => [1..Float::INFINITY] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Metrics/MethodLength`.'])
               expect(rule.highlights)
                 .to eq(['# rubocop:disable Metrics/MethodLength'])
             end
 
-            it 'gives the right cop name' do
-              expect(cop.name).to eq('Lint/RedundantCopDisableDirective')
+            it 'gives the right rule name' do
+              expect(rule.name).to eq('Lint/RedundantCopDisableDirective')
             end
 
             it 'autocorrects' do
@@ -52,15 +52,15 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'an unknown cop' do
+          context 'an unknown rule' do
             let(:source) { '# rubocop:disable UnknownCop' }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'UnknownCop' => [1..Float::INFINITY] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
-                .to eq(['Unnecessary disabling of `UnknownCop` (unknown cop).'])
+              expect(rule.messages)
+                .to eq(['Unnecessary disabling of `UnknownCop` (unknown rule).'])
               expect(rule.highlights)
                 .to eq(['# rubocop:disable UnknownCop'])
             end
@@ -70,7 +70,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             let(:source) do
               '# rubocop:disable Lint/RedundantCopDisableDirective'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY] }
             end
 
@@ -79,14 +79,14 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'itself and another cop' do
+          context 'itself and another rule' do
             context 'disabled on the same range' do
               let(:source) do
                 '# rubocop:disable Lint/RedundantCopDisableDirective, ' \
                 'Metrics/ClassLength'
               end
 
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [1..Float::INFINITY] }
               end
@@ -102,7 +102,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
                  '# rubocop:disable Metrics/ClassLength'].join("\n")
               end
 
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [2..Float::INFINITY] }
               end
@@ -112,14 +112,14 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
             end
 
-            context 'and the other cop is disabled a second time' do
+            context 'and the other rule is disabled a second time' do
               let(:source) do
                 ['# rubocop:disable Lint/RedundantCopDisableDirective',
                  '# rubocop:disable Metrics/ClassLength',
                  '# rubocop:disable Metrics/ClassLength'].join("\n")
               end
 
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [(2..3), (3..Float::INFINITY)] }
               end
@@ -130,28 +130,28 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'multiple cops' do
+          context 'multiple rules' do
             let(:source) do
               '# rubocop:disable Metrics/MethodLength, Metrics/ClassLength'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Metrics/ClassLength' => [1..Float::INFINITY],
                 'Metrics/MethodLength' => [1..Float::INFINITY] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Metrics/ClassLength`, ' \
                         '`Metrics/MethodLength`.'])
             end
           end
 
-          context 'multiple cops, and one of them has offenses' do
+          context 'multiple rules, and one of them has offenses' do
             let(:source) do
               '# rubocop:disable Metrics/MethodLength, Metrics/ClassLength, ' \
               'Lint/Debugger, Lint/AmbiguousOperator'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Metrics/ClassLength' => [1..Float::INFINITY],
                 'Metrics/MethodLength' => [1..Float::INFINITY],
                 'Lint/Debugger' => [1..Float::INFINITY],
@@ -167,7 +167,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Metrics/MethodLength`.',
                         'Unnecessary disabling of `Lint/Debugger`.',
                         'Unnecessary disabling of `Lint/AmbiguousOperator`.'])
@@ -183,11 +183,11 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'multiple cops, and the leftmost one has no offenses' do
+          context 'multiple rules, and the leftmost one has no offenses' do
             let(:source) do
               '# rubocop:disable Metrics/ClassLength, Metrics/MethodLength'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Metrics/ClassLength' => [1..Float::INFINITY],
                 'Metrics/MethodLength' => [1..Float::INFINITY] }
             end
@@ -201,7 +201,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Metrics/ClassLength`.'])
               expect(rule.highlights).to eq(['Metrics/ClassLength'])
             end
@@ -213,12 +213,12 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'multiple cops, with abbreviated names' do
+          context 'multiple rules, with abbreviated names' do
             context 'one of them has offenses' do
               let(:source) do
                 '# rubocop:disable MethodLength, ClassLength, Debugger'
               end
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Metrics/ClassLength' => [1..Float::INFINITY],
                   'Metrics/MethodLength' => [1..Float::INFINITY],
                   'Lint/Debugger' => [1..Float::INFINITY] }
@@ -233,7 +233,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'returns an offense and warns about missing departments' do
-                expect(cop.messages)
+                expect(rule.messages)
                   .to eq(['Unnecessary disabling of `Metrics/ClassLength`.',
                           'Unnecessary disabling of `Lint/Debugger`.'])
                 expect(rule.highlights).to eq(%w[ClassLength Debugger])
@@ -247,14 +247,14 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
           end
 
           context 'comment is not at the beginning of the file' do
-            context 'and not all cops have offenses' do
+            context 'and not all rules have offenses' do
               let(:source) do
                 <<~RUBY
                   puts 1
                   # rubocop:disable Metrics/MethodLength, Metrics/ClassLength
                 RUBY
               end
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Metrics/ClassLength' => [2..Float::INFINITY],
                   'Metrics/MethodLength' => [2..Float::INFINITY] }
               end
@@ -268,7 +268,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'registers an offense' do
-                expect(cop.messages).to eq(
+                expect(rule.messages).to eq(
                   ['Unnecessary disabling of `Metrics/ClassLength`.']
                 )
                 expect(rule.highlights).to eq(['Metrics/ClassLength'])
@@ -276,47 +276,47 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'misspelled cops' do
+          context 'misspelled rules' do
             let(:source) do
               '# rubocop:disable Metrics/MethodLenght, KlassLength'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'KlassLength' => [1..Float::INFINITY],
                 'Metrics/MethodLenght' => [1..Float::INFINITY] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `KlassLength` (unknown ' \
                         'cop), `Metrics/MethodLenght` (did you mean ' \
                         '`Metrics/MethodLength`?).'])
             end
           end
 
-          context 'all cops' do
+          context 'all rules' do
             let(:source) { '# rubocop : disable all' }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               {
                 'Metrics/MethodLength' => [1..Float::INFINITY],
                 'Metrics/ClassLength' => [1..Float::INFINITY]
-                # etc... (no need to include all cops here)
+                # etc... (no need to include all rules here)
               }
             end
 
             it 'returns an offense' do
-              expect(cop.messages).to eq(['Unnecessary disabling of all cops.'])
+              expect(rule.messages).to eq(['Unnecessary disabling of all rules.'])
               expect(rule.highlights).to eq([source])
             end
           end
 
-          context 'itself and all cops' do
+          context 'itself and all rules' do
             context 'disabled on different ranges' do
               let(:source) do
                 ['# rubocop:disable Lint/RedundantCopDisableDirective',
                  '# rubocop:disable all'].join("\n")
               end
 
-              let(:cop_disabled_line_ranges) do
+              let(:rule_disabled_line_ranges) do
                 { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
                   'all' => [2..Float::INFINITY] }
               end
@@ -344,7 +344,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
         end
 
         context 'and a comment disables' do
-          context 'one cop twice' do
+          context 'one rule twice' do
             let(:source) do
               <<~RUBY
                 class One
@@ -359,19 +359,19 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
               RUBY
             end
             let(:offense_lines) { [3, 8] }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Style/ClassVars' => [2..7, 7..9] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Style/ClassVars`.'])
               expect(rule.highlights)
                 .to eq(['# rubocop:disable Style/ClassVars'])
             end
           end
 
-          context 'one cop and then all cops' do
+          context 'one rule and then all rules' do
             let(:source) do
               <<~RUBY
                 class One
@@ -382,12 +382,12 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
               RUBY
             end
             let(:offense_lines) { [4] }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Style/ClassVars' => [2..3, 3..Float::INFINITY] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Style/ClassVars`.'])
               expect(rule.highlights)
                 .to eq(['# rubocop:disable Style/ClassVars'])
@@ -407,9 +407,9 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
         end
 
         context 'and a comment disables' do
-          context 'that cop' do
+          context 'that rule' do
             let(:source) { '# rubocop:disable Layout/IndentationStyle' }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Layout/IndentationStyle' => [1..100] }
             end
 
@@ -418,16 +418,16 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'that cop but on other lines' do
+          context 'that rule but on other lines' do
             let(:source) do
               ("\n" * 9) << '# rubocop:disable Layout/IndentationStyle'
             end
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               { 'Layout/IndentationStyle' => [10..12] }
             end
 
             it 'returns an offense' do
-              expect(cop.messages)
+              expect(rule.messages)
                 .to eq(['Unnecessary disabling of `Layout/IndentationStyle`.'])
               expect(rule.highlights).to eq(
                 ['# rubocop:disable Layout/IndentationStyle']
@@ -435,13 +435,13 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
           end
 
-          context 'all cops' do
+          context 'all rules' do
             let(:source) { '# rubocop : disable all' }
-            let(:cop_disabled_line_ranges) do
+            let(:rule_disabled_line_ranges) do
               {
                 'Metrics/MethodLength' => [1..Float::INFINITY],
                 'Metrics/ClassLength' => [1..Float::INFINITY]
-                # etc... (no need to include all cops here)
+                # etc... (no need to include all rules here)
               }
             end
 

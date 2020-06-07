@@ -3,7 +3,7 @@
 module RuboCop
   module Rule
     module Lint
-      # This is not actually a cop. It does not inspect anything. It just
+      # This is not actually a rule. It does not inspect anything. It just
       # provides methods to repack Parser's diagnostics/errors
       # into RuboCop's offenses.
       class Syntax < Rule
@@ -14,7 +14,7 @@ module RuboCop
 
         def self.offenses_from_processed_source(processed_source,
                                                 config, options)
-          cop = new(config, options)
+          rule = new(config, options)
 
           rule.add_offense_from_error(processed_source.parser_error) if processed_source.parser_error
 
@@ -29,7 +29,7 @@ module RuboCop
         def add_offense_from_diagnostic(diagnostic, ruby_version)
           message =
             "#{diagnostic.message}\n(Using Ruby #{ruby_version} parser; " \
-            'configure using `TargetRubyVersion` parameter, under `AllCops`)'
+            'configure using `TargetRubyVersion` parameter, under `AllRules`)'
           add_offense(nil,
                       location: diagnostic.location,
                       message: message,

@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundExceptionHandlingKeywords 
     it "registers an offense for #{name} with a blank" do
       inspect_source(code)
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages).to eq(["Extra empty line detected #{message}."])
+      expect(rule.messages).to eq(["Extra empty line detected #{message}."])
     end
 
     it "autocorrects for #{name} with a blank" do

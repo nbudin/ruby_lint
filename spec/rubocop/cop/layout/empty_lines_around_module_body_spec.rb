@@ -19,7 +19,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq([extra_begin])
+      expect(rule.messages).to eq([extra_begin])
     end
 
     it 'registers an offense for module body ending with a blank' do
@@ -30,7 +30,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq([extra_end])
+      expect(rule.messages).to eq([extra_end])
     end
 
     it 'autocorrects beginning and end' do
@@ -61,7 +61,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq([missing_begin, missing_end])
+      expect(rule.messages).to eq([missing_begin, missing_end])
     end
 
     it 'registers an offense for module body not ending with a blank' do
@@ -126,7 +126,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([extra_begin])
+        expect(rule.messages).to eq([extra_begin])
       end
 
       it 'registers offense for namespace body ending with a blank' do
@@ -141,7 +141,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([extra_end])
+        expect(rule.messages).to eq([extra_end])
       end
 
       it 'registers offenses for namespaced module body not starting '\
@@ -155,7 +155,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([missing_begin])
+        expect(rule.messages).to eq([missing_begin])
       end
 
       it 'registers offenses for namespaced module body not ending '\
@@ -169,7 +169,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([missing_end])
+        expect(rule.messages).to eq([missing_end])
       end
 
       it 'autocorrects beginning and end' do
@@ -216,7 +216,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([extra_begin])
+        expect(rule.messages).to eq([extra_begin])
       end
 
       it 'registers offense for namespace body ending with a blank' do
@@ -229,7 +229,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([extra_end])
+        expect(rule.messages).to eq([extra_end])
       end
     end
 
@@ -266,7 +266,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([missing_begin, missing_end])
+        expect(rule.messages).to eq([missing_begin, missing_end])
       end
     end
   end

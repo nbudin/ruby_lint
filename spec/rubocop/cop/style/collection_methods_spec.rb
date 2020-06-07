@@ -19,14 +19,14 @@ RSpec.describe RuboCop::Rule::Style::CollectionMethods, :config do
     it "registers an offense for #{method} with block" do
       inspect_source("[1, 2, 3].#{method} { |e| e + 1 }")
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Prefer `#{preferred_method}` over `#{method}`."])
     end
 
     it "registers an offense for #{method} with proc param" do
       inspect_source("[1, 2, 3].#{method}(&:test)")
       expect(rule.offenses.size).to eq(1)
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq(["Prefer `#{preferred_method}` over `#{method}`."])
     end
 

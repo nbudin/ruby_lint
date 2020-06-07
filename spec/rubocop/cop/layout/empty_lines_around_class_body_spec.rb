@@ -18,7 +18,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
           do_something
         end
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq([extra_begin])
     end
 
@@ -41,7 +41,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
 
         end
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq([extra_end])
     end
 
@@ -52,7 +52,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
           do_something
         end
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq([extra_begin])
     end
 
@@ -75,7 +75,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
 
         end
       RUBY
-      expect(cop.messages)
+      expect(rule.messages)
         .to eq([extra_end])
     end
   end
@@ -114,7 +114,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
           do_something
         end
       RUBY
-      expect(cop.messages).to eq([missing_begin, missing_end])
+      expect(rule.messages).to eq([missing_begin, missing_end])
     end
 
     it 'ignores classes with an empty body' do
@@ -145,7 +145,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
           do_something
         end
       RUBY
-      expect(cop.messages).to eq([missing_begin, missing_end])
+      expect(rule.messages).to eq([missing_begin, missing_end])
     end
 
     it 'ignores singleton classes with an empty body' do
@@ -197,7 +197,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
             end
           end
         RUBY
-        expect(cop.messages).to eq([extra_begin])
+        expect(rule.messages).to eq([extra_begin])
       end
 
       it 'registers offense for namespace body ending with a blank' do
@@ -211,7 +211,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
 
           end
         RUBY
-        expect(cop.messages).to eq([extra_end])
+        expect(rule.messages).to eq([extra_end])
       end
 
       it 'registers offenses for namespaced class body not starting '\
@@ -224,7 +224,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
             end
           end
         RUBY
-        expect(cop.messages).to eq([missing_begin])
+        expect(rule.messages).to eq([missing_begin])
       end
 
       it 'registers offenses for namespaced class body not ending '\
@@ -237,7 +237,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
             end
           end
         RUBY
-        expect(cop.messages).to eq([missing_end])
+        expect(rule.messages).to eq([missing_end])
       end
 
       it 'autocorrects beginning and end' do
@@ -282,7 +282,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
             end
           end
         RUBY
-        expect(cop.messages).to eq([extra_begin])
+        expect(rule.messages).to eq([extra_begin])
       end
 
       it 'registers offense for namespace body ending with a blank' do
@@ -294,7 +294,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
 
           end
         RUBY
-        expect(cop.messages).to eq([extra_end])
+        expect(rule.messages).to eq([extra_end])
       end
     end
 
@@ -330,7 +330,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
             end
           end
         RUBY
-        expect(cop.messages).to eq([missing_begin, missing_end])
+        expect(rule.messages).to eq([missing_begin, missing_end])
       end
     end
   end
@@ -356,7 +356,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq([extra_end])
+      expect(rule.messages).to eq([extra_end])
     end
 
     it 'autocorrects end' do
@@ -398,7 +398,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
         end
       RUBY
 
-      expect(cop.messages).to eq([extra_begin])
+      expect(rule.messages).to eq([extra_begin])
     end
 
     it 'autocorrects end' do

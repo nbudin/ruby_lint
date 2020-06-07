@@ -56,7 +56,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue #{rescues}"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end
@@ -89,7 +89,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue #{rescues}, StandardError"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end
@@ -122,7 +122,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue StandardError, #{rescues}"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end
@@ -159,7 +159,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue #{rescues}"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end
@@ -196,7 +196,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue #{rescues}"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end
@@ -233,7 +233,7 @@ RSpec.describe RuboCop::Rule::Lint::RescueType do
           inspect_source(source)
 
           expect(rule.highlights).to eq(["rescue #{rescues}"])
-          expect(cop.messages)
+          expect(rule.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
         end

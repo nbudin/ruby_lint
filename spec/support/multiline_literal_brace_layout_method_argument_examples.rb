@@ -15,7 +15,7 @@ shared_examples_for 'multiline literal brace layout method argument' do
         inspect_source(source)
 
         expect(rule.highlights).to eq([close])
-        expect(cop.messages)
+        expect(rule.messages)
           .to eq([described_class::SAME_LINE_MESSAGE])
       end
 

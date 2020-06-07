@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Rule::Style::MixinGrouping, :config do
 
       it 'registers an offense' do
         expect(rule.offenses.size).to eq(offenses)
-        expect(cop.messages).to eq([message] * offenses)
+        expect(rule.messages).to eq([message] * offenses)
       end
 
       if expected

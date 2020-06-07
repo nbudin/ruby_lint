@@ -186,63 +186,63 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
          'safe guarded by an object check' do
         inspect_source("#{variable}.to_i if #{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call on an accessor ' \
          'safeguarded by a check for the accessed variable' do
         inspect_source("#{variable}[1].bar if #{variable}[1]")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call safeguarded with a check ' \
          'for the object' do
         inspect_source("#{variable}.bar if #{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params safeguarded ' \
          'with a check for the object' do
         inspect_source("#{variable}.bar(baz) if #{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with a block safeguarded ' \
          'with a check for the object' do
         inspect_source("#{variable}.bar { |e| e.qux } if #{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params and a block ' \
          'safeguarded with a check for the object' do
         inspect_source("#{variable}.bar(baz) { |e| e.qux } if #{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call safeguarded with a ' \
          'negative check for the object' do
         inspect_source("#{variable}.bar unless !#{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params safeguarded ' \
          'with a negative check for the object' do
         inspect_source("#{variable}.bar(baz) unless !#{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with a block safeguarded ' \
          'with a negative check for the object' do
         inspect_source("#{variable}.bar { |e| e.qux } unless !#{variable}")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params and a block ' \
@@ -251,21 +251,21 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.bar(baz) { |e| e.qux } unless !#{variable}
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call safeguarded with a nil ' \
          'check for the object' do
         inspect_source("#{variable}.bar unless #{variable}.nil?")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params safeguarded ' \
          'with a nil check for the object' do
         inspect_source("#{variable}.bar(baz) unless #{variable}.nil?")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with a block safeguarded ' \
@@ -274,7 +274,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.bar { |e| e.qux } unless #{variable}.nil?
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params and a block ' \
@@ -283,21 +283,21 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.bar(baz) { |e| e.qux } unless #{variable}.nil?
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call safeguarded with a ' \
          'negative nil check for the object' do
         inspect_source("#{variable}.bar if !#{variable}.nil?")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params safeguarded ' \
          'with a negative nil check for the object' do
         inspect_source("#{variable}.bar(baz) if !#{variable}.nil?")
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with a block safeguarded ' \
@@ -306,7 +306,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.bar { |e| e.qux } if !#{variable}.nil?
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a method call with params and a block ' \
@@ -315,7 +315,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.bar(baz) { |e| e.qux } if !#{variable}.nil?
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a chained method call safeguarded ' \
@@ -324,7 +324,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           #{variable}.one.two(baz) { |e| e.qux } if !#{variable}.nil?
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
     end
 
@@ -337,7 +337,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a single method call inside of a ' \
@@ -348,7 +348,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a single method call inside of an ' \
@@ -359,7 +359,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'registers an offense for a single method call inside of an ' \
@@ -370,7 +370,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
           end
         RUBY
 
-        expect(cop.messages).to eq([message])
+        expect(rule.messages).to eq([message])
       end
 
       it 'allows a single method call inside of a check for the object ' \
@@ -401,14 +401,14 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
            'method call' do
           inspect_source("!#{variable}.nil? && #{variable}.bar")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for a non-nil object check followed by a ' \
            'method call with params' do
           inspect_source("!#{variable}.nil? && #{variable}.bar(baz)")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for a non-nil object check followed by a ' \
@@ -417,7 +417,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             !#{variable}.nil? && #{variable}.bar { |e| e.qux }
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for a non-nil object check followed by a ' \
@@ -426,28 +426,28 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             !#{variable}.nil? && #{variable}.bar(baz) { |e| e.qux }
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by a ' \
            'method call' do
           inspect_source("#{variable} && #{variable}.bar")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by a ' \
            'method call with params' do
           inspect_source("#{variable} && #{variable}.bar(baz)")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by a ' \
            'method call with a block' do
           inspect_source("#{variable} && #{variable}.bar { |e| e.qux }")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by a ' \
@@ -456,7 +456,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             #{variable} && #{variable}.bar(baz) { |e| e.qux }
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for a check for the object followed by a ' \
@@ -467,7 +467,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             end
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         context 'method chaining' do
@@ -477,7 +477,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
               #{variable} && #{variable}.one { |a| b}.two(baz) { |e| e.qux }
             RUBY
 
-            expect(cop.messages).to eq([message])
+            expect(rule.messages).to eq([message])
           end
 
           context 'with Lint/SafeNavigationChain disabled' do
@@ -534,28 +534,28 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
            'a method calls that nil responds to ' do
           inspect_source("#{variable} && #{variable}.to_i")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by ' \
            'a method call' do
           inspect_source("#{variable} && #{variable}.bar")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by ' \
            'a method call with params' do
           inspect_source("#{variable} && #{variable}.bar(baz)")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by ' \
            'a method call with a block' do
           inspect_source("#{variable} && #{variable}.bar { |e| e.qux }")
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for an object check followed by ' \
@@ -564,7 +564,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             #{variable} && #{variable}.bar(baz) { |e| e.qux }
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
 
         it 'registers an offense for a check for the object followed by ' \
@@ -575,7 +575,7 @@ RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
             end
           RUBY
 
-          expect(cop.messages).to eq([message])
+          expect(rule.messages).to eq([message])
         end
       end
 

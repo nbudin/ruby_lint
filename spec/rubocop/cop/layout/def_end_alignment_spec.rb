@@ -45,7 +45,7 @@ RSpec.describe RuboCop::Rule::Layout::DefEndAlignment, :config do
       it 'registers an offense' do
         inspect_source(source)
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages.first)
+        expect(rule.messages.first)
           .to eq('`end` at 7, 4 is not aligned with `foo def` at 5, 0.')
         expect(rule.highlights.first).to eq('end')
         expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
@@ -98,7 +98,7 @@ RSpec.describe RuboCop::Rule::Layout::DefEndAlignment, :config do
       it 'registers an offense' do
         inspect_source(source)
         expect(rule.offenses.size).to eq(1)
-        expect(cop.messages.first)
+        expect(rule.messages.first)
           .to eq('`end` at 3, 0 is not aligned with `def` at 1, 4.')
         expect(rule.highlights.first).to eq('end')
         expect(cop.config_to_allow_offenses).to eq('Enabled' => false)

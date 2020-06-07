@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Rule::Lint::UnifiedInteger, :config do
         it 'registers an offense' do
           inspect_source(source)
           expect(rule.offenses.size).to eq(1)
-          expect(cop.messages).to eq(["Use `Integer` instead of `#{klass}`."])
+          expect(rule.messages).to eq(["Use `Integer` instead of `#{klass}`."])
         end
 
         it 'autocorrects' do
@@ -24,7 +24,7 @@ RSpec.describe RuboCop::Rule::Lint::UnifiedInteger, :config do
         it 'registers an offense' do
           inspect_source(source)
           expect(rule.offenses.size).to eq(1)
-          expect(cop.messages).to eq(["Use `Integer` instead of `#{klass}`."])
+          expect(rule.messages).to eq(["Use `Integer` instead of `#{klass}`."])
         end
 
         it 'autocorrects' do
