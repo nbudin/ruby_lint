@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for the placement of the closing parenthesis
       # in a method call that passes a HEREDOC string as an argument.
@@ -50,7 +50,7 @@ module RuboCop
       #        123,
       #      )
       #
-      class HeredocArgumentClosingParenthesis < Cop
+      class HeredocArgumentClosingParenthesis < Rule
         include RangeHelp
 
         MSG = 'Put the closing parenthesis for a method call with a ' \

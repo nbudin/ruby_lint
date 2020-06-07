@@ -3,7 +3,7 @@
 # rubocop:disable Lint/RedundantCopDisableDirective
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Detects comments to enable/disable RuboCop.
       # This is useful if want to make sure that every RuboCop error gets fixed
@@ -20,7 +20,7 @@ module RuboCop
       #   def fixed_method_name_and_no_rubocop_comments
       #   end
       #
-      class DisableCopsWithinSourceCodeDirective < Cop
+      class DisableCopsWithinSourceCodeDirective < Rule
         # rubocop:enable Lint/RedundantCopDisableDirective
         MSG = 'Comment to disable/enable RuboCop.'
 

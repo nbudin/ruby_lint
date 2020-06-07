@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks that quotes inside the string interpolation
       # match the configured preference.
@@ -19,7 +19,7 @@ module RuboCop
       #
       #   # good
       #   result = "Tests #{success ? "PASS" : "FAIL"}"
-      class StringLiteralsInInterpolation < Cop
+      class StringLiteralsInInterpolation < Rule
         include ConfigurableEnforcedStyle
         include StringLiteralsHelp
 

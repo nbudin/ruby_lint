@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks that the closing brace in an array literal is either
       # on the same line as the last array element or on a new line.
@@ -88,7 +88,7 @@ module RuboCop
       #     # good
       #     [ :a,
       #       :b ]
-      class MultilineArrayBraceLayout < Cop
+      class MultilineArrayBraceLayout < Rule
         include MultilineLiteralBraceLayout
 
         SAME_LINE_MESSAGE = 'The closing array brace must be on the same ' \

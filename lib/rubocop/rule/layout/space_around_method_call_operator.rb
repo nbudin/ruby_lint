@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks method call operators to not have spaces around them.
       #
@@ -34,7 +34,7 @@ module RuboCop
       #   Rubocop::Rule::Rule
       #   ::Rubocop::Rule
       #
-      class SpaceAroundMethodCallOperator < Cop
+      class SpaceAroundMethodCallOperator < Rule
         include SurroundingSpace
 
         MSG = 'Avoid using spaces around a method call operator.'

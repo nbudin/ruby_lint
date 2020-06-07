@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Security
       # This cop checks for the use of `Kernel#open`.
       #
@@ -19,7 +19,7 @@ module RuboCop
       #   File.open(something)
       #   IO.popen(something)
       #   URI.parse(something).open
-      class Open < Cop
+      class Open < Rule
         MSG = 'The use of `Kernel#open` is a serious security risk.'
 
         def_node_matcher :open?, <<~PATTERN

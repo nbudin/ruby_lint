@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Error raised when an unqualified cop name is used that could
     # refer to two or more cops under different departments
     class AmbiguousCopName < RuboCop::Error

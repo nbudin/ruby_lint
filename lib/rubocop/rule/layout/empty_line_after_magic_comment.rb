@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for a newline after the final magic comment.
       #
@@ -20,7 +20,7 @@ module RuboCop
       #   class Person
       #     # Some code
       #   end
-      class EmptyLineAfterMagicComment < Cop
+      class EmptyLineAfterMagicComment < Rule
         include RangeHelp
 
         MSG = 'Add an empty line after magic comments.'

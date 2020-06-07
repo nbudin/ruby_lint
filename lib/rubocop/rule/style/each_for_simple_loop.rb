@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for loops which iterate a constant number of times,
       # using a Range literal and `#each`. This can be done more readably using
@@ -22,7 +22,7 @@ module RuboCop
       #
       #   # good
       #   10.times {}
-      class EachForSimpleLoop < Cop
+      class EachForSimpleLoop < Rule
         MSG = 'Use `Integer#times` for a simple loop which iterates a fixed ' \
               'number of times.'
 

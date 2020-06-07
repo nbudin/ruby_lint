@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for Windows-style line endings in the source code.
       #
@@ -37,7 +37,7 @@ module RuboCop
       #   # good
       #   puts 'Hello' # Return character is CR+LF on all platfoms.
       #
-      class EndOfLine < Cop
+      class EndOfLine < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

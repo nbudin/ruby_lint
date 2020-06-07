@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for division with integers coerced to floats.
       # It is recommended to either always use `fdiv` or coerce one side only.
@@ -39,7 +39,7 @@ module RuboCop
       #
       #   # good
       #   a.fdiv(b)
-      class FloatDivision < Cop
+      class FloatDivision < Rule
         include ConfigurableEnforcedStyle
 
         def_node_matcher :right_coerce?, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for expressions where there is a call to a predicate
       # method with at least one argument, where no parentheses are used around
@@ -27,7 +27,7 @@ module RuboCop
       #   if day.is?(:tuesday) && month == :jan
       #     # ...
       #   end
-      class RequireParentheses < Cop
+      class RequireParentheses < Rule
         include RangeHelp
 
         MSG = 'Use parentheses in the method call to avoid confusion about ' \

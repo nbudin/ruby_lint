@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for unused block arguments.
       #
@@ -52,7 +52,7 @@ module RuboCop
       #     foo
       #   end
       #
-      class UnusedBlockArgument < Cop
+      class UnusedBlockArgument < Rule
         include UnusedArgument
 
         def autocorrect(node)

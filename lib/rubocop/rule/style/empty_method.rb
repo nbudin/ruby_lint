@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the formatting of empty method definitions.
       # By default it enforces empty method definitions to go on a single
@@ -40,7 +40,7 @@ module RuboCop
       #
       #   def self.foo(bar)
       #   end
-      class EmptyMethod < Cop
+      class EmptyMethod < Rule
         include ConfigurableEnforcedStyle
 
         MSG_COMPACT = 'Put empty method definitions on a single line.'

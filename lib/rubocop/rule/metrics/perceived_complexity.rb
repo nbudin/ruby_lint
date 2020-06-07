@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       # This cop tries to produce a complexity score that's a measure of the
       # complexity the reader experiences when looking at a method. For that
@@ -26,7 +26,7 @@ module RuboCop
       #       do_something until a && b   # 2
       #     end                           # ===
       #   end                             # 7 complexity points
-      class PerceivedComplexity < Cop
+      class PerceivedComplexity < Rule
         include MethodComplexity
 
         MSG = 'Perceived complexity for %<method>s is too high. ' \

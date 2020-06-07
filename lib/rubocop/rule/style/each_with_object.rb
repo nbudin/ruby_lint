@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for inject / reduce calls where the passed in object is
       # returned at the end and so could be replaced by each_with_object without
@@ -16,7 +16,7 @@ module RuboCop
       #
       #   # good
       #   [1, 2].each_with_object({}) { |e, a| a[e] = e }
-      class EachWithObject < Cop
+      class EachWithObject < Rule
         include RangeHelp
 
         MSG = 'Use `each_with_object` instead of `%<method>s`.'

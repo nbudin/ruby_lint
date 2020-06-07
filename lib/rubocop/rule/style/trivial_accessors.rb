@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for trivial reader/writer methods, that could
       # have been created with the attr_* family of functions automatically.
@@ -27,7 +27,7 @@ module RuboCop
       #   class << self
       #     attr_reader :baz
       #   end
-      class TrivialAccessors < Cop
+      class TrivialAccessors < Rule
         MSG = 'Use `attr_%<kind>s` to define trivial %<kind>s methods.'
 
         def on_def(node)

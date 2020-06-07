@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Access modifiers should be surrounded by blank lines.
       #
@@ -40,7 +40,7 @@ module RuboCop
       #     def baz; end
       #   end
       #
-      class EmptyLinesAroundAccessModifier < Cop
+      class EmptyLinesAroundAccessModifier < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

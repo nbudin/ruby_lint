@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks the spacing inside and after block parameters pipes. Line breaks
       # inside parameter pipes are checked by `Layout/MultilineBlockLayout` and
@@ -24,7 +24,7 @@ module RuboCop
       #   # good
       #   {}.each { | x, y | puts x }
       #   ->( x, y ) { puts x }
-      class SpaceAroundBlockParameters < Cop
+      class SpaceAroundBlockParameters < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

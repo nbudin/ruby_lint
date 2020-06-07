@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       # This cop checks if the length of a method exceeds some maximum value.
       # Comment lines can optionally be ignored.
       # The maximum allowed length is configurable.
-      class MethodLength < Cop
+      class MethodLength < Rule
         include TooManyLines
 
         LABEL = 'Method'

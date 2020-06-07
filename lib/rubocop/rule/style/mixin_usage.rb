@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks that `include`, `extend` and `prepend` statements appear
       # inside classes and modules, not at the top level, so as to not affect
@@ -40,7 +40,7 @@ module RuboCop
       #   class C
       #     prepend M
       #   end
-      class MixinUsage < Cop
+      class MixinUsage < Rule
         MSG = '`%<statement>s` is used at the top level. Use inside `class` ' \
               'or `module`.'
 

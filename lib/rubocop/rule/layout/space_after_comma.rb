@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for comma (,) not followed by some kind of space.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   [1, 2]
       #   { foo:bar, }
-      class SpaceAfterComma < Cop
+      class SpaceAfterComma < Rule
         include SpaceAfterPunctuation
 
         def autocorrect(comma)

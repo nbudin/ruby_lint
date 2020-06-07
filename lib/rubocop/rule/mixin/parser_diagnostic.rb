@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for cops which processes Parser's diagnostics.
     # This mixin requires its user class to define `#relevant_diagnostic?`.
     #

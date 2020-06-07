@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the multiline assignments have a newline
       # after the assignment operator.
@@ -31,7 +31,7 @@ module RuboCop
       #   foo = if expression
       #     'bar'
       #   end
-      class MultilineAssignmentLayout < Cop
+      class MultilineAssignmentLayout < Rule
         include CheckAssignment
         include ConfigurableEnforcedStyle
         include RangeHelp

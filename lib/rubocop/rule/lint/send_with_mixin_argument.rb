@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       #
       # This cop checks for `send`, `public_send`, and `__send__` methods
@@ -34,7 +34,7 @@ module RuboCop
       #   Foo.prepend Bar
       #   Foo.extend Bar
       #
-      class SendWithMixinArgument < Cop
+      class SendWithMixinArgument < Rule
         include RangeHelp
 
         MSG = 'Use `%<method>s %<module_name>s` instead of `%<bad_method>s`.'

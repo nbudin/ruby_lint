@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the presence of `method_missing` without
       # falling back on `super`.
@@ -18,7 +18,7 @@ module RuboCop
       #     # ...
       #     super
       #   end
-      class MethodMissingSuper < Cop
+      class MethodMissingSuper < Rule
         MSG = 'When using `method_missing`, fall back on `super`.'
 
         def on_def(node)

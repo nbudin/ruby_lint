@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines around the bodies of blocks match
       # the configuration.
@@ -21,7 +21,7 @@ module RuboCop
       #   foo do |bar|
       #     # ...
       #   end
-      class EmptyLinesAroundBlockBody < Cop
+      class EmptyLinesAroundBlockBody < Rule
         include EmptyLinesAroundBody
 
         KIND = 'block'

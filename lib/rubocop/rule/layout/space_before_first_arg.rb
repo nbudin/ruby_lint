@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that exactly one space is used between a method name and the
       # first argument for method calls without parentheses.
@@ -21,7 +21,7 @@ module RuboCop
       #   something y, z
       #   something 'hello'
       #
-      class SpaceBeforeFirstArg < Cop
+      class SpaceBeforeFirstArg < Rule
         include PrecedingFollowingAlignment
         include RangeHelp
 

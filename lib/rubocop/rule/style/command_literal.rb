@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces using `` or %x around command literals.
       #
@@ -75,7 +75,7 @@ module RuboCop
       # @example AllowInnerBackticks: true
       #   # good
       #   `echo \`ls\``
-      class CommandLiteral < Cop
+      class CommandLiteral < Rule
         include ConfigurableEnforcedStyle
 
         MSG_USE_BACKTICKS = 'Use backticks around command string.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for strings that are just an interpolated expression.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #
       #   # good if @var is already a String
       #   @var
-      class RedundantInterpolation < Cop
+      class RedundantInterpolation < Rule
         include PercentLiteral
 
         MSG = 'Prefer `to_s` over string interpolation.'

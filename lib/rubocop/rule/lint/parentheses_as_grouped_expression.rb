@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Checks for space between the name of a called method and a left
       # parenthesis.
@@ -15,7 +15,7 @@ module RuboCop
       #   do_something(foo)
       #   do_something (2 + 3) * 4
       #   do_something (foo * bar).baz
-      class ParenthesesAsGroupedExpression < Cop
+      class ParenthesesAsGroupedExpression < Rule
         include RangeHelp
 
         MSG = '`(...)` interpreted as grouped expression.'

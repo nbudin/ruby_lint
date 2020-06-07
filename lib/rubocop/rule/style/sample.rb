@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop is used to identify usages of `shuffle.first`,
       # `shuffle.last`, and `shuffle[]` and change them to use
@@ -27,7 +27,7 @@ module RuboCop
       #   [1, 2, 3].shuffle[1..3]    # sample(3) might return a longer Array
       #   [1, 2, 3].shuffle[foo, bar]
       #   [1, 2, 3].shuffle(random: Random.new)
-      class Sample < Cop
+      class Sample < Rule
         MSG = 'Use `%<correct>s` instead of `%<incorrect>s`.'
 
         def_node_matcher :sample_candidate?, <<~PATTERN

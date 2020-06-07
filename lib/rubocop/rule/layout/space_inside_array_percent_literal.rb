@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for unnecessary additional spaces inside array percent literals
       # (i.e. %i/%w).
@@ -12,7 +12,7 @@ module RuboCop
       #   %w(foo  bar  baz)
       #   # good
       #   %i(foo bar baz)
-      class SpaceInsideArrayPercentLiteral < Cop
+      class SpaceInsideArrayPercentLiteral < Rule
         include MatchRange
         include PercentLiteral
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for interpolation in a single quoted string.
       #
@@ -16,7 +16,7 @@ module RuboCop
       #   # good
       #
       #   foo = "something with #{interpolation} inside"
-      class InterpolationCheck < Cop
+      class InterpolationCheck < Rule
         MSG = 'Interpolation in single quoted string detected. '\
               'Use double quoted strings if you need interpolation.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the rescue and ensure keywords are aligned
       # properly.
@@ -21,7 +21,7 @@ module RuboCop
       #   rescue
       #     puts 'error'
       #   end
-      class RescueEnsureAlignment < Cop
+      class RescueEnsureAlignment < Rule
         include RangeHelp
 
         MSG = '`%<kw_loc>s` at %<kw_loc_line>d, %<kw_loc_column>d is not ' \

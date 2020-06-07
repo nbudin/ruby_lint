@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop (by default) checks for uses of methods Hash#has_key? and
       # Hash#has_value? where it enforces Hash#key? and Hash#value?
@@ -25,7 +25,7 @@ module RuboCop
       #  # good
       #  Hash#has_key?
       #  Hash#has_value?
-      class PreferredHashMethods < Cop
+      class PreferredHashMethods < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Use `Hash#%<prefer>s` instead of `Hash#%<current>s`.'

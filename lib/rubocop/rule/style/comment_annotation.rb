@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks that comment annotation keywords are written according
       # to guidelines.
@@ -30,7 +30,7 @@ module RuboCop
       #
       #   # good
       #   # OPTIMIZE: does not work
-      class CommentAnnotation < Cop
+      class CommentAnnotation < Rule
         include AnnotationComment
         include RangeHelp
 

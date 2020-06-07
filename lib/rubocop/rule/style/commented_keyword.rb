@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for comments put on the same line as some keywords.
       # These keywords are: `begin`, `class`, `def`, `end`, `module`.
@@ -33,7 +33,7 @@ module RuboCop
       #   class X # :nodoc:
       #     y
       #   end
-      class CommentedKeyword < Cop
+      class CommentedKeyword < Rule
         MSG = 'Do not place comments on the same line as the ' \
               '`%<keyword>s` keyword.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for multi-line ternary op expressions.
       #
@@ -23,7 +23,7 @@ module RuboCop
       #     else
       #       c
       #     end
-      class MultilineTernaryOperator < Cop
+      class MultilineTernaryOperator < Rule
         MSG = 'Avoid multi-line ternary operators, ' \
               'use `if` or `unless` instead.'
 

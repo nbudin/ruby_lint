@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop ensures that each key in a multi-line hash
       # starts on a separate line.
@@ -20,7 +20,7 @@ module RuboCop
       #     b: 2,
       #     c: 3
       #   }
-      class MultilineHashKeyLineBreaks < Cop
+      class MultilineHashKeyLineBreaks < Rule
         include MultilineElementLineBreaks
 
         MSG = 'Each key in a multi-line hash must start on a ' \

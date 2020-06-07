@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for method signatures that span multiple lines.
       #
@@ -18,7 +18,7 @@ module RuboCop
       #           baz)
       #   end
       #
-      class MultilineMethodSignature < Cop
+      class MultilineMethodSignature < Rule
         MSG = 'Avoid multi-line method signatures.'
 
         def on_def(node)

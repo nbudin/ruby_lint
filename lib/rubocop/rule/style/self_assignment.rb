@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the use the shorthand for self-assignment.
       #
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   x += 1
-      class SelfAssignment < Cop
+      class SelfAssignment < Rule
         MSG = 'Use self-assignment shorthand `%<method>s=`.'
         OPS = %i[+ - * ** / | &].freeze
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of rescue in its modifier form.
       #
@@ -39,7 +39,7 @@ module RuboCop
       #   rescue SomeException
       #     handle_error
       #   end
-      class RescueModifier < Cop
+      class RescueModifier < Rule
         include Alignment
         include RescueNode
 

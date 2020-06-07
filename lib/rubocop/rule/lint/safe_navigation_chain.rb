@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # The safe navigation operator returns nil if the receiver is
       # nil. If you chain an ordinary method call after a safe
@@ -23,7 +23,7 @@ module RuboCop
       #
       #   x&.foo&.bar
       #   x&.foo || bar
-      class SafeNavigationChain < Cop
+      class SafeNavigationChain < Rule
         include NilMethods
 
         MSG = 'Do not chain ordinary method call' \

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks if usage of %() or %Q() matches configuration.
       #
@@ -23,7 +23,7 @@ module RuboCop
       #   %Q|He said: "#{greeting}"|
       #   %q/She said: 'Hi'/
       #
-      class BarePercentLiterals < Cop
+      class BarePercentLiterals < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Use `%%%<good>s` instead of `%%%<bad>s`.'

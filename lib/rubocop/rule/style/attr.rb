@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of Module#attr.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #   attr_accessor :something
       #   attr_reader :one, :two, :three
       #
-      class Attr < Cop
+      class Attr < Rule
         include RangeHelp
 
         MSG = 'Do not use `attr`. Use `%<replacement>s` instead.'

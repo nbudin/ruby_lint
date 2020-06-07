@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for potential usage of the `||=` operator.
       #
@@ -26,7 +26,7 @@ module RuboCop
       #
       #   # good - set name to 'Bozhidar', only if it's nil or false
       #   name ||= 'Bozhidar'
-      class OrAssignment < Cop
+      class OrAssignment < Rule
         MSG = 'Use the double pipe equals operator `||=` instead.'
 
         def_node_matcher :ternary_assignment?, <<~PATTERN

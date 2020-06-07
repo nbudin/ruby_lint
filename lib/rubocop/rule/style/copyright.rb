@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Check that a copyright notice was given in each source file.
       #
@@ -15,7 +15,7 @@ module RuboCop
       # that RuboCop scans, a comment that matches this regex must be found or
       # an offense is reported.
       #
-      class Copyright < Cop
+      class Copyright < Rule
         include RangeHelp
 
         MSG = 'Include a copyright notice matching /%<notice>s/ before ' \

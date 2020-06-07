@@ -3,7 +3,7 @@
 require 'set'
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for two or more consecutive blank lines.
       #
@@ -20,7 +20,7 @@ module RuboCop
       #   # one empty line
       #   some_method
       #
-      class EmptyLines < Cop
+      class EmptyLines < Rule
         include RangeHelp
 
         MSG = 'Extra blank line detected.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines around the bodies of modules match
       # the configuration.
@@ -44,7 +44,7 @@ module RuboCop
       #       # ...
       #     end
       #   end
-      class EmptyLinesAroundModuleBody < Cop
+      class EmptyLinesAroundModuleBody < Rule
         include EmptyLinesAroundBody
 
         KIND = 'module'

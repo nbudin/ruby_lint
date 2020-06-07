@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks for potential uses of the location keywords which can be used as
       # shortcut arguments to `#add_offense`.
@@ -13,7 +13,7 @@ module RuboCop
       #
       #   # good
       #   add_offense(node, location: :selector)
-      class OffenseLocationKeyword < Cop
+      class OffenseLocationKeyword < Rule
         MSG = 'Use `:%<keyword>s` as the location argument to ' \
               '`#add_offense`.'
 

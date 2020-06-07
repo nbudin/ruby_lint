@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for unnecessary additional spaces inside the delimiters of
       # %i/%w/%x literals.
@@ -16,7 +16,7 @@ module RuboCop
       #
       #   # bad
       #   %x(  ls -l )
-      class SpaceInsidePercentLiteralDelimiters < Cop
+      class SpaceInsidePercentLiteralDelimiters < Rule
         include MatchRange
         include PercentLiteral
 

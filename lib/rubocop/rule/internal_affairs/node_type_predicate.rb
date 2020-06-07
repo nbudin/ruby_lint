@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks that node types are checked using the predicate helpers.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   node.send_type?
       #
-      class NodeTypePredicate < Cop
+      class NodeTypePredicate < Rule
         MSG = 'Use `#%<type>s_type?` to check node type.'
 
         def_node_matcher :node_type_check, <<~PATTERN

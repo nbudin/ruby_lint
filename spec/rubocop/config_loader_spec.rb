@@ -554,9 +554,9 @@ RSpec.describe RuboCop::ConfigLoader do
         before do
           create_file('third_party/gem.rb', <<~RUBY)
             module RuboCop
-              module Cop
+              module Rule
                 module Custom
-                  class Loop < Cop
+                  class Loop < Rule
                   end
                 end
               end

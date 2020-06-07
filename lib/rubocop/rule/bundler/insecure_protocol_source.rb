@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Bundler
       # The symbol argument `:gemcutter`, `:rubygems`, and `:rubyforge`
       # are deprecated. So please change your source to URL string that
@@ -25,7 +25,7 @@ module RuboCop
       #   # good
       #   source 'https://rubygems.org' # strongly recommended
       #   source 'http://rubygems.org'
-      class InsecureProtocolSource < Cop
+      class InsecureProtocolSource < Rule
         include RangeHelp
 
         MSG = 'The source `:%<source>s` is deprecated because HTTP requests ' \

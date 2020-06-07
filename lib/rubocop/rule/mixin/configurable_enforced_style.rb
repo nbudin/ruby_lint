@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Handles `EnforcedStyle` configuration parameters.
     module ConfigurableEnforcedStyle
       def opposite_style_detected

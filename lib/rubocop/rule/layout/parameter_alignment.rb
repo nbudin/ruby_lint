@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Here we check if the parameters on a multi-line method call or
       # definition are aligned.
@@ -68,7 +68,7 @@ module RuboCop
       #        baz)
       #     123
       #   end
-      class ParameterAlignment < Cop
+      class ParameterAlignment < Rule
         include Alignment
 
         ALIGN_PARAMS_MSG = 'Align the parameters of a method definition if ' \

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for `unless` expressions with `else` clauses.
       #
@@ -19,7 +19,7 @@ module RuboCop
       #   else
       #     # do a different thing...
       #   end
-      class UnlessElse < Cop
+      class UnlessElse < Rule
         include RangeHelp
 
         MSG = 'Do not use `unless` with `else`. Rewrite these with the ' \

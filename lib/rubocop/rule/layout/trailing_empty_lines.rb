@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop looks for trailing blank lines and a final newline in the
       # source code.
@@ -37,7 +37,7 @@ module RuboCop
       #   class Foo; end
       #   # EOF
       #
-      class TrailingEmptyLines < Cop
+      class TrailingEmptyLines < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

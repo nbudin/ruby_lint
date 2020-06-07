@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality shared by Uncommunicative cops
     module UncommunicativeName
       CASE_MSG = 'Only use lowercase characters for %<name_type>s.'

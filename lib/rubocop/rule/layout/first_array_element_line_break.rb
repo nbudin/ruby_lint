@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for a line break before the first element in a
       # multi-line array.
@@ -17,7 +17,7 @@ module RuboCop
       #       :a,
       #       :b]
       #
-      class FirstArrayElementLineBreak < Cop
+      class FirstArrayElementLineBreak < Rule
         include FirstElementLineBreak
 
         MSG = 'Add a line break before the first element of a ' \

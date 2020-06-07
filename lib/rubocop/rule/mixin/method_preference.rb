@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common code for cops that deal with preferred methods.
     module MethodPreference
       private

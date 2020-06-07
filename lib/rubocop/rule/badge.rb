@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Identifier of all cops containing a department and cop name.
     #
     # All cops are identified by their badge. For example, the badge for

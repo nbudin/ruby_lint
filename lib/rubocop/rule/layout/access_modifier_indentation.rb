@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Bare access modifiers (those not applying to specific methods) should be
       # indented as deep as method definitions, or as deep as the class/module
@@ -32,7 +32,7 @@ module RuboCop
       #   private
       #     def smooth; end
       #   end
-      class AccessModifierIndentation < Cop
+      class AccessModifierIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include RangeHelp

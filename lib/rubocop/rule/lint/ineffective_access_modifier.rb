@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `private` or `protected` access modifiers which are
       # applied to a singleton method. These access modifiers do not make
@@ -45,7 +45,7 @@ module RuboCop
       #       end
       #     end
       #   end
-      class IneffectiveAccessModifier < Cop
+      class IneffectiveAccessModifier < Rule
         MSG = '`%<modifier>s` (on line %<line>d) does not make singleton ' \
               'methods %<modifier>s. Use %<alternative>s instead.'
         ALTERNATIVE_PRIVATE = '`private_class_method` or `private` inside a ' \

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop is used to identify instances of sorting and then
       # taking only the first or last element. The same behavior can
@@ -49,7 +49,7 @@ module RuboCop
       #   # good
       #   arr.max_by(&:foo)
       #
-      class RedundantSort < Cop
+      class RedundantSort < Rule
         include RangeHelp
 
         MSG = 'Use `%<suggestion>s` instead of '\

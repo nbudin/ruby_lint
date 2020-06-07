@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of class variables. Offenses
       # are signaled only on assignment to class variables to
@@ -30,7 +30,7 @@ module RuboCop
       #     end
       #   end
       #
-      class ClassVars < Cop
+      class ClassVars < Rule
         MSG = 'Replace class var %<class_var>s with a class ' \
               'instance var.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing comma in hash literals.
       # The configuration options are:
@@ -84,7 +84,7 @@ module RuboCop
       #     foo: 1,
       #     bar: 2
       #   }
-      class TrailingCommaInHashLiteral < Cop
+      class TrailingCommaInHashLiteral < Rule
         include TrailingComma
 
         def on_hash(node)

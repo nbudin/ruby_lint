@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for calls to debugger or pry.
       #
@@ -32,7 +32,7 @@ module RuboCop
       #   def some_method
       #     do_something
       #   end
-      class Debugger < Cop
+      class Debugger < Rule
         MSG = 'Remove debugger entry point `%<source>s`.'
 
         def_node_matcher :kernel?, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for the use of a return with a value in a context
       # where the value will be ignored. (initialize and setter methods)
@@ -31,7 +31,7 @@ module RuboCop
       #   def foo=(bar)
       #     return
       #   end
-      class ReturnInVoidContext < Cop
+      class ReturnInVoidContext < Rule
         MSG = 'Do not return a value in `%<method>s`.'
 
         def on_return(return_node)

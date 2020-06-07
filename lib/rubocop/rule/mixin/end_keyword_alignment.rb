@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Functions for checking the alignment of the `end` keyword.
     module EndKeywordAlignment
       include ConfigurableEnforcedStyle

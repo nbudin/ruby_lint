@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for useless `else` in `begin..end` without `rescue`.
       #
@@ -29,7 +29,7 @@ module RuboCop
       #   else
       #     do_something_else
       #   end
-      class UselessElseWithoutRescue < Cop
+      class UselessElseWithoutRescue < Rule
         include ParserDiagnostic
 
         MSG = '`else` without `rescue` is useless.'

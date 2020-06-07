@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # `Dir[...]` and `Dir.glob(...)` do not make any guarantees about
       # the order in which files are returned. The final order is
@@ -35,7 +35,7 @@ module RuboCop
       #     require file
       #   end
       #
-      class NonDeterministicRequireOrder < Cop
+      class NonDeterministicRequireOrder < Rule
         MSG = 'Sort files before requiring them.'
 
         def on_block(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Common functionality for checking if presence/absence of empty lines
       # around some kind of body matches the configuration.

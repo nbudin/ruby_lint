@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for spaces between `->` and opening parameter
       # parenthesis (`(`) in lambda literals.
@@ -19,7 +19,7 @@ module RuboCop
       #
       #     # good
       #     a = -> (x, y) { x + y }
-      class SpaceInLambdaLiteral < Cop
+      class SpaceInLambdaLiteral < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

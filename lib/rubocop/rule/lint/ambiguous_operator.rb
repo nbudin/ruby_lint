@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for ambiguous operators in the first argument of a
       # method invocation without parentheses.
@@ -20,7 +20,7 @@ module RuboCop
       #
       #   # With parentheses, there's no ambiguity.
       #   do_something(*some_array)
-      class AmbiguousOperator < Cop
+      class AmbiguousOperator < Rule
         include ParserDiagnostic
 
         AMBIGUITIES = {

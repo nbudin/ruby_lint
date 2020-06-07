@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for empty `ensure` blocks
       #
@@ -42,7 +42,7 @@ module RuboCop
       #   ensure
       #     do_something_else
       #   end
-      class EmptyEnsure < Cop
+      class EmptyEnsure < Rule
         MSG = 'Empty `ensure` block detected.'
 
         def on_ensure(node)

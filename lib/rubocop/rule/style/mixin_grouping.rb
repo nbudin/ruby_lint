@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for grouping of mixins in `class` and `module` bodies.
       # By default it enforces mixins to be placed in separate declarations,
@@ -30,7 +30,7 @@ module RuboCop
       #   class Foo
       #     extend Qox, Bar
       #   end
-      class MixinGrouping < Cop
+      class MixinGrouping < Rule
         include ConfigurableEnforcedStyle
 
         MIXIN_METHODS = %i[extend include prepend].freeze

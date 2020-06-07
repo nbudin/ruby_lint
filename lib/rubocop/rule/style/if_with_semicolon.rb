@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of semicolon in if statements.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   result = some_condition ? something : another_thing
       #
-      class IfWithSemicolon < Cop
+      class IfWithSemicolon < Rule
         include OnNormalIfUnless
 
         MSG = 'Do not use if x; Use the ternary operator instead.'

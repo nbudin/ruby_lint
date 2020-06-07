@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that braces used for hash literals have or don't have
       # surrounding space depending on configuration.
@@ -63,7 +63,7 @@ module RuboCop
       #   foo = {  }
       #   foo = {     }
       #
-      class SpaceInsideHashLiteralBraces < Cop
+      class SpaceInsideHashLiteralBraces < Rule
         include SurroundingSpace
         include ConfigurableEnforcedStyle
         include RangeHelp

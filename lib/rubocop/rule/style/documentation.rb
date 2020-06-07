@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for missing top-level documentation of classes and
       # modules. Classes with no body are exempt from the check and so are
@@ -55,7 +55,7 @@ module RuboCop
       #       Public = Class.new
       #     end
       #
-      class Documentation < Cop
+      class Documentation < Rule
         include DocumentationComment
 
         MSG = 'Missing top-level %<type>s documentation comment.'

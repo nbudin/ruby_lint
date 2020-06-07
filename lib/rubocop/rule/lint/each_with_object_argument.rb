@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks if each_with_object is called with an immutable
       # argument. Since the argument is the object that the given block shall
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   num = 0
       #   sum = numbers.each_with_object(num) { |e, a| a += e }
-      class EachWithObjectArgument < Cop
+      class EachWithObjectArgument < Rule
         MSG = 'The argument to each_with_object cannot be immutable.'
 
         def_node_matcher :each_with_object?, <<~PATTERN

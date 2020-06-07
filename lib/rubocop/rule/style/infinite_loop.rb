@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Use `Kernel#loop` for infinite loops.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #   loop do
       #     work
       #   end
-      class InfiniteLoop < Cop
+      class InfiniteLoop < Rule
         LEADING_SPACE = /\A(\s*)/.freeze
 
         MSG = 'Use `Kernel#loop` for infinite loops.'

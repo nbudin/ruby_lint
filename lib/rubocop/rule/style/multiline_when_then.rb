@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks uses of the `then` keyword
       # in multi-line when statements.
@@ -28,7 +28,7 @@ module RuboCop
       #                              arg2)
       #   end
       #
-      class MultilineWhenThen < Cop
+      class MultilineWhenThen < Rule
         include RangeHelp
 
         MSG = 'Do not use `then` for multiline `when` statement.'

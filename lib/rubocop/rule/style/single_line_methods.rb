@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for single-line method definitions that contain a body.
       # It will accept single-line methods with no body.
@@ -24,7 +24,7 @@ module RuboCop
       #   # bad
       #   def no_op; end
       #
-      class SingleLineMethods < Cop
+      class SingleLineMethods < Rule
         include Alignment
 
         MSG = 'Avoid single-line method definitions.'

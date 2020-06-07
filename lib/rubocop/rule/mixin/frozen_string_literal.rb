@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for dealing with frozen string literals.
     module FrozenStringLiteral
       module_function

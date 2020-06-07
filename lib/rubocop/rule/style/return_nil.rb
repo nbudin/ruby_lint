@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces consistency between 'return nil' and 'return'.
       #
@@ -28,7 +28,7 @@ module RuboCop
       #   def foo(arg)
       #     return nil if arg
       #   end
-      class ReturnNil < Cop
+      class ReturnNil < Rule
         include ConfigurableEnforcedStyle
 
         RETURN_MSG = 'Use `return` instead of `return nil`.'

@@ -237,9 +237,9 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         YAML
         create_file('rubocop_ext.rb', <<~RUBY)
           module RuboCop
-            module Cop
+            module Rule
               module Style
-                class SomeCop < Cop
+                class SomeCop < Rule
                 end
               end
             end
@@ -289,9 +289,9 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         before do
           create_file('rubocop_ext.rb', <<~RUBY)
             module RuboCop
-              module Cop
+              module Rule
                 module Style
-                  class SomeCop < Cop
+                  class SomeCop < Rule
                   end
                 end
               end

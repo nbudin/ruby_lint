@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for pipes for empty block parameters. Pipes for empty
       # block parameters do not cause syntax errors, but they are redundant.
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   # good
       #   a { do_something }
-      class EmptyBlockParameter < Cop
+      class EmptyBlockParameter < Rule
         include EmptyParameter
         include RangeHelp
 

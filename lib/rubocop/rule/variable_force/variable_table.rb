@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class VariableForce
       # A VariableTable manages the lifetime of all scopes and local variables
       # in a program.

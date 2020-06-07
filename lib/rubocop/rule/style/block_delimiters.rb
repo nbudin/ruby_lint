@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Check for uses of braces or do/end around single line or
       # multi-line blocks.
@@ -132,7 +132,7 @@ module RuboCop
       #     puts foo
       #   end
       #
-      class BlockDelimiters < Cop
+      class BlockDelimiters < Rule
         include ConfigurableEnforcedStyle
         include IgnoredMethods
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for use of the `File.expand_path` arguments.
       # Likewise, it also checks for the `Pathname.new` argument.
@@ -40,7 +40,7 @@ module RuboCop
       #   # good
       #   Pathname.new(__dir__).expand_path
       #
-      class ExpandPathArguments < Cop
+      class ExpandPathArguments < Rule
         include RangeHelp
 
         MSG = 'Use `expand_path(%<new_path>s%<new_default_dir>s)` instead of ' \

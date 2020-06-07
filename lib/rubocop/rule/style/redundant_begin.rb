@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant `begin` blocks.
       #
@@ -54,7 +54,7 @@ module RuboCop
       #       baz
       #     end
       #   end
-      class RedundantBegin < Cop
+      class RedundantBegin < Rule
         MSG = 'Redundant `begin` block detected.'
 
         def on_def(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for a line break before the first parameter in a
       # multi-line method parameter definition.
@@ -26,7 +26,7 @@ module RuboCop
       #         bar
       #       do_something
       #     end
-      class FirstMethodParameterLineBreak < Cop
+      class FirstMethodParameterLineBreak < Rule
         include FirstElementLineBreak
 
         MSG = 'Add a line break before the first parameter of a ' \

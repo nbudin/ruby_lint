@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `raise` or `fail` statements which are
       # raising `Exception` class.
@@ -27,7 +27,7 @@ module RuboCop
       #       raise Exception # This exception means `Gem::Exception`.
       #     end
       #   end
-      class RaiseException < Cop
+      class RaiseException < Rule
         MSG = 'Use `StandardError` over `Exception`.'
 
         def_node_matcher :exception?, <<~PATTERN

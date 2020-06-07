@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for while and until statements that would fit on one line
       # if written as a modifier while/until. The maximum line length is
@@ -24,7 +24,7 @@ module RuboCop
       #
       #   # good
       #   x += 1 until x > 10
-      class WhileUntilModifier < Cop
+      class WhileUntilModifier < Rule
         include StatementModifier
 
         MSG = 'Favor modifier `%<keyword>s` usage when ' \

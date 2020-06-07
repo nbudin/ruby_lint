@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Algorithmic constants for `OpenSSL::Cipher` and `OpenSSL::Digest`
       # deprecated since OpenSSL version 2.2.0. Prefer passing a string
@@ -37,7 +37,7 @@ module RuboCop
       #   # good
       #   OpenSSL::Digest.digest('SHA256', 'foo')
       #
-      class DeprecatedOpenSSLConstant < Cop
+      class DeprecatedOpenSSLConstant < Rule
         include RangeHelp
 
         MSG = 'Use `%<constant>s.%<method>s(%<replacement_args>s)`' \

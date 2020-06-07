@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks whether some constant value isn't a
       # mutable literal (e.g. array or hash).
@@ -50,7 +50,7 @@ module RuboCop
       #       puts 1
       #     end
       #   end.freeze
-      class MutableConstant < Cop
+      class MutableConstant < Rule
         include FrozenStringLiteral
         include ConfigurableEnforcedStyle
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks that there are no repeated conditions
       # used in case 'when' expressions.
@@ -27,7 +27,7 @@ module RuboCop
       #   when 'second'
       #     do_something_else
       #   end
-      class DuplicateCaseCondition < Cop
+      class DuplicateCaseCondition < Rule
         MSG = 'Duplicate `when` condition detected.'
 
         def on_case(case_node)

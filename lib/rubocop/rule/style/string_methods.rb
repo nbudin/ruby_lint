@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the use of consistent method names
       # from the String class.
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   'name'.to_sym
       #   'var'.preferred_method
-      class StringMethods < Cop
+      class StringMethods < Rule
         include MethodPreference
 
         MSG = 'Prefer `%<prefer>s` over `%<current>s`.'

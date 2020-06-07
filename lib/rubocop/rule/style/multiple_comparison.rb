@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks against comparing a variable with multiple items, where
       # `Array#include?` could be used instead to avoid code repetition.
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   a = 'a'
       #   foo if ['a', 'b', 'c'].include?(a)
-      class MultipleComparison < Cop
+      class MultipleComparison < Rule
         MSG = 'Avoid comparing a variable with multiple items ' \
           'in a conditional, use `Array#include?` instead.'
 

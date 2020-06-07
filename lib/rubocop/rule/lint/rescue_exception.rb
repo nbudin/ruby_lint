@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `rescue` blocks targeting the Exception class.
       #
@@ -24,7 +24,7 @@ module RuboCop
       #   rescue ArgumentError
       #     handle_exception
       #   end
-      class RescueException < Cop
+      class RescueException < Rule
         MSG = 'Avoid rescuing the `Exception` class. ' \
               'Perhaps you meant to rescue `StandardError`?'
 

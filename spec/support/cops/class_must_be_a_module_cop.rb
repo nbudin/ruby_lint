@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Test
       class ClassMustBeAModuleCop < Rubocop::Rule::Rule
         def on_class(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of the keyword `not` instead of `!`.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   x = !something
       #
-      class Not < Cop
+      class Not < Rule
         include RangeHelp
 
         MSG = 'Use `!` instead of `not`.'

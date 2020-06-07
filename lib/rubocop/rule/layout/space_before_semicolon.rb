@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for semicolon (;) preceded by space.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   # good
       #   x = 1; y = 2
-      class SpaceBeforeSemicolon < Cop
+      class SpaceBeforeSemicolon < Rule
         include SpaceBeforePunctuation
 
         def autocorrect(space)

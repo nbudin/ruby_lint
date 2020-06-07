@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module handles measurement and reporting of complexity in methods.
     module MethodComplexity
       include ConfigurableMax

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for if and unless statements used as modifiers of other if or
       # unless statements.
@@ -22,7 +22,7 @@ module RuboCop
       #  if running?
       #    tired? ? 'stop' : 'go faster'
       #  end
-      class IfUnlessModifierOfIfUnless < Cop
+      class IfUnlessModifierOfIfUnless < Rule
         include StatementModifier
 
         MSG = 'Avoid modifier `%<keyword>s` after another conditional.'

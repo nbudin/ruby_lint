@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the first line of the
       # right-hand-side of a multi-line assignment.
@@ -21,7 +21,7 @@ module RuboCop
       #
       # The indentation of the remaining lines can be corrected with
       # other cops such as `IndentationConsistency` and `EndAlignment`.
-      class AssignmentIndentation < Cop
+      class AssignmentIndentation < Rule
         include CheckAssignment
         include Alignment
 

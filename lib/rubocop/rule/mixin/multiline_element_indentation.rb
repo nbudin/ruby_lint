@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common code for indenting the first elements in multiline
     # array literals, hash literals, and method definitions.
     module MultilineElementIndentation

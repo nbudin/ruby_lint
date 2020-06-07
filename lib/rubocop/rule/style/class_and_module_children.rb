@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks the style of children definitions at classes and
       # modules. Basically there are two different styles:
@@ -21,7 +21,7 @@ module RuboCop
       #   end
       #
       # The compact style is only forced for classes/modules with one child.
-      class ClassAndModuleChildren < Cop
+      class ClassAndModuleChildren < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

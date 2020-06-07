@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for cops checking for missing space after
     # punctuation.
     module SpaceAfterPunctuation

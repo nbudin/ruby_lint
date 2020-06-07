@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for usage of the %W() syntax when %w() would do.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #   %w/swim run bike/
       #   %w[shirt pants shoes]
       #   %W(apple #{fruit} grape)
-      class RedundantCapitalW < Cop
+      class RedundantCapitalW < Rule
         include PercentLiteral
 
         MSG = 'Do not use `%W` unless interpolation is needed. ' \

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for empty interpolation.
       #
@@ -16,7 +16,7 @@ module RuboCop
       #   # good
       #
       #   "result is #{some_result}"
-      class EmptyInterpolation < Cop
+      class EmptyInterpolation < Rule
         include Interpolation
 
         MSG = 'Empty interpolation detected.'

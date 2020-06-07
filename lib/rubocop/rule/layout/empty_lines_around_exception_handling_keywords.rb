@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines exist around the bodies of `begin`
       # sections. This cop doesn't check empty lines at `begin` body
@@ -58,7 +58,7 @@ module RuboCop
       #
       #     do_something2
       #   end
-      class EmptyLinesAroundExceptionHandlingKeywords < Cop
+      class EmptyLinesAroundExceptionHandlingKeywords < Rule
         include EmptyLinesAroundBody
 
         MSG = 'Extra empty line detected %<location>s the `%<keyword>s`.'

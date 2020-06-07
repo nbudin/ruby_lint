@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop identifies Float literals which are, like, really really really
       # really really really really really big. Too big. No-one needs Floats
@@ -18,7 +18,7 @@ module RuboCop
       #   # good
       #
       #   float = 42.9
-      class FloatOutOfRange < Cop
+      class FloatOutOfRange < Rule
         MSG = 'Float out of range.'
 
         def on_float(node)

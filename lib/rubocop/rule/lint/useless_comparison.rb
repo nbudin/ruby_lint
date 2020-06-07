@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for comparison of something with itself.
       #
@@ -10,7 +10,7 @@ module RuboCop
       #   # bad
       #
       #   x.top >= x.top
-      class UselessComparison < Cop
+      class UselessComparison < Rule
         MSG = 'Comparison of something with itself detected.'
         OPS = %w[== === != < > <= >= <=>].freeze
 

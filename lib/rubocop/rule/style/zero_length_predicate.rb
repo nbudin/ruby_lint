@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for numeric comparisons that can be replaced
       # by a predicate method, such as receiver.length == 0,
@@ -25,7 +25,7 @@ module RuboCop
       #   !{a: 1, b: 2}.empty?
       #   !string.empty?
       #   !hash.empty?
-      class ZeroLengthPredicate < Cop
+      class ZeroLengthPredicate < Rule
         ZERO_MSG = 'Use `empty?` instead of `%<lhs>s %<opr>s %<rhs>s`.'
         NONZERO_MSG = 'Use `!empty?` instead of ' \
                       '`%<lhs>s %<opr>s %<rhs>s`.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of the class/module name instead of
       # self, when defining class/module methods.
@@ -20,7 +20,7 @@ module RuboCop
       #       # ...
       #     end
       #   end
-      class ClassMethods < Cop
+      class ClassMethods < Rule
         MSG = 'Use `self.%<method>s` instead of `%<class>s.%<method>s`.'
 
         def on_class(node)

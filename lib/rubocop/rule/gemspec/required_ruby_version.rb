@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Gemspec
       # Checks that `required_ruby_version` of gemspec and `TargetRubyVersion`
       # of .rubocop.yml are equal.
@@ -35,7 +35,7 @@ module RuboCop
       #   Gem::Specification.new do |spec|
       #     spec.required_ruby_version = ['>= 2.5.0', '< 2.7.0']
       #   end
-      class RequiredRubyVersion < Cop
+      class RequiredRubyVersion < Rule
         MSG = '`required_ruby_version` (%<required_ruby_version>s, ' \
               'declared in %<gemspec_filename>s) and `TargetRubyVersion` ' \
               '(%<target_ruby_version>s, which may be specified in ' \

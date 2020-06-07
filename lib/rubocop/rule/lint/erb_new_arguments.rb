@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       #
       # This cop emulates the following Ruby warnings in Ruby 2.6.
@@ -59,7 +59,7 @@ module RuboCop
       #     ERB.new(str, nil, '-', '@output_buffer')
       #   end
       #
-      class ErbNewArguments < Cop
+      class ErbNewArguments < Rule
         extend TargetRubyVersion
         include RangeHelp
 

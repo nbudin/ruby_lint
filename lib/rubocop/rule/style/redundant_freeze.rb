@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop check for uses of Object#freeze on immutable objects.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   # good
       #   CONST = 1
-      class RedundantFreeze < Cop
+      class RedundantFreeze < Rule
         include FrozenStringLiteral
 
         MSG = 'Do not freeze immutable objects, as freezing them has no ' \

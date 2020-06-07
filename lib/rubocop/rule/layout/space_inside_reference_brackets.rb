@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that reference brackets have or don't have
       # surrounding space depending on configuration.
@@ -53,7 +53,7 @@ module RuboCop
       #   # good
       #   foo[ ]
       #
-      class SpaceInsideReferenceBrackets < Cop
+      class SpaceInsideReferenceBrackets < Rule
         include SurroundingSpace
         include ConfigurableEnforcedStyle
 

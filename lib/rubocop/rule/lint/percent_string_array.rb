@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for quotes and commas in %w, e.g. `%w('foo', "bar")`
       #
@@ -20,7 +20,7 @@ module RuboCop
       #   # good
       #
       #   %w(foo bar)
-      class PercentStringArray < Cop
+      class PercentStringArray < Rule
         include PercentLiteral
 
         QUOTES_AND_COMMAS = [/,$/, /^'.*'$/, /^".*"$/].freeze

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This force provides a way to track local variables and scopes of Ruby.
     # Cops interact with this force need to override some of the hook methods.
     #

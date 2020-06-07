@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for uses of `begin...end while/until something`.
       #
@@ -42,7 +42,7 @@ module RuboCop
       #     do_something
       #     break if some_condition
       #   end
-      class Loop < Cop
+      class Loop < Rule
         MSG = 'Use `Kernel#loop` with `break` rather than ' \
               '`begin/end/until`(or `while`).'
 

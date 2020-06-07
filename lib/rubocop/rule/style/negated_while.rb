@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of while with a negated condition.
       #
@@ -22,7 +22,7 @@ module RuboCop
       #   # good
       #   bar while foo
       #   bar while !foo && baz
-      class NegatedWhile < Cop
+      class NegatedWhile < Rule
         include NegativeConditional
 
         def on_while(node)

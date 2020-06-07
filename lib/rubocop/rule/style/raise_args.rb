@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks the args passed to `fail` and `raise`. For exploded
       # style (default), it recommends passing the exception class and message
@@ -32,7 +32,7 @@ module RuboCop
       #   raise StandardError.new("message")
       #   raise MyCustomError.new(arg1, arg2, arg3)
       #   fail "message"
-      class RaiseArgs < Cop
+      class RaiseArgs < Rule
         include ConfigurableEnforcedStyle
 
         EXPLODED_MSG = 'Provide an exception class and message ' \

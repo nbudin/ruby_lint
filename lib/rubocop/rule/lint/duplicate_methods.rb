@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for duplicated instance (or singleton) method
       # definitions.
@@ -49,7 +49,7 @@ module RuboCop
       #   end
       #
       #   alias bar foo
-      class DuplicateMethods < Cop
+      class DuplicateMethods < Rule
         MSG = 'Method `%<method>s` is defined at both %<defined>s and ' \
               '%<current>s.'
 

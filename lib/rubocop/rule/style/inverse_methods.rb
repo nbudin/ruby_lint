@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop check for usages of not (`not` or `!`) called on a method
       # when an inverse of that method can be used instead.
@@ -33,7 +33,7 @@ module RuboCop
       #     next if f.zero?
       #     f != 1
       #   end
-      class InverseMethods < Cop
+      class InverseMethods < Rule
         include IgnoredNode
         include RangeHelp
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for string conversion in string interpolation,
       # which is redundant.
@@ -17,7 +17,7 @@ module RuboCop
       #   # good
       #
       #   "result is #{something}"
-      class RedundantStringCoercion < Cop
+      class RedundantStringCoercion < Rule
         include Interpolation
 
         MSG_DEFAULT = 'Redundant use of `Object#to_s` in interpolation.'

@@ -7,7 +7,7 @@
 # rubocop:disable Lint/RedundantCopEnableDirective
 # rubocop:disable Lint/RedundantCopDisableDirective
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop detects instances of rubocop:enable comments that can be
       # removed.
@@ -34,7 +34,7 @@ module RuboCop
       #   foo = "1"
       #   # rubocop:enable all
       #   baz
-      class RedundantCopEnableDirective < Cop
+      class RedundantCopEnableDirective < Rule
         include RangeHelp
         include SurroundingSpace
 

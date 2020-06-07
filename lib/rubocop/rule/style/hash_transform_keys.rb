@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of `_.each_with_object({}) {...}`,
       # `_.map {...}.to_h`, and `Hash[_.map {...}]` that are actually just
@@ -23,7 +23,7 @@ module RuboCop
       #   # good
       #   {a: 1, b: 2}.transform_keys { |k| foo(k) }
       #   {a: 1, b: 2}.transform_keys { |k| k.to_s }
-      class HashTransformKeys < Cop
+      class HashTransformKeys < Rule
         extend TargetRubyVersion
         include HashTransformMethod
 

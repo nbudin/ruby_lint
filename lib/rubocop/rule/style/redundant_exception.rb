@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for RuntimeError as the argument of raise/fail.
       #
@@ -16,7 +16,7 @@ module RuboCop
       #
       #   # Good
       #   raise 'message'
-      class RedundantException < Cop
+      class RedundantException < Rule
         MSG_1 = 'Redundant `RuntimeError` argument can be removed.'
         MSG_2 = 'Redundant `RuntimeError.new` call can be replaced with ' \
                 'just the message.'

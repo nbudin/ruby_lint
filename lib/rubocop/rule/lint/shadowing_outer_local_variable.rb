@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop looks for use of the same name as outer local variables
       # for block arguments or block local variables.
@@ -31,7 +31,7 @@ module RuboCop
       #       do_something(bar)
       #     end
       #   end
-      class ShadowingOuterLocalVariable < Cop
+      class ShadowingOuterLocalVariable < Rule
         MSG = 'Shadowing outer local variable - `%<variable>s`.'
 
         def join_force?(force_class)

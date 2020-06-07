@@ -393,7 +393,7 @@ RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
   context 'method in module' do
     it 'registers an offense for instance method' do
       expect_offense(<<~RUBY)
-        module CopTest
+        module RuleTest
           def test
             if something
             ^^ Use a guard clause (`return unless something`) instead of wrapping the code inside a conditional expression.
@@ -406,7 +406,7 @@ RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
 
     it 'registers an offense for singleton methods' do
       expect_offense(<<~RUBY)
-        module CopTest
+        module RuleTest
           def self.test
             if something && something_else
             ^^ Use a guard clause (`return unless something && something_else`) instead of wrapping the code inside a conditional expression.

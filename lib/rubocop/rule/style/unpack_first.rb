@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for accessing the first element of `String#unpack`
       # which can be replaced with the shorter method `unpack1`.
@@ -17,7 +17,7 @@ module RuboCop
       #   # good
       #   'foo'.unpack1('h*')
       #
-      class UnpackFirst < Cop
+      class UnpackFirst < Rule
         MSG = 'Use `%<receiver>s.unpack1(%<format>s)` instead of '\
           '`%<receiver>s.unpack(%<format>s)%<method>s`.'
 

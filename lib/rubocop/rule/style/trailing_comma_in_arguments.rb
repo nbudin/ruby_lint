@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing comma in argument lists.
       # The supported styles are:
@@ -84,7 +84,7 @@ module RuboCop
       #     1,
       #     2
       #   )
-      class TrailingCommaInArguments < Cop
+      class TrailingCommaInArguments < Rule
         include TrailingComma
 
         def on_send(node)

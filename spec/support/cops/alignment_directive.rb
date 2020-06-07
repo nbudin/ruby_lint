@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Test
       # This cop allows us to test the {AlignmentCorrector}. A node that is
       # annotated with a comment of the form `# << delta` or `# >> delta` where

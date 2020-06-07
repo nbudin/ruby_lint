@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the end statement of a do..end block
       # is on its own line.
@@ -24,7 +24,7 @@ module RuboCop
       #   blah { |i|
       #     foo(i)
       #   }
-      class BlockEndNewline < Cop
+      class BlockEndNewline < Rule
         include Alignment
 
         MSG = 'Expression at %<line>d, %<column>d should be on its own line.'

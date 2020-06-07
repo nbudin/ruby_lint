@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for missing space between a token and a comment on the
       # same line.
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   1 + 1 # this operation does ...
-      class SpaceBeforeComment < Cop
+      class SpaceBeforeComment < Rule
         MSG = 'Put a space before an end-of-line comment.'
 
         def investigate(processed_source)

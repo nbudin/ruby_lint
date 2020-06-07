@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks whether constant names are written using
       # SCREAMING_SNAKE_CASE.
@@ -17,7 +17,7 @@ module RuboCop
       #
       #   # good
       #   INCH_IN_CM = 2.54
-      class ConstantName < Cop
+      class ConstantName < Rule
         MSG = 'Use SCREAMING_SNAKE_CASE for constants.'
         # Use POSIX character classes, so we allow accented characters rather
         # than just standard ASCII characters

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant returning of true/false in conditionals.
       #
@@ -24,7 +24,7 @@ module RuboCop
       #
       #   # good
       #   x != y
-      class RedundantConditional < Cop
+      class RedundantConditional < Rule
         include Alignment
 
         COMPARISON_OPERATORS = RuboCop::AST::Node::COMPARISON_OPERATORS

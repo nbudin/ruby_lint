@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the use of strings as keys in hashes. The use of
       # symbols is preferred instead.
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   { one: 1, two: 2, three: 3 }
-      class StringHashKeys < Cop
+      class StringHashKeys < Rule
         MSG = 'Prefer symbols instead of strings as hash keys.'
 
         def_node_matcher :string_hash_key?, <<~PATTERN

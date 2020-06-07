@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       # This cop checks if the length a module exceeds some maximum value.
       # Comment lines can optionally be ignored.
       # The maximum allowed length is configurable.
-      class ModuleLength < Cop
+      class ModuleLength < Rule
         include ClassishLength
 
         def on_module(node)

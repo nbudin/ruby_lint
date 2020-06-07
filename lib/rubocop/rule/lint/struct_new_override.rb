@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks unexpected overrides of the `Struct` built-in methods
       # via `Struct.new`.
@@ -21,7 +21,7 @@ module RuboCop
       #   g.clone #=> #<struct Good id=1, name="foo">
       #   g.count #=> 2
       #
-      class StructNewOverride < Cop
+      class StructNewOverride < Rule
         MSG = '`%<member_name>s` member overrides `Struct#%<method_name>s`' \
               ' and it may be unexpected.'
 

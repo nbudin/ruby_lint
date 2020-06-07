@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for case statements with an empty condition.
       #
@@ -35,7 +35,7 @@ module RuboCop
       #   else
       #     puts 'more'
       #   end
-      class EmptyCaseCondition < Cop
+      class EmptyCaseCondition < Rule
         include RangeHelp
 
         MSG = 'Do not use empty `case` condition, instead use an `if` '\

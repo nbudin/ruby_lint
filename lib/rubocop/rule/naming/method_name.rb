@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that all methods use the configured style,
       # snake_case or camelCase, for their names.
@@ -28,7 +28,7 @@ module RuboCop
       #
       #   # good
       #   def fooBar; end
-      class MethodName < Cop
+      class MethodName < Rule
         include ConfigurableNaming
         include IgnoredPattern
         include RangeHelp

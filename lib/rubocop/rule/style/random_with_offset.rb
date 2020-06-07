@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the use of randomly generated numbers,
       # added/subtracted with integer literals, as well as those with
@@ -23,7 +23,7 @@ module RuboCop
       #   # good
       #   rand(1..6)
       #   rand(1...7)
-      class RandomWithOffset < Cop
+      class RandomWithOffset < Rule
         MSG = 'Prefer ranges when generating random numbers instead of ' \
           'integers with offsets.'
 

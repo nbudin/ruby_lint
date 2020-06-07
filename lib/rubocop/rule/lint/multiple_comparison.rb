@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # In math and Python, we can use `x < y < z` style comparison to compare
       # multiple value. However, we can't use the comparison in Ruby. However,
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   x < y && y < z
       #   10 <= x && x <= 20
-      class MultipleComparison < Cop
+      class MultipleComparison < Rule
         MSG = 'Use the `&&` operator to compare multiple values.'
 
         def_node_matcher :multiple_compare?, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of the character literal ?x.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #
       #   # good
       #   ?\C-\M-d
-      class CharacterLiteral < Cop
+      class CharacterLiteral < Rule
         include StringHelp
 
         MSG = 'Do not use the character literal - ' \

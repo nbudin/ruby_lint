@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks for memoized methods whose instance variable name
       # does not match the method name.
@@ -84,7 +84,7 @@ module RuboCop
       #   def _foo
       #     @_foo ||= calculate_expensive_thing
       #   end
-      class MemoizedInstanceVariableName < Cop
+      class MemoizedInstanceVariableName < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Memoized variable `%<var>s` does not match ' \

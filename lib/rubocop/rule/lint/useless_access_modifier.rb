@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for redundant access modifiers, including those with no
       # code, those which are repeated, and leading `public` modifiers in a
@@ -124,7 +124,7 @@ module RuboCop
       #
       #     delegate :method_a, to: :method_b
       #   end
-      class UselessAccessModifier < Cop
+      class UselessAccessModifier < Rule
         include RangeHelp
 
         MSG = 'Useless `%<current>s` access modifier.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This class takes a source buffer and rewrite its source
     # based on the different correction rules supplied.
     #

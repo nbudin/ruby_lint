@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks to make sure safe navigation isn't used with `empty?` in
       # a conditional.
@@ -19,7 +19,7 @@ module RuboCop
       #   return if foo && foo.empty?
       #   return unless foo && foo.empty?
       #
-      class SafeNavigationWithEmpty < Cop
+      class SafeNavigationWithEmpty < Rule
         MSG = 'Avoid calling `empty?` with the safe navigation operator ' \
           'in conditionals.'
 

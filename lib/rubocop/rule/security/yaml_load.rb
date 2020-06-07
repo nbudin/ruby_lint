@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Security
       # This cop checks for the use of YAML class methods which have
       # potential security issues leading to remote code execution when
@@ -15,7 +15,7 @@ module RuboCop
       #   YAML.safe_load("--- foo")
       #   YAML.dump("foo")
       #
-      class YAMLLoad < Cop
+      class YAMLLoad < Rule
         MSG = 'Prefer using `YAML.safe_load` over `YAML.load`.'
 
         def_node_matcher :yaml_load, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that predicates are named properly.
       #
@@ -27,7 +27,7 @@ module RuboCop
       #   # good
       #   def value?
       #   end
-      class PredicateName < Cop
+      class PredicateName < Rule
         def_node_matcher :dynamic_method_define, <<~PATTERN
           (send nil? #method_definition_macros
             (sym $_)

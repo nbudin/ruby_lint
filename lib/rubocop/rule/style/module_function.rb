@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for use of `extend self` or `module_function` in a
       # module.
@@ -71,7 +71,7 @@ module RuboCop
       #
       # These offenses are not safe to auto-correct since there are different
       # implications to each approach.
-      class ModuleFunction < Cop
+      class ModuleFunction < Rule
         include ConfigurableEnforcedStyle
 
         MODULE_FUNCTION_MSG =

@@ -3,7 +3,7 @@
 require 'uri'
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the length of lines in the source code.
       # The maximum length is configurable.
@@ -58,7 +58,7 @@ module RuboCop
       #     bar: "0000000000",
       #     baz: "0000000000",
       #   }
-      class LineLength < Cop
+      class LineLength < Rule
         include CheckLineBreakable
         include ConfigurableMax
         include IgnoredPattern

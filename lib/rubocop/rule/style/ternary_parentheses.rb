@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the presence of parentheses around ternary
       # conditions. It is configurable to enforce inclusion or omission of
@@ -54,7 +54,7 @@ module RuboCop
       #   # bad
       #   foo = (bar = baz) ? a : b
       #
-      class TernaryParentheses < Cop
+      class TernaryParentheses < Rule
         include SafeAssignment
         include ConfigurableEnforcedStyle
         include SurroundingSpace

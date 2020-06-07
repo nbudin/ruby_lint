@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop ensures that each argument in a multi-line method call
       # starts on a separate line.
@@ -19,7 +19,7 @@ module RuboCop
       #     b,
       #     c
       #   )
-      class MultilineMethodArgumentLineBreaks < Cop
+      class MultilineMethodArgumentLineBreaks < Rule
         include(MultilineElementLineBreaks)
 
         MSG = 'Each argument in a multi-line method call must start ' \

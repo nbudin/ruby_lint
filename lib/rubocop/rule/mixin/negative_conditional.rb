@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Some common code shared between `NegatedIf` and
     # `NegatedWhile` cops.
     module NegativeConditional

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for big numeric literals without _ between groups
       # of digits in them.
@@ -27,7 +27,7 @@ module RuboCop
       #   # bad
       #   10_000_00 # typical representation of $10,000 in cents
       #
-      class NumericLiterals < Cop
+      class NumericLiterals < Rule
         # The parameter is called MinDigits (meaning the minimum number of
         # digits for which an offense can be registered), but essentially it's
         # a Max parameter (the maximum number of something that's allowed).

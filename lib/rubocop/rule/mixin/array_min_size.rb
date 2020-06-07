@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Handles the `MinSize` configuration option for array-based cops
     # `Style/SymbolArray` and `Style/WordArray`, which check for use of the
     # relevant percent literal syntax such as `%i[...]` and `%w[...]`

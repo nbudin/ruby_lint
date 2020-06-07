@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant parentheses.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   x if y.z.nil?
       #
-      class RedundantParentheses < Cop
+      class RedundantParentheses < Rule
         include Parentheses
 
         def_node_matcher :square_brackets?,

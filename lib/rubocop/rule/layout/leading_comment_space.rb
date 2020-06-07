@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether comments have a leading space after the
       # `#` denoting the start of the comment. The leading space is not
@@ -49,7 +49,7 @@ module RuboCop
       #   #ruby=2.7.0
       #   #ruby-gemset=myproject
       #
-      class LeadingCommentSpace < Cop
+      class LeadingCommentSpace < Rule
         include RangeHelp
 
         MSG = 'Missing space after `#`.'

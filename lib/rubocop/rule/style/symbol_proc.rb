@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Use symbols as procs when possible.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   # good
       #   something.map(&:upcase)
-      class SymbolProc < Cop
+      class SymbolProc < Rule
         include RangeHelp
         include IgnoredMethods
 

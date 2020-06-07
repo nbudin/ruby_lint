@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines exist around the arguments
       # of a method invocation.
@@ -38,7 +38,7 @@ module RuboCop
       #     x: y
       #   )
       #
-      class EmptyLinesAroundArguments < Cop
+      class EmptyLinesAroundArguments < Rule
         include RangeHelp
 
         MSG = 'Empty line detected around arguments.'

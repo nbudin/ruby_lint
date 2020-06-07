@@ -212,7 +212,7 @@ And the final cop code will look like something like this:
 [source,ruby]
 ----
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # `array.any?` is a simplified way to say `!array.empty?`
       #
@@ -222,7 +222,7 @@ module RuboCop
       #
       #   # good
       #   array.any?
-      class SimplifyNotEmptyWithAny < Cop
+      class SimplifyNotEmptyWithAny < Rule
         MSG = 'Use `.any?` and remove the negation part.'.freeze
 
         def_node_matcher :not_empty_call?, <<~PATTERN

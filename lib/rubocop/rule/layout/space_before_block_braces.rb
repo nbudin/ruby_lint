@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that block braces have or don't have a space before the opening
       # brace depending on configuration.
@@ -27,7 +27,7 @@ module RuboCop
       #   foo.map{ |a|
       #     a.bar.to_s
       #   }
-      class SpaceBeforeBlockBraces < Cop
+      class SpaceBeforeBlockBraces < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

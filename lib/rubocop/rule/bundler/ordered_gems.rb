@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Bundler
       # Gems should be alphabetically sorted within groups.
       #
@@ -24,7 +24,7 @@ module RuboCop
       #   gem 'rubocop'
       #   # For tests
       #   gem 'rspec'
-      class OrderedGems < Cop
+      class OrderedGems < Rule
         include ConfigurableEnforcedStyle
         include OrderedGemNode
 

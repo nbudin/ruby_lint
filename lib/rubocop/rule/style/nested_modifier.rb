@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for nested use of if, unless, while and until in their
       # modifier form.
@@ -13,7 +13,7 @@ module RuboCop
       #
       #   # good
       #   something if b && a
-      class NestedModifier < Cop
+      class NestedModifier < Rule
         include RangeHelp
 
         MSG = 'Avoid using nested modifiers.'

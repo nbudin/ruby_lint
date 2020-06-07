@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that the equals signs in parameter default assignments
       # have or don't have surrounding space depending on configuration.
@@ -27,7 +27,7 @@ module RuboCop
       #   def some_method(arg1=:default, arg2=nil, arg3=[])
       #     # do something...
       #   end
-      class SpaceAroundEqualsInParameterDefault < Cop
+      class SpaceAroundEqualsInParameterDefault < Rule
         include SurroundingSpace
         include ConfigurableEnforcedStyle
         include RangeHelp

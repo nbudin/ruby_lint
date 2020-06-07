@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks the spacing around the keywords.
       #
@@ -24,7 +24,7 @@ module RuboCop
       #   end
       #
       #   something = 123 if test
-      class SpaceAroundKeyword < Cop
+      class SpaceAroundKeyword < Rule
         MSG_BEFORE = 'Space before keyword `%<range>s` is missing.'
         MSG_AFTER = 'Space after keyword `%<range>s` is missing.'
 

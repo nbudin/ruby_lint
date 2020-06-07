@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This class does auto-correction of nodes that should just be moved to
     # the left or to the right, amount being determined by the instance
     # variable column_delta.

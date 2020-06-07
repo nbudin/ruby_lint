@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing code after the method definition.
       #
@@ -33,7 +33,7 @@ module RuboCop
       #     end
       #   end
       #
-      class TrailingMethodEndStatement < Cop
+      class TrailingMethodEndStatement < Rule
         include Alignment
 
         MSG = 'Place the end statement of a multi-line method on ' \

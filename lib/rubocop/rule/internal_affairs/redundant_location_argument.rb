@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks for redundant `location` argument to `#add_offense`. `location`
       # argument has a default value of `:expression` and this method will
@@ -16,7 +16,7 @@ module RuboCop
       #   add_offense(node)
       #   add_offense(node, location: :selector)
       #
-      class RedundantLocationArgument < Cop
+      class RedundantLocationArgument < Rule
         include RangeHelp
 
         MSG = 'Redundant location argument to `#add_offense`.'

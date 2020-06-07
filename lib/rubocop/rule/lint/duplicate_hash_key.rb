@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for duplicated keys in hash literals.
       #
@@ -18,7 +18,7 @@ module RuboCop
       #   # good
       #
       #   hash = { food: 'apple', other_food: 'orange' }
-      class DuplicateHashKey < Cop
+      class DuplicateHashKey < Rule
         include Duplication
 
         MSG = 'Duplicated key in hash literal.'

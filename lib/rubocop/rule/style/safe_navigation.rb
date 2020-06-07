@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop transforms usages of a method call safeguarded by a non `nil`
       # check for the variable whose method is being called to
@@ -58,7 +58,7 @@ module RuboCop
       #   foo.baz = bar if foo
       #   foo.baz + bar if foo
       #   foo.bar > 2 if foo
-      class SafeNavigation < Cop
+      class SafeNavigation < Rule
         include NilMethods
         include RangeHelp
 

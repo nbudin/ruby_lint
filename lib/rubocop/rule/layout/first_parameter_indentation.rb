@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the first parameter in a method
       # definition. Parameters after the first one are checked by
@@ -41,7 +41,7 @@ module RuboCop
       #   second_param)
       #     123
       #   end
-      class FirstParameterIndentation < Cop
+      class FirstParameterIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include MultilineElementIndentation

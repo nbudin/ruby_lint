@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for inheritance from Struct.new.
       #
@@ -19,7 +19,7 @@ module RuboCop
       #       42
       #     end
       #   end
-      class StructInheritance < Cop
+      class StructInheritance < Rule
         MSG = "Don't extend an instance initialized by `Struct.new`. " \
               'Use a block to customize the struct.'
 

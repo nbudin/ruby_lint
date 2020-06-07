@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that certain binary operator methods have their
       # sole  parameter named `other`.
@@ -13,7 +13,7 @@ module RuboCop
       #
       #   # good
       #   def +(other); end
-      class BinaryOperatorParameterName < Cop
+      class BinaryOperatorParameterName < Rule
         MSG = 'When defining the `%<opr>s` operator, ' \
               'name its argument `other`.'
 

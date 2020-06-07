@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of `_.each_with_object({}) {...}`,
       # `_.map {...}.to_h`, and `Hash[_.map {...}]` that are actually just
@@ -23,7 +23,7 @@ module RuboCop
       #   # good
       #   {a: 1, b: 2}.transform_values { |v| foo(v) }
       #   {a: 1, b: 2}.transform_values { |v| v * v }
-      class HashTransformValues < Cop
+      class HashTransformValues < Rule
         include HashTransformMethod
 
         def_node_matcher :on_bad_each_with_object, <<~PATTERN

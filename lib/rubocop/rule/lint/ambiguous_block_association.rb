@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for ambiguous block association with method
       # when param passed without parentheses.
@@ -24,7 +24,7 @@ module RuboCop
       #   # good
       #   # Lambda arguments require no disambiguation
       #   foo = ->(bar) { bar.baz }
-      class AmbiguousBlockAssociation < Cop
+      class AmbiguousBlockAssociation < Rule
         MSG = 'Parenthesize the param `%<param>s` to make sure that the ' \
               'block will be associated with the `%<method>s` method ' \
               'call.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for checking for a line break before the first
     # element in a multi-line collection.
     module FirstElementLineBreak

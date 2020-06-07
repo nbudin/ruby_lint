@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing code after the method definition.
       #
@@ -24,7 +24,7 @@ module RuboCop
       #     b[c: x]
       #   end
       #
-      class TrailingBodyOnMethodDefinition < Cop
+      class TrailingBodyOnMethodDefinition < Rule
         include Alignment
         include TrailingBody
 

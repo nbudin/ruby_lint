@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common methods shared by Style/TrailingCommaInArguments and
     # Style/TrailingCommaInLiteral
     module TrailingComma

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Message Annotator class annotates a basic offense message
     # based on params passed into initializer.
     #

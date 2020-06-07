@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for missing documentation comment for public methods.
       # It can optionally be configured to also require documentation for
@@ -91,7 +91,7 @@ module RuboCop
       #     end
       #   end
       #
-      class DocumentationMethod < Cop
+      class DocumentationMethod < Rule
         include DocumentationComment
         include DefNode
 

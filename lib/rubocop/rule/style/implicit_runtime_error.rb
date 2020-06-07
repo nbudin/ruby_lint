@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for `raise` or `fail` statements which do not specify an
       # explicit exception class. (This raises a `RuntimeError`. Some projects
@@ -14,7 +14,7 @@ module RuboCop
       #
       #   # good
       #   raise ArgumentError, 'Error message here'
-      class ImplicitRuntimeError < Cop
+      class ImplicitRuntimeError < Rule
         MSG = 'Use `%<method>s` with an explicit exception class and message,' \
               ' rather than just a message.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Don't omit the accumulator when calling `next` in a `reduce` block.
       #
@@ -22,7 +22,7 @@ module RuboCop
       #     next acc if i.odd?
       #     acc + i
       #   end
-      class NextWithoutAccumulator < Cop
+      class NextWithoutAccumulator < Rule
         MSG = 'Use `next` with an accumulator argument in a `reduce`.'
 
         def_node_matcher :on_body_of_reduce, <<~PATTERN

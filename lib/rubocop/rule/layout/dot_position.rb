@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the . position in multi-line method calls.
       #
@@ -22,7 +22,7 @@ module RuboCop
       #   # good
       #   something.
       #     method
-      class DotPosition < Cop
+      class DotPosition < Rule
         include ConfigurableEnforcedStyle
 
         def on_send(node)

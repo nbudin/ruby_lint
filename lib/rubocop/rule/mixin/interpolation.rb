@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for working with string interpolations.
     #
     # @abstract Subclasses are expected to implement {#on_interpolation}.

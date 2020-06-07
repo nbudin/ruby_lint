@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for unreachable code.
       # The check are based on the presence of flow of control
@@ -34,7 +34,7 @@ module RuboCop
       #   def some_method
       #     do_something
       #   end
-      class UnreachableCode < Cop
+      class UnreachableCode < Rule
         MSG = 'Unreachable code detected.'
 
         def on_begin(node)

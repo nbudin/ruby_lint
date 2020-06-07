@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This class auto-corrects `for` iteration to `#each` enumeration.
     class ForToEachCorrector
       extend NodePattern::Macros

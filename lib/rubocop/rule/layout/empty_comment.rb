@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks empty comment.
       #
@@ -60,7 +60,7 @@ module RuboCop
       #   class Foo
       #   end
       #
-      class EmptyComment < Cop
+      class EmptyComment < Rule
         include RangeHelp
 
         MSG = 'Source code comment is empty.'

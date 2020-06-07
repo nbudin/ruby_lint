@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks for redundant message arguments to `#add_offense`. This method
       # will automatically use `#message` or `MSG` (in that order of priority)
@@ -19,7 +19,7 @@ module RuboCop
       #   add_offense(node, message: CUSTOM_MSG)
       #   add_offense(node, message: message(other_node))
       #
-      class RedundantMessageArgument < Cop
+      class RedundantMessageArgument < Rule
         include RangeHelp
 
         MSG = 'Redundant message argument to `#add_offense`.'

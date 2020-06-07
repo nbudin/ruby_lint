@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of the case equality operator(===).
       #
@@ -29,7 +29,7 @@ module RuboCop
       #   (1..100).include?(7)
       #   some_string =~ /something/
       #
-      class CaseEquality < Cop
+      class CaseEquality < Rule
         MSG = 'Avoid the use of the case equality operator `===`.'
 
         def_node_matcher :case_equality?, '(send #const? :=== _)'

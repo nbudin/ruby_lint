@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Methods that calculate and return Parser::Source::Ranges
     module RangeHelp
       private

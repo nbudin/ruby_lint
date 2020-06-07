@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks that method names are checked using `method?` method.
       #
@@ -12,7 +12,7 @@ module RuboCop
       #   # good
       #   node.method?(:do_something)
       #
-      class MethodNameEqual < Cop
+      class MethodNameEqual < Rule
         include RangeHelp
 
         MSG = 'Use `method?(%<method_name>s)` instead of ' \

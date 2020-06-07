@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces consistency when using exponential notation
       # for numbers in the code (eg 1.2e4). Different styles are supported:
@@ -58,7 +58,7 @@ module RuboCop
       #   1e4
       #   12e5
       #
-      class ExponentialNotation < Cop
+      class ExponentialNotation < Rule
         include ConfigurableEnforcedStyle
 
         def on_float(node)

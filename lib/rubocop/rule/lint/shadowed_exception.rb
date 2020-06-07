@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for a rescued exception that get shadowed by a
       # less specific exception being rescued before a more specific
@@ -43,7 +43,7 @@ module RuboCop
       #     handle_standard_error
       #   end
       #
-      class ShadowedException < Cop
+      class ShadowedException < Rule
         include RescueNode
         include RangeHelp
 

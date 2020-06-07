@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for uses of the deprecated class method usages.
       #
@@ -20,7 +20,7 @@ module RuboCop
       #   File.exist?(some_path)
       #   Dir.exist?(some_path)
       #   block_given?
-      class DeprecatedClassMethods < Cop
+      class DeprecatedClassMethods < Rule
         # Inner class to DeprecatedClassMethods.
         # This class exists to add abstraction and clean naming to the
         # objects that are going to be operated on.

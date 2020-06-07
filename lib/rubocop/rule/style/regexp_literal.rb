@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces using // or %r around regular expressions.
       #
@@ -81,7 +81,7 @@ module RuboCop
       # @example AllowInnerSlashes: true
       #   # good
       #   x =~ /home\//
-      class RegexpLiteral < Cop
+      class RegexpLiteral < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

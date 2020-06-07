@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of `and` and `or`, and suggests using `&&` and
       # `||` instead. It can be configured to check only in conditions or in
@@ -36,7 +36,7 @@ module RuboCop
       #   # good
       #   if foo && bar
       #   end
-      class AndOr < Cop
+      class AndOr < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

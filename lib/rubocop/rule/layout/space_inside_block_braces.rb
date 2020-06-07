@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that block braces have or don't have surrounding space inside
       # them on configuration. For blocks taking parameters, it checks that the
@@ -76,7 +76,7 @@ module RuboCop
       #   # good
       #   [1, 2, 3].each {|n| n * 2 }
       #
-      class SpaceInsideBlockBraces < Cop
+      class SpaceInsideBlockBraces < Rule
         include ConfigurableEnforcedStyle
         include SurroundingSpace
         include RangeHelp

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant escapes inside Regexp literals.
       #
@@ -29,7 +29,7 @@ module RuboCop
       #
       #   # good
       #   /[+\-]\d/
-      class RedundantRegexpEscape < Cop
+      class RedundantRegexpEscape < Rule
         include RangeHelp
         include RegexpLiteralHelp
 

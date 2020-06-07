@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the first key in a hash literal
       # where the opening brace and the first key are on separate lines. The
@@ -77,7 +77,7 @@ module RuboCop
       #   and_now_for_something = {
       #                             completely: :different
       #                           }
-      class FirstHashElementIndentation < Cop
+      class FirstHashElementIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include MultilineElementIndentation

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks to make sure `#to_json` includes an optional argument.
       # When overriding `#to_json`, callers may invoke JSON
@@ -17,7 +17,7 @@ module RuboCop
       #   def to_json(*_args)
       #   end
       #
-      class ToJSON < Cop
+      class ToJSON < Rule
         MSG = ' `#to_json` requires an optional argument to be parsable ' \
           'via JSON.generate(obj).'
 

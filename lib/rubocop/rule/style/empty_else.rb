@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for empty else-clauses, possibly including comments and/or an
       # explicit `nil` depending on the EnforcedStyle.
@@ -89,7 +89,7 @@ module RuboCop
       #   if condition
       #     statement
       #   end
-      class EmptyElse < Cop
+      class EmptyElse < Rule
         include OnNormalIfUnless
         include ConfigurableEnforcedStyle
         include RangeHelp

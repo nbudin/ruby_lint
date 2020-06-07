@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that brackets used for array literals have or don't have
       # surrounding space depending on configuration.
@@ -67,7 +67,7 @@ module RuboCop
       #   foo = [ ]
       #   bar = [ ]
       #
-      class SpaceInsideArrayLiteralBrackets < Cop
+      class SpaceInsideArrayLiteralBrackets < Rule
         include SurroundingSpace
         include ConfigurableEnforcedStyle
 

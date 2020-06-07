@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for optional arguments to methods
       # that do not come at the end of the argument list.
@@ -17,7 +17,7 @@ module RuboCop
       #
       #   def foobar(a = 1, b = 2, c = 3)
       #   end
-      class OptionalArguments < Cop
+      class OptionalArguments < Rule
         MSG = 'Optional arguments should appear at the end ' \
               'of the argument list.'
 

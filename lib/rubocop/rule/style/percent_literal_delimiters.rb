@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the consistent usage of `%`-literal delimiters.
       #
@@ -23,7 +23,7 @@ module RuboCop
       #
       #   # bad
       #   %I(alpha beta)
-      class PercentLiteralDelimiters < Cop
+      class PercentLiteralDelimiters < Rule
         include PercentLiteral
 
         def on_array(node)

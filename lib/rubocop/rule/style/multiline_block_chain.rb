@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for chaining of a block after another block that spans
       # multiple lines.
@@ -13,7 +13,7 @@ module RuboCop
       #   end.map do |t|
       #     t.object_id
       #   end
-      class MultilineBlockChain < Cop
+      class MultilineBlockChain < Rule
         include RangeHelp
 
         MSG = 'Avoid multi-line chains of blocks.'

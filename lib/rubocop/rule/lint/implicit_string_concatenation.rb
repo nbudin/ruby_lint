@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for implicit string concatenation of string literals
       # which are on the same line.
@@ -22,7 +22,7 @@ module RuboCop
       #     'Item 1' \
       #     'Item 2'
       #   ]
-      class ImplicitStringConcatenation < Cop
+      class ImplicitStringConcatenation < Rule
         MSG = 'Combine %<string1>s and %<string2>s into a single string ' \
               'literal, rather than using implicit string concatenation.'
         FOR_ARRAY = ' Or, if they were intended to be separate array ' \

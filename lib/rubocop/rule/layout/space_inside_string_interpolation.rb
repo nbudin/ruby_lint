@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for whitespace within string interpolations.
       #
@@ -18,7 +18,7 @@ module RuboCop
       #
       #   # good
       #      var = "This is the #{ space } example"
-      class SpaceInsideStringInterpolation < Cop
+      class SpaceInsideStringInterpolation < Rule
         include Interpolation
         include SurroundingSpace
         include ConfigurableEnforcedStyle

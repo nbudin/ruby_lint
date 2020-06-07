@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop can check for array literals made up of symbols that are not
       # using the %i() syntax.
@@ -27,7 +27,7 @@ module RuboCop
       #
       #   # bad
       #   %i[foo bar baz]
-      class SymbolArray < Cop
+      class SymbolArray < Rule
         include ArrayMinSize
         include ArraySyntax
         include ConfigurableEnforcedStyle

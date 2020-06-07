@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       #
       # This cop checks for BEGIN blocks.
@@ -10,7 +10,7 @@ module RuboCop
       #   # bad
       #   BEGIN { test }
       #
-      class BeginBlock < Cop
+      class BeginBlock < Rule
         MSG = 'Avoid the use of `BEGIN` blocks.'
 
         def on_preexe(node)

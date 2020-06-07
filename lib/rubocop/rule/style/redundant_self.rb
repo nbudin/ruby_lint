@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant uses of `self`.
       #
@@ -41,7 +41,7 @@ module RuboCop
       #       self.bar == bar  # Resolves name clash with argument of the block.
       #     end
       #   end
-      class RedundantSelf < Cop
+      class RedundantSelf < Rule
         MSG = 'Redundant `self` detected.'
         KERNEL_METHODS = Kernel.methods(false)
 

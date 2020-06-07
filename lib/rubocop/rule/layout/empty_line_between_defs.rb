@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether method definitions are
       # separated by one empty line.
@@ -29,7 +29,7 @@ module RuboCop
       #
       #   def b
       #   end
-      class EmptyLineBetweenDefs < Cop
+      class EmptyLineBetweenDefs < Rule
         include RangeHelp
 
         MSG = 'Use empty lines between method definitions.'

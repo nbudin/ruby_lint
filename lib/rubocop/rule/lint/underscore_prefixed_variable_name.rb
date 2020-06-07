@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for underscore-prefixed variables that are actually
       # used.
@@ -40,7 +40,7 @@ module RuboCop
       #     {_id: _id, profit: revenue - cost}
       #   end
       #
-      class UnderscorePrefixedVariableName < Cop
+      class UnderscorePrefixedVariableName < Rule
         MSG = 'Do not use prefix `_` for a variable that is used.'
 
         def join_force?(force_class)

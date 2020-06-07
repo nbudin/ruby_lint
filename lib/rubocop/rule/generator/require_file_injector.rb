@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class Generator
       # A class that injects a require directive into the root RuboCop file.
       # It looks for other directives that require files in the same (cop)

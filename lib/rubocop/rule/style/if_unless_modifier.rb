@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for `if` and `unless` statements that would fit on one line if
       # written as modifier `if`/`unless`. The cop also checks for modifier
@@ -30,7 +30,7 @@ module RuboCop
       #   if long_condition
       #     do_something_in_a_method_with_a_long_name(arg)
       #   end
-      class IfUnlessModifier < Cop
+      class IfUnlessModifier < Rule
         include StatementModifier
         include LineLengthHelp
         include IgnoredPattern

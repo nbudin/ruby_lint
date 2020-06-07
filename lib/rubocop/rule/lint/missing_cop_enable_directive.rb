@@ -2,7 +2,7 @@
 
 # rubocop:disable Lint/RedundantCopDisableDirective
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks that there is an `# rubocop:enable ...` statement
       # after a `# rubocop:disable ...` statement. This will prevent leaving
@@ -42,7 +42,7 @@ module RuboCop
       #   # Including this, that's 3 lines on which the cop is disabled.
       #   # rubocop:enable Layout/SpaceAroundOperators
       #
-      class MissingCopEnableDirective < Cop
+      class MissingCopEnableDirective < Rule
         include RangeHelp
 
         MSG = 'Re-enable %<cop>s cop with `# rubocop:enable` after ' \

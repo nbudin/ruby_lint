@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Gemspec
       # Dependencies in the gemspec should be alphabetically sorted.
       #
@@ -50,7 +50,7 @@ module RuboCop
       #   spec.add_dependency 'rubocop'
       #   # For tests
       #   spec.add_dependency 'rspec'
-      class OrderedDependencies < Cop
+      class OrderedDependencies < Rule
         include ConfigurableEnforcedStyle
         include OrderedGemNode
 

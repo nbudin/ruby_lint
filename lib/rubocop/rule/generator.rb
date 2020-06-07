@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Source and spec generator for new cops
     #
     # This generator will take a cop name and generate a source file
@@ -18,7 +18,7 @@ module RuboCop
 
         # TODO: when finished, run `rake generate_cops_documentation` to update the docs
         module RuboCop
-          module Cop
+          module Rule
             module %<department>s
               # TODO: Write cop description and example of bad / good code. For every
               # `SupportedStyle` and unique configuration, there needs to be examples.
@@ -54,7 +54,7 @@ module RuboCop
               #   # good
               #   good_foo_method(args)
               #
-              class %<cop_name>s < Cop
+              class %<cop_name>s < Rule
                 # TODO: Implement the cop in here.
                 #
                 # In many cases, you can use a node matcher for matching node pattern.

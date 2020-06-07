@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for the ordering of a method call where
       # the receiver of the call is a HEREDOC.
@@ -30,7 +30,7 @@ module RuboCop
       #        bar
       #      SQL
       #
-      class HeredocMethodCallPosition < Cop
+      class HeredocMethodCallPosition < Rule
         include RangeHelp
 
         MSG = 'Put a method call with a HEREDOC receiver on the ' \

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for ambiguous regexp literals in the first argument of
       # a method invocation without parentheses.
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   # With parentheses, there's no ambiguity.
       #   do_something(/pattern/i)
-      class AmbiguousRegexpLiteral < Cop
+      class AmbiguousRegexpLiteral < Rule
         include ParserDiagnostic
 
         MSG = 'Ambiguous regexp literal. Parenthesize the method arguments ' \

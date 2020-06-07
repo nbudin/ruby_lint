@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for assignments in the conditions of
       # if/while/until.
@@ -34,7 +34,7 @@ module RuboCop
       #     do_something
       #   end
       #
-      class AssignmentInCondition < Cop
+      class AssignmentInCondition < Rule
         include SafeAssignment
 
         MSG_WITH_SAFE_ASSIGNMENT_ALLOWED =

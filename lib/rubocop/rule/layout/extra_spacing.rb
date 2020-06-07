@@ -3,7 +3,7 @@
 require 'set'
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for extra/unnecessary whitespace.
       #
@@ -30,7 +30,7 @@ module RuboCop
       #   object.method(arg)         # this is a comment
       #   another_object.method(arg) # this is another comment
       #   some_object.method(arg)    # this is some comment
-      class ExtraSpacing < Cop
+      class ExtraSpacing < Rule
         include PrecedingFollowingAlignment
         include RangeHelp
 

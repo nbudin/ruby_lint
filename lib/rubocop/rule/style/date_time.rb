@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for consistent usage of the `DateTime` class over the
       # `Time` class. This cop is disabled by default since these classes,
@@ -41,7 +41,7 @@ module RuboCop
       #
       #   # good
       #   something.to_time
-      class DateTime < Cop
+      class DateTime < Rule
         CLASS_MSG = 'Prefer Time over DateTime.'
         COERCION_MSG = 'Do not use #to_datetime.'
 

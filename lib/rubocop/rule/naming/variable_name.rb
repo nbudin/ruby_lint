@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that all variables use the configured style,
       # snake_case or camelCase, for their names.
@@ -19,7 +19,7 @@ module RuboCop
       #
       #   # good
       #   fooBar = 1
-      class VariableName < Cop
+      class VariableName < Rule
         include ConfigurableNaming
 
         MSG = 'Use %<style>s for variable names.'

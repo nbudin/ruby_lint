@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks ensures source files have no utf-8 encoding comments.
       # @example
@@ -9,7 +9,7 @@ module RuboCop
       #   # encoding: UTF-8
       #   # coding: UTF-8
       #   # -*- coding: UTF-8 -*-
-      class Encoding < Cop
+      class Encoding < Rule
         include RangeHelp
 
         MSG_UNNECESSARY = 'Unnecessary utf-8 encoding comment.'

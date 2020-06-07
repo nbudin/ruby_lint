@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for class methods that are defined using the `::`
       # operator instead of the `.` operator.
@@ -19,7 +19,7 @@ module RuboCop
       #     end
       #   end
       #
-      class ColonMethodDefinition < Cop
+      class ColonMethodDefinition < Rule
         MSG = 'Do not use `::` for defining class methods.'
 
         def on_defs(node)

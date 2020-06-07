@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines around the bodies of classes match
       # the configuration.
@@ -64,7 +64,7 @@ module RuboCop
       #       # ...
       #     end
       #   end
-      class EmptyLinesAroundClassBody < Cop
+      class EmptyLinesAroundClassBody < Rule
         include EmptyLinesAroundBody
 
         KIND = 'class'

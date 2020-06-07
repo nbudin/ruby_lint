@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # TODO: Make configurable.
       # Checks for uses of if/then/else/end on a single line.
@@ -22,7 +22,7 @@ module RuboCop
       #   else
       #     doo
       #   end
-      class OneLineConditional < Cop
+      class OneLineConditional < Rule
         include OnNormalIfUnless
 
         MSG = 'Favor the ternary operator (`?:`) ' \

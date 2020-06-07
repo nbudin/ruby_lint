@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks block parameter names for how descriptive they
       # are. It is highly configurable.
@@ -35,7 +35,7 @@ module RuboCop
       #   foo { |speed, distance| speed * distance }
       #
       #   baz { |age, height, gender| do_stuff(age, height, gender) }
-      class BlockParameterName < Cop
+      class BlockParameterName < Rule
         include UncommunicativeName
 
         def on_block(node)

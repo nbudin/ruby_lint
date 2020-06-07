@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks that operators have space around them, except for ** which
       # should or shouldn't have surrounding space depending on configuration.
@@ -48,7 +48,7 @@ module RuboCop
       #
       #   # good
       #   a ** b
-      class SpaceAroundOperators < Cop
+      class SpaceAroundOperators < Rule
         include PrecedingFollowingAlignment
         include RangeHelp
         include RationalLiteral

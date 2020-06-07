@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       #
       # Checks the indentation of here document closings.
@@ -46,7 +46,7 @@ module RuboCop
       #         Hi
       #       EOS
       #
-      class ClosingHeredocIndentation < Cop
+      class ClosingHeredocIndentation < Rule
         include Heredoc
 
         SIMPLE_HEREDOC = '<<'

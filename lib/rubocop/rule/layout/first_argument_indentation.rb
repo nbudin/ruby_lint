@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the first argument in a method call.
       # Arguments after the first one are checked by Layout/ArgumentAlignment,
@@ -141,7 +141,7 @@ module RuboCop
       #     nested_first_param),
       #   second_param
       #
-      class FirstArgumentIndentation < Cop
+      class FirstArgumentIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include RangeHelp

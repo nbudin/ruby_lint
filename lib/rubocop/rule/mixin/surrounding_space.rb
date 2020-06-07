@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for checking and correcting surrounding whitespace.
     module SurroundingSpace
       include RangeHelp

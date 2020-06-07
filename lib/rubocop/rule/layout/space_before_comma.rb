@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for comma (,) preceded by space.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #   [1, 2, 3]
       #   a(1, 2)
       #   each { |a, b| }
-      class SpaceBeforeComma < Cop
+      class SpaceBeforeComma < Rule
         include SpaceBeforePunctuation
 
         def autocorrect(space)

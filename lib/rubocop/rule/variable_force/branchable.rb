@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class VariableForce
       # Mix-in module for classes which own a node and need branch information
       # of the node. The user classes must implement #node and #scope.

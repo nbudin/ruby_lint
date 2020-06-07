@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Gemspec
       # Checks that `RUBY_VERSION` constant is not used in gemspec.
       # Using `RUBY_VERSION` is dangerous because value of the
@@ -25,7 +25,7 @@ module RuboCop
       #     spec.add_runtime_dependency 'gem_a'
       #   end
       #
-      class RubyVersionGlobalsUsage < Cop
+      class RubyVersionGlobalsUsage < Rule
         MSG = 'Do not use `RUBY_VERSION` in gemspec file.'
 
         def_node_matcher :ruby_version?, '(const nil? :RUBY_VERSION)'

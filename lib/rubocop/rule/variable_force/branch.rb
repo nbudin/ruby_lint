@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class VariableForce
       # Namespace for branch classes for each control structure.
       module Branch

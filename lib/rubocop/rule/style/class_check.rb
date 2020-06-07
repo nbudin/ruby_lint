@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces consistent use of `Object#is_a?` or `Object#kind_of?`.
       #
@@ -23,7 +23,7 @@ module RuboCop
       #   var.kind_of?(Time)
       #   var.kind_of?(String)
       #
-      class ClassCheck < Cop
+      class ClassCheck < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Prefer `Object#%<prefer>s` over `Object#%<current>s`.'

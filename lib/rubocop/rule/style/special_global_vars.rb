@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       #
       # This cop looks for uses of Perl-style global variables.
@@ -56,7 +56,7 @@ module RuboCop
       #   puts $'
       #   puts $+
       #
-      class SpecialGlobalVars < Cop
+      class SpecialGlobalVars < Rule
         include ConfigurableEnforcedStyle
 
         MSG_BOTH = 'Prefer `%<prefer>s` from the stdlib \'English\' ' \

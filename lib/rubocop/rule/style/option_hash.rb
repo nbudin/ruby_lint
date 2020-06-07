@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for options hashes and discourages them if the
       # current Ruby version supports keyword arguments.
@@ -19,7 +19,7 @@ module RuboCop
       #   def fry(temperature: 300)
       #     # ...
       #   end
-      class OptionHash < Cop
+      class OptionHash < Rule
         MSG = 'Prefer keyword arguments to options hashes.'
 
         def_node_matcher :option_hash, <<~PATTERN

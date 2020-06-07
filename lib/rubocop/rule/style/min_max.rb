@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for potential uses of `Enumerable#minmax`.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   bar = foo.minmax
       #   return foo.minmax
-      class MinMax < Cop
+      class MinMax < Rule
         MSG = 'Use `%<receiver>s.minmax` instead of `%<offender>s`.'
 
         def on_array(node)

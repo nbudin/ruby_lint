@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Check that the keys, separators, and values of a multi-line hash
       # literal are aligned according to configuration. The configuration
@@ -175,7 +175,7 @@ module RuboCop
       #   do_something({foo: 1,
       #     bar: 2})
       #
-      class HashAlignment < Cop
+      class HashAlignment < Rule
         include HashAlignmentStyles
         include RangeHelp
 

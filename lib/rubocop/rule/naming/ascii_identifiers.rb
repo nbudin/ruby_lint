@@ -3,7 +3,7 @@
 # rubocop:disable Style/AsciiComments
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks for non-ascii characters in identifier names.
       #
@@ -36,7 +36,7 @@ module RuboCop
       #   # good
       #   params[:width_gteq]
       #
-      class AsciiIdentifiers < Cop
+      class AsciiIdentifiers < Rule
         include RangeHelp
 
         MSG = 'Use only ascii symbols in identifiers.'

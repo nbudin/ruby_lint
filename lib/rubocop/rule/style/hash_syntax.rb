@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks hash literal syntax.
       #
@@ -54,7 +54,7 @@ module RuboCop
       #   # good
       #   {a: 1, b: 2}
       #   {:c => 3, 'd' => 4}
-      class HashSyntax < Cop
+      class HashSyntax < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks that constants defined in classes and modules have
       # an explicit visibility declaration. By default, Ruby makes all class-
@@ -26,7 +26,7 @@ module RuboCop
       #     public_constant :BAZ
       #   end
       #
-      class ConstantVisibility < Cop
+      class ConstantVisibility < Rule
         MSG = 'Explicitly make `%<constant_name>s` public or private using ' \
               'either `#public_constant` or `#private_constant`.'
 

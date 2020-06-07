@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that rescued exceptions variables are named as
       # expected.
@@ -53,7 +53,7 @@ module RuboCop
       #     # do something
       #   end
       #
-      class RescuedExceptionsVariableName < Cop
+      class RescuedExceptionsVariableName < Rule
         MSG = 'Use `%<preferred>s` instead of `%<bad>s`.'
 
         def on_resbody(node)

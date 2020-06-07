@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Gemspec
       # An attribute assignment method calls should be listed only once
       # in a gemspec.
@@ -34,7 +34,7 @@ module RuboCop
       #     spec.add_runtime_dependency('parallel', '~> 1.10')
       #     spec.add_runtime_dependency('parser', '>= 2.3.3.1', '< 3.0')
       #   end
-      class DuplicatedAssignment < Cop
+      class DuplicatedAssignment < Rule
         include RangeHelp
 
         MSG = '`%<assignment>s` method calls already given on line '\

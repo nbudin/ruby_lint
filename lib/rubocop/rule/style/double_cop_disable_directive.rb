@@ -4,7 +4,7 @@
 # rubocop:disable Style/DoubleCopDisableDirective
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Detects double disable comments on one line. This is mostly to catch
       # automatically generated comments that need to be regenerated.
@@ -24,7 +24,7 @@ module RuboCop
       #   def f # rubocop:disable Style/For, Metrics/AbcSize
       #   end
       #
-      class DoubleCopDisableDirective < Cop
+      class DoubleCopDisableDirective < Rule
         # rubocop:enable Style/For, Style/DoubleCopDisableDirective
         # rubocop:enable Lint/RedundantCopDisableDirective, Metrics/AbcSize
         MSG = 'More than one disable comment on one line.'

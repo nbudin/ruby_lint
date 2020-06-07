@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop ensures that each item in a multi-line array
       # starts on a separate line.
@@ -20,7 +20,7 @@ module RuboCop
       #     b,
       #     c
       #   ]
-      class MultilineArrayLineBreaks < Cop
+      class MultilineArrayLineBreaks < Rule
         include MultilineElementLineBreaks
 
         MSG = 'Each item in a multi-line array must start ' \

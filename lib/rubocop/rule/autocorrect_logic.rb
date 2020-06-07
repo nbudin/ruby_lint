@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module encapsulates the logic for autocorrect behavior for a cop.
     module AutocorrectLogic
       def autocorrect?

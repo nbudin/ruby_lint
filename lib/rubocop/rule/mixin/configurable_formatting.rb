@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Shared functionality between mixins that enforce naming conventions
     module ConfigurableFormatting
       include ConfigurableEnforcedStyle

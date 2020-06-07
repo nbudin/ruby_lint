@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks whether trailing commas in block arguments are
       # required. Blocks with only one argument and a trailing comma require
@@ -40,7 +40,7 @@ module RuboCop
       #   add do
       #     foo + bar
       #   end
-      class TrailingCommaInBlockArgs < Cop
+      class TrailingCommaInBlockArgs < Rule
         MSG = 'Useless trailing comma present in block arguments.'
 
         def on_block(node)

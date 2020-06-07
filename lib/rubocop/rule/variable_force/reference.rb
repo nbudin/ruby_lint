@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class VariableForce
       # This class represents each reference of a variable.
       class Reference

@@ -22,7 +22,7 @@ RSpec.describe Rubocop::Rule::Generator do
 
         # TODO: when finished, run `rake generate_cops_documentation` to update the docs
         module RuboCop
-          module Cop
+          module Rule
             module Style
               # TODO: Write cop description and example of bad / good code. For every
               # `SupportedStyle` and unique configuration, there needs to be examples.
@@ -58,7 +58,7 @@ RSpec.describe Rubocop::Rule::Generator do
               #   # good
               #   good_foo_method(args)
               #
-              class FakeCop < Cop
+              class FakeCop < Rule
                 # TODO: Implement the cop in here.
                 #
                 # In many cases, you can use a node matcher for matching node pattern.

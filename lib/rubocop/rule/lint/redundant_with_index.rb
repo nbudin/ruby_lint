@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for redundant `with_index`.
       #
@@ -26,7 +26,7 @@ module RuboCop
       #     v
       #   end
       #
-      class RedundantWithIndex < Cop
+      class RedundantWithIndex < Rule
         include RangeHelp
 
         MSG_EACH_WITH_INDEX = 'Use `each` instead of `each_with_index`.'

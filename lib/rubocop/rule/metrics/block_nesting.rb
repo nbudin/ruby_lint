@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       # This cop checks for excessive nesting of conditional and looping
       # constructs.
@@ -11,7 +11,7 @@ module RuboCop
       # towards the nesting level. Set to `true` to count blocks as well.
       #
       # The maximum level of nesting allowed is configurable.
-      class BlockNesting < Cop
+      class BlockNesting < Rule
         include ConfigurableMax
 
         NESTING_BLOCKS = %i[

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for END blocks.
       #
@@ -12,7 +12,7 @@ module RuboCop
       #   # good
       #   at_exit { puts 'Goodbye!' }
       #
-      class EndBlock < Cop
+      class EndBlock < Rule
         MSG = 'Avoid the use of `END` blocks. ' \
               'Use `Kernel#at_exit` instead.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the use of either `#alias` or `#alias_method`
       # depending on configuration.
@@ -22,7 +22,7 @@ module RuboCop
       #
       #   # good
       #   alias_method :bar, :foo
-      class Alias < Cop
+      class Alias < Rule
         include ConfigurableEnforcedStyle
 
         MSG_ALIAS = 'Use `alias_method` instead of `alias`.'

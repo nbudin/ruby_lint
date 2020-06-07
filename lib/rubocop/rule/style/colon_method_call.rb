@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for methods invoked via the :: operator instead
       # of the . operator (like FileUtils::rmdir instead of FileUtils.rmdir).
@@ -17,7 +17,7 @@ module RuboCop
       #   FileUtils.rmdir(dir)
       #   Marshal.dump(obj)
       #
-      class ColonMethodCall < Cop
+      class ColonMethodCall < Rule
         MSG = 'Do not use `::` for method calls.'
 
         def_node_matcher :java_type_node?, <<~PATTERN

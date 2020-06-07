@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Bundler
       # Add a comment describing each gem in your Gemfile.
       #
@@ -58,7 +58,7 @@ module RuboCop
       #   # Version 2.1 introduces breaking change baz
       #   gem 'bar', '< 2.1'
       #
-      class GemComment < Cop
+      class GemComment < Rule
         include DefNode
 
         MSG = 'Missing gem description comment.'

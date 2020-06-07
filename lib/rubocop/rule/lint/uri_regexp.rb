@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop identifies places where `URI.regexp` is obsolete and should
       # not be used. Instead, use `URI::DEFAULT_PARSER.make_regexp`.
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   URI::DEFAULT_PARSER.make_regexp('http://example.com')
       #
-      class UriRegexp < Cop
+      class UriRegexp < Rule
         MSG = '`%<top_level>sURI.regexp%<arg>s` is obsolete and should not ' \
               'be used. Instead, use `%<top_level>sURI::DEFAULT_PARSER.' \
               'make_regexp%<arg>s`.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the use of consistent method names
       # from the Enumerable module.
@@ -37,7 +37,7 @@ module RuboCop
       #   items.select
       #   items.include?
       #
-      class CollectionMethods < Cop
+      class CollectionMethods < Rule
         include MethodPreference
 
         MSG = 'Prefer `%<prefer>s` over `%<current>s`.'

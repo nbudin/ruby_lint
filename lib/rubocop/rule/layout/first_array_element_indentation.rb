@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the first element in an array literal
       # where the opening bracket and the first element are on separate lines.
@@ -79,7 +79,7 @@ module RuboCop
       #   and_now_for_something = [
       #                             :completely_different
       #                           ]
-      class FirstArrayElementIndentation < Cop
+      class FirstArrayElementIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include MultilineElementIndentation

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of `each_key` and `each_value` Hash methods.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #   # good
       #   hash.each_key { |k| p k }
       #   hash.each_value { |v| p v }
-      class HashEachMethods < Cop
+      class HashEachMethods < Rule
         include Lint::UnusedArgument
 
         MSG = 'Use `%<prefer>s` instead of `%<current>s`.'

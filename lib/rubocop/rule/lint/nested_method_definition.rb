@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for nested method definitions.
       #
@@ -54,7 +54,7 @@ module RuboCop
       #       end
       #     end
       #   end
-      class NestedMethodDefinition < Cop
+      class NestedMethodDefinition < Rule
         MSG = 'Method definitions must not be nested. ' \
               'Use `lambda` instead.'
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the presence (default) or absence of parentheses in
       # method calls containing parameters.
@@ -143,7 +143,7 @@ module RuboCop
       #
       #   # good
       #   Array 1
-      class MethodCallWithArgsParentheses < Cop
+      class MethodCallWithArgsParentheses < Rule
         include ConfigurableEnforcedStyle
         include IgnoredMethods
         include IgnoredPattern

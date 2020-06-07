@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for every useless assignment to local variable in every
       # scope.
@@ -30,7 +30,7 @@ module RuboCop
       #     some_var = 1
       #     do_something(some_var)
       #   end
-      class UselessAssignment < Cop
+      class UselessAssignment < Rule
         MSG = 'Useless assignment to variable - `%<variable>s`.'
 
         def join_force?(force_class)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the end keywords are aligned properly.
       #
@@ -67,7 +67,7 @@ module RuboCop
       #   variable =
       #     if true
       #     end
-      class EndAlignment < Cop
+      class EndAlignment < Rule
         include CheckAssignment
         include EndKeywordAlignment
         include RangeHelp

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This class auto-corrects lambda literal to method notation.
     class LambdaLiteralToMethodCorrector
       def initialize(block_node)

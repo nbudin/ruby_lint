@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks if empty lines exist around the bodies of methods.
       #
@@ -20,7 +20,7 @@ module RuboCop
       #     # ...
       #
       #   end
-      class EmptyLinesAroundMethodBody < Cop
+      class EmptyLinesAroundMethodBody < Rule
         include EmptyLinesAroundBody
 
         KIND = 'method'

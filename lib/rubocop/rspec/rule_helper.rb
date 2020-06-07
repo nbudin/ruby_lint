@@ -2,8 +2,8 @@
 
 require 'tempfile'
 
-# This module provides methods that make it easier to test Cops.
-module CopHelper
+# This module provides methods that make it easier to test Rules.
+module RuleHelper
   extend RSpec::SharedContext
 
   let(:ruby_version) { 2.4 }
@@ -19,7 +19,7 @@ module CopHelper
     processed_source = parse_source(source, file)
     raise 'Error parsing example code' unless processed_source.valid_syntax?
 
-    _investigate(cop, processed_source)
+    _investigate(rule, processed_source)
   end
 
   def parse_source(source, file = nil)
@@ -39,26 +39,26 @@ module CopHelper
   def autocorrect_source(source, file = nil)
     RuboCop::Formatter::DisabledConfigFormatter.config_to_allow_offenses = {}
     RuboCop::Formatter::DisabledConfigFormatter.detected_styles = {}
-    cop.instance_variable_get(:@options)[:auto_correct] = true
+    rule.instance_variable_get(:@options)[:auto_correct] = true
     processed_source = parse_source(source, file)
-    _investigate(cop, processed_source)
+    _investigate(rule, processed_source)
 
     corrector =
-      Rubocop::Rule::Corrector.new(processed_source.buffer, cop.corrections)
+      Rubocop::Rule::Corrector.new(processed_source.buffer, rule.corrections)
     corrector.rewrite
   end
 
-  def _investigate(cop, processed_source)
-    team = Rubocop::Rule::Team.new([cop], nil, raise_error: true)
+  def _investigate(rule, processed_source)
+    team = Rubocop::Rule::Team.new([rule], nil, raise_error: true)
     team.inspect_file(processed_source)
   end
 end
 
 module RuboCop
-  module Cop
-    # Monkey-patch Cop for tests to provide easy access to messages and
+  module Rule
+    # Monkey-patch Rule for tests to provide easy access to messages and
     # highlights.
-    class Cop
+    class Rule
       def messages
         offenses.sort.map(&:message)
       end

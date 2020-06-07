@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # `BigDecimal.new()` is deprecated since BigDecimal 1.3.3.
       # This cop identifies places where `BigDecimal.new()`
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   BigDecimal(123.456, 3)
       #
-      class BigDecimalNew < Cop
+      class BigDecimalNew < Rule
         MSG = '`%<double_colon>sBigDecimal.new()` is deprecated. ' \
               'Use `%<double_colon>sBigDecimal()` instead.'
 

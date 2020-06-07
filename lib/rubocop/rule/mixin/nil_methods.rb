@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module provides a list of methods that are:
     # 1. In the NilClass by default
     # 2. Added to NilClass by explicitly requiring any standard libraries

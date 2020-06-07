@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Check for arguments to `rescue` that will result in a `TypeError`
       # if an exception is raised.
@@ -34,7 +34,7 @@ module RuboCop
       #   rescue NameError
       #     baz
       #   end
-      class RescueType < Cop
+      class RescueType < Rule
         include RescueNode
 
         MSG = 'Rescuing from `%<invalid_exceptions>s` will raise a ' \

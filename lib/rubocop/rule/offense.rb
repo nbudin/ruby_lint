@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # An offense represents a style violation detected by RuboCop.
     class Offense
       include Comparable

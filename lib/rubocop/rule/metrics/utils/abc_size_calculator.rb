@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       module Utils
         # > ABC is .. a software size metric .. computed by counting the number

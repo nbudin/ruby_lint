@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `rescue` blocks with no body.
       #
@@ -64,7 +64,7 @@ module RuboCop
       #   rescue
       #     # do nothing
       #   end
-      class SuppressedException < Cop
+      class SuppressedException < Rule
         MSG = 'Do not suppress exceptions.'
 
         def on_resbody(node)

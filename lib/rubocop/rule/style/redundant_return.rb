@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for redundant `return` expressions.
       #
@@ -47,7 +47,7 @@ module RuboCop
       #     return x, y
       #   end
       #
-      class RedundantReturn < Cop
+      class RedundantReturn < Rule
         include RangeHelp
 
         MSG = 'Redundant `return` detected.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for usage of comparison operators (`==`,
       # `>`, `<`) to test numbers as zero, positive, or negative.
@@ -41,7 +41,7 @@ module RuboCop
       #   foo == 0
       #   0 > foo
       #   bar.baz > 0
-      class NumericPredicate < Cop
+      class NumericPredicate < Rule
         include ConfigurableEnforcedStyle
         include IgnoredMethods
 

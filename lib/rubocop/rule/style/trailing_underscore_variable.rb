@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for extra underscores in variable assignment.
       #
@@ -28,7 +28,7 @@ module RuboCop
       #   # bad
       #   a, b, _something = foo()
       #
-      class TrailingUnderscoreVariable < Cop
+      class TrailingUnderscoreVariable < Rule
         include SurroundingSpace
         include RangeHelp
 

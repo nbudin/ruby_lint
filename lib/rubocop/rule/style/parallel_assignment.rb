@@ -3,7 +3,7 @@
 require 'tsort'
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for simple usages of parallel assignment.
       # This will only complain when the number of variables
@@ -22,7 +22,7 @@ module RuboCop
       #   a = 1
       #   b = 2
       #   c = 3
-      class ParallelAssignment < Cop
+      class ParallelAssignment < Rule
         include RescueNode
 
         MSG = 'Do not use parallel assignment.'

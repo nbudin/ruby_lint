@@ -3,7 +3,7 @@
 require 'set'
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks that the indentation method is consistent.
       # Either tabs only or spaces only are used for indentation.
@@ -33,7 +33,7 @@ module RuboCop
       #   def foo
       #     bar
       #   end
-      class IndentationStyle < Cop
+      class IndentationStyle < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include RangeHelp

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for nested percent literals.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #     valid_attributes: %i[name content],
       #     nested_attributes: %i[name content %i[incorrectly nested]]
       #   }
-      class NestedPercentLiteral < Cop
+      class NestedPercentLiteral < Rule
         include PercentLiteral
 
         MSG = 'Within percent literals, nested percent literals do not ' \

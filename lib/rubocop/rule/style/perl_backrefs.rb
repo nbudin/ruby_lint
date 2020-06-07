@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of Perl-style regexp match
       # backreferences like $1, $2, etc.
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   puts Regexp.last_match(1)
-      class PerlBackrefs < Cop
+      class PerlBackrefs < Rule
         MSG = 'Avoid the use of Perl-style backrefs.'
 
         def on_nth_ref(node)

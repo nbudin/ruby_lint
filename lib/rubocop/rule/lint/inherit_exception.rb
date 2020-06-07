@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop looks for error classes inheriting from `Exception`
       # and its standard library subclasses, excluding subclasses of
@@ -33,7 +33,7 @@ module RuboCop
       #   class C < StandardError; end
       #
       #   C = Class.new(StandardError)
-      class InheritException < Cop
+      class InheritException < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Inherit from `%<prefer>s` instead of `%<current>s`.'

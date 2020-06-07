@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop identifies places where `lstrip.rstrip` can be replaced by
       # `strip`.
@@ -13,7 +13,7 @@ module RuboCop
       #
       #   # good
       #   'abc'.strip
-      class Strip < Cop
+      class Strip < Rule
         include RangeHelp
 
         MSG = 'Use `strip` instead of `%<methods>s`.'

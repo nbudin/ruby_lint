@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of hanging closing parentheses in
       # method calls, method definitions, and grouped expressions. A hanging
@@ -68,7 +68,7 @@ module RuboCop
       #   )
       #
       #
-      class ClosingParenthesisIndentation < Cop
+      class ClosingParenthesisIndentation < Rule
         include Alignment
 
         MSG_INDENT = 'Indent `)` to column %<expected>d (not %<actual>d)'

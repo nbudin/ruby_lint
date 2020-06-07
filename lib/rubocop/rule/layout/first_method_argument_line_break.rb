@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for a line break before the first argument in a
       # multi-line method call.
@@ -20,7 +20,7 @@ module RuboCop
       #     # ignored
       #     method foo, bar,
       #       baz
-      class FirstMethodArgumentLineBreak < Cop
+      class FirstMethodArgumentLineBreak < Rule
         include FirstElementLineBreak
 
         MSG = 'Add a line break before the first argument of a ' \

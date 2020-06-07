@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for space between a method name and a left parenthesis in defs.
       #
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   def func(x) end
       #   def method=(y) end
-      class SpaceAfterMethodName < Cop
+      class SpaceAfterMethodName < Rule
         include RangeHelp
 
         MSG = 'Do not put a space between a method name and the opening ' \

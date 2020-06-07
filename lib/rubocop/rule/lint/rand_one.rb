@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `rand(1)` calls.
       # Such calls always return `0`.
@@ -20,7 +20,7 @@ module RuboCop
       #   # good
       #
       #   0 # just use 0 instead
-      class RandOne < Cop
+      class RandOne < Rule
         MSG = '`%<method>s` always returns `0`. ' \
               'Perhaps you meant `rand(2)` or `rand`?'
 

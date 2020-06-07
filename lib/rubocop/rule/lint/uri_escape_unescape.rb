@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop identifies places where `URI.escape` can be replaced by
       # `CGI.escape`, `URI.encode_www_form`, or `URI.encode_www_form_component`
@@ -29,7 +29,7 @@ module RuboCop
       #   CGI.unescape(enc_uri)
       #   URI.decode_www_form(enc_uri)
       #   URI.decode_www_form_component(enc_uri)
-      class UriEscapeUnescape < Cop
+      class UriEscapeUnescape < Rule
         ALTERNATE_METHODS_OF_URI_ESCAPE = %w[
           CGI.escape
           URI.encode_www_form

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the alignment of else keywords. Normally they should
       # be aligned with an if/unless/while/until/begin/def keyword, but there
@@ -29,7 +29,7 @@ module RuboCop
       #   else
       #     code
       #   end
-      class ElseAlignment < Cop
+      class ElseAlignment < Rule
         include EndKeywordAlignment
         include Alignment
         include CheckAssignment

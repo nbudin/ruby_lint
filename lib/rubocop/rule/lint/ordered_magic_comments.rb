@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       #
       # Checks the proper ordering of magic comments and whether
@@ -27,7 +27,7 @@ module RuboCop
       #   # frozen_string_literal: true
       #   p [''.frozen?, ''.encoding] #=> [true, #<Encoding:US-ASCII>]
       #
-      class OrderedMagicComments < Cop
+      class OrderedMagicComments < Rule
         include FrozenStringLiteral
 
         MSG = 'The encoding magic comment should precede all other ' \

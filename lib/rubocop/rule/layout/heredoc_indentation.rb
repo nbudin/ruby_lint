@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the here document bodies. The bodies
       # are indented one step.
@@ -22,7 +22,7 @@ module RuboCop
       #   RUBY
       #
       #
-      class HeredocIndentation < Cop
+      class HeredocIndentation < Rule
         include Heredoc
 
         TYPE_MSG = 'Use %<indentation_width>d spaces for indentation in a ' \

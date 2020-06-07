@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for using Fixnum or Bignum constant.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #   # good
       #
       #   1.is_a?(Integer)
-      class UnifiedInteger < Cop
+      class UnifiedInteger < Rule
         MSG = 'Use `Integer` instead of `%<klass>s`.'
 
         def_node_matcher :fixnum_or_bignum_const, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for unneeded usages of splat expansion
       #
@@ -49,7 +49,7 @@ module RuboCop
       #   else
       #     baz
       #   end
-      class RedundantSplatExpansion < Cop
+      class RedundantSplatExpansion < Rule
         MSG = 'Replace splat expansion with comma separated values.'
         ARRAY_PARAM_MSG = 'Pass array contents as separate arguments.'
         PERCENT_W = '%w'

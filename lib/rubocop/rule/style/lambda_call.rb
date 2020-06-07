@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for use of the lambda.(args) syntax.
       #
@@ -18,7 +18,7 @@ module RuboCop
       #
       #  # good
       #  lambda.(x, y)
-      class LambdaCall < Cop
+      class LambdaCall < Rule
         include ConfigurableEnforcedStyle
 
         def on_send(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks that the closing brace in a method call is either
       # on the same line as the last method argument, or a new line.
@@ -88,7 +88,7 @@ module RuboCop
       #   # good
       #   foo(a,
       #     b)
-      class MultilineMethodCallBraceLayout < Cop
+      class MultilineMethodCallBraceLayout < Rule
         include MultilineLiteralBraceLayout
 
         SAME_LINE_MESSAGE = 'Closing method call brace must be on the ' \

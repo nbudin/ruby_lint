@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Security
       # This cop checks for the use of JSON class methods which have potential
       # security issues.
@@ -22,7 +22,7 @@ module RuboCop
       #   # good
       #   JSON.parse("{}")
       #
-      class JSONLoad < Cop
+      class JSONLoad < Rule
         MSG = 'Prefer `JSON.parse` over `JSON.%<method>s`.'
 
         def_node_matcher :json_load, <<~PATTERN

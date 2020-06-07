@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Use `next` to skip iteration instead of a condition at the end.
       #
@@ -46,7 +46,7 @@ module RuboCop
       #     next unless a == 1
       #     puts a
       #   end
-      class Next < Cop
+      class Next < Rule
         include ConfigurableEnforcedStyle
         include MinBodyLength
         include RangeHelp

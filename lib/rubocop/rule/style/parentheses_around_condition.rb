@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the presence of superfluous parentheses around the
       # condition of if/unless/while/until.
@@ -53,7 +53,7 @@ module RuboCop
       #      y > 10)
       #   end
       #
-      class ParenthesesAroundCondition < Cop
+      class ParenthesesAroundCondition < Rule
         include SafeAssignment
         include Parentheses
 

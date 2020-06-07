@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for string literal concatenation at
       # the end of a line.
@@ -19,7 +19,7 @@ module RuboCop
       #   some_str = 'ala' \
       #              'bala'
       #
-      class LineEndConcatenation < Cop
+      class LineEndConcatenation < Rule
         include RangeHelp
 
         MSG = 'Use `\\` instead of `+` or `<<` to concatenate ' \

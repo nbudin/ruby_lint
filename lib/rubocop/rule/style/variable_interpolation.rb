@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for variable interpolation (like "#@ivar").
       #
@@ -15,7 +15,7 @@ module RuboCop
       #   "His name is #{$name}"
       #   /check #{$pattern}/
       #   "Let's go to the #{@store}"
-      class VariableInterpolation < Cop
+      class VariableInterpolation < Rule
         include Interpolation
 
         MSG = 'Replace interpolated variable `%<variable>s` ' \

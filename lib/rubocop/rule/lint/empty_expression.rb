@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for the presence of empty expressions.
       #
@@ -22,7 +22,7 @@ module RuboCop
       #   if (some_expression)
       #     bar
       #   end
-      class EmptyExpression < Cop
+      class EmptyExpression < Rule
         MSG = 'Avoid empty expressions.'
 
         def on_begin(node)

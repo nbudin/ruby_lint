@@ -4,7 +4,7 @@
 # to be able to provide a (bad) example of a redundant disable.
 # rubocop:disable Lint/RedundantCopDisableDirective
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop detects instances of rubocop:disable comments that can be
       # removed without causing any offenses to be reported. It's implemented
@@ -25,7 +25,7 @@ module RuboCop
       #
       #   # good
       #   x += 1
-      class RedundantCopDisableDirective < Cop
+      class RedundantCopDisableDirective < Rule
         include RangeHelp
 
         COP_NAME = 'Lint/RedundantCopDisableDirective'

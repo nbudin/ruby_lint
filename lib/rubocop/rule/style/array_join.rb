@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of "*" as a substitute for _join_.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #   # good
       #   %w(foo bar baz).join(",")
       #
-      class ArrayJoin < Cop
+      class ArrayJoin < Rule
         MSG = 'Favor `Array#join` over `Array#*`.'
 
         def_node_matcher :join_candidate?, '(send $array :* $str)'

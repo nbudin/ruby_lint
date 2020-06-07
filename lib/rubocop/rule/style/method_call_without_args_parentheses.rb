@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for unwanted parentheses in parameterless method calls.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   # good
       #   object.some_method
-      class MethodCallWithoutArgsParentheses < Cop
+      class MethodCallWithoutArgsParentheses < Rule
         include IgnoredMethods
 
         MSG = 'Do not use parentheses for method calls with ' \

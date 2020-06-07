@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of Proc.new where Kernel#proc
       # would be more appropriate.
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   p = proc { |n| puts n }
       #
-      class Proc < Cop
+      class Proc < Rule
         MSG = 'Use `proc` instead of `Proc.new`.'
 
         def_node_matcher :proc_new?,

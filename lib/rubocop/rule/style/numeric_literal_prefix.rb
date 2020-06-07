@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for octal, hex, binary, and decimal literals using
       # uppercase prefixes and corrects them to lowercase prefix
@@ -33,7 +33,7 @@ module RuboCop
       #
       #   # good
       #   num = 01234
-      class NumericLiteralPrefix < Cop
+      class NumericLiteralPrefix < Rule
         include IntegerNode
 
         OCTAL_ZERO_ONLY_REGEX = /^0[Oo][0-7]+$/.freeze

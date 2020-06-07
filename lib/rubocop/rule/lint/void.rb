@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for operators, variables, literals, and nonmutating
       # methods used in void context.
@@ -40,7 +40,7 @@ module RuboCop
       #     some_array.sort!
       #     do_something(some_array)
       #   end
-      class Void < Cop
+      class Void < Rule
         OP_MSG = 'Operator `%<op>s` used in void context.'
         VAR_MSG = 'Variable `%<var>s` used in void context.'
         LIT_MSG = 'Literal `%<lit>s` used in void context.'

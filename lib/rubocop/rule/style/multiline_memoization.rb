@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks expressions wrapping styles for multiline memoization.
       #
@@ -30,7 +30,7 @@ module RuboCop
       #     bar
       #     baz
       #   )
-      class MultilineMemoization < Cop
+      class MultilineMemoization < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Wrap multiline memoization blocks in `begin` and `end`.'

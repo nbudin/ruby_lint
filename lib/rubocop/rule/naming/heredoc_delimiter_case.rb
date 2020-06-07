@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks that your heredocs are using the configured case.
       # By default it is configured to enforce uppercase heredocs.
@@ -27,7 +27,7 @@ module RuboCop
       #   <<-sql
       #     SELECT * FROM foo
       #   sql
-      class HeredocDelimiterCase < Cop
+      class HeredocDelimiterCase < Rule
         include Heredoc
         include ConfigurableEnforcedStyle
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of unless with a negated condition. Only unless
       # without else are considered. There are three different styles:
@@ -58,7 +58,7 @@ module RuboCop
       #   unless !foo
       #     bar
       #   end
-      class NegatedUnless < Cop
+      class NegatedUnless < Rule
         include ConfigurableEnforcedStyle
         include NegativeConditional
 

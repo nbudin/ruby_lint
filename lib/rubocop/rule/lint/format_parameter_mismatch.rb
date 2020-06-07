@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This lint sees if there is a mismatch between the number of
       # expected fields for format/sprintf/#% and what is actually
@@ -18,7 +18,7 @@ module RuboCop
       #   # good
       #
       #   format('A value: %s and another: %i', a_value, another)
-      class FormatParameterMismatch < Cop
+      class FormatParameterMismatch < Rule
         # http://rubular.com/r/CvpbxkcTzy
         MSG = "Number of arguments (%<arg_num>i) to `%<method>s` doesn't " \
               'match the number of fields (%<field_num>i).'

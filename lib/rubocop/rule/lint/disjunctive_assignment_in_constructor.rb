@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks constructors for disjunctive assignments that should
       # be plain assignments.
@@ -22,7 +22,7 @@ module RuboCop
       #   def initialize
       #     @x = 1
       #   end
-      class DisjunctiveAssignmentInConstructor < Cop
+      class DisjunctiveAssignmentInConstructor < Rule
         MSG = 'Unnecessary disjunctive assignment. Use plain assignment.'
 
         def on_def(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for unused method arguments.
       #
@@ -58,7 +58,7 @@ module RuboCop
       #     fail "TODO"
       #   end
       #
-      class UnusedMethodArgument < Cop
+      class UnusedMethodArgument < Rule
         include UnusedArgument
 
         def_node_matcher :not_implemented?, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the end keywords of method definitions are
       # aligned properly.
@@ -33,7 +33,7 @@ module RuboCop
       #
       #   private def foo
       #           end
-      class DefEndAlignment < Cop
+      class DefEndAlignment < Rule
         include EndKeywordAlignment
         include RangeHelp
 

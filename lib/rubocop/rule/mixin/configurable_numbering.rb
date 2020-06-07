@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module provides functionality for checking if numbering match the
     # configured EnforcedStyle.
     module ConfigurableNumbering

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Checks for unnecessary `require` statement.
       #
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   # good
       #   require 'unloaded_feature'
-      class RedundantRequireStatement < Cop
+      class RedundantRequireStatement < Rule
         include RangeHelp
 
         MSG = 'Remove unnecessary `require` statement.'

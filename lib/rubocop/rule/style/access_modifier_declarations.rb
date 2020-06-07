@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Access modifiers should be declared to apply to a group of methods
       # or inline before each method, depending on configuration.
@@ -62,7 +62,7 @@ module RuboCop
       #     private :bar, :baz
       #
       #   end
-      class AccessModifierDeclarations < Cop
+      class AccessModifierDeclarations < Rule
         include ConfigurableEnforcedStyle
 
         GROUP_STYLE_MESSAGE = [

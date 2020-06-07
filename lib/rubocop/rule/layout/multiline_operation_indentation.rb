@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the right hand side operand in
       # binary operations that span more than one line.
@@ -41,7 +41,7 @@ module RuboCop
       #       something_else
       #   end
       #
-      class MultilineOperationIndentation < Cop
+      class MultilineOperationIndentation < Rule
         include ConfigurableEnforcedStyle
         include Alignment
         include MultilineExpressionIndentation

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Bundler
       # A Gem's requirements should be listed only once in a Gemfile.
       # @example
@@ -25,7 +25,7 @@ module RuboCop
       #
       #   # good
       #   gem 'rubocop', groups: [:development, :test]
-      class DuplicatedGem < Cop
+      class DuplicatedGem < Rule
         include RangeHelp
 
         MSG = 'Gem `%<gem_name>s` requirements already given on line '\

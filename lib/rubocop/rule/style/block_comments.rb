@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of block comments (=begin...=end).
       #
@@ -16,7 +16,7 @@ module RuboCop
       #   # Multiple lines
       #   # of comments...
       #
-      class BlockComments < Cop
+      class BlockComments < Rule
         include RangeHelp
 
         MSG = 'Do not use block comments.'

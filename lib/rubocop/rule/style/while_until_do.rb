@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of `do` in multi-line `while/until` statements.
       #
@@ -28,7 +28,7 @@ module RuboCop
       #   until x.empty?
       #     do_something(x.pop)
       #   end
-      class WhileUntilDo < Cop
+      class WhileUntilDo < Rule
         MSG = 'Do not use `do` with multi-line `%<keyword>s`.'
 
         def on_while(node)

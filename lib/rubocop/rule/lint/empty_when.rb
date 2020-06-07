@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for the presence of `when` branches without a body.
       #
@@ -44,7 +44,7 @@ module RuboCop
       #     # do nothing
       #   end
       #
-      class EmptyWhen < Cop
+      class EmptyWhen < Rule
         MSG = 'Avoid `when` branches without a body.'
 
         def on_case(node)

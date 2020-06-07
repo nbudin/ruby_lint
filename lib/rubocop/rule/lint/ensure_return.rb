@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `return` from an `ensure` block.
       # Explicit return from an ensure block alters the control flow
@@ -28,7 +28,7 @@ module RuboCop
       #   ensure
       #     do_something_else
       #   end
-      class EnsureReturn < Cop
+      class EnsureReturn < Rule
         include RangeHelp
 
         MSG = 'Do not return from an `ensure` block.'

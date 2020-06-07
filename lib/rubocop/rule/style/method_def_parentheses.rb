@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for parentheses around the arguments in method
       # definitions. Both instance and class/singleton methods are checked.
@@ -84,7 +84,7 @@ module RuboCop
       #           last_descriptive_var_name)
       #     do_something
       #   end
-      class MethodDefParentheses < Cop
+      class MethodDefParentheses < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

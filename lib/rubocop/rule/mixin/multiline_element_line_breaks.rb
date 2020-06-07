@@ -4,7 +4,7 @@
 # WATCHERS: maxh
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for checking for a line break before each
     # element in a multi-line collection.
     module MultilineElementLineBreaks

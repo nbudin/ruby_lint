@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common methods shared by TrailingBody cops
     module TrailingBody
       def trailing_body?(node)

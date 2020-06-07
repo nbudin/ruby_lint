@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for setter call to local variable as the final
       # expression of a function definition.
@@ -28,7 +28,7 @@ module RuboCop
       #     x.attr = 5
       #     x
       #   end
-      class UselessSetterCall < Cop
+      class UselessSetterCall < Rule
         MSG = 'Useless setter call to local variable `%<variable>s`.'
         ASSIGNMENT_TYPES = %i[lvasgn ivasgn cvasgn gvasgn].freeze
 

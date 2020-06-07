@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the use of a method, the result of which
       # would be a literal, like an empty array, hash, or string.
@@ -16,7 +16,7 @@ module RuboCop
       #   a = []
       #   h = {}
       #   s = ''
-      class EmptyLiteral < Cop
+      class EmptyLiteral < Rule
         include FrozenStringLiteral
         include RangeHelp
 

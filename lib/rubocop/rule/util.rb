@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module contains a collection of useful utility methods.
     module Util
       include PathUtil

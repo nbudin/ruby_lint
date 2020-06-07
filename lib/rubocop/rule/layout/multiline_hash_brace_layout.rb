@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks that the closing brace in a hash literal is either
       # on the same line as the last hash element, or a new line.
@@ -88,7 +88,7 @@ module RuboCop
       #     # good
       #     { a: 1,
       #       b: 2 }
-      class MultilineHashBraceLayout < Cop
+      class MultilineHashBraceLayout < Rule
         include MultilineLiteralBraceLayout
 
         SAME_LINE_MESSAGE = 'Closing hash brace must be on the same line as ' \

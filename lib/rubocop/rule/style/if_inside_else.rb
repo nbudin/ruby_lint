@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # If the `else` branch of a conditional consists solely of an `if` node,
       # it can be combined with the `else` to become an `elsif`.
@@ -58,7 +58,7 @@ module RuboCop
       #     action_b
       #   end
       #
-      class IfInsideElse < Cop
+      class IfInsideElse < Rule
         MSG = 'Convert `if` nested inside `else` to `elsif`.'
 
         def on_if(node)

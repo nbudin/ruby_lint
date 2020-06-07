@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop (by default) checks for uses of the lambda literal syntax for
       # single line lambdas, and the method call syntax for multiline lambdas.
@@ -46,7 +46,7 @@ module RuboCop
       #   f = ->(x) do
       #         x
       #       end
-      class Lambda < Cop
+      class Lambda < Rule
         include ConfigurableEnforcedStyle
 
         LITERAL_MESSAGE = 'Use the `-> { ... }` lambda literal syntax for ' \

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Migration
       # Check that cop names in rubocop:disable comments are given with
       # department name.
-      class DepartmentName < Cop
+      class DepartmentName < Rule
         include RangeHelp
 
         MSG = 'Department name is missing.'

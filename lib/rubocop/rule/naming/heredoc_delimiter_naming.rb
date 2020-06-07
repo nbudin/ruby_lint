@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks that your heredocs are using meaningful delimiters.
       # By default it disallows `END` and `EO*`, and can be configured through
@@ -23,7 +23,7 @@ module RuboCop
       #   <<-EOS
       #     SELECT * FROM foo
       #   EOS
-      class HeredocDelimiterNaming < Cop
+      class HeredocDelimiterNaming < Rule
         include Heredoc
 
         MSG = 'Use meaningful heredoc delimiters.'

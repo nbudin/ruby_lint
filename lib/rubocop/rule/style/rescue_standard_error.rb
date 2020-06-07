@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for rescuing `StandardError`. There are two supported
       # styles `implicit` and `explicit`. This cop will not register an offense
@@ -70,7 +70,7 @@ module RuboCop
       #   rescue StandardError, SecurityError
       #     bar
       #   end
-      class RescueStandardError < Cop
+      class RescueStandardError < Rule
         include RescueNode
         include ConfigurableEnforcedStyle
         include RangeHelp

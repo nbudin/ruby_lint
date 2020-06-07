@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for redundant `with_object`.
       #
@@ -26,7 +26,7 @@ module RuboCop
       #     v
       #   end
       #
-      class RedundantWithObject < Cop
+      class RedundantWithObject < Rule
         include RangeHelp
 
         MSG_EACH_WITH_OBJECT = 'Use `each` instead of `each_with_object`.'

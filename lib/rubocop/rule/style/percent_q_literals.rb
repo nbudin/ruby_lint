@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for usage of the %Q() syntax when %q() would do.
       #
@@ -25,7 +25,7 @@ module RuboCop
       #   # good
       #   %Q/Mix the foo into the baz./
       #   %Q{They all said: 'Hooray!'}
-      class PercentQLiterals < Cop
+      class PercentQLiterals < Rule
         include PercentLiteral
         include ConfigurableEnforcedStyle
 

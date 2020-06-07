@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for indentation that doesn't use the specified number
       # of spaces.
@@ -42,7 +42,7 @@ module RuboCop
       #     end
       #   end
       #   end
-      class IndentationWidth < Cop # rubocop:disable Metrics/ClassLength
+      class IndentationWidth < Rule # rubocop:disable Metrics/ClassLength
         include EndKeywordAlignment
         include Alignment
         include CheckAssignment

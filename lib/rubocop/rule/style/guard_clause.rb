@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Use a guard clause instead of wrapping the code inside a conditional
       # expression
@@ -46,7 +46,7 @@ module RuboCop
       #   # good
       #   foo || raise('exception') if something
       #   ok
-      class GuardClause < Cop
+      class GuardClause < Rule
         include MinBodyLength
         include StatementModifier
 

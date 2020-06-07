@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of comments.
       #
@@ -32,7 +32,7 @@ module RuboCop
       #     true
       #   end
       #
-      class CommentIndentation < Cop
+      class CommentIndentation < Rule
         include Alignment
 
         MSG = 'Incorrect indentation detected (column %<column>d ' \

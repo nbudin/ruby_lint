@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of global variables.
       # It does not report offenses for built-in global variables.
@@ -19,7 +19,7 @@ module RuboCop
       #   FOO = 2
       #   foo = 2
       #   $stdin.read
-      class GlobalVars < Cop
+      class GlobalVars < Rule
         MSG = 'Do not introduce global variables.'
 
         # built-in global variables and their English aliases

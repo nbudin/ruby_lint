@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Use a consistent style for named format string tokens.
       #
@@ -37,7 +37,7 @@ module RuboCop
       #
       #   # good
       #   format('%s', 'Hello')
-      class FormatStringToken < Cop
+      class FormatStringToken < Rule
         include ConfigurableEnforcedStyle
 
         def on_str(node)

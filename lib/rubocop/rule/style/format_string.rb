@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop enforces the use of a single string formatting utility.
       # Valid options include Kernel#format, Kernel#sprintf and String#%.
@@ -35,7 +35,7 @@ module RuboCop
       #   # good
       #   puts '%10s' % 'hoge'
       #
-      class FormatString < Cop
+      class FormatString < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Favor `%<prefer>s` over `%<current>s`.'

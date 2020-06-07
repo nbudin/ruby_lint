@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for multiple expressions placed on the same line.
       # It also checks for lines terminated with a semicolon.
@@ -26,7 +26,7 @@ module RuboCop
       # @example AllowAsExpressionSeparator: true
       #   # good
       #   foo = 1; bar = 2
-      class Semicolon < Cop
+      class Semicolon < Rule
         include RangeHelp
 
         MSG = 'Do not use semicolons to terminate expressions.'

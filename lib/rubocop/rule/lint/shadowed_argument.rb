@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for shadowed arguments.
       #
@@ -63,7 +63,7 @@ module RuboCop
       #     bar
       #   end
       #
-      class ShadowedArgument < Cop
+      class ShadowedArgument < Rule
         MSG = 'Argument `%<argument>s` was shadowed by a local variable ' \
               'before it was used.'
 

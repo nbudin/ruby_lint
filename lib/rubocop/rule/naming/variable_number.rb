@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that all numbered variables use the
       # configured style, snake_case, normalcase, or non_integer,
@@ -37,7 +37,7 @@ module RuboCop
       #   variableone = 1
       #
       #   variable_one = 1
-      class VariableNumber < Cop
+      class VariableNumber < Rule
         include ConfigurableNumbering
 
         MSG = 'Use %<style>s for variable numbers.'

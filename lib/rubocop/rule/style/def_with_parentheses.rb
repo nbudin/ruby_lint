@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for parentheses in the definition of a method,
       # that does not take any arguments. Both instance and
@@ -33,7 +33,7 @@ module RuboCop
       #   def Baz.foo
       #     # does a thing
       #   end
-      class DefWithParentheses < Cop
+      class DefWithParentheses < Rule
         MSG = "Omit the parentheses in defs when the method doesn't accept " \
               'any arguments.'
 

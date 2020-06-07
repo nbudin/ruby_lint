@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This class handles autocorrection for code that needs to be moved
     # to new lines.
     class LineBreakCorrector

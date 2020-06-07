@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for non-local exits from iterators without a return
       # value. It registers an offense under these conditions:
@@ -38,7 +38,7 @@ module RuboCop
       #     end
       #   end
       #
-      class NonLocalExitFromIterator < Cop
+      class NonLocalExitFromIterator < Rule
         MSG = 'Non-local exit from iterator, without return value. ' \
               '`next`, `break`, `Array#find`, `Array#any?`, etc. ' \
               'is preferred.'

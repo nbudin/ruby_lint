@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for unnecessary leading blank lines at the beginning
       # of a file.
@@ -27,7 +27,7 @@ module RuboCop
       #   # good
       #   # (start of file)
       #   # a comment
-      class LeadingEmptyLines < Cop
+      class LeadingEmptyLines < Rule
         MSG = 'Unnecessary blank line at the beginning of the source.'
 
         def investigate(processed_source)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for literals used as the conditions or as
       # operands in and/or expressions serving as the conditions of
@@ -29,7 +29,7 @@ module RuboCop
       #   while true
       #     break if condition
       #   end
-      class LiteralAsCondition < Cop
+      class LiteralAsCondition < Rule
         MSG = 'Literal `%<literal>s` appeared as a condition.'
 
         def on_if(node)

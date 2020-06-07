@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     class VariableForce
       # A Variable represents existence of a local variable.
       # This holds a variable declaration node and some states of the variable.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # Do not mix named captures and numbered captures in a Regexp literal
       # because numbered capture is ignored if they're mixed.
@@ -20,7 +20,7 @@ module RuboCop
       #   # good
       #   /(FOO)(BAR)/
       #
-      class MixedRegexpCaptureTypes < Cop
+      class MixedRegexpCaptureTypes < Rule
         MSG = 'Do not mix named captures and numbered captures ' \
               'in a Regexp literal.'
 

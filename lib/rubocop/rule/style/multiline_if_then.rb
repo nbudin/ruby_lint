@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for uses of the `then` keyword in multi-line if statements.
       #
@@ -16,7 +16,7 @@ module RuboCop
       #   if cond then a
       #   elsif cond then b
       #   end
-      class MultilineIfThen < Cop
+      class MultilineIfThen < Rule
         include OnNormalIfUnless
         include RangeHelp
 

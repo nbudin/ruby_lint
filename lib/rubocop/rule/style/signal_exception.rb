@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of `fail` and `raise`.
       #
@@ -104,7 +104,7 @@ module RuboCop
       #
       #   explicit_receiver.fail
       #   explicit_receiver.raise
-      class SignalException < Cop
+      class SignalException < Rule
         include ConfigurableEnforcedStyle
 
         FAIL_MSG = 'Use `fail` instead of `raise` to signal exceptions.'

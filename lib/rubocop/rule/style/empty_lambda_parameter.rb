@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for parentheses for empty lambda parameters. Parentheses
       # for empty lambda parameters do not cause syntax errors, but they are
@@ -16,7 +16,7 @@ module RuboCop
       #
       #   # good
       #   -> (arg) { do_something(arg) }
-      class EmptyLambdaParameter < Cop
+      class EmptyLambdaParameter < Rule
         include EmptyParameter
         include RangeHelp
 

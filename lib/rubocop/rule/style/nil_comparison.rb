@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for comparison of something with nil using `==` and
       # `nil?`.
@@ -28,7 +28,7 @@ module RuboCop
       #   if x == nil
       #   end
       #
-      class NilComparison < Cop
+      class NilComparison < Rule
         include ConfigurableEnforcedStyle
 
         PREDICATE_MSG = 'Prefer the use of the `nil?` predicate.'

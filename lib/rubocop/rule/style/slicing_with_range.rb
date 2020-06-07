@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks that arrays are sliced with endless ranges instead of
       # `ary[start..-1]` on Ruby 2.6+.
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   items[1..]
-      class SlicingWithRange < Cop
+      class SlicingWithRange < Rule
         extend TargetRubyVersion
 
         minimum_target_ruby_version 2.6

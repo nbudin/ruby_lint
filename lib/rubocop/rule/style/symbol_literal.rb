@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks symbol literal syntax.
       #
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # good
       #   :symbol
-      class SymbolLiteral < Cop
+      class SymbolLiteral < Rule
         MSG = 'Do not use strings for word-like symbol literals.'
 
         def on_sym(node)

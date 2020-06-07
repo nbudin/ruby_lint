@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the presence of `method_missing` without also
       # defining `respond_to_missing?`.
@@ -21,7 +21,7 @@ module RuboCop
       #     # ...
       #   end
       #
-      class MissingRespondToMissing < Cop
+      class MissingRespondToMissing < Rule
         MSG =
           'When using `method_missing`, define `respond_to_missing?`.'
 

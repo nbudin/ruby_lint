@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for colons and commas in %i, e.g. `%i(:foo, :bar)`
       #
@@ -20,7 +20,7 @@ module RuboCop
       #   # good
       #
       #   %i(foo bar)
-      class PercentSymbolArray < Cop
+      class PercentSymbolArray < Rule
         include PercentLiteral
 
         MSG = "Within `%i`/`%I`, ':' and ',' are unnecessary and may be " \

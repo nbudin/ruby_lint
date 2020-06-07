@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop makes sure that accessor methods are named properly.
       #
@@ -21,7 +21,7 @@ module RuboCop
       #   # good
       #   def attribute
       #   end
-      class AccessorMethodName < Cop
+      class AccessorMethodName < Rule
         MSG_READER = 'Do not prefix reader method names with `get_`.'
         MSG_WRITER = 'Do not prefix writer method names with `set_`.'
 

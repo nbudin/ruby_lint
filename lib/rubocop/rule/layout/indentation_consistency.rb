@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for inconsistent indentation.
       #
@@ -118,7 +118,7 @@ module RuboCop
       #       def bar
       #       end
       #   end
-      class IndentationConsistency < Cop
+      class IndentationConsistency < Rule
         include Alignment
         include ConfigurableEnforcedStyle
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for spaces inside range literals.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #
       #   # good
       #   'a'..'z'
-      class SpaceInsideRangeLiteral < Cop
+      class SpaceInsideRangeLiteral < Rule
         MSG = 'Space inside range literal.'
 
         def on_irange(node)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop is designed to help you transition from mutable string literals
       # to frozen string literals.
@@ -73,7 +73,7 @@ module RuboCop
       #   module Bar
       #     # ...
       #   end
-      class FrozenStringLiteralComment < Cop
+      class FrozenStringLiteralComment < Rule
         include ConfigurableEnforcedStyle
         include FrozenStringLiteral
         include RangeHelp

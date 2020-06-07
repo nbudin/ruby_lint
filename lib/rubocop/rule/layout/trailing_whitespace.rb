@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop looks for trailing whitespace in the source code.
       #
@@ -28,7 +28,7 @@ module RuboCop
       #     x = 0
       #   RUBY
       #
-      class TrailingWhitespace < Cop
+      class TrailingWhitespace < Rule
         include RangeHelp
 
         MSG = 'Trailing whitespace detected.'

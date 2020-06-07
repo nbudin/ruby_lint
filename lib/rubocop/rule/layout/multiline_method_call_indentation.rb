@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks the indentation of the method name part in method calls
       # that span more than one line.
@@ -46,7 +46,7 @@ module RuboCop
       #                  .a
       #                  .b
       #                  .c
-      class MultilineMethodCallIndentation < Cop
+      class MultilineMethodCallIndentation < Rule
         include ConfigurableEnforcedStyle
         include Alignment
         include MultilineExpressionIndentation

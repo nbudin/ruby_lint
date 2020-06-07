@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for non-nil checks, which are usually redundant.
       #
@@ -38,7 +38,7 @@ module RuboCop
       #   if !x.nil?
       #   end
       #
-      class NonNilCheck < Cop
+      class NonNilCheck < Rule
         def_node_matcher :not_equal_to_nil?, '(send _ :!= nil)'
         def_node_matcher :unless_check?, '(if (send _ :nil?) ...)'
         def_node_matcher :nil_check?, '(send _ :nil?)'

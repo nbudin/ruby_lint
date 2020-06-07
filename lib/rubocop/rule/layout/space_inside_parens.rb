@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for spaces inside ordinary round parentheses.
       #
@@ -31,7 +31,7 @@ module RuboCop
       #   g = ( a + 3 )
       #   y()
       #
-      class SpaceInsideParens < Cop
+      class SpaceInsideParens < Rule
         include SurroundingSpace
         include RangeHelp
         include ConfigurableEnforcedStyle

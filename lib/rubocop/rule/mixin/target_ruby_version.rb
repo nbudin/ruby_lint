@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for checking target ruby version.
     module TargetRubyVersion
       def required_minimum_ruby_version

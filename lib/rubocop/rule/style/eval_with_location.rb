@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks `eval` method usage. `eval` can receive source location
       # metadata, that are filename and line number. The metadata is used by
@@ -31,7 +31,7 @@ module RuboCop
       #     def do_something
       #     end
       #   RUBY
-      class EvalWithLocation < Cop
+      class EvalWithLocation < Rule
         MSG = 'Pass `__FILE__` and `__LINE__` to `eval` method, ' \
               'as they are used by backtraces.'
         MSG_INCORRECT_LINE = 'Use `%<expected>s` instead of `%<actual>s`, ' \

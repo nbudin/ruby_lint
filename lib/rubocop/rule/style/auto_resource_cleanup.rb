@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for cases when you could use a block
       # accepting version of a method that does automatic
@@ -16,7 +16,7 @@ module RuboCop
       #   File.open('file') do |f|
       #     # ...
       #   end
-      class AutoResourceCleanup < Cop
+      class AutoResourceCleanup < Rule
         MSG = 'Use the block version of `%<class>s.%<method>s`.'
 
         TARGET_METHODS = {

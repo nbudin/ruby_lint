@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for the use of the send method.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #   # good
       #   Foo.__send__(:bar)
       #   quuz.public_send(:fred)
-      class Send < Cop
+      class Send < Rule
         MSG = 'Prefer `Object#__send__` or `Object#public_send` to ' \
               '`send`.'
 

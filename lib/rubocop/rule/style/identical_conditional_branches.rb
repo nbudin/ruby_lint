@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for identical lines at the beginning or end of
       # each branch of a conditional statement.
@@ -62,7 +62,7 @@ module RuboCop
       #     do_x
       #     do_z
       #   end
-      class IdenticalConditionalBranches < Cop
+      class IdenticalConditionalBranches < Rule
         MSG = 'Move `%<source>s` out of the conditional.'
 
         def on_if(node)

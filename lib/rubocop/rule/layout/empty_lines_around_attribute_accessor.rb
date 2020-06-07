@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks for a newline after an attribute accessor or a group of them.
       # `alias` syntax and `alias_method`, `public`, `protected`, and `private` methods are allowed
@@ -60,7 +60,7 @@ module RuboCop
       #   def do_something
       #   end
       #
-      class EmptyLinesAroundAttributeAccessor < Cop
+      class EmptyLinesAroundAttributeAccessor < Rule
         include RangeHelp
 
         MSG = 'Add an empty line after attribute accessor.'

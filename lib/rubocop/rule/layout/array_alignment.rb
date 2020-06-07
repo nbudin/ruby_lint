@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Here we check if the elements of a multi-line array literal are
       # aligned.
@@ -33,7 +33,7 @@ module RuboCop
       #
       #   array = [1, 2, 3,
       #            4, 5, 6]
-      class ArrayAlignment < Cop
+      class ArrayAlignment < Rule
         include Alignment
 
         ALIGN_ELEMENTS_MSG = 'Align the elements of an array literal ' \

@@ -3,7 +3,7 @@
 require 'resolv'
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for hardcoded IP addresses, which can make code
       # brittle. IP addresses are likely to need to be changed when code
@@ -18,7 +18,7 @@ module RuboCop
       #
       #   # good
       #   ip_address = ENV['DEPLOYMENT_IP_ADDRESS']
-      class IpAddresses < Cop
+      class IpAddresses < Rule
         include StringHelp
 
         IPV6_MAX_SIZE = 45 # IPv4-mapped IPv6 is the longest

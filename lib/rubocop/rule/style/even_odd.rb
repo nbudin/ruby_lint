@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for places where `Integer#even?` or `Integer#odd?`
       # can be used.
@@ -15,7 +15,7 @@ module RuboCop
       #   # good
       #   if x.even?
       #   end
-      class EvenOdd < Cop
+      class EvenOdd < Rule
         MSG = 'Replace with `Integer#%<method>s?`.'
 
         def_node_matcher :even_odd_candidate?, <<~PATTERN

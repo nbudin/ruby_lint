@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for indentation of the first non-blank non-comment
       # line in a file.
@@ -17,7 +17,7 @@ module RuboCop
       #     def foo; end
       #   end
       #
-      class InitialIndentation < Cop
+      class InitialIndentation < Rule
         include RangeHelp
 
         MSG = 'Indentation of first line in file detected.'

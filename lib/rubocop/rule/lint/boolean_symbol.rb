@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for `:true` and `:false` symbols.
       # In most cases it would be a typo.
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   # good
       #   false
-      class BooleanSymbol < Cop
+      class BooleanSymbol < Rule
         MSG = 'Symbol with a boolean name - ' \
               'you probably meant to use `%<boolean>s`.'
 

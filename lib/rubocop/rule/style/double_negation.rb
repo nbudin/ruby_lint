@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for uses of double negation (`!!`) to convert something to a boolean value.
       #
@@ -32,7 +32,7 @@ module RuboCop
       # !!something and !something.nil? are not the same thing.
       # As you're unlikely to write code that can accept values of any type
       # this is rarely a problem in practice.
-      class DoubleNegation < Cop
+      class DoubleNegation < Rule
         include ConfigurableEnforcedStyle
 
         MSG = 'Avoid the use of double negation (`!!`).'

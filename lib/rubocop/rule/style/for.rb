@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop looks for uses of the `for` keyword or `each` method. The
       # preferred alternative is set in the EnforcedStyle configuration
@@ -38,7 +38,7 @@ module RuboCop
       #     end
       #   end
       #
-      class For < Cop
+      class For < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

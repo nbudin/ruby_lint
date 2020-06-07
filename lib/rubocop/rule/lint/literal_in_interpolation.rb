@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for interpolated literals.
       #
@@ -16,7 +16,7 @@ module RuboCop
       #   # good
       #
       #   "result is 10"
-      class LiteralInInterpolation < Cop
+      class LiteralInInterpolation < Rule
         include Interpolation
         include RangeHelp
         include PercentLiteral

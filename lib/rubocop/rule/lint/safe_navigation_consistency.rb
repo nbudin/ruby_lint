@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop check to make sure that if safe navigation is used for a method
       # call in an `&&` or `||` condition that safe navigation is used for all
@@ -26,7 +26,7 @@ module RuboCop
       #   # good
       #   foo&.bar && (foobar.baz || foo&.baz)
       #
-      class SafeNavigationConsistency < Cop
+      class SafeNavigationConsistency < Rule
         include IgnoredNode
         include NilMethods
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop can check for array literals made up of word-like
       # strings, that are not using the %w() syntax.
@@ -27,7 +27,7 @@ module RuboCop
       #
       #   # bad
       #   %w[foo bar baz]
-      class WordArray < Cop
+      class WordArray < Rule
         include ArrayMinSize
         include ArraySyntax
         include ConfigurableEnforcedStyle

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for conditions that are not on the same line as
       # if/while/until.
@@ -22,7 +22,7 @@ module RuboCop
       #   if some_condition
       #     do_something
       #   end
-      class ConditionPosition < Cop
+      class ConditionPosition < Rule
         include RangeHelp
 
         MSG = 'Place the condition on the same line as `%<keyword>s`.'

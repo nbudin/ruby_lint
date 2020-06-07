@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop warns the usage of unsafe number conversions. Unsafe
       # number conversion can cause unexpected error if auto type conversion
@@ -20,7 +20,7 @@ module RuboCop
       #   Integer('10', 10)
       #   Float('10.2')
       #   Complex('10')
-      class NumberConversion < Cop
+      class NumberConversion < Rule
         CONVERSION_METHOD_CLASS_MAPPING = {
           to_i: "#{Integer.name}(%<number_object>s, 10)",
           to_f: "#{Float.name}(%<number_object>s)",

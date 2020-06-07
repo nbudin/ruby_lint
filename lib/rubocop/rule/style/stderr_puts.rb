@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop identifies places where `$stderr.puts` can be replaced by
       # `warn`. The latter has the advantage of easily being disabled by,
@@ -14,7 +14,7 @@ module RuboCop
       #   # good
       #   warn('hello')
       #
-      class StderrPuts < Cop
+      class StderrPuts < Rule
         include RangeHelp
 
         MSG =

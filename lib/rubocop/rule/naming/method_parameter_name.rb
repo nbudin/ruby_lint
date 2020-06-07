@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Naming
       # This cop checks method parameter names for how descriptive they
       # are. It is highly configurable.
@@ -43,7 +43,7 @@ module RuboCop
       #   def baz(age_a, height_b, gender_c)
       #     do_stuff(age_a, height_b, gender_c)
       #   end
-      class MethodParameterName < Cop
+      class MethodParameterName < Rule
         include UncommunicativeName
 
         def on_def(node)

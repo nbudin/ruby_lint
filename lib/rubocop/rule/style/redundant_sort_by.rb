@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop identifies places where `sort_by { ... }` can be replaced by
       # `sort`.
@@ -15,7 +15,7 @@ module RuboCop
       #
       #   # good
       #   array.sort
-      class RedundantSortBy < Cop
+      class RedundantSortBy < Rule
         include RangeHelp
 
         MSG = 'Use `sort` instead of `sort_by { |%<var>s| %<var>s }`.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module encapsulates the ability to ignore certain lines when
     # parsing.
     module IgnoredPattern

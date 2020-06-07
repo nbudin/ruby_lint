@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This mixin detects collections that are safe to "break"
     # by inserting new lines. This is useful for breaking
     # up long lines.

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing comma in array literals.
       # The configuration options are:
@@ -81,7 +81,7 @@ module RuboCop
       #     1,
       #     2
       #   ]
-      class TrailingCommaInArrayLiteral < Cop
+      class TrailingCommaInArrayLiteral < Rule
         include TrailingComma
 
         def on_array(node)

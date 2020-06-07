@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the end keywords are aligned properly for do
       # end blocks.
@@ -61,7 +61,7 @@ module RuboCop
       #     .each do
       #        baz
       #   end
-      class BlockAlignment < Cop
+      class BlockAlignment < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

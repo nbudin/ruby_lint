@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Autocorrection logic for the closing brace of a literal either
     # on the same line as the last contained elements, or a new line.
     class MultilineLiteralBraceCorrector

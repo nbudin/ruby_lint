@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks for `if` expressions that do not have an `else` branch.
       #
@@ -93,7 +93,7 @@ module RuboCop
       #   else
       #     # the content of `else` branch will be determined by Style/EmptyElse
       #   end
-      class MissingElse < Cop
+      class MissingElse < Rule
         include OnNormalIfUnless
         include ConfigurableEnforcedStyle
 

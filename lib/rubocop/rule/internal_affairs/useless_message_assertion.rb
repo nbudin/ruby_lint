@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks that cops are not tested using `described_class::MSG`.
       #
@@ -13,7 +13,7 @@ module RuboCop
       #     # good
       #     expect(cop.messages).to eq(['Do not write bad code like that.'])
       #
-      class UselessMessageAssertion < Cop
+      class UselessMessageAssertion < Rule
         MSG = 'Do not specify cop behavior using `described_class::MSG`.'
 
         def_node_search :described_class_msg, <<~PATTERN

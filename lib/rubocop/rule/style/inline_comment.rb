@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing inline comments.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #   foo.each do |f|
       #     f.bar # Trailing inline comment
       #   end
-      class InlineComment < Cop
+      class InlineComment < Rule
         MSG = 'Avoid trailing inline comments.'
 
         def investigate(processed_source)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for unnecessary conditional expressions.
       #
@@ -30,7 +30,7 @@ module RuboCop
       #     c
       #   end
       #
-      class RedundantCondition < Cop
+      class RedundantCondition < Rule
         include RangeHelp
 
         MSG = 'Use double pipes `||` instead.'

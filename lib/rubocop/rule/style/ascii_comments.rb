@@ -3,7 +3,7 @@
 # rubocop:disable Style/AsciiComments
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for non-ascii (non-English) characters
       # in comments. You could set an array of allowed non-ascii chars in
@@ -15,7 +15,7 @@ module RuboCop
       #
       #   # good
       #   # Translates from English to Japanese
-      class AsciiComments < Cop
+      class AsciiComments < Rule
         include RangeHelp
 
         MSG = 'Use only ascii symbols in comments.'

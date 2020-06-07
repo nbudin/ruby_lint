@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Security
       # This cop checks for the use of `Kernel#eval` and `Binding#eval`.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   eval(something)
       #   binding.eval(something)
-      class Eval < Cop
+      class Eval < Rule
         MSG = 'The use of `eval` is a serious security risk.'
 
         def_node_matcher :eval?, <<~PATTERN

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Checks if uses of quotes match the configured preference.
       #
@@ -26,7 +26,7 @@ module RuboCop
       #   "Just some text"
       #   "No special chars or interpolation"
       #   "Every string in #{project} uses double_quotes"
-      class StringLiterals < Cop
+      class StringLiterals < Rule
         include ConfigurableEnforcedStyle
         include StringLiteralsHelp
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks whether the multiline do end blocks have a newline
       # after the start of the block. Additionally, it checks whether the block
@@ -48,7 +48,7 @@ module RuboCop
       #     foo(i)
       #     bar(i)
       #   }
-      class MultilineBlockLayout < Cop
+      class MultilineBlockLayout < Rule
         include RangeHelp
 
         MSG = 'Block body expression is on the same line as ' \

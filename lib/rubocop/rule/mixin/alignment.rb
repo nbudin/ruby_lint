@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This module checks for nodes that should be aligned to the left or right.
     # This amount is determined by the instance variable @column_delta.
     module Alignment

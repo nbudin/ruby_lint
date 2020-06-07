@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for circular argument references in optional keyword
       # arguments and optional ordinal arguments.
@@ -47,7 +47,7 @@ module RuboCop
       #   def cook(dry_ingredients = self.dry_ingredients)
       #     dry_ingredients.combine
       #   end
-      class CircularArgumentReference < Cop
+      class CircularArgumentReference < Rule
         MSG = 'Circular argument reference - `%<arg_name>s`.'
 
         def on_kwoptarg(node)

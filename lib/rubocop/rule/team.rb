@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # A group of cops, ready to be called on duty to inspect files.
     # Team is responsible for selecting only relevant cops to be sent on duty,
     # as well as insuring that the needed forces are sent along with them.

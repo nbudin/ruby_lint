@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks for space after `!`.
       #
@@ -11,7 +11,7 @@ module RuboCop
       #
       #   # good
       #   !something
-      class SpaceAfterNot < Cop
+      class SpaceAfterNot < Rule
         include RangeHelp
 
         MSG = 'Do not leave space between `!` and its argument.'

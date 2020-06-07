@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for unparenthesized method calls in the argument list
       # of a parenthesized method call.
@@ -12,7 +12,7 @@ module RuboCop
       #
       #   # bad
       #   method1(method2 arg)
-      class NestedParenthesizedCalls < Cop
+      class NestedParenthesizedCalls < Rule
         include RangeHelp
 
         MSG = 'Add parentheses to nested method call `%<source>s`.'

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Checks if the code style follows the ExpectedOrder configuration:
       #
@@ -133,7 +133,7 @@ module RuboCop
       #   end
       #
       # @see https://rubystyle.guide#consistent-classes
-      class ClassStructure < Cop
+      class ClassStructure < Rule
         HUMANIZED_NODE_TYPE = {
           casgn: :constants,
           defs: :class_methods,

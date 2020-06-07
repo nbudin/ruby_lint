@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop can either enforce or forbid Yoda conditions,
       # i.e. comparison operations where the order of expression is reversed.
@@ -50,7 +50,7 @@ module RuboCop
       #   # good
       #   99 == foo
       #   "bar" != foo
-      class YodaCondition < Cop
+      class YodaCondition < Rule
         include ConfigurableEnforcedStyle
         include RangeHelp
 

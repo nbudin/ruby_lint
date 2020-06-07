@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for places where the `#__dir__` method can replace more
       # complex constructs to retrieve a canonicalized absolute path to the
@@ -16,7 +16,7 @@ module RuboCop
       #
       #   # good
       #   path = __dir__
-      class Dir < Cop
+      class Dir < Rule
         MSG = 'Use `__dir__` to get an absolute path to the current ' \
               "file's directory."
 

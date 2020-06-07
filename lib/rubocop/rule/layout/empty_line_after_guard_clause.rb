@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop enforces empty line after guard clause
       #
@@ -35,7 +35,7 @@ module RuboCop
       #       return if need_return?
       #     end
       #   end
-      class EmptyLineAfterGuardClause < Cop
+      class EmptyLineAfterGuardClause < Rule
         include RangeHelp
 
         MSG = 'Add empty line after guard clause.'

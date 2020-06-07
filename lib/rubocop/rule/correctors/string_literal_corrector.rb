@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # This auto-corrects string literals
     class StringLiteralCorrector
       extend Util

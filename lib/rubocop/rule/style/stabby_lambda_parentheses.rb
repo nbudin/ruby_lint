@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Check for parentheses around stabby lambda arguments.
       # There are two different styles. Defaults to `require_parentheses`.
@@ -19,7 +19,7 @@ module RuboCop
       #
       #   # good
       #   ->a,b,c { a + b + c}
-      class StabbyLambdaParentheses < Cop
+      class StabbyLambdaParentheses < Rule
         include ConfigurableEnforcedStyle
 
         MSG_REQUIRE = 'Wrap stabby lambda arguments with parentheses.'

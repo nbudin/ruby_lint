@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # This cop checks how the ``when``s of a `case` expression
       # are indented in relation to its `case` or `end` keyword.
@@ -67,7 +67,7 @@ module RuboCop
       #   else
       #     y / 3
       #   end
-      class CaseIndentation < Cop
+      class CaseIndentation < Rule
         include Alignment
         include ConfigurableEnforcedStyle
         include RangeHelp

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Common functionality for checking whether an AST node/token is aligned
     # with something on a preceding or following line
     module PrecedingFollowingAlignment

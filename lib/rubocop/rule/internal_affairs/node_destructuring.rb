@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module InternalAffairs
       # Checks that node destructuring is using the node extensions.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #
       #   # good
       #   method_name = send_node.method_name
-      class NodeDestructuring < Cop
+      class NodeDestructuring < Rule
         MSG = 'Use the methods provided with the node extensions instead ' \
               'of manually destructuring nodes.'
 

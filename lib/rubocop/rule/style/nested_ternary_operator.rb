@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for nested ternary op expressions.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #   else
       #     a2
       #   end
-      class NestedTernaryOperator < Cop
+      class NestedTernaryOperator < Rule
         MSG = 'Ternary operators must not be nested. Prefer `if` or `else` ' \
               'constructs instead.'
 

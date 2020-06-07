@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks if a file which has a shebang line as
       # its first line is granted execute permission.
@@ -30,7 +30,7 @@ module RuboCop
       #
       #   puts 'hello, world'
       #
-      class ScriptPermission < Cop
+      class ScriptPermission < Rule
         MSG = "Script file %<file>s doesn't have execute permission."
         SHEBANG = '#!'
 

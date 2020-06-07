@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for unnecessary single-element Regexp character classes.
       #
@@ -21,7 +21,7 @@ module RuboCop
       #
       #   # good
       #   r = /[ab]/
-      class RedundantRegexpCharacterClass < Cop
+      class RedundantRegexpCharacterClass < Rule
         include MatchRange
         include RegexpLiteralHelp
 

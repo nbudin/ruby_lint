@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for trailing code after the class definition.
       #
@@ -15,7 +15,7 @@ module RuboCop
       #     def foo; end
       #   end
       #
-      class TrailingBodyOnClass < Cop
+      class TrailingBodyOnClass < Rule
         include Alignment
         include TrailingBody
 

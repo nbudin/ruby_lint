@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # Helper module to provide common methods to classes needed for the
       # ConditionalAssignment Cop.
@@ -199,7 +199,7 @@ module RuboCop
       #     some_other_method
       #     bar = 2
       #   end
-      class ConditionalAssignment < Cop
+      class ConditionalAssignment < Rule
         include ConditionalAssignmentHelper
         include ConfigurableEnforcedStyle
         include IgnoredNode

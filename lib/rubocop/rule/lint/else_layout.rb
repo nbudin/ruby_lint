@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Lint
       # This cop checks for odd else block layout - like
       # having an expression on the same line as the else keyword,
@@ -27,7 +27,7 @@ module RuboCop
       #     do_this
       #     do_that
       #   end
-      class ElseLayout < Cop
+      class ElseLayout < Rule
         MSG = 'Odd `else` layout detected. Did you mean to use `elsif`?'
 
         def on_if(node)

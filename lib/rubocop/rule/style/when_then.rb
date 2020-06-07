@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Style
       # This cop checks for `when;` uses in `case` expressions.
       #
@@ -17,7 +17,7 @@ module RuboCop
       #   when 1 then 'baz'
       #   when 2 then 'bar'
       #   end
-      class WhenThen < Cop
+      class WhenThen < Rule
         MSG = 'Do not use `when x;`. Use `when x then` instead.'
 
         def on_when(node)

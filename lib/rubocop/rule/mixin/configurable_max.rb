@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     # Handles `Max` configuration parameters, especially setting them to an
     # appropriate value with --auto-gen-config.
     module ConfigurableMax

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Metrics
       # This cop checks that the cyclomatic complexity of methods is not higher
       # than the configured maximum. The cyclomatic complexity is the number of
@@ -13,7 +13,7 @@ module RuboCop
       # operator (or keyword and) can be converted to a nested if statement,
       # and ||/or is shorthand for a sequence of ifs, so they also add one.
       # Loops can be said to have an exit condition, so they add one.
-      class CyclomaticComplexity < Cop
+      class CyclomaticComplexity < Rule
         include MethodComplexity
 
         MSG = 'Cyclomatic complexity for %<method>s is too high. ' \

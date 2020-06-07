@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module RuboCop
-  module Cop
+  module Rule
     module Layout
       # Here we check if the arguments on a multi-line method
       # definition are aligned.
@@ -37,7 +37,7 @@ module RuboCop
       #
       #   foo :bar,
       #       :baz
-      class ArgumentAlignment < Cop
+      class ArgumentAlignment < Rule
         include Alignment
 
         ALIGN_PARAMS_MSG = 'Align the arguments of a method call if ' \
