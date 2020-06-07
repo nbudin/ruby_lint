@@ -71,7 +71,7 @@ module RuboCop
           return unless gem_declaration?(node)
           return if ignored_gem?(node)
           return if commented?(node)
-          return if cop_config[CHECKED_OPTIONS_CONFIG].any? && !checked_options_present?(node)
+          return if rule_config[CHECKED_OPTIONS_CONFIG].any? && !checked_options_present?(node)
 
           add_offense(node)
         end
@@ -101,12 +101,12 @@ module RuboCop
         end
 
         def ignored_gem?(node)
-          ignored_gems = Array(cop_config['IgnoredGems'])
+          ignored_gems = Array(rule_config['IgnoredGems'])
           ignored_gems.include?(node.first_argument.value)
         end
 
         def checked_options_present?(node)
-          (cop_config[CHECKED_OPTIONS_CONFIG].include?(VERSION_SPECIFIERS_OPTION) &&
+          (rule_config[CHECKED_OPTIONS_CONFIG].include?(VERSION_SPECIFIERS_OPTION) &&
             version_specified_gem?(node)) ||
             contains_checked_options?(node)
         end
@@ -119,7 +119,7 @@ module RuboCop
         end
 
         def contains_checked_options?(node)
-          (Array(cop_config[CHECKED_OPTIONS_CONFIG]) & gem_options(node).map(&:to_s)).any?
+          (Array(rule_config[CHECKED_OPTIONS_CONFIG]) & gem_options(node).map(&:to_s)).any?
         end
 
         def gem_options(node)

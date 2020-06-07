@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::DuplicateMethods do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::DuplicateMethods do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -180,7 +180,7 @@ RSpec.describe Rubocop::Rule::Lint::DuplicateMethods do
           end
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it 'registers offense for a duplicate instance method in separate files' do
@@ -252,7 +252,7 @@ RSpec.describe Rubocop::Rule::Lint::DuplicateMethods do
           end
         end
       RUBY
-      expect(cop.offenses.empty?).to be(false)
+      expect(rule.offenses.empty?).to be(false)
     end
 
     it "registers an offense for duplicate alias in #{type}" do

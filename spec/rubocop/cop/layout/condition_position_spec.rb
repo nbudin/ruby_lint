@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ConditionPosition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::ConditionPosition do
+  subject(:rule) { described_class.new }
 
   %w[if unless while until].each do |keyword|
     it 'registers an offense and corrects for condition on the next line' do

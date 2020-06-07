@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::AssignmentInCondition, :config do
-  let(:cop_config) { { 'AllowSafeAssignment' => true } }
+RSpec.describe RuboCop::Rule::Lint::AssignmentInCondition, :config do
+  let(:rule_config) { { 'AllowSafeAssignment' => true } }
 
   it 'registers an offense for lvar assignment in condition' do
     expect_offense(<<~RUBY)
@@ -140,7 +140,7 @@ RSpec.describe Rubocop::Rule::Lint::AssignmentInCondition, :config do
   end
 
   context 'safe assignment is not allowed' do
-    let(:cop_config) { { 'AllowSafeAssignment' => false } }
+    let(:rule_config) { { 'AllowSafeAssignment' => false } }
 
     it 'does not accept = in condition surrounded with braces' do
       expect_offense(<<~RUBY)

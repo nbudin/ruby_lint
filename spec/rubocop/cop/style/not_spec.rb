@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Not, :config do
+RSpec.describe RuboCop::Rule::Style::Not, :config do
   it 'registers an offense for not' do
     expect_offense(<<~RUBY)
       not test

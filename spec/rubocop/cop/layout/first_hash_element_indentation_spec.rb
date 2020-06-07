@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstHashElementIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::FirstHashElementIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     supported_styles = {
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstHashElementIndentation do
     }
     RuboCop::Config.new('Layout/HashAlignment' => align_hash_config,
                         'Layout/FirstHashElementIndentation' =>
-                        cop_config.merge(supported_styles).merge(
+                        rule_config.merge(supported_styles).merge(
                           'IndentationWidth' => cop_indent
                         ),
                         'Layout/IndentationWidth' => { 'Width' => 2 })
@@ -22,7 +22,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstHashElementIndentation do
       'EnforcedHashRocketStyle' => 'key'
     }
   end
-  let(:cop_config) { { 'EnforcedStyle' => 'special_inside_parentheses' } }
+  let(:rule_config) { { 'EnforcedStyle' => 'special_inside_parentheses' } }
   let(:cop_indent) { nil } # use indentation width from Layout/IndentationWidth
 
   shared_examples 'right brace' do
@@ -351,7 +351,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstHashElementIndentation do
       end
 
       context 'and EnforcedStyle is consistent' do
-        let(:cop_config) { { 'EnforcedStyle' => 'consistent' } }
+        let(:rule_config) { { 'EnforcedStyle' => 'consistent' } }
 
         it 'accepts normal indentation for first argument' do
           expect_no_offenses(<<~RUBY)
@@ -431,7 +431,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstHashElementIndentation do
   end
 
   context 'when EnforcedStyle is align_braces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'align_braces' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'align_braces' } }
 
     it 'accepts correctly indented first pair' do
       expect_no_offenses(<<~RUBY)

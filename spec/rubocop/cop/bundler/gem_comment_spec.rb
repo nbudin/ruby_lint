@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Bundler::GemComment, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Bundler::GemComment, :config do
+  let(:rule_config) do
     {
       'Include' => ['**/Gemfile'],
       'IgnoredGems' => ['rake'],
@@ -64,7 +64,7 @@ RSpec.describe Rubocop::Rule::Bundler::GemComment, :config do
     end
 
     context 'when the "OnlyFor" option is set' do
-      before { cop_config['OnlyFor'] = checked_options }
+      before { rule_config['OnlyFor'] = checked_options }
 
       context 'when the version specifiers are checked' do
         let(:checked_options) { ['version_specifiers'] }

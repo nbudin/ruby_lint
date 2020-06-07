@@ -149,7 +149,7 @@ module RuboCop
         end
 
         def allow_inner_backticks?
-          cop_config['AllowInnerBackticks']
+          rule_config['AllowInnerBackticks']
         end
 
         def contains_backtick?(node)
@@ -178,7 +178,7 @@ module RuboCop
         end
 
         def preferred_delimiters_config
-          config.for_cop('Style/PercentLiteralDelimiters') \
+          config.for_rule('Style/PercentLiteralDelimiters') \
             ['PreferredDelimiters']
         end
       end

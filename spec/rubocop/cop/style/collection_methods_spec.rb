@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::CollectionMethods, :config do
-  cop_config = {
+RSpec.describe RuboCop::Rule::Style::CollectionMethods, :config do
+  rule_config = {
     'PreferredMethods' => {
       'collect' => 'map',
       'inject' => 'reduce',
@@ -11,21 +11,21 @@ RSpec.describe Rubocop::Rule::Style::CollectionMethods, :config do
     }
   }
 
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
-  let(:cop_config) { cop_config }
+  let(:rule_config) { rule_config }
 
-  cop_config['PreferredMethods'].each do |method, preferred_method|
+  rule_config['PreferredMethods'].each do |method, preferred_method|
     it "registers an offense for #{method} with block" do
       inspect_source("[1, 2, 3].#{method} { |e| e + 1 }")
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(["Prefer `#{preferred_method}` over `#{method}`."])
     end
 
     it "registers an offense for #{method} with proc param" do
       inspect_source("[1, 2, 3].#{method}(&:test)")
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(["Prefer `#{preferred_method}` over `#{method}`."])
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
+RSpec.describe RuboCop::Rule::Style::MutableConstant, :config do
   let(:prefix) { nil }
 
   shared_examples 'mutable objects' do |o|
@@ -8,7 +8,7 @@ RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
       it "registers an offense for #{o} assigned to a constant" do
         source = [prefix, "CONST = #{o}"].compact.join("\n")
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'auto-corrects by adding .freeze' do
@@ -22,7 +22,7 @@ RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
       it "registers an offense for #{o} assigned to a constant" do
         source = [prefix, "CONST ||= #{o}"].compact.join("\n")
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'auto-corrects by adding .freeze' do
@@ -46,7 +46,7 @@ RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
   end
 
   context 'Strict: false' do
-    let(:cop_config) { { 'EnforcedStyle' => 'literals' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'literals' } }
 
     it_behaves_like 'mutable objects', '[1, 2, 3]'
     it_behaves_like 'mutable objects', '%w(a b c)'
@@ -179,7 +179,7 @@ RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
   end
 
   context 'Strict: true' do
-    let(:cop_config) { { 'EnforcedStyle' => 'strict' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'strict' } }
 
     it_behaves_like 'mutable objects', '[1, 2, 3]'
     it_behaves_like 'mutable objects', '%w(a b c)'
@@ -247,8 +247,8 @@ RSpec.describe Rubocop::Rule::Style::MutableConstant, :config do
         it 'registers an offense' do
           inspect_source("CONST = FOO #{o} BAR")
 
-          expect(cop.offenses.size).to eq(1)
-          expect(cop.highlights).to eq(["FOO #{o} BAR"])
+          expect(rule.offenses.size).to eq(1)
+          expect(rule.highlights).to eq(["FOO #{o} BAR"])
         end
 
         it 'corrects by wrapping in parentheses and calling freeze' do

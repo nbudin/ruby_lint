@@ -38,7 +38,7 @@ module RuboCop
         end
 
         def excluded_methods
-          cop_config['ExcludedMethods'] || []
+          rule_config['ExcludedMethods'] || []
         end
 
         def cop_label

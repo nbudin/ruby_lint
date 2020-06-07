@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::AccessModifierDeclarations, :config do
+RSpec.describe RuboCop::Rule::Style::AccessModifierDeclarations, :config do
   shared_examples 'always accepted' do |access_modifier|
     it 'accepts when #{access_modifier} is a hash literal value' do
       expect_no_offenses(<<~RUBY)
@@ -12,7 +12,7 @@ RSpec.describe Rubocop::Rule::Style::AccessModifierDeclarations, :config do
     end
 
     context 'allow access modifiers on symbols' do
-      let(:cop_config) { { 'AllowModifiersOnSymbols' => true } }
+      let(:rule_config) { { 'AllowModifiersOnSymbols' => true } }
 
       it 'accepts when argument to #{access_modifier} is a symbol' do
         expect_no_offenses(<<~RUBY)
@@ -25,7 +25,7 @@ RSpec.describe Rubocop::Rule::Style::AccessModifierDeclarations, :config do
     end
 
     context 'do not allow access modifiers on symbols' do
-      let(:cop_config) { { 'AllowModifiersOnSymbols' => false } }
+      let(:rule_config) { { 'AllowModifiersOnSymbols' => false } }
 
       it 'accepts when argument to #{access_modifier} is a symbol' do
         expect_offense(<<~RUBY)
@@ -40,7 +40,7 @@ RSpec.describe Rubocop::Rule::Style::AccessModifierDeclarations, :config do
   end
 
   context 'when `group` is configured' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'group'
       }
@@ -78,7 +78,7 @@ RSpec.describe Rubocop::Rule::Style::AccessModifierDeclarations, :config do
   end
 
   context 'when `inline` is configured' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'inline'
       }

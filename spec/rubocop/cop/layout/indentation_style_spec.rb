@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::IndentationStyle do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::IndentationStyle do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     supported_styles = {
@@ -9,12 +9,12 @@ RSpec.describe Rubocop::Rule::Layout::IndentationStyle do
     }
     RuboCop::Config.new(
       'Layout/IndentationWidth' => { 'Width' => 2 },
-      'Layout/IndentationStyle' => cop_config.merge(supported_styles)
+      'Layout/IndentationStyle' => rule_config.merge(supported_styles)
     )
   end
 
   context 'when EnforcedStyle is spaces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'spaces' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'spaces' } }
 
     it 'registers an offense for a line indented with tab' do
       expect_offense(<<~RUBY)
@@ -96,7 +96,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationStyle do
     end
 
     context 'custom indentation width' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'IndentationWidth' => 3, 'EnforcedStyle' => 'spaces' }
       end
 
@@ -109,7 +109,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationStyle do
   end
 
   context 'when EnforcedStyle is tabs' do
-    let(:cop_config) { { 'EnforcedStyle' => 'tabs' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'tabs' } }
 
     it 'registers an offense for a line indented with space' do
       expect_offense(<<~RUBY)
@@ -197,7 +197,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationStyle do
     end
 
     context 'custom indentation width' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'IndentationWidth' => 3, 'EnforcedStyle' => 'tabs' }
       end
 

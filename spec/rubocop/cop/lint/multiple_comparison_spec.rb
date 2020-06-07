@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::MultipleComparison do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::MultipleComparison do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -11,7 +11,7 @@ RSpec.describe Rubocop::Rule::Lint::MultipleComparison do
 
     it "registers an offense for #{bad_source}" do
       inspect_source(bad_source)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(['Use the `&&` operator to compare multiple values.'])
     end

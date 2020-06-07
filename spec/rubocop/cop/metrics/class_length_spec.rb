@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::ClassLength, :config do
-  let(:cop_config) { { 'Max' => 5, 'CountComments' => false } }
+RSpec.describe RuboCop::Rule::Metrics::ClassLength, :config do
+  let(:rule_config) { { 'Max' => 5, 'CountComments' => false } }
 
   it 'rejects a class with more than 5 lines' do
     expect_offense(<<~RUBY)
@@ -29,7 +29,7 @@ RSpec.describe Rubocop::Rule::Metrics::ClassLength, :config do
       end
     RUBY
 
-    offense = cop.offenses.first
+    offense = rule.offenses.first
     expect(offense.location.first_line).to eq(1)
     expect(offense.location.last_line).to eq(8)
   end
@@ -135,7 +135,7 @@ RSpec.describe Rubocop::Rule::Metrics::ClassLength, :config do
   end
 
   context 'when CountComments is enabled' do
-    before { cop_config['CountComments'] = true }
+    before { rule_config['CountComments'] = true }
 
     it 'also counts commented lines' do
       expect_offense(<<~RUBY)

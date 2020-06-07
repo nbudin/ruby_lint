@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineOperationIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::MultilineOperationIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     merged = RuboCop::ConfigLoader
              .default_configuration['Layout/MultilineOperationIndentation']
-             .merge(cop_config)
+             .merge(rule_config)
              .merge('IndentationWidth' => cop_indent)
     RuboCop::Config
       .new('Layout/MultilineOperationIndentation' => merged,
@@ -231,7 +231,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineOperationIndentation do
   end
 
   context 'when EnforcedStyle is aligned' do
-    let(:cop_config) { { 'EnforcedStyle' => 'aligned' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'aligned' } }
 
     include_examples 'common'
 
@@ -428,7 +428,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineOperationIndentation do
   end
 
   context 'when EnforcedStyle is indented' do
-    let(:cop_config) { { 'EnforcedStyle' => 'indented' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'indented' } }
 
     include_examples 'common'
 

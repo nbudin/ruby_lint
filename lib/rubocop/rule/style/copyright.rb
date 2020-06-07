@@ -44,11 +44,11 @@ module RuboCop
         private
 
         def notice
-          cop_config['Notice']
+          rule_config['Notice']
         end
 
         def autocorrect_notice
-          cop_config['AutocorrectNotice']
+          rule_config['AutocorrectNotice']
         end
 
         def verify_autocorrect_notice!

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UselessElseWithoutRescue do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::UselessElseWithoutRescue do
+  subject(:rule) { described_class.new }
 
   context 'with `else` without `rescue`' do
     it 'registers an offense' do

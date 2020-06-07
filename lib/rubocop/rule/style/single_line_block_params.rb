@@ -61,7 +61,7 @@ module RuboCop
         end
 
         def methods
-          cop_config['Methods']
+          rule_config['Methods']
         end
 
         def method_names

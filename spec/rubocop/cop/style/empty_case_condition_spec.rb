@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EmptyCaseCondition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::EmptyCaseCondition do
+  subject(:rule) { described_class.new }
 
   let(:message) do
     'Do not use empty `case` condition, instead use an `if` expression.'

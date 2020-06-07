@@ -213,7 +213,7 @@ module RuboCop
         end
 
         def max
-          cop_config['Max']
+          rule_config['Max']
         end
 
         def allow_heredoc?
@@ -221,7 +221,7 @@ module RuboCop
         end
 
         def allowed_heredoc
-          cop_config['AllowHeredoc']
+          rule_config['AllowHeredoc']
         end
 
         def extract_heredocs(ast)

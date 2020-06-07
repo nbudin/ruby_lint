@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstArgumentIndentation, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Layout::FirstArgumentIndentation, :config do
+  let(:rule_config) do
     { 'EnforcedStyle' => style }
   end
 
@@ -262,7 +262,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstArgumentIndentation, :config do
     end
 
     context 'when indentation width is overridden for this cop only' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle'    => style,
           'IndentationWidth' => 4
@@ -668,7 +668,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstArgumentIndentation, :config do
 
     context 'when indentation width is overridden for this cop only' do
       let(:indentation_width) { nil }
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle'    => style,
           'IndentationWidth' => 4

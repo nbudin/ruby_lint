@@ -101,11 +101,11 @@ module RuboCop
         end
 
         def unlimited_heredoc_length?
-          config.for_cop('Layout/LineLength')['AllowHeredoc']
+          config.for_rule('Layout/LineLength')['AllowHeredoc']
         end
 
         def max_line_length
-          config.for_cop('Layout/LineLength')['Max']
+          config.for_rule('Layout/LineLength')['Max']
         end
 
         def adjust_squiggly(corrector, node)
@@ -157,7 +157,7 @@ module RuboCop
         end
 
         def indentation_width
-          @config.for_cop('Layout/IndentationWidth')['Width'] || 2
+          @config.for_rule('Layout/IndentationWidth')['Width'] || 2
         end
 
         def heredoc_body(node)

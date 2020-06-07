@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::DuplicateCaseCondition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::DuplicateCaseCondition do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for repeated case conditionals' do
     expect_offense(<<~RUBY)

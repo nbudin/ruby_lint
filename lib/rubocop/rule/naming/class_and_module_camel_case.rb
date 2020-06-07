@@ -30,7 +30,7 @@ module RuboCop
         MSG = 'Use CamelCase for classes and modules.'
 
         def on_class(node)
-          allowed = /#{cop_config['AllowedNames'].join('|')}/
+          allowed = /#{rule_config['AllowedNames'].join('|')}/
           name = node.loc.name.source.gsub(allowed, '')
           return unless /_/.match?(name)
 

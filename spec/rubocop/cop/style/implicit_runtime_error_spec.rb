@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ImplicitRuntimeError do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::ImplicitRuntimeError do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for `raise` without error class' do
     expect_offense(<<~RUBY)

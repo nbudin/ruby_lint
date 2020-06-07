@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RaiseArgs, :config do
+RSpec.describe RuboCop::Rule::Style::RaiseArgs, :config do
   context 'when enforced style is compact' do
-    let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'compact' } }
 
     context 'with a raise with 2 args' do
       it 'reports an offense' do
@@ -113,7 +113,7 @@ RSpec.describe Rubocop::Rule::Style::RaiseArgs, :config do
   end
 
   context 'when enforced style is exploded' do
-    let(:cop_config) { { 'EnforcedStyle' => 'exploded' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'exploded' } }
 
     context 'with a raise with exception object' do
       context 'with one argument' do

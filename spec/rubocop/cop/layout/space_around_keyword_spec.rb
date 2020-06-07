@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceAroundKeyword do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::SpaceAroundKeyword do
+  subject(:rule) { described_class.new }
 
   shared_examples 'missing before' do |highlight, expr, correct|
     it 'registers an offense for missing space before keyword in ' \
@@ -9,7 +9,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundKeyword do
       inspect_source(expr)
       expect(cop.messages)
         .to eq(["Space before keyword `#{highlight}` is missing."])
-      expect(cop.highlights).to eq([highlight])
+      expect(rule.highlights).to eq([highlight])
     end
 
     it 'auto-corrects' do
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundKeyword do
       inspect_source(expr)
       expect(cop.messages)
         .to eq(["Space after keyword `#{highlight}` is missing."])
-      expect(cop.highlights).to eq([highlight])
+      expect(rule.highlights).to eq([highlight])
     end
 
     it 'auto-corrects' do

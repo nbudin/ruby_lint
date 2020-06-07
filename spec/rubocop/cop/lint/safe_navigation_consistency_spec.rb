@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::SafeNavigationConsistency, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Lint::SafeNavigationConsistency, :config do
+  let(:rule_config) do
     { 'AllowedMethods' => %w[present? blank? try presence] }
   end
 

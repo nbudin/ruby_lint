@@ -52,7 +52,7 @@ module RuboCop
         include MultilineExpressionIndentation
 
         def validate_config
-          return unless style == :aligned && cop_config['IndentationWidth']
+          return unless style == :aligned && rule_config['IndentationWidth']
 
           raise ValidationError,
                 'The `Layout/MultilineMethodCallIndentation`' \

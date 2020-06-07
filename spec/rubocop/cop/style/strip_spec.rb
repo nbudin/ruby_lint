@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Strip do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::Strip do
+  subject(:rule) { described_class.new }
 
   it 'autocorrects str.lstrip.rstrip' do
     new_source = autocorrect_source('str.lstrip.rstrip')

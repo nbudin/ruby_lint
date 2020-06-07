@@ -96,7 +96,7 @@ module RuboCop
         end
 
         def octal_zero_only?
-          cop_config['EnforcedOctalStyle'] == 'zero_only'
+          rule_config['EnforcedOctalStyle'] == 'zero_only'
         end
 
         def format_octal(source)

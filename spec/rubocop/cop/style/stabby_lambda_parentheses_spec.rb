@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::StabbyLambdaParentheses, :config do
+RSpec.describe RuboCop::Rule::Style::StabbyLambdaParentheses, :config do
   shared_examples 'common' do
     it 'does not check the old lambda syntax' do
       expect_no_offenses('lambda(&:nil?)')
@@ -16,7 +16,7 @@ RSpec.describe Rubocop::Rule::Style::StabbyLambdaParentheses, :config do
   end
 
   context 'require_parentheses' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_parentheses' } }
 
     it_behaves_like 'common'
 
@@ -38,7 +38,7 @@ RSpec.describe Rubocop::Rule::Style::StabbyLambdaParentheses, :config do
   end
 
   context 'require_no_parentheses' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
 
     it_behaves_like 'common'
 

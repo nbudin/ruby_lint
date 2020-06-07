@@ -100,7 +100,7 @@ module RuboCop
         end
 
         def token_ranges(contents)
-          format_string = Rubocop::Rule::Utils::FormatString.new(contents.source)
+          format_string = RuboCop::Rule::Utils::FormatString.new(contents.source)
 
           format_string.format_sequences.each do |seq|
             next if seq.percent?

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ClosingParenthesisIndentation do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::ClosingParenthesisIndentation do
+  subject(:rule) { described_class.new }
 
   context 'for method calls' do
     context 'with line break before 1st parameter' do

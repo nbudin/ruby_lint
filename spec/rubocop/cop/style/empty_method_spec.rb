@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EmptyMethod, :config do
+RSpec.describe RuboCop::Rule::Style::EmptyMethod, :config do
   before do
     inspect_source(source)
   end
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::Style::EmptyMethod, :config do
       let(:source) { code }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq([message])
       end
 
@@ -30,12 +30,12 @@ RSpec.describe Rubocop::Rule::Style::EmptyMethod, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   context 'when configured with compact style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'compact' } }
 
     let(:message) { 'Put empty method definitions on a single line.' }
 
@@ -126,7 +126,7 @@ RSpec.describe Rubocop::Rule::Style::EmptyMethod, :config do
   end
 
   context 'when configured with expanded style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'expanded' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'expanded' } }
 
     let(:message) do
       'Put the `end` of empty method definitions on the next line.'

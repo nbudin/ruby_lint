@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantBegin, :config do
+RSpec.describe RuboCop::Rule::Style::RedundantBegin, :config do
   it 'reports an offense for single line def with redundant begin block' do
     expect_offense(<<~RUBY)
       def func; begin; x; y; rescue; z end; end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::BlockAlignment, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Layout::BlockAlignment, :config do
+  let(:rule_config) do
     { 'EnforcedStyleAlignWith' => 'either' }
   end
 
@@ -622,7 +622,7 @@ RSpec.describe Rubocop::Rule::Layout::BlockAlignment, :config do
   end
 
   context 'when configured to align with start_of_line' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'start_of_line' }
     end
 
@@ -654,7 +654,7 @@ RSpec.describe Rubocop::Rule::Layout::BlockAlignment, :config do
   end
 
   context 'when configured to align with do' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'start_of_block' }
     end
 

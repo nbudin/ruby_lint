@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MethodCallWithoutArgsParentheses, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Style::MethodCallWithoutArgsParentheses, :config do
+  let(:rule_config) do
     { 'IgnoredMethods' => %w[s] }
   end
 

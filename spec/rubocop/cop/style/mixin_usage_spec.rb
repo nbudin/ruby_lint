@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MixinUsage do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::MixinUsage do
+  subject(:rule) { described_class.new }
 
   context 'include' do
     it 'registers an offense when using outside class (used above)' do

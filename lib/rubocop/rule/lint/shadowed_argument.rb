@@ -174,7 +174,7 @@ module RuboCop
         end
 
         def ignore_implicit_references?
-          cop_config['IgnoreImplicitReferences']
+          rule_config['IgnoreImplicitReferences']
         end
       end
     end

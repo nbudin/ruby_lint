@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::TrailingCommaInHashLiteral, :config do
+RSpec.describe RuboCop::Rule::Style::TrailingCommaInHashLiteral, :config do
   shared_examples 'single line lists' do |extra_info|
     it 'registers an offense for trailing comma in a literal' do
       expect_offense(<<~RUBY)
@@ -29,20 +29,20 @@ RSpec.describe Rubocop::Rule::Style::TrailingCommaInHashLiteral, :config do
 
   context 'with single line list of values' do
     context 'when EnforcedStyleForMultiline is no_comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'no_comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'no_comma' } }
 
       include_examples 'single line lists', ''
     end
 
     context 'when EnforcedStyleForMultiline is comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'comma' } }
 
       include_examples 'single line lists',
                        ', unless each item is on its own line'
     end
 
     context 'when EnforcedStyleForMultiline is consistent_comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'consistent_comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'consistent_comma' } }
 
       include_examples 'single line lists',
                        ', unless items are split onto multiple lines'
@@ -51,7 +51,7 @@ RSpec.describe Rubocop::Rule::Style::TrailingCommaInHashLiteral, :config do
 
   context 'with multi-line list of values' do
     context 'when EnforcedStyleForMultiline is no_comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'no_comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'no_comma' } }
 
       it 'registers an offense for trailing comma in literal' do
         expect_offense(<<~RUBY)
@@ -109,7 +109,7 @@ RSpec.describe Rubocop::Rule::Style::TrailingCommaInHashLiteral, :config do
     end
 
     context 'when EnforcedStyleForMultiline is comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'comma' } }
 
       context 'when closing bracket is on same line as last value' do
         it 'accepts literal with no trailing comma' do
@@ -187,7 +187,7 @@ RSpec.describe Rubocop::Rule::Style::TrailingCommaInHashLiteral, :config do
     end
 
     context 'when EnforcedStyleForMultiline is consistent_comma' do
-      let(:cop_config) { { 'EnforcedStyleForMultiline' => 'consistent_comma' } }
+      let(:rule_config) { { 'EnforcedStyleForMultiline' => 'consistent_comma' } }
 
       context 'when closing bracket is on same line as last value' do
         it 'registers an offense for literal with no trailing comma' do

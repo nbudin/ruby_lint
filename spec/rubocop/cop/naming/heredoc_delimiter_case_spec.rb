@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::HeredocDelimiterCase, :config do
+RSpec.describe RuboCop::Rule::Naming::HeredocDelimiterCase, :config do
   let(:config) do
-    RuboCop::Config.new(described_class.badge.to_s => cop_config)
+    RuboCop::Config.new(described_class.badge.to_s => rule_config)
   end
 
   context 'when enforced style is uppercase' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'SupportedStyles' => %w[uppercase lowercase],
         'EnforcedStyle' => 'uppercase'
@@ -167,7 +167,7 @@ RSpec.describe Rubocop::Rule::Naming::HeredocDelimiterCase, :config do
   end
 
   context 'when enforced style is lowercase' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'SupportedStyles' => %w[uppercase lowercase],
         'EnforcedStyle' => 'lowercase'

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::IndentationWidth do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new(
-      'Layout/IndentationWidth' => cop_config,
+      'Layout/IndentationWidth' => rule_config,
       'Layout/AccessModifierIndentation' => access_modifier_config,
       'Layout/IndentationConsistency' => consistency_config,
       'Layout/EndAlignment' => end_alignment_config,
@@ -25,7 +25,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
   end
 
   context 'with Width set to 4' do
-    let(:cop_config) { { 'Width' => 4 } }
+    let(:rule_config) { { 'Width' => 4 } }
 
     context 'for a file with byte order mark' do
       let(:bom) { "\xef\xbb\xbf" }
@@ -41,7 +41,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
     end
 
     context 'with ignored patterns set' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'Width' => 4,
           'IgnoredPatterns' => ['^\s*module', '^\s*(els)?if.*[A-Z][a-z]+']
@@ -106,7 +106,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
   end
 
   context 'with Width set to 2' do
-    let(:cop_config) { { 'Width' => 2 } }
+    let(:rule_config) { { 'Width' => 2 } }
 
     context 'with if statement' do
       it 'registers an offense for bad indentation of an if body' do
@@ -1199,7 +1199,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
           RUBY
           expect(cop.messages)
             .to eq([indented_internal_methods_offense_message] * 2)
-          expect(cop.offenses.map(&:line)).to eq([9, 14])
+          expect(rule.offenses.map(&:line)).to eq([9, 14])
         end
 
         it 'registers an offense for normal non-indented internal methods ' \
@@ -1225,7 +1225,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationWidth do
 
           expect(cop.messages)
             .to eq([indented_internal_methods_offense_message] * 2)
-          expect(cop.offenses.map(&:line)).to eq([9, 14])
+          expect(rule.offenses.map(&:line)).to eq([9, 14])
         end
       end
     end

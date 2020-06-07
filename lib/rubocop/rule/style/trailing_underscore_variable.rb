@@ -99,7 +99,7 @@ module RuboCop
 
         def allow_named_underscore_variables
           @allow_named_underscore_variables ||=
-            cop_config['AllowNamedUnderscoreVariables']
+            rule_config['AllowNamedUnderscoreVariables']
         end
 
         def unneeded_ranges(node)

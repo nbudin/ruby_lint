@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::ImplicitStringConcatenation do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::ImplicitStringConcatenation do
+  subject(:rule) { described_class.new }
 
   context 'on a single string literal' do
     it 'does not register an offense' do
@@ -37,7 +37,7 @@ RSpec.describe Rubocop::Rule::Lint::ImplicitStringConcatenation do
         def method; "ab\nc" "de\nf"; end
       RUBY
 
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 

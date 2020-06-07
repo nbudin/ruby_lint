@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::AsciiIdentifiers do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Naming::AsciiIdentifiers do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for a variable name with non-ascii chars' do
     expect_offense(<<~RUBY)

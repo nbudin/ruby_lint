@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::VariableName, :config do
+RSpec.describe RuboCop::Rule::Naming::VariableName, :config do
   shared_examples 'always accepted' do
     it 'accepts screaming snake case globals' do
       expect_no_offenses('$MY_GLOBAL = 0')
@@ -20,7 +20,7 @@ RSpec.describe Rubocop::Rule::Naming::VariableName, :config do
   end
 
   context 'when configured for snake_case' do
-    let(:cop_config) { { 'EnforcedStyle' => 'snake_case' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'snake_case' } }
 
     it 'registers an offense for camel case in local variable name' do
       expect_offense(<<~RUBY)
@@ -117,7 +117,7 @@ RSpec.describe Rubocop::Rule::Naming::VariableName, :config do
   end
 
   context 'when configured for camelCase' do
-    let(:cop_config) { { 'EnforcedStyle' => 'camelCase' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'camelCase' } }
 
     it 'registers an offense for snake case in local variable name' do
       expect_offense(<<~RUBY)

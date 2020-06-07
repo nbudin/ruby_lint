@@ -14,7 +14,7 @@ module RuboCop
       #
       # @!attribute [r] severity
       #
-      # @return [Rubocop::Rule::Severity]
+      # @return [RuboCop::Rule::Severity]
       attr_reader :severity
 
       # @api public
@@ -57,7 +57,7 @@ module RuboCop
       # @api private
       def initialize(severity, location, message, cop_name,
                      status = :uncorrected)
-        @severity = Rubocop::Rule::Severity.new(severity)
+        @severity = RuboCop::Rule::Severity.new(severity)
         @location = location
         @message = message.freeze
         @cop_name = cop_name.freeze

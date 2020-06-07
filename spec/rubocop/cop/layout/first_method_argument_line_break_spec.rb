@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstMethodArgumentLineBreak do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::FirstMethodArgumentLineBreak do
+  subject(:rule) { described_class.new }
 
   context 'args listed on the first line' do
     it 'registers an offense and corrects' do

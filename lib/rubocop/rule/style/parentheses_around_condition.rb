@@ -109,7 +109,7 @@ module RuboCop
         end
 
         def allow_multiline_conditions?
-          cop_config['AllowInMultilineConditions']
+          rule_config['AllowInMultilineConditions']
         end
       end
     end

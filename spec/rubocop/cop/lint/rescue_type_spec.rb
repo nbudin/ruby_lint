@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RescueType do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::RescueType do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -55,7 +55,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue #{rescues}"])
+          expect(rule.highlights).to eq(["rescue #{rescues}"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
@@ -88,7 +88,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue #{rescues}, StandardError"])
+          expect(rule.highlights).to eq(["rescue #{rescues}, StandardError"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
@@ -121,7 +121,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue StandardError, #{rescues}"])
+          expect(rule.highlights).to eq(["rescue StandardError, #{rescues}"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
@@ -158,7 +158,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue #{rescues}"])
+          expect(rule.highlights).to eq(["rescue #{rescues}"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
@@ -195,7 +195,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue #{rescues}"])
+          expect(rule.highlights).to eq(["rescue #{rescues}"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])
@@ -232,7 +232,7 @@ RSpec.describe Rubocop::Rule::Lint::RescueType do
         it 'registers an offense' do
           inspect_source(source)
 
-          expect(cop.highlights).to eq(["rescue #{rescues}"])
+          expect(rule.highlights).to eq(["rescue #{rescues}"])
           expect(cop.messages)
             .to eq(["Rescuing from `#{rescues}` will raise a `TypeError` " \
                     'instead of catching the actual exception.'])

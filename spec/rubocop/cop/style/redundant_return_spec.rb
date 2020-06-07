@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantReturn, :config do
-  let(:cop_config) { { 'AllowMultipleReturnValues' => false } }
+RSpec.describe RuboCop::Rule::Style::RedundantReturn, :config do
+  let(:rule_config) { { 'AllowMultipleReturnValues' => false } }
 
   it 'reports an offense for def with only a return' do
     expect_offense(<<~RUBY)
@@ -103,7 +103,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantReturn, :config do
 
       it "registers an offense for #{ret}" do
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it "auto-corrects by replacing #{ret} with nil" do
@@ -214,7 +214,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantReturn, :config do
   end
 
   context 'when multi-value returns are allowed' do
-    let(:cop_config) { { 'AllowMultipleReturnValues' => true } }
+    let(:rule_config) { { 'AllowMultipleReturnValues' => true } }
 
     it 'accepts def with only a return' do
       expect_no_offenses(<<~RUBY)

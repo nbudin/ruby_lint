@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::WhileUntilModifier do
+RSpec.describe RuboCop::Rule::Style::WhileUntilModifier do
   include StatementModifierHelper
 
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new('Layout/LineLength' => { 'Max' => 80 })

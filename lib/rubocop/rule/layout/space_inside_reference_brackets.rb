@@ -140,7 +140,7 @@ module RuboCop
         end
 
         def empty_config
-          cop_config['EnforcedStyleForEmptyBrackets']
+          rule_config['EnforcedStyleForEmptyBrackets']
         end
       end
     end

@@ -9,7 +9,7 @@ RSpec.describe RuboCop::Formatter::ClangStyleFormatter, :config do
     let(:file) { '/path/to/file' }
 
     let(:offense) do
-      Rubocop::Rule::Offense.new(:convention, location,
+      RuboCop::Rule::Offense.new(:convention, location,
                                 'This is a message.', 'CopName', status)
     end
 
@@ -20,18 +20,18 @@ RSpec.describe RuboCop::Formatter::ClangStyleFormatter, :config do
     end
 
     it 'displays text containing the offending source line' do
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 0, 2),
         message: 'message 1'
       )
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 30, 32),
         message: 'message 2'
       )
 
-      formatter.report_file('test', cop.offenses)
+      formatter.report_file('test', rule.offenses)
       expect(output.string).to eq <<~OUTPUT
         test:1:1: C: message 1
         aa
@@ -46,18 +46,18 @@ RSpec.describe RuboCop::Formatter::ClangStyleFormatter, :config do
       let(:source) { ['     ', 'yaba'].join($RS) }
 
       it 'does not display offending source line' do
-        cop.add_offense(
+        rule.add_offense(
           nil,
           location: Parser::Source::Range.new(source_buffer, 0, 2),
           message: 'message 1'
         )
-        cop.add_offense(
+        rule.add_offense(
           nil,
           location: Parser::Source::Range.new(source_buffer, 6, 10),
           message: 'message 2'
         )
 
-        formatter.report_file('test', cop.offenses)
+        formatter.report_file('test', rule.offenses)
         expect(output.string).to eq <<~OUTPUT
           test:1:1: C: message 1
           test:2:1: C: message 2
@@ -79,9 +79,9 @@ RSpec.describe RuboCop::Formatter::ClangStyleFormatter, :config do
       it 'displays the first line with ellipses' do
         location = source_range(source.index('[')..source.index(']'))
 
-        cop.add_offense(nil, location: location, message: 'message 1')
+        rule.add_offense(nil, location: location, message: 'message 1')
 
-        formatter.report_file('test', cop.offenses)
+        formatter.report_file('test', rule.offenses)
         expect(output.string)
           .to eq <<~OUTPUT
             test:1:14: C: message 1

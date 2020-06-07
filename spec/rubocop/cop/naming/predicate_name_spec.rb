@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
+RSpec.describe RuboCop::Rule::Naming::PredicateName, :config do
   context 'with restricted prefixes' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'NamePrefix' => %w[has_ is_],
         'ForbiddenPrefixes' => %w[has_ is_] }
     end
@@ -41,7 +41,7 @@ RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
   end
 
   context 'without restricted prefixes' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'NamePrefix' => %w[has_ is_], 'ForbiddenPrefixes' => [] }
     end
 
@@ -73,7 +73,7 @@ RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
   end
 
   context 'with permitted predicate names' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'NamePrefix' => %w[is_], 'ForbiddenPrefixes' => %w[is_],
         'AllowedMethods' => %w[is_a?] }
     end
@@ -86,7 +86,7 @@ RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
   end
 
   context 'with method definition macros' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'NamePrefix' => %w[is_], 'ForbiddenPrefixes' => %w[is_],
         'MethodDefinitionMacros' => %w[define_method def_node_matcher] }
     end
@@ -121,7 +121,7 @@ RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
   end
 
   context 'without method definition macros' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'NamePrefix' => %w[is_], 'ForbiddenPrefixes' => %w[is_] }
     end
 

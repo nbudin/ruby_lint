@@ -2,7 +2,7 @@
 
 shared_examples_for 'empty_lines_around_class_or_module_body' do |type|
   context 'when EnforcedStyle is empty_lines_special' do
-    let(:cop_config) { { 'EnforcedStyle' => 'empty_lines_special' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'empty_lines_special' } }
 
     context 'when first child is method' do
       it "requires blank line at the beginning and ending of #{type} body" do

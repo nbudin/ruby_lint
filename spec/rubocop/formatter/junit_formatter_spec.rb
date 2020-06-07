@@ -4,24 +4,24 @@ RSpec.describe RuboCop::Formatter::JUnitFormatter, :config do
   subject(:formatter) { described_class.new(output) }
 
   let(:output) { StringIO.new }
-  let(:cop_class) { Rubocop::Rule::Layout::SpaceInsideBlockBraces }
+  let(:cop_class) { RuboCop::Rule::Layout::SpaceInsideBlockBraces }
   let(:source) { %w[foo bar baz].join("\n") }
 
   describe '#file_finished' do
     before do
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 0, 1),
         message: 'message 1'
       )
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 9, 10),
         message: 'message 2'
       )
 
-      formatter.file_finished('test_1', cop.offenses)
-      formatter.file_finished('test_2', cop.offenses)
+      formatter.file_finished('test_1', rule.offenses)
+      formatter.file_finished('test_2', rule.offenses)
 
       formatter.finished(nil)
     end

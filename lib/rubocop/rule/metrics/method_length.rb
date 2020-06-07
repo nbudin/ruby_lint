@@ -12,7 +12,7 @@ module RuboCop
         LABEL = 'Method'
 
         def on_def(node)
-          excluded_methods = cop_config['ExcludedMethods']
+          excluded_methods = rule_config['ExcludedMethods']
           return if excluded_methods.include?(String(node.method_name))
 
           check_code_length(node)

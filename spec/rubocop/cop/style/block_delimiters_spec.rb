@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
+RSpec.describe RuboCop::Rule::Style::BlockDelimiters, :config do
   shared_examples 'syntactic styles' do
     it 'registers an offense for a single line block with do-end' do
       expect_offense(<<~RUBY)
@@ -30,14 +30,14 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   end
 
   context 'Semantic style' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'semantic',
       'ProceduralMethods' => %w[tap],
       'FunctionalMethods' => %w[let],
       'IgnoredMethods' => %w[lambda]
     }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     it 'accepts a multi-line block with braces if the return value is ' \
        'assigned' do
@@ -196,8 +196,8 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
       end
 
       context 'with AllowBracesOnProceduralOneLiners true' do
-        let(:cop_config) do
-          cop_config.merge('AllowBracesOnProceduralOneLiners' => true)
+        let(:rule_config) do
+          rule_config.merge('AllowBracesOnProceduralOneLiners' => true)
         end
 
         it 'accepts a single line procedural block with braces' do
@@ -320,12 +320,12 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   end
 
   context 'line count-based style' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'line_count_based',
       'IgnoredMethods' => %w[proc]
     }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     include_examples 'syntactic styles'
 
@@ -472,12 +472,12 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   end
 
   context 'braces for chaining style' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'braces_for_chaining',
       'IgnoredMethods' => %w[proc]
     }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     include_examples 'syntactic styles'
 
@@ -591,12 +591,12 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   end
 
   context 'always braces' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'always_braces',
       'IgnoredMethods' => %w[proc]
     }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     it 'registers an offense for a single line block with do-end' do
       expect_offense(<<~RUBY)
@@ -691,12 +691,12 @@ RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   end
 
   context 'BracesRequiredMethods' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'line_count_based',
       'BracesRequiredMethods' => %w[sig]
     }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     describe 'BracesRequiredMethods methods' do
       it 'allows braces' do

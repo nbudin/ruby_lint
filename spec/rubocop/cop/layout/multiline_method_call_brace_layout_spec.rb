@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallBraceLayout, :config do
-  let(:cop_config) { { 'EnforcedStyle' => 'symmetrical' } }
+RSpec.describe RuboCop::Rule::Layout::MultilineMethodCallBraceLayout, :config do
+  let(:rule_config) { { 'EnforcedStyle' => 'symmetrical' } }
 
   it 'ignores implicit calls' do
     expect_no_offenses(<<~RUBY)
@@ -40,7 +40,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallBraceLayout, :config do
   end
 
   context 'when EnforcedStyle is new_line' do
-    let(:cop_config) { { 'EnforcedStyle' => 'new_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'new_line' } }
 
     it 'still ignores single-line calls' do
       expect_no_offenses('puts("Hello world!")')

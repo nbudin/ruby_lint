@@ -8,18 +8,18 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
 
   describe '#file_finished' do
     it 'displays parsable text' do
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 0, 1),
         message: 'message 1'
       )
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 9, 10),
         message: 'message 2'
       )
 
-      formatter.file_finished('test', cop.offenses)
+      formatter.file_finished('test', rule.offenses)
       expect(output.string).to eq <<~OUTPUT
         test:1:1: C: message 1
         test:3:6: C: message 2
@@ -30,7 +30,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        Rubocop::Rule::Offense.new(:convention, location,
+        RuboCop::Rule::Offense.new(:convention, location,
                                   'This is a message.', 'CopName', status)
       end
 
@@ -53,7 +53,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        Rubocop::Rule::Offense.new(:convention, location,
+        RuboCop::Rule::Offense.new(:convention, location,
                                   'This is a message.', 'CopName', status)
       end
 
@@ -76,7 +76,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        Rubocop::Rule::Offense.new(:error, location,
+        RuboCop::Rule::Offense.new(:error, location,
                                   "unmatched close parenthesis: /\n   world " \
                                   "# Some comment containing a )\n/",
                                   'CopName', :uncorrected)

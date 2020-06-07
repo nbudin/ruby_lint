@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::FloatDivision, :config do
+RSpec.describe RuboCop::Rule::Style::FloatDivision, :config do
   context 'EnforcedStyle is left_coerce' do
-    let(:cop_config) { { 'EnforcedStyle' => 'left_coerce' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'left_coerce' } }
 
     it 'registers offense for right coerce' do
       expect_offense(<<~RUBY)
@@ -31,7 +31,7 @@ RSpec.describe Rubocop::Rule::Style::FloatDivision, :config do
   end
 
   context 'EnforcedStyle is right_coerce' do
-    let(:cop_config) { { 'EnforcedStyle' => 'right_coerce' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'right_coerce' } }
 
     it 'registers offense for left coerce' do
       expect_offense(<<~RUBY)
@@ -60,7 +60,7 @@ RSpec.describe Rubocop::Rule::Style::FloatDivision, :config do
   end
 
   context 'EnforcedStyle is single_coerce' do
-    let(:cop_config) { { 'EnforcedStyle' => 'single_coerce' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'single_coerce' } }
 
     it 'registers offense for both coerce' do
       expect_offense(<<~RUBY)
@@ -86,7 +86,7 @@ RSpec.describe Rubocop::Rule::Style::FloatDivision, :config do
   end
 
   context 'EnforcedStyle is fdiv' do
-    let(:cop_config) { { 'EnforcedStyle' => 'fdiv' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'fdiv' } }
 
     it 'registers offense for right coerce' do
       expect_offense(<<~RUBY)

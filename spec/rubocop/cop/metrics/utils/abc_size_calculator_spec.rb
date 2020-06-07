@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::Utils::AbcSizeCalculator do
+RSpec.describe RuboCop::Rule::Metrics::Utils::AbcSizeCalculator do
   describe '#calculate' do
     context '0 assignments, 3 branches, 0 conditions' do
       it 'returns 3' do

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::PerceivedComplexity, :config do
+RSpec.describe RuboCop::Rule::Metrics::PerceivedComplexity, :config do
   context 'when Max is 1' do
-    let(:cop_config) { { 'Max' => 1 } }
+    let(:rule_config) { { 'Max' => 1 } }
 
     it 'accepts a method with no decision points' do
       expect_no_offenses(<<~RUBY)
@@ -229,7 +229,7 @@ RSpec.describe Rubocop::Rule::Metrics::PerceivedComplexity, :config do
   end
 
   context 'when method is in list of ignored methods' do
-    let(:cop_config) { { 'Max' => 0, 'IgnoredMethods' => ['foo'] } }
+    let(:rule_config) { { 'Max' => 0, 'IgnoredMethods' => ['foo'] } }
 
     it 'does not register an offense when defining an instance method' do
       expect_no_offenses(<<~RUBY)
@@ -257,7 +257,7 @@ RSpec.describe Rubocop::Rule::Metrics::PerceivedComplexity, :config do
   end
 
   context 'when Max is 2' do
-    let(:cop_config) { { 'Max' => 2 } }
+    let(:rule_config) { { 'Max' => 2 } }
 
     it 'counts stupid nested if and else blocks' do
       expect_offense(<<~RUBY)

@@ -69,7 +69,7 @@ module RuboCop
 
         def on_resbody(node)
           return if node.body
-          return if cop_config['AllowComments'] && comment_between_rescue_and_end?(node)
+          return if rule_config['AllowComments'] && comment_between_rescue_and_end?(node)
 
           add_offense(node)
         end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
-  let(:cop_config) { {} }
+RSpec.describe RuboCop::Rule::Style::TrivialAccessors, :config do
+  let(:rule_config) { {} }
 
   it 'registers an offense on instance reader' do
     expect_offense(<<~RUBY)
@@ -348,7 +348,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'exact name match disabled' do
-    let(:cop_config) { { 'ExactNameMatch' => false } }
+    let(:rule_config) { { 'ExactNameMatch' => false } }
 
     it 'registers an offense when names mismatch in writer' do
       expect_offense(<<~RUBY)
@@ -378,7 +378,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'disallow predicates' do
-    let(:cop_config) { { 'AllowPredicates' => false } }
+    let(:rule_config) { { 'AllowPredicates' => false } }
 
     it 'does not accept predicate-like reader' do
       expect_offense(<<~RUBY)
@@ -395,7 +395,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'allow predicates' do
-    let(:cop_config) { { 'AllowPredicates' => true } }
+    let(:rule_config) { { 'AllowPredicates' => true } }
 
     it 'accepts predicate-like reader' do
       expect_no_offenses(<<~RUBY)
@@ -409,7 +409,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'with allowed methods' do
-    let(:cop_config) { { 'AllowedMethods' => ['to_foo', 'bar='] } }
+    let(:rule_config) { { 'AllowedMethods' => ['to_foo', 'bar='] } }
 
     it 'accepts allowed reader' do
       expect_no_offenses(<<~RUBY)
@@ -432,7 +432,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
     end
 
     context 'with AllowPredicates: false' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'AllowPredicates' => false,
           'AllowedMethods' => ['foo?'] }
       end
@@ -450,7 +450,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'with DSL allowed' do
-    let(:cop_config) { { 'AllowDSLWriters' => true } }
+    let(:rule_config) { { 'AllowDSLWriters' => true } }
 
     it 'accepts DSL-style writer' do
       expect_no_offenses(<<~RUBY)
@@ -464,7 +464,7 @@ RSpec.describe Rubocop::Rule::Style::TrivialAccessors, :config do
   end
 
   context 'ignore class methods' do
-    let(:cop_config) { { 'IgnoreClassMethods' => true } }
+    let(:rule_config) { { 'IgnoreClassMethods' => true } }
 
     it 'accepts class reader' do
       expect_no_offenses(<<~RUBY)

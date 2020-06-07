@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EvenOdd do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::EvenOdd do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for x % 2 == 0' do
     expect_offense(<<~RUBY)

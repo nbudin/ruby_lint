@@ -158,7 +158,7 @@ module RuboCop
         end
 
         def unless_else_config
-          config.for_cop('Style/UnlessElse')
+          config.for_rule('Style/UnlessElse')
         end
 
         def empty_else_cop_enabled?
@@ -172,7 +172,7 @@ module RuboCop
         end
 
         def empty_else_config
-          config.for_cop('Style/EmptyElse')
+          config.for_rule('Style/EmptyElse')
         end
       end
     end

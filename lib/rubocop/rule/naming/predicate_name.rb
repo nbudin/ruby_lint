@@ -88,19 +88,19 @@ module RuboCop
         end
 
         def forbidden_prefixes
-          cop_config['ForbiddenPrefixes']
+          rule_config['ForbiddenPrefixes']
         end
 
         def predicate_prefixes
-          cop_config['NamePrefix']
+          rule_config['NamePrefix']
         end
 
         def allowed_methods
-          cop_config['AllowedMethods']
+          rule_config['AllowedMethods']
         end
 
         def method_definition_macros(macro_name)
-          cop_config['MethodDefinitionMacros'].include?(macro_name.to_s)
+          rule_config['MethodDefinitionMacros'].include?(macro_name.to_s)
         end
       end
     end

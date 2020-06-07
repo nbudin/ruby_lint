@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UnusedMethodArgument, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Lint::UnusedMethodArgument, :config do
+  let(:rule_config) do
     {
       'AllowUnusedKeywordArguments' => false,
       'IgnoreEmptyMethods' => false,
@@ -94,7 +94,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedMethodArgument, :config do
       end
 
       context 'and AllowUnusedKeywordArguments set' do
-        let(:cop_config) { { 'AllowUnusedKeywordArguments' => true } }
+        let(:rule_config) { { 'AllowUnusedKeywordArguments' => true } }
 
         it 'does not care' do
           expect_no_offenses(<<~RUBY)
@@ -378,7 +378,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedMethodArgument, :config do
   end
 
   context 'when IgnoreEmptyMethods config parameter is set' do
-    let(:cop_config) { { 'IgnoreEmptyMethods' => true } }
+    let(:rule_config) { { 'IgnoreEmptyMethods' => true } }
 
     it 'accepts an empty method with a single unused parameter' do
       expect_no_offenses(<<~RUBY)
@@ -438,7 +438,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedMethodArgument, :config do
   end
 
   context 'when IgnoreNotImplementedMethods config parameter is set' do
-    let(:cop_config) { { 'IgnoreNotImplementedMethods' => true } }
+    let(:rule_config) { { 'IgnoreNotImplementedMethods' => true } }
 
     it 'accepts a method with a single unused parameter & '\
        'raises NotImplementedError' do

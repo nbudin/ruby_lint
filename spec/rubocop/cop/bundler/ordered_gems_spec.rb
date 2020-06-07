@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Bundler::OrderedGems, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Bundler::OrderedGems, :config do
+  let(:rule_config) do
     {
       'TreatCommentsAsGroupSeparators' => treat_comments_as_group_separators
     }

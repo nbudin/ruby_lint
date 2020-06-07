@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
-  let(:cop_config) { { 'ConvertCodeThatCanStartToReturnNil' => false } }
+RSpec.describe RuboCop::Rule::Style::SafeNavigation, :config do
+  let(:rule_config) { { 'ConvertCodeThatCanStartToReturnNil' => false } }
 
   let(:message) do
     'Use safe navigation (`&.`) instead of checking if an object ' \
@@ -395,7 +395,7 @@ RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
 
     context 'object check before method call' do
       context 'ConvertCodeThatCanStartToReturnNil true' do
-        let(:cop_config) { { 'ConvertCodeThatCanStartToReturnNil' => true } }
+        let(:rule_config) { { 'ConvertCodeThatCanStartToReturnNil' => true } }
 
         it 'registers an offense for a non-nil object check followed by a ' \
            'method call' do
@@ -485,7 +485,7 @@ RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
               RuboCop::Config.new('Lint/SafeNavigationChain' => {
                                     'Enabled' => false
                                   },
-                                  'Style/SafeNavigation' => cop_config)
+                                  'Style/SafeNavigation' => rule_config)
             end
 
             it 'allows an object check followed by chained method calls' do
@@ -505,7 +505,7 @@ RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
       end
 
       context 'ConvertCodeThatCanStartToReturnNil false' do
-        let(:cop_config) { { 'ConvertCodeThatCanStartToReturnNil' => false } }
+        let(:rule_config) { { 'ConvertCodeThatCanStartToReturnNil' => false } }
 
         it 'allows a non-nil object check followed by a method call' do
           expect_no_offenses("!#{variable}.nil? && #{variable}.bar")
@@ -1068,7 +1068,7 @@ RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
 
       context 'object check before method call' do
         context 'ConvertCodeThatCanStartToReturnNil true' do
-          let(:cop_config) do
+          let(:rule_config) do
             { 'ConvertCodeThatCanStartToReturnNil' => true }
           end
 

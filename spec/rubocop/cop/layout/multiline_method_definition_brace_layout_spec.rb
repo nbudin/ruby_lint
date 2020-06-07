@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineMethodDefinitionBraceLayout, :config do
-  let(:cop_config) { { 'EnforcedStyle' => 'symmetrical' } }
+RSpec.describe RuboCop::Rule::Layout::MultilineMethodDefinitionBraceLayout, :config do
+  let(:rule_config) { { 'EnforcedStyle' => 'symmetrical' } }
 
   it 'ignores implicit defs' do
     expect_no_offenses(<<~RUBY)

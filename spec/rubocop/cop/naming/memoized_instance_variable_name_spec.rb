@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::MemoizedInstanceVariableName, :config do
+RSpec.describe RuboCop::Rule::Naming::MemoizedInstanceVariableName, :config do
   context 'with default EnforcedStyleForLeadingUnderscores => disallowed' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleForLeadingUnderscores' => 'disallowed' }
     end
 
@@ -196,7 +196,7 @@ RSpec.describe Rubocop::Rule::Naming::MemoizedInstanceVariableName, :config do
   end
 
   context 'EnforcedStyleForLeadingUnderscores: required' do
-    let(:cop_config) { { 'EnforcedStyleForLeadingUnderscores' => 'required' } }
+    let(:rule_config) { { 'EnforcedStyleForLeadingUnderscores' => 'required' } }
 
     it 'registers an offense when names match but missing a leading _' do
       expect_offense(<<~RUBY)
@@ -226,7 +226,7 @@ RSpec.describe Rubocop::Rule::Naming::MemoizedInstanceVariableName, :config do
   end
 
   context 'EnforcedStyleForLeadingUnderscores: optional' do
-    let(:cop_config) { { 'EnforcedStyleForLeadingUnderscores' => 'optional' } }
+    let(:rule_config) { { 'EnforcedStyleForLeadingUnderscores' => 'optional' } }
 
     context 'memoized variable matches method name' do
       it 'does not register an offense with a leading underscore' do

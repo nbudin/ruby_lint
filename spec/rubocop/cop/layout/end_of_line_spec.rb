@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
+RSpec.describe RuboCop::Rule::Layout::EndOfLine, :config do
   shared_examples 'all configurations' do
     it 'accepts an empty file' do
       inspect_source_file('')
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -12,12 +12,12 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
     it 'can inspect non-UTF-8 encoded source with proper encoding comment' do
       inspect_source_file(["# coding: ISO-8859-15#{eol}",
                            "# Euro symbol: \xa4#{eol}"].join("\n"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
   context 'when EnforcedStyle is native' do
-    let(:cop_config) { { 'EnforcedStyle' => 'native' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'native' } }
     let(:messages) do
       ['Carriage return character ' \
         "#{RuboCop::Platform.windows? ? 'missing' : 'detected'}."]
@@ -26,13 +26,13 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
     it 'registers an offense for an incorrect EOL' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
       expect(cop.messages).to eq(messages)
-      expect(cop.offenses.map(&:line))
+      expect(rule.offenses.map(&:line))
         .to eq([RuboCop::Platform.windows? ? 1 : 3])
     end
   end
 
   context 'when EnforcedStyle is crlf' do
-    let(:cop_config) { { 'EnforcedStyle' => 'crlf' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'crlf' } }
     let(:messages) { ['Carriage return character missing.'] }
 
     include_examples 'all configurations'
@@ -40,17 +40,17 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
     it 'registers an offense for CR+LF' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
       expect(cop.messages).to eq(messages)
-      expect(cop.offenses.map(&:line)).to eq([1])
+      expect(rule.offenses.map(&:line)).to eq([1])
     end
 
     it 'highlights the whole offending line' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
-      expect(cop.highlights).to eq(["x=0\n"])
+      expect(rule.highlights).to eq(["x=0\n"])
     end
 
     it 'does not register offense for no CR at end of file' do
       inspect_source_file('x=0')
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
 
     it 'does not register offenses after __END__' do
@@ -88,7 +88,7 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
                   "  'terecht bij uw ROM-coördinator.'",
                   'end'].join("\r\n")
         inspect_source_file(source)
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
 
       include_examples 'iso-8859-15', ''
@@ -104,19 +104,19 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
   end
 
   context 'when EnforcedStyle is lf' do
-    let(:cop_config) { { 'EnforcedStyle' => 'lf' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'lf' } }
 
     include_examples 'all configurations'
 
     it 'registers an offense for CR+LF' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
       expect(cop.messages).to eq(['Carriage return character detected.'])
-      expect(cop.offenses.map(&:line)).to eq([3])
+      expect(rule.offenses.map(&:line)).to eq([3])
     end
 
     it 'highlights the whole offending line' do
       inspect_source_file(['x=0', '', "y=1\r"].join("\n"))
-      expect(cop.highlights).to eq(["y=1\r"])
+      expect(rule.highlights).to eq(["y=1\r"])
     end
 
     it 'registers an offense for CR at end of file' do
@@ -154,7 +154,7 @@ RSpec.describe Rubocop::Rule::Layout::EndOfLine, :config do
                   "  'terecht bij uw ROM-coördinator.'",
                   'end'].join("\n")
         inspect_source_file(source)
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
 
       include_examples 'iso-8859-15', "\r"

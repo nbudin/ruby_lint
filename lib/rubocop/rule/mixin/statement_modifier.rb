@@ -47,9 +47,9 @@ module RuboCop
       end
 
       def max_line_length
-        return unless config.for_cop('Layout/LineLength')['Enabled']
+        return unless config.for_rule('Layout/LineLength')['Enabled']
 
-        config.for_cop('Layout/LineLength')['Max']
+        config.for_rule('Layout/LineLength')['Max']
       end
     end
   end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RescueStandardError, :config do
+RSpec.describe RuboCop::Rule::Style::RescueStandardError, :config do
   context 'implicit' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'implicit',
         'SupportedStyles' => %w[implicit explicit] }
     end
@@ -235,7 +235,7 @@ RSpec.describe Rubocop::Rule::Style::RescueStandardError, :config do
   end
 
   context 'explicit' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'explicit',
         'SupportedStyles' => %w[implicit explicit] }
     end

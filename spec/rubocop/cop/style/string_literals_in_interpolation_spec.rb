@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::StringLiteralsInInterpolation, :config do
+RSpec.describe RuboCop::Rule::Style::StringLiteralsInInterpolation, :config do
   context 'configured with single quotes preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'single_quotes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'single_quotes' } }
 
     it 'registers an offense for double quotes within embedded expression' do
       expect_offense(<<~'RUBY')
@@ -60,7 +60,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiteralsInInterpolation, :config do
   end
 
   context 'configured with double quotes preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'double_quotes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'double_quotes' } }
 
     it 'registers an offense for single quotes within embedded expression' do
       expect_offense(<<~'RUBY')
@@ -81,7 +81,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiteralsInInterpolation, :config do
   end
 
   context 'when configured with a bad value' do
-    let(:cop_config) { { 'EnforcedStyle' => 'other' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'other' } }
 
     it 'fails' do
       expect { inspect_source('a = "#{"b"}"') }

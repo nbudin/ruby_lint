@@ -38,12 +38,12 @@ module RuboCop
         private
 
         def allowlist
-          cop_config['Allowlist'] || []
+          rule_config['Allowlist'] || []
         end
 
         def suspicious_name?(arg_name)
-          cop_config.key?('SuspiciousParamNames') &&
-            cop_config['SuspiciousParamNames'].include?(arg_name.to_s)
+          rule_config.key?('SuspiciousParamNames') &&
+            rule_config['SuspiciousParamNames'].include?(arg_name.to_s)
         end
 
         def super_used?(node)

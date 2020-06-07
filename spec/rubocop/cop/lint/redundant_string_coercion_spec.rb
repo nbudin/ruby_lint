@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RedundantStringCoercion do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::RedundantStringCoercion do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects `to_s` in interpolation' do
     expect_offense(<<~'RUBY')

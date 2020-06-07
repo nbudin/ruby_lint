@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::Void do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::Void do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -12,7 +12,7 @@ RSpec.describe Rubocop::Rule::Lint::Void do
         a #{op} b
         a #{op} b
       RUBY
-      expect(cop.offenses.size).to eq(2)
+      expect(rule.offenses.size).to eq(2)
     end
   end
 
@@ -39,7 +39,7 @@ RSpec.describe Rubocop::Rule::Lint::Void do
         #{op}b
         #{op}b
       RUBY
-      expect(cop.offenses.size).to eq(2)
+      expect(rule.offenses.size).to eq(2)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe Rubocop::Rule::Lint::Void do
         #{var}
         top
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -75,7 +75,7 @@ RSpec.describe Rubocop::Rule::Lint::Void do
         #{lit}
         top
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 

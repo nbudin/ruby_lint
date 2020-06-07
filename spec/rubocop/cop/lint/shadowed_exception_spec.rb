@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::ShadowedException do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::ShadowedException do
+  subject(:rule) { described_class.new }
 
   context 'modifier rescue' do
     it 'accepts rescue in its modifier form' do

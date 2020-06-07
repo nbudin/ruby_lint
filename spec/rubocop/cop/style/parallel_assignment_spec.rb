@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ParallelAssignment, :config do
+RSpec.describe RuboCop::Rule::Style::ParallelAssignment, :config do
   let(:config) do
     RuboCop::Config.new('Layout/IndentationWidth' => { 'Width' => 2 })
   end

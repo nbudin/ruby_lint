@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::CommentAnnotation, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Style::CommentAnnotation, :config do
+  let(:rule_config) do
     { 'Keywords' => %w[TODO FIXME OPTIMIZE HACK REVIEW] }
   end
 
@@ -20,7 +20,7 @@ RSpec.describe Rubocop::Rule::Style::CommentAnnotation, :config do
   end
 
   context 'with configured keyword' do
-    let(:cop_config) { { 'Keywords' => %w[ISSUE] } }
+    let(:rule_config) { { 'Keywords' => %w[ISSUE] } }
 
     it 'registers an offense for a missing colon after the word' do
       expect_offense(<<~RUBY)
@@ -120,7 +120,7 @@ RSpec.describe Rubocop::Rule::Style::CommentAnnotation, :config do
   end
 
   context 'when a keyword is not in the configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'Keywords' => %w[FIXME OPTIMIZE HACK REVIEW] }
     end
 

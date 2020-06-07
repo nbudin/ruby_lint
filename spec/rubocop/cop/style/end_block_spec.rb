@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EndBlock do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::EndBlock do
+  subject(:rule) { described_class.new }
 
   it 'reports an offense and corrects END block' do
     expect_offense(<<~RUBY)

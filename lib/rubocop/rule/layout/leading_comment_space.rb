@@ -91,7 +91,7 @@ module RuboCop
         end
 
         def allow_doxygen_comment?
-          cop_config['AllowDoxygenCommentStyle']
+          rule_config['AllowDoxygenCommentStyle']
         end
 
         def doxygen_comment_style?(comment)
@@ -99,7 +99,7 @@ module RuboCop
         end
 
         def allow_gemfile_ruby_comment?
-          cop_config['AllowGemfileRubyComment']
+          rule_config['AllowGemfileRubyComment']
         end
 
         def gemfile?

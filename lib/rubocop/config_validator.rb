@@ -25,7 +25,7 @@ module RuboCop
 
     # rubocop:disable Metrics/AbcSize
     def validate
-      check_cop_config_value(@config)
+      check_rule_config_value(@config)
       reject_conflicting_safe_settings
 
       # Don't validate RuboCop's own files further. Avoids infinite recursion.
@@ -155,7 +155,7 @@ module RuboCop
         styles = @config[name].select { |key, _| key.start_with?('Enforced') }
 
         styles.each do |style_name, style|
-          supported_key = Rubocop::Rule::Util.to_supported_styles(style_name)
+          supported_key = RuboCop::Rule::Util.to_supported_styles(style_name)
           valid = ConfigLoader.default_configuration[name][supported_key]
 
           next unless valid
@@ -186,10 +186,10 @@ module RuboCop
     end
 
     def reject_conflicting_safe_settings
-      @config.each do |name, cop_config|
-        next unless cop_config.is_a?(Hash)
-        next unless cop_config['Safe'] == false &&
-                    cop_config['SafeAutoCorrect'] == true
+      @config.each do |name, rule_config|
+        next unless rule_config.is_a?(Hash)
+        next unless rule_config['Safe'] == false &&
+                    rule_config['SafeAutoCorrect'] == true
 
         msg = 'Unsafe cops cannot have a safe auto-correction ' \
               "(section #{name} in #{smart_loaded_path})"
@@ -197,9 +197,9 @@ module RuboCop
       end
     end
 
-    def check_cop_config_value(hash, parent = nil)
+    def check_rule_config_value(hash, parent = nil)
       hash.each do |key, value|
-        check_cop_config_value(value, key) if value.is_a?(Hash)
+        check_rule_config_value(value, key) if value.is_a?(Hash)
 
         next unless %w[Enabled
                        Safe

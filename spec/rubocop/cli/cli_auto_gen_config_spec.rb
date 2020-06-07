@@ -405,13 +405,13 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                                     '#' * 90,
                                     'y ',
                                     'puts x'])
-        create_file('dir/cop_config.yml', <<~YAML)
+        create_file('dir/rule_config.yml', <<~YAML)
           Layout/TrailingWhitespace:
             Enabled: false
           Layout/LineLength:
             Max: 95
         YAML
-        expect(cli.run(%w[--auto-gen-config --config dir/cop_config.yml]))
+        expect(cli.run(%w[--auto-gen-config --config dir/rule_config.yml]))
           .to eq(0)
         expect(Dir['.*']).to include('.rubocop_todo.yml')
         todo_contents = IO.read('.rubocop_todo.yml').lines[8..-1].join
@@ -430,7 +430,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             Exclude:
               - 'example1.rb'
         YAML
-        expect(IO.read('dir/cop_config.yml')).to eq(<<~YAML)
+        expect(IO.read('dir/rule_config.yml')).to eq(<<~YAML)
           inherit_from: .rubocop_todo.yml
 
           Layout/TrailingWhitespace:

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::InitialIndentation do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::InitialIndentation do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for indented method definition' do
     expect_offense(<<-RUBY.strip_margin('|'))

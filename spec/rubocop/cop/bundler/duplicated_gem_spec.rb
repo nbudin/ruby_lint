@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Bundler::DuplicatedGem, :config do
-  let(:cop_config) { { 'Include' => ['**/Gemfile'] } }
+RSpec.describe RuboCop::Rule::Bundler::DuplicatedGem, :config do
+  let(:rule_config) { { 'Include' => ['**/Gemfile'] } }
 
   context 'when investigating Ruby files' do
     it 'does not register any offenses' do

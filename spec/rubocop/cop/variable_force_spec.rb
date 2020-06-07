@@ -2,7 +2,7 @@
 
 require 'rubocop/ast/sexp'
 
-RSpec.describe Rubocop::Rule::VariableForce do
+RSpec.describe RuboCop::Rule::VariableForce do
   include RuboCop::AST::Sexp
 
   subject(:force) { described_class.new([]) }

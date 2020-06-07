@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
+RSpec.describe RuboCop::Rule::Layout::LeadingCommentSpace, :config do
   it 'registers an offense and corrects comment without leading space' do
     expect_offense(<<~RUBY)
       #missing space
@@ -100,7 +100,7 @@ RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
 
   describe 'Doxygen style' do
     context 'when config option is disabled' do
-      let(:cop_config) { { 'AllowDoxygenCommentStyle' => false } }
+      let(:rule_config) { { 'AllowDoxygenCommentStyle' => false } }
 
       it 'registers an offense and corrects using Doxygen style' do
         expect_offense(<<~RUBY)
@@ -122,7 +122,7 @@ RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
     end
 
     context 'when config option is enabled' do
-      let(:cop_config) { { 'AllowDoxygenCommentStyle' => true } }
+      let(:rule_config) { { 'AllowDoxygenCommentStyle' => true } }
 
       it 'does not register offense when using Doxygen style' do
         expect_no_offenses(<<~RUBY)
@@ -157,7 +157,7 @@ RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
 
   describe 'Gemfile Ruby comment' do
     context 'when config option is disabled' do
-      let(:cop_config) { { 'AllowGemfileRubyComment' => false } }
+      let(:rule_config) { { 'AllowGemfileRubyComment' => false } }
 
       it 'registers an offense when using ruby config as comment' do
         expect_offense(<<~'RUBY')
@@ -172,7 +172,7 @@ RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
     end
 
     context 'when config option is enabled' do
-      let(:cop_config) { { 'AllowGemfileRubyComment' => true } }
+      let(:rule_config) { { 'AllowGemfileRubyComment' => true } }
 
       context 'file not named Gemfile' do
         it 'registers an offense when using ruby config as comment' do

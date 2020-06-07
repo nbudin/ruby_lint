@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MethodDefParentheses, :config do
+RSpec.describe RuboCop::Rule::Style::MethodDefParentheses, :config do
   context 'require_parentheses' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_parentheses' } }
 
     it 'reports an offense for def with parameters but no parens' do
       expect_offense(<<~RUBY)
@@ -132,13 +132,13 @@ RSpec.describe Rubocop::Rule::Style::MethodDefParentheses, :config do
   end
 
   context 'require_no_parentheses' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
 
     it_behaves_like 'no parentheses'
   end
 
   context 'require_no_parentheses_except_multiline' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'require_no_parentheses_except_multiline' }
     end
 

@@ -72,7 +72,7 @@ module RuboCop
 
       # Removes the source range.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       def remove(node_or_range)
         range = to_range(node_or_range)
         @source_rewriter.remove(range)
@@ -80,7 +80,7 @@ module RuboCop
 
       # Inserts new code before the given source range.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [String] content
       def insert_before(node_or_range, content)
         range = to_range(node_or_range)
@@ -94,7 +94,7 @@ module RuboCop
 
       # Inserts new code after the given source range.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [String] content
       def insert_after(node_or_range, content)
         range = to_range(node_or_range)
@@ -103,7 +103,7 @@ module RuboCop
 
       # Wraps the given source range with the given before and after texts
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [String] before
       # @param [String] after
       def wrap(node_or_range, before, after)
@@ -113,7 +113,7 @@ module RuboCop
 
       # Replaces the code of the source range `range` with `content`.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [String] content
       def replace(node_or_range, content)
         range = to_range(node_or_range)
@@ -122,7 +122,7 @@ module RuboCop
 
       # Removes `size` characters prior to the source range.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [Integer] size
       def remove_preceding(node_or_range, size)
         range = to_range(node_or_range)
@@ -136,7 +136,7 @@ module RuboCop
       # If `size` is greater than the size of `range`, the removed region can
       # overrun the end of `range`.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [Integer] size
       def remove_leading(node_or_range, size)
         range = to_range(node_or_range)
@@ -150,7 +150,7 @@ module RuboCop
       # If `size` is greater than the size of `range`, the removed region can
       # overrun the beginning of `range`.
       #
-      # @param [Parser::Source::Range, Rubocop::AST::Node] range or node
+      # @param [Parser::Source::Range, RuboCop::AST::Node] range or node
       # @param [Integer] size
       def remove_trailing(node_or_range, size)
         range = to_range(node_or_range)
@@ -172,7 +172,7 @@ module RuboCop
                 else
                   raise TypeError,
                         'Expected a Parser::Source::Range, Comment or ' \
-                        "Rubocop::AST::Node, got #{node_or_range.class}"
+                        "RuboCop::AST::Node, got #{node_or_range.class}"
                 end
         validate_buffer(range.source_buffer)
         range

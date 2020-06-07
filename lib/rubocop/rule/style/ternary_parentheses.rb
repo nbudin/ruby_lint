@@ -151,7 +151,7 @@ module RuboCop
         end
 
         def redundant_parentheses_enabled?
-          @config.for_cop('Style/RedundantParentheses').fetch('Enabled')
+          @config.for_rule('Style/RedundantParentheses').fetch('Enabled')
         end
 
         def parenthesized?(node)

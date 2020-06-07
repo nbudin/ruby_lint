@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
-  let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+RSpec.describe RuboCop::Rule::Layout::SpaceBeforeBlockBraces, :config do
+  let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
   context 'when EnforcedStyle is space' do
     it 'accepts braces surrounded by spaces' do
@@ -50,7 +50,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
   end
 
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'registers an offense and corrects braces surrounded by spaces' do
       expect_offense(<<~RUBY)
@@ -84,7 +84,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
       let(:config) do
         merged_config = RuboCop::ConfigLoader.default_configuration[
           'Layout/SpaceBeforeBlockBraces'
-        ].merge(cop_config)
+        ].merge(rule_config)
 
         RuboCop::Config.new(
           'Layout/SpaceBeforeBlockBraces' => merged_config,
@@ -101,7 +101,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
   end
 
   context 'with space before empty braces not allowed' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'space',
         'EnforcedStyleForEmptyBraces' => 'no_space'
@@ -125,7 +125,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
   end
 
   context 'with space before empty braces allowed' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'no_space',
         'EnforcedStyleForEmptyBraces' => 'space'
@@ -149,7 +149,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
   end
 
   context 'with invalid value for EnforcedStyleForEmptyBraces' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'unknown' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'unknown' } }
 
     it 'fails with an error' do
       expect { inspect_source('each {}') }

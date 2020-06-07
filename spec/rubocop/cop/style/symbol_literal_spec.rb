@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SymbolLiteral do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::SymbolLiteral do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for word-line symbols using string syntax' do
     expect_offense(<<~RUBY)

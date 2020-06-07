@@ -52,7 +52,7 @@ module RuboCop
         end
 
         def allowed_non_ascii_chars
-          cop_config['AllowedChars'] || []
+          rule_config['AllowedChars'] || []
         end
       end
     end

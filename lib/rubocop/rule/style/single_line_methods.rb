@@ -58,7 +58,7 @@ module RuboCop
         private
 
         def allow_empty?
-          cop_config['AllowIfMethodIsEmpty']
+          rule_config['AllowIfMethodIsEmpty']
         end
 
         def each_part(body)

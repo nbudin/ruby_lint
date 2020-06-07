@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::PercentQLiterals, :config do
+RSpec.describe RuboCop::Rule::Style::PercentQLiterals, :config do
   shared_examples 'accepts quote characters' do
     it 'accepts single quotes' do
       expect_no_offenses("'hi'")
@@ -24,7 +24,7 @@ RSpec.describe Rubocop::Rule::Style::PercentQLiterals, :config do
   end
 
   context 'when EnforcedStyle is lower_case_q' do
-    let(:cop_config) { { 'EnforcedStyle' => 'lower_case_q' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'lower_case_q' } }
 
     context 'without interpolation' do
       it 'accepts %q' do
@@ -62,7 +62,7 @@ RSpec.describe Rubocop::Rule::Style::PercentQLiterals, :config do
   end
 
   context 'when EnforcedStyle is upper_case_q' do
-    let(:cop_config) { { 'EnforcedStyle' => 'upper_case_q' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'upper_case_q' } }
 
     context 'without interpolation' do
       it 'registers offense for %q' do

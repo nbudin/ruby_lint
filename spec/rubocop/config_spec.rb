@@ -737,7 +737,7 @@ RSpec.describe RuboCop::Config do
 
   context 'whether the cop is enabled' do
     def cop_enabled(cop_class)
-      configuration.for_cop(cop_class).fetch('Enabled')
+      configuration.for_rule(cop_class).fetch('Enabled')
     end
 
     context 'when an entire cop department is disabled' do
@@ -750,7 +750,7 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
+          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled(cop_class)).to be false
         end
       end
@@ -766,7 +766,7 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
+          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled(cop_class)).to be false
         end
       end
@@ -780,7 +780,7 @@ RSpec.describe RuboCop::Config do
       end
 
       it 'enables the cop by default' do
-        cop_class = Rubocop::Rule::Layout::TrailingWhitespace
+        cop_class = RuboCop::Rule::Layout::TrailingWhitespace
         expect(cop_enabled(cop_class)).to be true
       end
     end

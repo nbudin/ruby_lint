@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::BlockNesting, :config do
-  let(:cop_config) { { 'Max' => 2 } }
+RSpec.describe RuboCop::Rule::Metrics::BlockNesting, :config do
+  let(:rule_config) { { 'Max' => 2 } }
 
   it 'accepts `Max` levels of nesting' do
     expect_no_offenses(<<~RUBY)
@@ -188,7 +188,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockNesting, :config do
   end
 
   context 'when CountBlocks is false' do
-    let(:cop_config) { { 'Max' => 2, 'CountBlocks' => false } }
+    let(:rule_config) { { 'Max' => 2, 'CountBlocks' => false } }
 
     it 'accepts nested multiline blocks' do
       expect_no_offenses(<<~RUBY)
@@ -214,7 +214,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockNesting, :config do
   end
 
   context 'when CountBlocks is true' do
-    let(:cop_config) { { 'Max' => 2, 'CountBlocks' => true } }
+    let(:rule_config) { { 'Max' => 2, 'CountBlocks' => true } }
 
     context 'nested multiline block' do
       it 'registers an offense' do

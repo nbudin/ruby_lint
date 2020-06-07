@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::IndentationConsistency, :config do
-  let(:cop_config) { { 'EnforcedStyle' => 'normal' } }
+RSpec.describe RuboCop::Rule::Layout::IndentationConsistency, :config do
+  let(:rule_config) { { 'EnforcedStyle' => 'normal' } }
 
   context 'with top-level code' do
     it 'accepts an empty expression string interpolation' do
@@ -490,7 +490,7 @@ RSpec.describe Rubocop::Rule::Layout::IndentationConsistency, :config do
 
   context 'with class' do
     context 'with indented_internal_methods style configured' do
-      let(:cop_config) { { 'EnforcedStyle' => 'indented_internal_methods' } }
+      let(:rule_config) { { 'EnforcedStyle' => 'indented_internal_methods' } }
 
       it 'accepts different indentation in different visibility sections' do
         expect_no_offenses(<<~RUBY)

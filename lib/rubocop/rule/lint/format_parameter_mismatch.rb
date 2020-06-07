@@ -112,7 +112,7 @@ module RuboCop
         def expected_fields_count(node)
           return :unknown unless node.str_type?
 
-          format_string = Rubocop::Rule::Utils::FormatString.new(node.source)
+          format_string = RuboCop::Rule::Utils::FormatString.new(node.source)
           return 1 if format_string.named_interpolation?
 
           max_digit_dollar_num = format_string.max_digit_dollar_num

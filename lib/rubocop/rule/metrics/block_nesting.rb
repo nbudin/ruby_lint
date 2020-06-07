@@ -22,7 +22,7 @@ module RuboCop
         def investigate(processed_source)
           return if processed_source.blank?
 
-          max = cop_config['Max']
+          max = rule_config['Max']
           check_nesting_level(processed_source.ast, max, 0)
         end
 
@@ -57,7 +57,7 @@ module RuboCop
         end
 
         def count_blocks?
-          cop_config['CountBlocks']
+          rule_config['CountBlocks']
         end
       end
     end

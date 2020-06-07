@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
+RSpec.describe RuboCop::Rule::Style::GuardClause, :config do
   let(:other_cops) do
     {
       'Layout/LineLength' => {
@@ -208,7 +208,7 @@ RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
   end
 
   context 'MinBodyLength: 1' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinBodyLength' => 1 }
     end
 
@@ -232,7 +232,7 @@ RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
   end
 
   context 'MinBodyLength: 4' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinBodyLength' => 4 }
     end
 
@@ -258,7 +258,7 @@ RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
   end
 
   context 'Invalid MinBodyLength' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinBodyLength' => -2 }
     end
 

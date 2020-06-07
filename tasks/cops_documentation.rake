@@ -52,13 +52,13 @@ task generate_cops_documentation: :yard_for_generate_documentation do
                   else
                     'No'
                   end
-    cop_config = cop_instance.cop_config
+    rule_config = cop_instance.rule_config
     content = [[
-      cop_status(cop_config.fetch('Enabled')),
-      cop_config.fetch('Safe', true) ? 'Yes' : 'No',
+      cop_status(rule_config.fetch('Enabled')),
+      rule_config.fetch('Safe', true) ? 'Yes' : 'No',
       autocorrect,
-      cop_config.fetch('VersionAdded', '-'),
-      cop_config.fetch('VersionChanged', '-')
+      rule_config.fetch('VersionAdded', '-'),
+      rule_config.fetch('VersionChanged', '-')
     ]]
     to_table(header, content) + "\n"
   end
@@ -113,7 +113,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   def configurable_values(pars, name)
     case name
     when /^Enforced/
-      supported_style_name = Rubocop::Rule::Util.to_supported_styles(name)
+      supported_style_name = RuboCop::Rule::Util.to_supported_styles(name)
       format_table_value(pars[supported_style_name])
     when 'IndentationWidth'
       'Integer'
@@ -175,9 +175,9 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   end
 
   def references(config, cop)
-    cop_config = config.for_cop(cop)
-    urls = Rubocop::Rule::MessageAnnotator.new(
-      config, cop.name, cop_config, {}
+    rule_config = config.for_rule(cop)
+    urls = RuboCop::Rule::MessageAnnotator.new(
+      config, cop.name, rule_config, {}
     ).urls
     return '' if urls.empty?
 
@@ -201,7 +201,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   end
 
   def print_cop_with_doc(cop, config)
-    t = config.for_cop(cop)
+    t = config.for_rule(cop)
     non_display_keys = %w[
       Description Enabled StyleGuide Reference Safe SafeAutoCorrect VersionAdded
       VersionChanged
@@ -218,7 +218,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
 
   def cop_code(cop)
     YARD::Registry.all(:class).detect do |code_object|
-      next unless Rubocop::Rule::Badge.for(code_object.to_s) == cop.badge
+      next unless RuboCop::Rule::Badge.for(code_object.to_s) == cop.badge
 
       yield code_object
     end
@@ -281,7 +281,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   end
 
   def main
-    cops   = Rubocop::Rule::Rule.registry
+    cops   = RuboCop::Rule::Rule.registry
     config = RuboCop::ConfigLoader.default_configuration
 
     YARD::Registry.load!

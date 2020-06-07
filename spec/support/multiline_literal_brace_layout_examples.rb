@@ -46,7 +46,7 @@ shared_examples_for 'multiline literal brace layout' do
   end
 
   context 'heredoc' do
-    let(:cop_config) { { 'EnforcedStyle' => 'same_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'same_line' } }
 
     it 'ignores heredocs that could share a last line' do
       expect_no_offenses(construct(false, a, make_multi(heredoc), true))
@@ -55,7 +55,7 @@ shared_examples_for 'multiline literal brace layout' do
     it 'detects heredoc structures that are safe to add to' do
       inspect_source(construct(false, a, make_multi(safe_heredoc), true))
 
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it 'auto-corrects safe heredoc offenses' do
@@ -69,7 +69,7 @@ shared_examples_for 'multiline literal brace layout' do
   end
 
   context 'symmetrical style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'symmetrical' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'symmetrical' } }
 
     context 'opening brace on same line as first element' do
       it 'allows closing brace on same line as last element' do
@@ -84,8 +84,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(false, true)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::SAME_LINE_MESSAGE])
       end
 
@@ -102,7 +102,7 @@ shared_examples_for 'multiline literal brace layout' do
       end
 
       unless described_class ==
-             Rubocop::Rule::Layout::MultilineMethodDefinitionBraceLayout
+             RuboCop::Rule::Layout::MultilineMethodDefinitionBraceLayout
         context 'with a chained call on the closing brace' do
           let(:suffix) { '.any?' }
           let(:source) { construct(false, true) }
@@ -113,7 +113,7 @@ shared_examples_for 'multiline literal brace layout' do
             it 'detects closing brace on separate line from last element' do
               inspect_source(source)
 
-              expect(cop.highlights).to eq([close])
+              expect(rule.highlights).to eq([close])
               expect(cop.messages)
                 .to eq([described_class::SAME_LINE_MESSAGE])
             end
@@ -150,8 +150,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(true, false)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::NEW_LINE_MESSAGE])
       end
 
@@ -164,7 +164,7 @@ shared_examples_for 'multiline literal brace layout' do
   end
 
   context 'new_line style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'new_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'new_line' } }
 
     context 'opening brace on same line as first element' do
       it 'allows closing brace on different line from last element' do
@@ -179,8 +179,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(false, false)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
@@ -188,8 +188,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(false, a, make_multi(multi), false)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
@@ -218,8 +218,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(true, false)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_NEW_LINE_MESSAGE])
       end
 
@@ -232,7 +232,7 @@ shared_examples_for 'multiline literal brace layout' do
   end
 
   context 'same_line style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'same_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'same_line' } }
 
     context 'opening brace on same line as first element' do
       it 'allows closing brace on same line from last element' do
@@ -247,8 +247,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(false, true)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 
@@ -256,8 +256,8 @@ shared_examples_for 'multiline literal brace layout' do
         src = construct(false, a, make_multi(multi), true)
         inspect_source(src)
 
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 
@@ -274,7 +274,7 @@ shared_examples_for 'multiline literal brace layout' do
       end
 
       unless described_class ==
-             Rubocop::Rule::Layout::MultilineMethodDefinitionBraceLayout
+             RuboCop::Rule::Layout::MultilineMethodDefinitionBraceLayout
         context 'with a chained call on the closing brace' do
           let(:suffix) { '.any?' }
           let(:source) { construct(false, true) }
@@ -285,7 +285,7 @@ shared_examples_for 'multiline literal brace layout' do
             it 'detects closing brace on separate line from last element' do
               inspect_source(source)
 
-              expect(cop.highlights).to eq([close])
+              expect(rule.highlights).to eq([close])
               expect(cop.messages)
                 .to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
             end
@@ -321,8 +321,8 @@ shared_examples_for 'multiline literal brace layout' do
       it 'detects closing brace on different line from last element' do
         src = construct(true, true)
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq([close])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq([close])
         expect(cop.messages).to eq([described_class::ALWAYS_SAME_LINE_MESSAGE])
       end
 

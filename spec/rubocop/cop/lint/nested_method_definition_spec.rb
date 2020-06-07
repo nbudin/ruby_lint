@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::NestedMethodDefinition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::NestedMethodDefinition do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for a nested method definition' do
     expect_offense(<<~RUBY)

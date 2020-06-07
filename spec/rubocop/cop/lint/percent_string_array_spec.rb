@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::PercentStringArray do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::PercentStringArray do
+  subject(:rule) { described_class.new }
 
   context 'detecting quotes or commas in a %w/%W string' do
     %w[w W].each do |char|

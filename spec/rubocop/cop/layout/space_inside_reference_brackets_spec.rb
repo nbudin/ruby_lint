@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
   context 'with space inside empty brackets not allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBrackets' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBrackets' => 'no_space' } }
 
     it 'accepts empty brackets with no space inside' do
       expect_no_offenses('a[]')
@@ -33,7 +33,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
   end
 
   context 'with space inside empty braces allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBrackets' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBrackets' => 'space' } }
 
     it 'accepts empty brackets with space inside' do
       expect_no_offenses('a[ ]')
@@ -64,7 +64,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
   end
 
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'does not register offense for array literals' do
       expect_no_offenses(<<~RUBY)
@@ -285,7 +285,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
   end
 
   context 'when EnforcedStyle is space' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'space',
         'EnforcedStyleForEmptyBrackets' => 'space' }
     end

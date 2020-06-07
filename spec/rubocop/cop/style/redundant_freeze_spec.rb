@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantFreeze do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantFreeze do
+  subject(:rule) { described_class.new }
 
   let(:prefix) { nil }
 
@@ -9,7 +9,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantFreeze do
     it "registers an offense for frozen #{o}" do
       source = [prefix, "CONST = #{o}.freeze"].compact.join("\n")
       inspect_source(source)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it 'auto-corrects by removing .freeze' do

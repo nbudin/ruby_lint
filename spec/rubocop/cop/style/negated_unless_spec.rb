@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NegatedUnless do
-  subject(:cop) do
+RSpec.describe RuboCop::Rule::Style::NegatedUnless do
+  subject(:rule) do
     config = RuboCop::Config.new(
       'Style/NegatedUnless' => {
         'SupportedStyles' => %w[both prefix postfix],
@@ -95,7 +95,7 @@ RSpec.describe Rubocop::Rule::Style::NegatedUnless do
   end
 
   describe 'with “prefix” style' do
-    subject(:cop) do
+    subject(:rule) do
       config = RuboCop::Config.new(
         'Style/NegatedUnless' => {
           'SupportedStyles' => %w[both prefix postfix],
@@ -132,7 +132,7 @@ RSpec.describe Rubocop::Rule::Style::NegatedUnless do
   end
 
   describe 'with “postfix” style' do
-    subject(:cop) do
+    subject(:rule) do
       config = RuboCop::Config.new(
         'Style/NegatedUnless' => {
           'SupportedStyles' => %w[both prefix postfix],

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::FlipFlop do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::FlipFlop do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for inclusive flip-flops' do
     expect_offense(<<~RUBY)

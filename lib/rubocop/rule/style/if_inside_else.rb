@@ -79,7 +79,7 @@ module RuboCop
         end
 
         def allow_if_modifier?
-          cop_config['AllowIfModifier']
+          rule_config['AllowIfModifier']
         end
       end
     end

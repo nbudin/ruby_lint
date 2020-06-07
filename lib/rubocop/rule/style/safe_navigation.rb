@@ -174,7 +174,7 @@ module RuboCop
 
         def extract_parts_from_and(node)
           checked_variable, rhs = *node
-          if cop_config['ConvertCodeThatCanStartToReturnNil']
+          if rule_config['ConvertCodeThatCanStartToReturnNil']
             checked_variable =
               not_nil_check?(checked_variable) || checked_variable
           end
@@ -219,7 +219,7 @@ module RuboCop
           return true if unsafe_method?(method)
 
           method.each_ancestor(:send).any? do |ancestor|
-            break true unless config.for_cop('Lint/SafeNavigationChain')['Enabled']
+            break true unless config.for_rule('Lint/SafeNavigationChain')['Enabled']
 
             break true if unsafe_method?(ancestor)
             break true if nil_methods.include?(ancestor.method_name)

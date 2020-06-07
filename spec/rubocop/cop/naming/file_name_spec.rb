@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::FileName do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Naming::FileName do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new(
       { 'AllCops' => { 'Include' => includes },
-        described_class.badge.to_s => cop_config },
+        described_class.badge.to_s => rule_config },
       '/some/.rubocop.yml'
     )
   end
-  let(:cop_config) do
+  let(:rule_config) do
     {
       'IgnoreExecutableScripts' => true,
       'ExpectMatchingDefinition' => false,
@@ -32,7 +32,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '/some/dir/testCase.rb' }
 
     it 'reports an offense' do
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -40,7 +40,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '/some/dir/testCase' }
 
     it 'reports an offense' do
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '/some/dir/test_case.rb' }
 
     it 'reports an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -56,7 +56,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '/some/dir/test_case' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -64,7 +64,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '/some/dir/some_task.rake' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -72,7 +72,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { 'some/dir/some_view.html.slim_spec.rb' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -80,7 +80,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { 'some/dir/file?!.rb' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -88,7 +88,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { 'some/dir/some_file.xlsx+mobile.axlsx' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -100,14 +100,14 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     RUBY
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
 
     context 'when IgnoreExecutableScripts is disabled' do
-      let(:cop_config) { { 'IgnoreExecutableScripts' => false } }
+      let(:rule_config) { { 'IgnoreExecutableScripts' => false } }
 
       it 'reports an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
     end
   end
@@ -119,13 +119,13 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/some/dir/Gemfile' }
 
       it 'does not report an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
   end
 
   context 'when ExpectMatchingDefinition is true' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreExecutableScripts' => true,
         'ExpectMatchingDefinition' => true,
@@ -139,7 +139,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
           let(:filename) { "/some/dir/#{dir}/file/test_case.rb" }
 
           it 'registers an offense' do
-            expect(cop.offenses.size).to eq(1)
+            expect(rule.offenses.size).to eq(1)
             expect(cop.messages).to eq(['test_case.rb should define a class ' \
                                         'or module called `File::TestCase`.'])
           end
@@ -150,7 +150,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
         let(:filename) { '/some/other/dir/test_case.rb' }
 
         it 'registers an offense' do
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect(cop.messages).to eq(['test_case.rb should define a class ' \
                                       'or module called `TestCase`.'])
         end
@@ -162,9 +162,9 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/lib/rubocop/blah.rb' }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq(['blah.rb should define a class ' \
-                                    'or module called `Rubocop::Blah`.'])
+                                    'or module called `RuboCop::Blah`.'])
       end
     end
 
@@ -173,7 +173,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { 'a file.rb' }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(['The name of this source file (`a file.rb`) ' \
                   'should use snake_case.'])
@@ -186,7 +186,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
           let(:filename) { "/some/dir/#{dir}/a/b.rb" }
 
           it 'does not register an offense' do
-            expect(cop.offenses.empty?).to be(true)
+            expect(rule.offenses.empty?).to be(true)
           end
         end
 
@@ -194,7 +194,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
           let(:filename) { "/some/dir/#{dir}/c/b.rb" }
 
           it 'registers an offense' do
-            expect(cop.offenses.size).to eq(1)
+            expect(rule.offenses.size).to eq(1)
             expect(cop.messages).to eq(['b.rb should define a class ' \
                                         'or module called `C::B`.'])
           end
@@ -204,7 +204,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
           let(:filename) { "/some/dir/#{dir}/project/#{dir}/a/b.rb" }
 
           it 'does not register an offense' do
-            expect(cop.offenses.empty?).to be(true)
+            expect(rule.offenses.empty?).to be(true)
           end
         end
       end
@@ -213,7 +213,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
         let(:filename) { '/some/dir/b.rb' }
 
         it 'does not register an offense' do
-          expect(cop.offenses.empty?).to be(true)
+          expect(rule.offenses.empty?).to be(true)
         end
       end
 
@@ -221,7 +221,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
         let(:filename) { '/some/dir/e.rb' }
 
         it 'registers an offense' do
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect(cop.messages).to eq(['e.rb should define a class ' \
                                       'or module called `E`.'])
         end
@@ -278,7 +278,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
   end
 
   context 'when CheckDefinitionPathHierarchy is false' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreExecutableScripts' => true,
         'ExpectMatchingDefinition' => true,
@@ -296,7 +296,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/lib/image_collection.rb' }
 
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
 
@@ -310,7 +310,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/lib/image_collection.rb' }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq(['image_collection.rb should define a ' \
                                     'class or module called ' \
                                     '`ImageCollection`.'])
@@ -322,7 +322,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/lib/rubocop/foo.rb' }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq(['foo.rb should define a class ' \
                                     'or module called `Foo`.'])
       end
@@ -338,7 +338,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { '/lib/some/path/foo.rb' }
 
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
 
@@ -354,7 +354,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { 'lib/foo.rb' }
 
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
 
@@ -370,19 +370,19 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { 'lib/foo.rb' }
 
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
   end
 
   context 'when Regex is set' do
-    let(:cop_config) { { 'Regex' => /\A[aeiou]\z/i } }
+    let(:rule_config) { { 'Regex' => /\A[aeiou]\z/i } }
 
     context 'with a matching name' do
       let(:filename) { 'a.rb' }
 
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
 
@@ -390,7 +390,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
       let(:filename) { 'z.rb' }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq(
           ['`z.rb` should match `(?i-mx:\\A[aeiou]\\z)`.']
         )
@@ -399,7 +399,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
   end
 
   context 'with acronym namespace' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreExecutableScripts' => true,
         'ExpectMatchingDefinition' => true,
@@ -419,12 +419,12 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     RUBY
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   context 'with acronym class name' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreExecutableScripts' => true,
         'ExpectMatchingDefinition' => true,
@@ -442,12 +442,12 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     RUBY
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   context 'with include acronym name' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreExecutableScripts' => true,
         'ExpectMatchingDefinition' => true,
@@ -465,7 +465,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     RUBY
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -473,7 +473,7 @@ RSpec.describe Rubocop::Rule::Naming::FileName do
     let(:filename) { '.pryrc' }
 
     it 'does not report an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 end

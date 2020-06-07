@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::PreferredHashMethods, :config do
+RSpec.describe RuboCop::Rule::Style::PreferredHashMethods, :config do
   context 'with enforced `short` style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'short' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'short' } }
 
     it 'registers an offense for has_key? with one arg' do
       expect_offense(<<~RUBY)
@@ -49,7 +49,7 @@ RSpec.describe Rubocop::Rule::Style::PreferredHashMethods, :config do
   end
 
   context 'with enforced `verbose` style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'verbose' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'verbose' } }
 
     it 'registers an offense for key? with one arg' do
       expect_offense(<<~RUBY)

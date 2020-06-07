@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::FrozenStringLiteralComment, :config do
+RSpec.describe RuboCop::Rule::Style::FrozenStringLiteralComment, :config do
   context 'always' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'Enabled'       => true,
         'EnforcedStyle' => 'always' }
     end
@@ -291,7 +291,7 @@ RSpec.describe Rubocop::Rule::Style::FrozenStringLiteralComment, :config do
   end
 
   context 'never' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'Enabled'       => true,
         'EnforcedStyle' => 'never' }
     end
@@ -519,7 +519,7 @@ RSpec.describe Rubocop::Rule::Style::FrozenStringLiteralComment, :config do
   end
 
   context 'always_true' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'Enabled'       => true,
         'EnforcedStyle' => 'always_true' }
     end

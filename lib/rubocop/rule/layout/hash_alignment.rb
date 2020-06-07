@@ -268,7 +268,7 @@ module RuboCop
         end
 
         def ignore_hash_argument?(node)
-          case cop_config['EnforcedLastArgumentHashStyle']
+          case rule_config['EnforcedLastArgumentHashStyle']
           when 'always_inspect'  then false
           when 'always_ignore'   then true
           when 'ignore_explicit' then node.braces?
@@ -331,7 +331,7 @@ module RuboCop
         end
 
         def new_alignment(key)
-          formats = cop_config[key]
+          formats = rule_config[key]
           formats = [formats] if formats.is_a? String
 
           formats.uniq.map do |format|

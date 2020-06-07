@@ -95,7 +95,7 @@ module RuboCop
         end
 
         def consistent_multiline?
-          cop_config['ConsistentQuotesInMultiline']
+          rule_config['ConsistentQuotesInMultiline']
         end
 
         def check_multiline_quote_style(node, quote)

@@ -153,11 +153,11 @@ module RuboCop
         end
 
         def allow_unused_keyword_arguments?
-          cop_config['AllowUnusedKeywordArguments']
+          rule_config['AllowUnusedKeywordArguments']
         end
 
         def ignore_empty_blocks?
-          cop_config['IgnoreEmptyBlocks']
+          rule_config['IgnoreEmptyBlocks']
         end
       end
     end

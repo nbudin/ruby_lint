@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Formatter::JSONFormatter do
     Parser::Source::Range.new(source_buffer, 2, 10)
   end
   let(:offense) do
-    Rubocop::Rule::Offense.new(:convention, location,
+    RuboCop::Rule::Offense.new(:convention, location,
                               'This is message', 'CopName', :corrected)
   end
 
@@ -41,8 +41,8 @@ RSpec.describe RuboCop::Formatter::JSONFormatter do
       formatter.file_started(files[0], {})
       expect(summary[:offense_count]).to eq(0)
       formatter.file_finished(files[0], [
-                                instance_double(Rubocop::Rule::Offense),
-                                instance_double(Rubocop::Rule::Offense)
+                                instance_double(RuboCop::Rule::Offense),
+                                instance_double(RuboCop::Rule::Offense)
                               ])
       expect(summary[:offense_count]).to eq(2)
     end
@@ -85,8 +85,8 @@ RSpec.describe RuboCop::Formatter::JSONFormatter do
     let(:file) { File.expand_path('spec/spec_helper.rb') }
     let(:offenses) do
       [
-        instance_double(Rubocop::Rule::Offense),
-        instance_double(Rubocop::Rule::Offense)
+        instance_double(RuboCop::Rule::Offense),
+        instance_double(RuboCop::Rule::Offense)
       ]
     end
 

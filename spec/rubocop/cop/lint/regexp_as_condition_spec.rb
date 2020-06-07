@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RegexpAsCondition do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::RegexpAsCondition do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 

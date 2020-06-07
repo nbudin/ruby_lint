@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
   let(:extra_begin) { 'Extra empty line detected at module body beginning.' }
   let(:extra_end) { 'Extra empty line detected at module body end.' }
   let(:missing_begin) { 'Empty line missing at module body beginning.' }
@@ -9,7 +9,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
   let(:missing_type) { 'Empty line missing before first module definition' }
 
   context 'when EnforcedStyle is no_empty_lines' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
 
     it 'registers an offense for module body starting with a blank' do
       inspect_source(<<~RUBY)
@@ -51,7 +51,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
   end
 
   context 'when EnforcedStyle is empty_lines' do
-    let(:cop_config) { { 'EnforcedStyle' => 'empty_lines' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'empty_lines' } }
 
     it 'registers an offense for module body not starting or ending with a ' \
        'blank' do
@@ -99,7 +99,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundModuleBody, :config do
   end
 
   context 'when EnforcedStyle is empty_lines_except_namespace' do
-    let(:cop_config) { { 'EnforcedStyle' => 'empty_lines_except_namespace' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'empty_lines_except_namespace' } }
 
     context 'when only child is module' do
       it 'requires no empty lines for namespace' do

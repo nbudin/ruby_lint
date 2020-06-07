@@ -9,19 +9,19 @@ RSpec.describe RuboCop::Formatter::FileListFormatter, :config do
 
   describe '#file_finished' do
     it 'displays parsable text' do
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 0, 1),
         message: 'message 1'
       )
-      cop.add_offense(
+      rule.add_offense(
         nil,
         location: Parser::Source::Range.new(source_buffer, 9, 10),
         message: 'message 2'
       )
 
-      formatter.file_finished('test', cop.offenses)
-      formatter.file_finished('test_2', cop.offenses)
+      formatter.file_finished('test', rule.offenses)
+      formatter.file_finished('test_2', rule.offenses)
       expect(output.string).to eq "test\ntest_2\n"
     end
   end

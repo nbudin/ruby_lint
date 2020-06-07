@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::MethodParameterName, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Naming::MethodParameterName, :config do
+  let(:rule_config) do
     {
       'MinNameLength' => 3,
       'AllowNamesEndingInNumbers' => false
@@ -138,7 +138,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodParameterName, :config do
   end
 
   context 'with AllowedNames' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowedNames' => %w[foo1 foo2],
         'AllowNamesEndingInNumbers' => false
@@ -180,7 +180,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodParameterName, :config do
   end
 
   context 'with ForbiddenNames' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'ForbiddenNames' => %w[arg]
       }
@@ -205,7 +205,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodParameterName, :config do
   end
 
   context 'with AllowNamesEndingInNumbers' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowNamesEndingInNumbers' => true
       }

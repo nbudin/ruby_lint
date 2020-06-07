@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
-  let(:cop_config) { { 'AllowUnusedKeywordArguments' => false } }
+RSpec.describe RuboCop::Rule::Lint::UnusedBlockArgument, :config do
+  let(:rule_config) { { 'AllowUnusedKeywordArguments' => false } }
 
   shared_examples 'auto-correction' do |name, old_source, new_source|
     it "auto-corrects #{name}" do
@@ -177,7 +177,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
         end
 
         context 'when AllowUnusedKeywordArguments set' do
-          let(:cop_config) { { 'AllowUnusedKeywordArguments' => true } }
+          let(:rule_config) { { 'AllowUnusedKeywordArguments' => true } }
 
           it 'does not care' do
             expect_no_offenses(<<~RUBY)
@@ -203,7 +203,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
         end
 
         context 'when AllowUnusedKeywordArguments set' do
-          let(:cop_config) { { 'AllowUnusedKeywordArguments' => true } }
+          let(:rule_config) { { 'AllowUnusedKeywordArguments' => true } }
 
           it 'does not care' do
             expect_no_offenses(<<~RUBY)
@@ -285,7 +285,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
 
     context 'with an empty block' do
       context 'when not configured to ignore empty blocks' do
-        let(:cop_config) { { 'IgnoreEmptyBlocks' => false } }
+        let(:rule_config) { { 'IgnoreEmptyBlocks' => false } }
 
         it 'registers an offense' do
           message = 'Unused block argument - `bar`. You can omit the ' \
@@ -299,7 +299,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
       end
 
       context 'when configured to ignore empty blocks' do
-        let(:cop_config) { { 'IgnoreEmptyBlocks' => true } }
+        let(:rule_config) { { 'IgnoreEmptyBlocks' => true } }
 
         it 'does not register an offense' do
           expect_no_offenses('super { |bar| }')
@@ -358,7 +358,7 @@ RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
   end
 
   context 'when IgnoreEmptyBlocks config parameter is set' do
-    let(:cop_config) { { 'IgnoreEmptyBlocks' => true } }
+    let(:rule_config) { { 'IgnoreEmptyBlocks' => true } }
 
     it 'accepts an empty block with a single unused parameter' do
       expect_no_offenses('->(arg) { }')

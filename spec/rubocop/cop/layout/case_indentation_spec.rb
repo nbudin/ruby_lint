@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::CaseIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     merged = RuboCop::ConfigLoader
-             .default_configuration['Layout/CaseIndentation'].merge(cop_config)
+             .default_configuration['Layout/CaseIndentation'].merge(rule_config)
     RuboCop::Config.new('Layout/CaseIndentation' => merged,
                         'Layout/IndentationWidth' => { 'Width' => 2 })
   end
 
   context 'with EnforcedStyle: case' do
     context 'with IndentOneStep: false' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'case', 'IndentOneStep' => false }
       end
 
@@ -198,7 +198,7 @@ RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
     end
 
     context 'with IndentOneStep: true' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'case', 'IndentOneStep' => true }
       end
 
@@ -292,7 +292,7 @@ RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
       end
 
       context 'when indentation width is overridden for this cop only' do
-        let(:cop_config) do
+        let(:rule_config) do
           {
             'EnforcedStyle' => 'case',
             'IndentOneStep' => true,
@@ -316,7 +316,7 @@ RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
 
   context 'with EnforcedStyle: end' do
     context 'with IndentOneStep: false' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'end', 'IndentOneStep' => false }
       end
 
@@ -363,7 +363,7 @@ RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
     end
 
     context 'with IndentOneStep: true' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'end', 'IndentOneStep' => true }
       end
 
@@ -432,7 +432,7 @@ RSpec.describe Rubocop::Rule::Layout::CaseIndentation do
   end
 
   context 'when case is preceded by something else than whitespace' do
-    let(:cop_config) { {} }
+    let(:rule_config) { {} }
 
     it 'registers an offense and does not correct' do
       expect_offense(<<~RUBY)

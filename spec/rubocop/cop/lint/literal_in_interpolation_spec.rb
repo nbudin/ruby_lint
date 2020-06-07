@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::LiteralInInterpolation do
+  subject(:rule) { described_class.new }
 
   it 'accepts empty interpolation' do
     expect_no_offenses('"this is #{a} silly"')
@@ -22,12 +22,12 @@ RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
   shared_examples 'literal interpolation' do |literal, expected = literal|
     it "registers an offense for #{literal} in interpolation" do
       inspect_source(%("this is the \#{#{literal}}"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "has #{literal} as the message highlight" do
       inspect_source(%("this is the \#{#{literal}}"))
-      expect(cop.highlights).to eq([literal.to_s])
+      expect(rule.highlights).to eq([literal.to_s])
     end
 
     it "removes interpolation around #{literal}" do
@@ -67,7 +67,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
 
     it "registers an offense only for final #{literal} in interpolation" do
       inspect_source(%("this is the \#{#{literal};#{literal}}"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -119,7 +119,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
 
     it "registers an offense for interpolation after #{keyword}" do
       inspect_source(%("this is the \#{#{keyword}} \#{1}"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "auto-corrects literal interpolation after #{keyword}" do
@@ -136,12 +136,12 @@ RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
   shared_examples 'non-special string literal interpolation' do |string|
     it "registers an offense for #{string}" do
       inspect_source(%("this is the \#{#{string}}"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "has #{string} in the message highlight" do
       inspect_source(%("this is the \#{#{string}}"))
-      expect(cop.highlights).to eq([string])
+      expect(rule.highlights).to eq([string])
     end
 
     it "removes the interpolation and quotes around #{string}" do

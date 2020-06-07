@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceAroundEqualsInParameterDefault, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceAroundEqualsInParameterDefault, :config do
   context 'when EnforcedStyle is space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
     it 'registers an offense and corrects default value assignment ' \
       'without space' do
@@ -79,7 +79,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundEqualsInParameterDefault, :conf
   end
 
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'registers an offense and corrects default value assignment ' \
       'with space' do

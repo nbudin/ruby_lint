@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Semicolon, :config do
-  let(:cop_config) { { 'AllowAsExpressionSeparator' => false } }
+RSpec.describe RuboCop::Rule::Style::Semicolon, :config do
+  let(:rule_config) { { 'AllowAsExpressionSeparator' => false } }
 
   it 'registers an offense for a single expression' do
     expect_offense(<<~RUBY)
@@ -114,7 +114,7 @@ RSpec.describe Rubocop::Rule::Style::Semicolon, :config do
   end
 
   context 'when AllowAsExpressionSeparator is true' do
-    let(:cop_config) { { 'AllowAsExpressionSeparator' => true } }
+    let(:rule_config) { { 'AllowAsExpressionSeparator' => true } }
 
     it 'accepts several expressions' do
       expect_no_offenses('puts "this is a test"; puts "So is this"')

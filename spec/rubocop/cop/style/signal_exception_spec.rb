@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SignalException, :config do
+RSpec.describe RuboCop::Rule::Style::SignalException, :config do
   context 'when enforced style is `semantic`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'semantic' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'semantic' } }
 
     it 'registers an offense for raise in begin section' do
       expect_offense(<<~RUBY)
@@ -128,7 +128,7 @@ RSpec.describe Rubocop::Rule::Style::SignalException, :config do
 
     it 'registers an offense for raise not in a begin/rescue/end' do
       expect_offense(<<~RUBY)
-        case cop_config['EnforcedStyle']
+        case rule_config['EnforcedStyle']
         when 'single_quotes' then true
         when 'double_quotes' then false
         else raise 'Unknown StringLiterals style'
@@ -200,7 +200,7 @@ RSpec.describe Rubocop::Rule::Style::SignalException, :config do
   end
 
   context 'when enforced style is `raise`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'only_raise' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'only_raise' } }
 
     it 'registers an offense for fail in begin section' do
       expect_offense(<<~RUBY)
@@ -289,7 +289,7 @@ RSpec.describe Rubocop::Rule::Style::SignalException, :config do
   end
 
   context 'when enforced style is `fail`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'only_fail' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'only_fail' } }
 
     it 'registers an offense for raise in begin section' do
       expect_offense(<<~RUBY)

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::HeredocDelimiterNaming, :config do
+RSpec.describe RuboCop::Rule::Naming::HeredocDelimiterNaming, :config do
   let(:config) do
-    RuboCop::Config.new(described_class.badge.to_s => cop_config)
+    RuboCop::Config.new(described_class.badge.to_s => rule_config)
   end
 
-  let(:cop_config) do
+  let(:rule_config) do
     { 'ForbiddenDelimiters' => %w[END] }
   end
 

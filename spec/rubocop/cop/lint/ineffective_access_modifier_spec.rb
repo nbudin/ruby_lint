@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::IneffectiveAccessModifier do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::IneffectiveAccessModifier do
+  subject(:rule) { described_class.new }
 
   context 'when `private` is applied to a class method' do
     it 'registers an offense' do

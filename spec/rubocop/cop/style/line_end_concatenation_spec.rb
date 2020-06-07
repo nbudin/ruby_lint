@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::LineEndConcatenation do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::LineEndConcatenation do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for string concat at line end' do
     expect_offense(<<~RUBY)
@@ -72,7 +72,7 @@ RSpec.describe Rubocop::Rule::Style::LineEndConcatenation do
       "foo" <<
       "bar"
     RUBY
-    expect(cop.offenses.size).to eq(3)
+    expect(rule.offenses.size).to eq(3)
   end
 
   it 'accepts string concat on the same line' do

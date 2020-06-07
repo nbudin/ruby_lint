@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Generator do
+RSpec.describe RuboCop::Rule::Generator do
   subject(:generator) do
     described_class.new(cop_identifier, 'your_id', output: stdout)
   end
@@ -111,8 +111,8 @@ RSpec.describe Rubocop::Rule::Generator do
       generated_source = <<~SPEC
         # frozen_string_literal: true
 
-        RSpec.describe Rubocop::Rule::Style::FakeCop do
-          subject(:cop) { described_class.new(config) }
+        RSpec.describe RuboCop::Rule::Style::FakeCop do
+          subject(:rule) { described_class.new(config) }
 
           let(:config) { RuboCop::Config.new }
 
@@ -321,10 +321,10 @@ RSpec.describe Rubocop::Rule::Generator do
     include FileHelper
 
     around do |example|
-      new_global = Rubocop::Rule::Registry.new(
-        [Rubocop::Rule::InternalAffairs::NodeDestructuring]
+      new_global = RuboCop::Rule::Registry.new(
+        [RuboCop::Rule::InternalAffairs::NodeDestructuring]
       )
-      Rubocop::Rule::Registry.with_temporary_global(new_global) { example.run }
+      RuboCop::Rule::Registry.with_temporary_global(new_global) { example.run }
     end
 
     let(:config) do

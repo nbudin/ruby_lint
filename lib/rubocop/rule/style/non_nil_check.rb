@@ -97,7 +97,7 @@ module RuboCop
         end
 
         def include_semantic_changes?
-          cop_config['IncludeSemanticChanges']
+          rule_config['IncludeSemanticChanges']
         end
 
         def autocorrect_comparison(node)

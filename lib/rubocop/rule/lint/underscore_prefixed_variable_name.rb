@@ -74,7 +74,7 @@ module RuboCop
         def allowed_keyword_block_argument?(variable)
           variable.block_argument? &&
             variable.keyword_argument? &&
-            cop_config['AllowKeywordBlockArguments']
+            rule_config['AllowKeywordBlockArguments']
         end
       end
     end

@@ -67,7 +67,7 @@ module RuboCop
         end
 
         def allow_implicit_namespaces
-          cop_config['AllowedImplicitNamespaces'] || []
+          rule_config['AllowedImplicitNamespaces'] || []
         end
       end
     end

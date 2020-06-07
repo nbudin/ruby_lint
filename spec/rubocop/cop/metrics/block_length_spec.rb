@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
-  let(:cop_config) { { 'Max' => 2, 'CountComments' => false } }
+RSpec.describe RuboCop::Rule::Metrics::BlockLength, :config do
+  let(:rule_config) { { 'Max' => 2, 'CountComments' => false } }
 
   shared_examples 'ignoring an offense on an excluded method' do |excluded|
-    before { cop_config['ExcludedMethods'] = [excluded] }
+    before { rule_config['ExcludedMethods'] = [excluded] }
 
     it 'still rejects other methods with long blocks' do
       expect_offense(<<~RUBY)
@@ -47,7 +47,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
         a = 3
       end
     RUBY
-    offense = cop.offenses.first
+    offense = rule.offenses.first
     expect(offense.location.first_line).to eq(1)
     expect(offense.location.last_line).to eq(5)
   end
@@ -160,7 +160,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
   end
 
   context 'when CountComments is enabled' do
-    before { cop_config['CountComments'] = true }
+    before { rule_config['CountComments'] = true }
 
     it 'also counts commented lines' do
       expect_offense(<<~RUBY)
@@ -181,7 +181,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
                     'Gem::Specification.new')
 
     context 'when receiver contains whitespaces' do
-      before { cop_config['ExcludedMethods'] = ['Foo::Bar.baz'] }
+      before { rule_config['ExcludedMethods'] = ['Foo::Bar.baz'] }
 
       it 'ignores whitespaces' do
         expect_no_offenses(<<~RUBY)
@@ -196,7 +196,7 @@ RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
     end
 
     context 'when a method is ignored, but receiver is a module' do
-      before { cop_config['ExcludedMethods'] = ['baz'] }
+      before { rule_config['ExcludedMethods'] = ['baz'] }
 
       it 'does not report an offense' do
         expect_no_offenses(<<~RUBY)

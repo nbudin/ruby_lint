@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::TrailingUnderscoreVariable do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::TrailingUnderscoreVariable do
+  subject(:rule) { described_class.new(config) }
 
   shared_examples 'common functionality' do
     it 'registers an offense when the last variable of parallel assignment ' \

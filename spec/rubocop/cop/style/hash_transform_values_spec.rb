@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::HashTransformValues, :config do
+RSpec.describe RuboCop::Rule::Style::HashTransformValues, :config do
   context 'with inline block' do
     it 'flags each_with_object when transform_values could be used' do
       expect_offense(<<~RUBY)

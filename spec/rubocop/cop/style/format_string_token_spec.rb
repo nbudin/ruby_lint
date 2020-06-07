@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::FormatStringToken, :config do
+RSpec.describe RuboCop::Rule::Style::FormatStringToken, :config do
   let(:enforced_style) { :annotated }
 
-  let(:cop_config) do
+  let(:rule_config) do
     {
       'EnforcedStyle' => enforced_style,
       'SupportedStyles' => %i[annotated template unannotated]
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::Style::FormatStringToken, :config do
           HEREDOC
         RUBY
 
-        expect(cop.highlights).to eql([bad_style1])
+        expect(rule.highlights).to eql([bad_style1])
       end
 
       it 'supports dynamic string with interpolation' do
@@ -31,7 +31,7 @@ RSpec.describe Rubocop::Rule::Style::FormatStringToken, :config do
           %("a\#{b}#{good} c\#{d}#{bad_style1} e\#{f}")
         )
 
-        expect(cop.highlights).to eql([bad_style1])
+        expect(rule.highlights).to eql([bad_style1])
       end
 
       it 'sets the enforced style to annotated after inspecting "%<a>s"' do
@@ -119,7 +119,7 @@ RSpec.describe Rubocop::Rule::Style::FormatStringToken, :config do
 
   it 'handles dstrs' do
     inspect_source('"c#{b}%{template}"')
-    expect(cop.highlights).to eql(['%{template}'])
+    expect(rule.highlights).to eql(['%{template}'])
   end
 
   it 'ignores http links' do

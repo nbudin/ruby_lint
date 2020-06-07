@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RedundantSplatExpansion do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::RedundantSplatExpansion do
+  subject(:rule) { described_class.new }
 
   let(:message) { 'Replace splat expansion with comma separated values.' }
 
@@ -37,7 +37,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantSplatExpansion do
       inspect_source("a = *#{literal}")
 
       expect(cop.messages).to eq([message])
-      expect(cop.highlights).to eq(["*#{literal}"])
+      expect(rule.highlights).to eq(["*#{literal}"])
     end
   end
 
@@ -48,7 +48,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantSplatExpansion do
 
         expect(cop.messages)
           .to eq(['Pass array contents as separate arguments.'])
-        expect(cop.highlights).to eq(["*#{literal}"])
+        expect(rule.highlights).to eq(["*#{literal}"])
       end
     end
 
@@ -61,7 +61,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantSplatExpansion do
         inspect_source("array.push(*#{literal})")
 
         expect(cop.messages).to eq([message])
-        expect(cop.highlights).to eq(["*#{literal}"])
+        expect(rule.highlights).to eq(["*#{literal}"])
       end
     end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstArrayElementIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::FirstArrayElementIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     supported_styles = {
@@ -9,12 +9,12 @@ RSpec.describe Rubocop::Rule::Layout::FirstArrayElementIndentation do
                               align_brackets]
     }
     RuboCop::Config.new('Layout/FirstArrayElementIndentation' =>
-                        cop_config.merge(supported_styles).merge(
+                        rule_config.merge(supported_styles).merge(
                           'IndentationWidth' => cop_indent
                         ),
                         'Layout/IndentationWidth' => { 'Width' => 2 })
   end
-  let(:cop_config) { { 'EnforcedStyle' => 'special_inside_parentheses' } }
+  let(:rule_config) { { 'EnforcedStyle' => 'special_inside_parentheses' } }
   let(:cop_indent) { nil } # use indent from Layout/IndentationWidth
 
   context 'when array is operand' do
@@ -265,7 +265,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstArrayElementIndentation do
       end
 
       context 'and EnforcedStyle is consistent' do
-        let(:cop_config) { { 'EnforcedStyle' => 'consistent' } }
+        let(:rule_config) { { 'EnforcedStyle' => 'consistent' } }
 
         it 'accepts normal indentation for first argument' do
           expect_no_offenses(<<~RUBY)
@@ -345,7 +345,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstArrayElementIndentation do
   end
 
   context 'when EnforcedStyle is align_brackets' do
-    let(:cop_config) { { 'EnforcedStyle' => 'align_brackets' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'align_brackets' } }
 
     it 'accepts correctly indented first element' do
       expect_no_offenses(<<~RUBY)

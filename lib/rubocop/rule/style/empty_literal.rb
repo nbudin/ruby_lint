@@ -63,7 +63,7 @@ module RuboCop
         end
 
         def string_literals_config
-          config.for_cop('Style/StringLiterals')
+          config.for_rule('Style/StringLiterals')
         end
 
         def first_argument_unparenthesized?(node)

@@ -82,7 +82,7 @@ module RuboCop
         def on_send(node)
           return unless node.access_modifier?
           return if node.parent.pair_type?
-          return if cop_config['AllowModifiersOnSymbols'] &&
+          return if rule_config['AllowModifiersOnSymbols'] &&
                     access_modifier_with_symbol?(node)
 
           if offense?(node)

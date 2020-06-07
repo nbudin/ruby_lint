@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::InverseMethods do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::InverseMethods do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new(
@@ -89,14 +89,14 @@ RSpec.describe Rubocop::Rule::Style::InverseMethods do
       inspect_source("!#{variable}.none?")
 
       expect(cop.messages).to eq(['Use `any?` instead of inverting `none?`.'])
-      expect(cop.highlights).to eq(["!#{variable}.none?"])
+      expect(rule.highlights).to eq(["!#{variable}.none?"])
     end
 
     it "registers an offense for calling not #{variable}.none?" do
       inspect_source("not #{variable}.none?")
 
       expect(cop.messages).to eq(['Use `any?` instead of inverting `none?`.'])
-      expect(cop.highlights).to eq(["not #{variable}.none?"])
+      expect(rule.highlights).to eq(["not #{variable}.none?"])
     end
 
     it "corrects !#{variable}.none? to #{variable}.any?" do

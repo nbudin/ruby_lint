@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
+RSpec.describe RuboCop::Rule::Style::StringLiterals, :config do
   context 'configured with single quotes preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'single_quotes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'single_quotes' } }
 
     it 'registers offense for double quotes when single quotes suffice' do
       expect_offense(<<~'RUBY')
@@ -167,7 +167,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
   end
 
   context 'configured with double quotes preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'double_quotes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'double_quotes' } }
 
     it 'registers offense for single quotes when double quotes would ' \
       'be equivalent' do
@@ -272,7 +272,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
   end
 
   context 'when configured with a bad value' do
-    let(:cop_config) { { 'EnforcedStyle' => 'other' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'other' } }
 
     it 'fails' do
       expect { inspect_source('a = "b"') }
@@ -282,7 +282,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
 
   context 'when ConsistentQuotesInMultiline is true' do
     context 'and EnforcedStyle is single_quotes' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'ConsistentQuotesInMultiline' => true,
           'EnforcedStyle' => 'single_quotes'
@@ -361,7 +361,7 @@ RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
     end
 
     context 'and EnforcedStyle is double_quotes' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'ConsistentQuotesInMultiline' => true,
           'EnforcedStyle' => 'double_quotes'

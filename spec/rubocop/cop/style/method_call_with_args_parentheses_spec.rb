@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
+RSpec.describe RuboCop::Rule::Style::MethodCallWithArgsParentheses, :config do
   context 'when EnforcedStyle is require_parentheses (default)' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'IgnoredMethods' => %w[puts] }
     end
 
@@ -252,7 +252,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'when inspecting macro methods' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'IgnoreMacros' => 'true' }
       end
 
@@ -278,7 +278,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'IgnoredPatterns' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'IgnoredPatterns' => %w[^assert ^refute] }
       end
 
@@ -295,7 +295,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
   end
 
   context 'when EnforcedStyle is omit_parentheses' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'omit_parentheses' }
     end
 
@@ -620,7 +620,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'allowing parenthesis in chaining' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'omit_parentheses',
           'AllowParenthesesInChaining' => true
@@ -669,7 +669,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'allowing parens in multi-line calls' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'omit_parentheses',
           'AllowParenthesesInMultilineCall' => true
@@ -696,7 +696,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'allowing parens in camel-case methods' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'omit_parentheses',
           'AllowParenthesesInCamelCaseMethod' => true
@@ -710,7 +710,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
   end
 
   context 'when inspecting macro methods with IncludedMacros' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IgnoreMacros' => 'true',
         'IncludedMacros' => ['bar']
@@ -778,7 +778,7 @@ RSpec.describe Rubocop::Rule::Style::MethodCallWithArgsParentheses, :config do
     end
 
     context 'for a macro in both IncludedMacros and IgnoredMethods' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'IgnoreMacros' => 'true',
           'IncludedMacros' => ['bar'],

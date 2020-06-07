@@ -192,10 +192,10 @@ RSpec.describe RuboCop::Runner, :isolated_environment do
     subject(:runner) do
       runner_class = Class.new(RuboCop::Runner) do
         def mobilized_cop_classes(_config)
-          Rubocop::Rule::Registry.new(
+          RuboCop::Rule::Registry.new(
             [
-              Rubocop::Rule::Test::ClassMustBeAModuleCop,
-              Rubocop::Rule::Test::ModuleMustBeAClassCop
+              RuboCop::Rule::Test::ClassMustBeAModuleCop,
+              RuboCop::Rule::Test::ModuleMustBeAClassCop
             ]
           )
         end

@@ -7,7 +7,7 @@ module RuboCop
       private
 
       def ignore_cop_directives?
-        config.for_cop('Layout/LineLength')['IgnoreCopDirectives']
+        config.for_rule('Layout/LineLength')['IgnoreCopDirectives']
       end
 
       def directive_on_source_line?(line_index)
@@ -22,7 +22,7 @@ module RuboCop
       end
 
       def allow_uri?
-        config.for_cop('Layout/LineLength')['AllowURI']
+        config.for_rule('Layout/LineLength')['AllowURI']
       end
 
       def allowed_uri_position?(line, uri_range)
@@ -63,14 +63,14 @@ module RuboCop
       end
 
       def tab_indentation_width
-        config.for_cop('Layout/IndentationStyle')['IndentationWidth'] ||
-          config.for_cop('Layout/IndentationWidth')['Width']
+        config.for_rule('Layout/IndentationStyle')['IndentationWidth'] ||
+          config.for_rule('Layout/IndentationWidth')['Width']
       end
 
       def uri_regexp
         @uri_regexp ||=
           URI::DEFAULT_PARSER
-          .make_regexp(config.for_cop('Layout/LineLength')['URISchemes'])
+          .make_regexp(config.for_rule('Layout/LineLength')['URISchemes'])
       end
 
       def valid_uri?(uri_ish_string)

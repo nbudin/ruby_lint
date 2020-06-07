@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::BlockParameterName, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Naming::BlockParameterName, :config do
+  let(:rule_config) do
     {
       'MinNameLength' => 2,
       'AllowNamesEndingInNumbers' => false
@@ -63,7 +63,7 @@ RSpec.describe Rubocop::Rule::Naming::BlockParameterName, :config do
   end
 
   context 'with AllowedNames' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowedNames' => %w[foo1 foo2],
         'AllowNamesEndingInNumbers' => false
@@ -85,7 +85,7 @@ RSpec.describe Rubocop::Rule::Naming::BlockParameterName, :config do
   end
 
   context 'with ForbiddenNames' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'ForbiddenNames' => %w[arg]
       }
@@ -106,7 +106,7 @@ RSpec.describe Rubocop::Rule::Naming::BlockParameterName, :config do
   end
 
   context 'with AllowNamesEndingInNumbers' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowNamesEndingInNumbers' => true
       }

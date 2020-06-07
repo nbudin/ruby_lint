@@ -38,25 +38,25 @@ RSpec.shared_context 'isolated environment', :isolated_environment do
   end
 end
 
-# This context assumes nothing and defines `cop`, among others.
+# This context assumes nothing and defines `rule`, among others.
 RSpec.shared_context 'config', :config do # rubocop:disable Metrics/BlockLength
   ### Meant to be overridden at will
 
   let(:source) { 'code = {some: :ruby}' }
 
-  let(:cop_class) do
-    if described_class.is_a?(Class) && described_class < Rubocop::Rule::Rule
+  let(:rule_class) do
+    if described_class.is_a?(Class) && described_class < RuboCop::Rule::Rule
       described_class
     else
-      Rubocop::Rule::Rule
+      RuboCop::Rule::Rule
     end
   end
 
-  let(:cop_config) { {} }
+  let(:rule_config) { {} }
 
-  let(:other_cops) { {} }
+  let(:other_rules) { {} }
 
-  let(:cop_options) { {} }
+  let(:rule_options) { {} }
 
   ### Utilities
 
@@ -71,32 +71,32 @@ RSpec.shared_context 'config', :config do # rubocop:disable Metrics/BlockLength
 
   let(:source_buffer) { processed_source.buffer }
 
-  let(:all_cops_config) do
+  let(:all_rules_config) do
     rails = { 'TargetRubyVersion' => ruby_version }
     rails['TargetRailsVersion'] = rails_version if rails_version
     rails
   end
 
-  let(:cur_cop_config) do
+  let(:cur_rule_config) do
     RuboCop::ConfigLoader
-      .default_configuration.for_cop(cop_class)
+      .default_configuration.for_rule(rule_class)
       .merge({
                'Enabled' => true, # in case it is 'pending'
                'AutoCorrect' => true # in case defaults set it to false
              })
-      .merge(cop_config)
+      .merge(rule_config)
   end
 
   let(:config) do
-    hash = { 'AllCops' => all_cops_config,
-             cop_class.cop_name => cur_cop_config }.merge!(other_cops)
+    hash = { 'AllRules' => all_rules_config,
+             rule_class.rule_name => cur_rule_config }.merge!(other_rules)
 
     RuboCop::Config.new(hash, "#{Dir.pwd}/.rubocop.yml")
   end
 
-  let(:cop) do
-    cop_class.new(config, cop_options)
-             .tap { |cop| cop.processed_source = processed_source }
+  let(:rule) do
+    rule_class.new(config, rule_options)
+             .tap { |rule| rule.processed_source = processed_source }
   end
 end
 

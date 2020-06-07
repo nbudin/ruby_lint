@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLines do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::EmptyLines do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for consecutive empty lines' do
     inspect_source(<<~RUBY)
@@ -11,7 +11,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLines do
 
       top
     RUBY
-    expect(cop.offenses.size).to eq(2)
+    expect(rule.offenses.size).to eq(2)
   end
 
   it 'auto-corrects consecutive empty lines' do

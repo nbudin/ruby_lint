@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::MissingCopEnableDirective, :config do
+RSpec.describe RuboCop::Rule::Lint::MissingCopEnableDirective, :config do
   context 'when the maximum range size is infinite' do
-    let(:cop_config) { { 'MaximumRangeSize' => Float::INFINITY } }
+    let(:rule_config) { { 'MaximumRangeSize' => Float::INFINITY } }
 
     it 'registers an offense when a cop is disabled and never re-enabled' do
       expect_offense(<<~RUBY)
@@ -24,7 +24,7 @@ RSpec.describe Rubocop::Rule::Lint::MissingCopEnableDirective, :config do
   end
 
   context 'when the maximum range size is finite' do
-    let(:cop_config) { { 'MaximumRangeSize' => 2 } }
+    let(:rule_config) { { 'MaximumRangeSize' => 2 } }
 
     it 'registers an offense when a cop is disabled for too many lines' do
       expect_offense(<<~RUBY)

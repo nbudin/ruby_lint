@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RandOne do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::RandOne do
+  subject(:rule) { described_class.new }
 
   shared_examples 'offenses' do |source|
     describe source do
@@ -13,7 +13,7 @@ RSpec.describe Rubocop::Rule::Lint::RandOne do
             'Perhaps you meant `rand(2)` or `rand`?'
           ]
         )
-        expect(cop.highlights).to eq([source])
+        expect(rule.highlights).to eq([source])
       end
     end
   end

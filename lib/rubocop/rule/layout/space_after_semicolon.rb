@@ -19,7 +19,7 @@ module RuboCop
         end
 
         def space_style_before_rcurly
-          cfg = config.for_cop('Layout/SpaceInsideBlockBraces')
+          cfg = config.for_rule('Layout/SpaceInsideBlockBraces')
           cfg['EnforcedStyle'] || 'space'
         end
 

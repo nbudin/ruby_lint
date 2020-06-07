@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Offense do
+RSpec.describe RuboCop::Rule::Offense do
   subject(:offense) do
     described_class.new(:convention, location, 'message', 'CopName', :corrected)
   end

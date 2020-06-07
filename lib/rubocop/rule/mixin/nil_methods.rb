@@ -18,7 +18,7 @@ module RuboCop
       end
 
       def allowed_methods
-        cop_config['AllowedMethods'].map(&:to_sym)
+        rule_config['AllowedMethods'].map(&:to_sym)
       end
     end
   end

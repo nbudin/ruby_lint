@@ -92,19 +92,19 @@ module RuboCop
       end
 
       def allowed_names
-        cop_config['AllowedNames']
+        rule_config['AllowedNames']
       end
 
       def forbidden_names
-        cop_config['ForbiddenNames']
+        rule_config['ForbiddenNames']
       end
 
       def allow_nums
-        cop_config['AllowNamesEndingInNumbers']
+        rule_config['AllowNamesEndingInNumbers']
       end
 
       def min_length
-        cop_config['MinNameLength']
+        rule_config['MinNameLength']
       end
     end
   end

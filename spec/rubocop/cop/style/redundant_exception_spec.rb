@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantException do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantException do
+  subject(:rule) { described_class.new }
 
   shared_examples 'common behavior' do |keyword|
     it "reports an offense for a #{keyword} with RuntimeError" do

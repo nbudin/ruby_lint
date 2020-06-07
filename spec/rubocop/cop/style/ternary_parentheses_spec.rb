@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
+RSpec.describe RuboCop::Rule::Style::TernaryParentheses, :config do
   before do
     inspect_source(source)
   end
@@ -17,7 +17,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
       let(:source) { code }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq([message])
       end
 
@@ -28,7 +28,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
 
         it 'claims to auto-correct' do
           autocorrect_source(code)
-          expect(cop.offenses.last.status).to eq(:corrected)
+          expect(rule.offenses.last.status).to eq(:corrected)
         end
       else
         it 'does not auto-correct' do
@@ -37,7 +37,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
 
         it 'does not claim to auto-correct' do
           autocorrect_source(code)
-          expect(cop.offenses.last.status).to eq(:uncorrected)
+          expect(rule.offenses.last.status).to eq(:uncorrected)
         end
       end
     end
@@ -47,12 +47,12 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   shared_examples 'safe assignment disabled' do |style|
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => style,
         'AllowSafeAssignment' => false
@@ -70,7 +70,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
   end
 
   context 'when configured to enforce parentheses inclusion' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_parentheses' } }
 
     let(:message) { 'Use parentheses for ternary conditions.' }
 
@@ -137,7 +137,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
   end
 
   context 'when configured to enforce parentheses omission' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_no_parentheses' } }
 
     let(:message) { 'Omit parentheses for ternary conditions.' }
 
@@ -254,7 +254,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
   end
 
   context 'configured for parentheses on complex and there are parens' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'require_parentheses_when_complex' }
     end
 
@@ -350,7 +350,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
   end
 
   context 'configured for parentheses on complex and there are no parens' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'require_parentheses_when_complex' }
     end
 
@@ -414,7 +414,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
     let(:redundant_parens_enabled) { true }
 
     context 'when `EnforcedStyle: require_parentheses`' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'require_parentheses' }
       end
 
@@ -422,7 +422,7 @@ RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
     end
 
     context 'when `EnforcedStyle: require_parentheses_when_complex`' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'require_parentheses_when_complex' }
       end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Gemspec::DuplicatedAssignment, :config do
+RSpec.describe RuboCop::Rule::Gemspec::DuplicatedAssignment, :config do
   it 'registers an offense when using `name=` twice' do
     expect_offense(<<~RUBY)
       Gem::Specification.new do |spec|

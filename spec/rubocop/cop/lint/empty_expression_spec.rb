@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::EmptyExpression do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::EmptyExpression do
+  subject(:rule) { described_class.new }
 
   context 'when used as a standalone expression' do
     it 'registers an offense' do

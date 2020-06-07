@@ -106,7 +106,7 @@ module RuboCop
         end
 
         def indent_one_step?
-          cop_config['IndentOneStep']
+          rule_config['IndentOneStep']
         end
 
         def indentation_width
@@ -148,7 +148,7 @@ module RuboCop
 
         def replacement(node)
           case_node = node.each_ancestor(:case).first
-          base_type = cop_config[style_parameter_name] == 'end' ? :end : :case
+          base_type = rule_config[style_parameter_name] == 'end' ? :end : :case
 
           column = base_column(case_node, base_type)
           column += indentation_width

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::AsciiComments do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::AsciiComments do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for a comment with non-ascii chars' do
     expect_offense(<<~RUBY)
@@ -22,7 +22,7 @@ RSpec.describe Rubocop::Rule::Style::AsciiComments do
   end
 
   context 'when certain non-ascii chars are allowed', :config do
-    let(:cop_config) { { 'AllowedChars' => ['∂'] } }
+    let(:rule_config) { { 'AllowedChars' => ['∂'] } }
 
     it 'accepts comment with allowed non-ascii chars' do
       expect_no_offenses('# foo ∂ bar')

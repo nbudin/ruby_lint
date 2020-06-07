@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::PerlBackrefs do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::PerlBackrefs do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for $1' do
     expect_offense(<<~RUBY)

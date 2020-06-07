@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::DotPosition, :config do
+RSpec.describe RuboCop::Rule::Layout::DotPosition, :config do
   context 'Leading dots style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'leading' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'leading' } }
 
     it 'registers an offense for trailing dot in multi-line call' do
       expect_offense(<<~RUBY)
@@ -110,7 +110,7 @@ RSpec.describe Rubocop::Rule::Layout::DotPosition, :config do
   end
 
   context 'Trailing dots style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'trailing' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'trailing' } }
 
     it 'registers an offense for leading dot in multi-line call' do
       expect_offense(<<~RUBY)

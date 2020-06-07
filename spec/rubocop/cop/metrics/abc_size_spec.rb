@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
+RSpec.describe RuboCop::Rule::Metrics::AbcSize, :config do
   context 'when Max is 0' do
-    let(:cop_config) { { 'Max' => 0 } }
+    let(:rule_config) { { 'Max' => 0 } }
 
     it 'accepts an empty method' do
       expect_no_offenses(<<~RUBY)
@@ -78,7 +78,7 @@ RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
     end
 
     context 'when method is in list of ignored methods' do
-      let(:cop_config) { { 'Max' => 0, 'IgnoredMethods' => ['foo'] } }
+      let(:rule_config) { { 'Max' => 0, 'IgnoredMethods' => ['foo'] } }
 
       it 'does not register an offense when defining an instance method' do
         expect_no_offenses(<<~RUBY)
@@ -107,7 +107,7 @@ RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
   end
 
   context 'when Max is 2' do
-    let(:cop_config) { { 'Max' => 2 } }
+    let(:rule_config) { { 'Max' => 2 } }
 
     it 'accepts two assignments' do
       expect_no_offenses(<<~RUBY)
@@ -120,7 +120,7 @@ RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
   end
 
   context 'when Max is 2.3' do
-    let(:cop_config) { { 'Max' => 2.3 } }
+    let(:rule_config) { { 'Max' => 2.3 } }
 
     it 'accepts a total score of 2.24' do
       expect_no_offenses(<<~RUBY)
@@ -139,7 +139,7 @@ RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
     1000.3  => '<1000, 1000, 4000> 4243/1000'
   }.each do |max, presentation|
     context "when Max is #{max}" do
-      let(:cop_config) { { 'Max' => max } }
+      let(:rule_config) { { 'Max' => max } }
 
       it "reports size and max as #{presentation}" do
         # Build an amount of code large enough to register an offense.

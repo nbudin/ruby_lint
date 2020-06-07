@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::OrderedMagicComments, :config do
+RSpec.describe RuboCop::Rule::Lint::OrderedMagicComments, :config do
   it 'registers an offense and corrects when an `encoding` magic comment ' \
     'does not precede all other magic comments' do
     expect_offense(<<~RUBY)

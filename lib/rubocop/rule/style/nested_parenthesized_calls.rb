@@ -59,7 +59,7 @@ module RuboCop
         end
 
         def allowed_methods
-          cop_config['AllowedMethods'] || []
+          rule_config['AllowedMethods'] || []
         end
       end
     end

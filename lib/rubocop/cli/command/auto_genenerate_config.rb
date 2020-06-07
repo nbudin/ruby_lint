@@ -54,7 +54,7 @@ module RuboCop
         end
 
         def line_length_cop(config)
-          config.for_cop('Layout/LineLength')
+          config.for_rule('Layout/LineLength')
         end
 
         # Do an initial run with only Layout/LineLength so that cops that

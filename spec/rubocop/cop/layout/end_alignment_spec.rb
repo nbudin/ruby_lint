@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Layout::EndAlignment, :config do
+  let(:rule_config) do
     { 'EnforcedStyleAlignWith' => 'keyword', 'AutoCorrect' => true }
   end
 
@@ -90,7 +90,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
   end
 
   context 'when EnforcedStyleAlignWith is start_of_line' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'start_of_line', 'AutoCorrect' => true }
     end
 
@@ -228,7 +228,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
   context 'when EnforcedStyleAlignWith is variable' do
     # same as 'EnforcedStyleAlignWith' => 'keyword',
     # as long as assignments or `case` are not involved
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'variable', 'AutoCorrect' => true }
     end
 
@@ -343,7 +343,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
 
   context 'case as argument' do
     context 'when EnforcedStyleAlignWith is keyword' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyleAlignWith' => 'keyword', 'AutoCorrect' => true }
       end
 
@@ -357,7 +357,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
     end
 
     context 'when EnforcedStyleAlignWith is variable' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyleAlignWith' => 'variable', 'AutoCorrect' => true }
       end
 
@@ -371,7 +371,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
     end
 
     context 'when EnforcedStyleAlignWith is start_of_line' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyleAlignWith' => 'start_of_line', 'AutoCorrect' => true }
       end
 
@@ -419,7 +419,7 @@ RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
     end
 
     context 'when EnforcedStyleAlignWith is variable' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyleAlignWith' => 'variable', 'AutoCorrect' => true }
       end
 

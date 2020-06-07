@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::IfUnlessModifierOfIfUnless do
+RSpec.describe RuboCop::Rule::Style::IfUnlessModifierOfIfUnless do
   include StatementModifierHelper
 
-  subject(:cop) { described_class.new }
+  subject(:rule) { described_class.new }
 
   it 'provides a good error message' do
     expect_offense(<<~RUBY)

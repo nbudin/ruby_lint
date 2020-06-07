@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::StringMethods, :config do
-  let(:cop_config) { { 'intern' => 'to_sym' } }
+RSpec.describe RuboCop::Rule::Style::StringMethods, :config do
+  let(:rule_config) { { 'intern' => 'to_sym' } }
 
   it 'registers an offense' do
     expect_offense(<<~RUBY)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
+RSpec.describe RuboCop::Rule::Layout::DefEndAlignment, :config do
   let(:source) do
     <<~RUBY
       foo def a
@@ -14,7 +14,7 @@ RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
   end
 
   context 'when EnforcedStyleAlignWith is start_of_line' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'start_of_line', 'AutoCorrect' => true }
     end
 
@@ -44,10 +44,10 @@ RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
     context 'correct + opposite' do
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages.first)
           .to eq('`end` at 7, 4 is not aligned with `foo def` at 5, 0.')
-        expect(cop.highlights.first).to eq('end')
+        expect(rule.highlights.first).to eq('end')
         expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
       end
 
@@ -67,7 +67,7 @@ RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
   end
 
   context 'when EnforcedStyleAlignWith is def' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyleAlignWith' => 'def', 'AutoCorrect' => true }
     end
 
@@ -97,10 +97,10 @@ RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
     context 'correct + opposite' do
       it 'registers an offense' do
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages.first)
           .to eq('`end` at 3, 0 is not aligned with `def` at 1, 4.')
-        expect(cop.highlights.first).to eq('end')
+        expect(rule.highlights.first).to eq('end')
         expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
       end
 

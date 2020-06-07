@@ -117,7 +117,7 @@ module RuboCop
         end
 
         def require_for_non_public_methods?
-          cop_config['RequireForNonPublicMethods']
+          rule_config['RequireForNonPublicMethods']
         end
       end
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Gemspec::RequiredRubyVersion, :config do
+RSpec.describe RuboCop::Rule::Gemspec::RequiredRubyVersion, :config do
   context 'target ruby version > 2.7', :ruby27 do
     it 'registers an offense when `required_ruby_version` is lower than ' \
        '`TargetRubyVersion`' do

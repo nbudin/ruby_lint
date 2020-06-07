@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ArgumentAlignment do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::ArgumentAlignment do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
-    RuboCop::Config.new('Layout/ArgumentAlignment' => cop_config,
+    RuboCop::Config.new('Layout/ArgumentAlignment' => rule_config,
                         'Layout/IndentationWidth' => {
                           'Width' => indentation_width
                         })
@@ -12,7 +12,7 @@ RSpec.describe Rubocop::Rule::Layout::ArgumentAlignment do
   let(:indentation_width) { 2 }
 
   context 'aligned with first argument' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'with_first_argument'
       }
@@ -353,7 +353,7 @@ RSpec.describe Rubocop::Rule::Layout::ArgumentAlignment do
   end
 
   context 'aligned with fixed indentation' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'with_fixed_indentation'
       }
@@ -538,7 +538,7 @@ RSpec.describe Rubocop::Rule::Layout::ArgumentAlignment do
       context 'with ArgumentAlignment:IndentationWidth set to 4' do
         let(:config) do
           RuboCop::Config.new('Layout/ArgumentAlignment' =>
-                              cop_config.merge('IndentationWidth' => 4))
+                              rule_config.merge('IndentationWidth' => 4))
         end
 
         it 'accepts the first parameter being on a new row' do

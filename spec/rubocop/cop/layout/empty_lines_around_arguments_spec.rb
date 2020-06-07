@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundArguments, :config do
   context 'when extra lines' do
     it 'registers offense for empty line before arg' do
       inspect_source(<<~RUBY)
@@ -47,7 +47,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
 
         )
       RUBY
-      expect(cop.offenses.size).to eq 3
+      expect(rule.offenses.size).to eq 3
       expect(cop.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end
@@ -74,7 +74,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
           end
         )
       RUBY
-      expect(cop.offenses.size).to eq 1
+      expect(rule.offenses.size).to eq 1
       expect(cop.messages)
         .to eq(['Empty line detected around arguments.'])
     end
@@ -94,8 +94,8 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
           end
         end
       RUBY
-      expect(cop.offenses.size).to eq 1
-      expect(cop.offenses.first.location.line).to eq 8
+      expect(rule.offenses.size).to eq 1
+      expect(rule.offenses.first.location.line).to eq 8
       expect(cop.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end
@@ -116,9 +116,9 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
           [baz]
         )
       RUBY
-      expect(cop.offenses.size).to eq 2
-      expect(cop.offenses[0].location.line).to eq 5
-      expect(cop.offenses[1].location.line).to eq 11
+      expect(rule.offenses.size).to eq 2
+      expect(rule.offenses[0].location.line).to eq 5
+      expect(rule.offenses[1].location.line).to eq 11
       expect(cop.messages.uniq)
         .to eq(['Empty line detected around arguments.'])
     end

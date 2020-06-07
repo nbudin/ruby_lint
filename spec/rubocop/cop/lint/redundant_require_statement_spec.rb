@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RedundantRequireStatement, :config do
+RSpec.describe RuboCop::Rule::Lint::RedundantRequireStatement, :config do
   it "registers an offense and corrects when using `require 'enumerator'`" do
     expect_offense(<<~RUBY)
       require 'enumerator'

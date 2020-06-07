@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ModuleFunction, :config do
+RSpec.describe RuboCop::Rule::Style::ModuleFunction, :config do
   context 'when enforced style is `module_function`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'module_function' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'module_function' } }
 
     it 'registers an offense for `extend self` in a module' do
       expect_offense(<<~RUBY)
@@ -52,7 +52,7 @@ RSpec.describe Rubocop::Rule::Style::ModuleFunction, :config do
   end
 
   context 'when enforced style is `extend_self`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'extend_self' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'extend_self' } }
 
     it 'registers an offense for `module_function` without an argument' do
       expect_offense(<<~RUBY)
@@ -82,7 +82,7 @@ RSpec.describe Rubocop::Rule::Style::ModuleFunction, :config do
   end
 
   context 'when enforced style is `forbidden`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'forbidden' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'forbidden' } }
 
     context 'registers an offense for `extend self`' do
       it 'in a module' do

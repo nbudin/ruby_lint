@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ExponentialNotation, :config do
+RSpec.describe RuboCop::Rule::Style::ExponentialNotation, :config do
   context 'EnforcedStyle is scientific' do
-    let(:cop_config) { { 'EnforcedStyle' => 'scientific' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'scientific' } }
 
     it 'registers an offense for mantissa equal to 10' do
       expect_offense(<<~RUBY)
@@ -51,7 +51,7 @@ RSpec.describe Rubocop::Rule::Style::ExponentialNotation, :config do
   end
 
   context 'EnforcedStyle is engineering' do
-    let(:cop_config) { { 'EnforcedStyle' => 'engineering' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'engineering' } }
 
     it 'registers an offense for exponent equal to 4' do
       expect_offense(<<~RUBY)
@@ -114,7 +114,7 @@ RSpec.describe Rubocop::Rule::Style::ExponentialNotation, :config do
   end
 
   context 'EnforcedStyle is integral' do
-    let(:cop_config) { { 'EnforcedStyle' => 'integral' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'integral' } }
 
     it 'registers an offense for decimal mantissa' do
       expect_offense(<<~RUBY)

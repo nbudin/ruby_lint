@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::GlobalVars, :config do
-  cop_config = {
+RSpec.describe RuboCop::Rule::Style::GlobalVars, :config do
+  rule_config = {
     'AllowedVariables' => ['$allowed']
   }
 
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
-  let(:cop_config) { cop_config }
+  let(:rule_config) { rule_config }
 
   it 'registers an offense for $custom' do
     expect_offense(<<~RUBY)

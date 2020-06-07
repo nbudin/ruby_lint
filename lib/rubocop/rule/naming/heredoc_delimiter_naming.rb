@@ -47,7 +47,7 @@ module RuboCop
         end
 
         def forbidden_delimiters
-          cop_config['ForbiddenDelimiters'] || []
+          rule_config['ForbiddenDelimiters'] || []
         end
       end
     end

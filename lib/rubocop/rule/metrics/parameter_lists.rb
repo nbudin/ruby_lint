@@ -42,11 +42,11 @@ module RuboCop
         end
 
         def max_params
-          cop_config['Max']
+          rule_config['Max']
         end
 
         def count_keyword_args?
-          cop_config['CountKeywordArgs']
+          rule_config['CountKeywordArgs']
         end
       end
     end

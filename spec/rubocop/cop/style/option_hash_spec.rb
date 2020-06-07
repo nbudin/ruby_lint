@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::OptionHash, :config do
-  let(:cop_config) { { 'SuspiciousParamNames' => suspicious_names } }
+RSpec.describe RuboCop::Rule::Style::OptionHash, :config do
+  let(:rule_config) { { 'SuspiciousParamNames' => suspicious_names } }
   let(:suspicious_names) { ['options'] }
 
   it 'registers an offense' do
@@ -90,7 +90,7 @@ RSpec.describe Rubocop::Rule::Style::OptionHash, :config do
   end
 
   context 'permitted list' do
-    let(:cop_config) { { 'Allowlist' => %w[to_json] } }
+    let(:rule_config) { { 'Allowlist' => %w[to_json] } }
 
     it 'ignores if the method is permitted' do
       expect_no_offenses(<<~RUBY)

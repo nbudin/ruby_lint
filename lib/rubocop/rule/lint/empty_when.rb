@@ -50,7 +50,7 @@ module RuboCop
         def on_case(node)
           node.each_when do |when_node|
             next if when_node.body
-            next if cop_config['AllowComments'] && comment_lines?(node)
+            next if rule_config['AllowComments'] && comment_lines?(node)
 
             add_offense(when_node, location: when_node.source_range)
           end

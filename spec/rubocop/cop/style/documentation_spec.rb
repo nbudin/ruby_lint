@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Documentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::Documentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new('Style/CommentAnnotation' => {
@@ -289,7 +289,7 @@ RSpec.describe Rubocop::Rule::Style::Documentation do
             end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
     end
   end
@@ -324,7 +324,7 @@ RSpec.describe Rubocop::Rule::Style::Documentation do
             end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       context 'with `all` modifier' do

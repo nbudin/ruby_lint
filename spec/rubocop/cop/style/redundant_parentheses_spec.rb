@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantParentheses do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantParentheses do
+  subject(:rule) { described_class.new }
 
   shared_examples 'redundant' do |expr, correct, type, highlight = nil|
     it "registers an offense for parentheses around #{type}" do
       inspect_source(expr)
       expect(cop.messages)
         .to eq(["Don't use parentheses around #{type}."])
-      expect(cop.highlights).to eq([highlight || expr])
+      expect(rule.highlights).to eq([highlight || expr])
     end
 
     it 'auto-corrects' do

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SpecialGlobalVars, :config do
+RSpec.describe RuboCop::Rule::Style::SpecialGlobalVars, :config do
   context 'when style is use_english_names' do
-    let(:cop_config) { { 'EnforcedStyle' => 'use_english_names' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'use_english_names' } }
 
     it 'registers an offense for $:' do
       expect_offense(<<~RUBY)
@@ -77,7 +77,7 @@ RSpec.describe Rubocop::Rule::Style::SpecialGlobalVars, :config do
   end
 
   context 'when style is use_perl_names' do
-    let(:cop_config) { { 'EnforcedStyle' => 'use_perl_names' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'use_perl_names' } }
 
     it 'registers an offense for $LOAD_PATH' do
       expect_offense(<<~RUBY)

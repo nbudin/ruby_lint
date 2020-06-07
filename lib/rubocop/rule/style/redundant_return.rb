@@ -118,7 +118,7 @@ module RuboCop
         # rubocop:enable Metrics/CyclomaticComplexity
 
         def check_return_node(node)
-          return if cop_config['AllowMultipleReturnValues'] &&
+          return if rule_config['AllowMultipleReturnValues'] &&
                     node.children.size > 1
 
           add_offense(node, location: :keyword)
@@ -153,7 +153,7 @@ module RuboCop
         end
 
         def allow_multiple_return_values?
-          cop_config['AllowMultipleReturnValues'] || false
+          rule_config['AllowMultipleReturnValues'] || false
         end
 
         def message(node)

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideParens, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideParens, :config do
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'registers an offense for spaces inside parens' do
       expect_offense(<<~RUBY)
@@ -45,7 +45,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideParens, :config do
   end
 
   context 'when EnforcedStyle is space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
     it 'registers an offense for no spaces inside parens' do
       expect_offense(<<~RUBY)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::ParameterLists, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Metrics::ParameterLists, :config do
+  let(:rule_config) do
     {
       'Max' => 4,
       'CountKeywordArgs' => true
@@ -46,7 +46,7 @@ RSpec.describe Rubocop::Rule::Metrics::ParameterLists, :config do
   end
 
   context 'When CountKeywordArgs is false' do
-    before { cop_config['CountKeywordArgs'] = false }
+    before { rule_config['CountKeywordArgs'] = false }
 
     it 'does not count keyword arguments' do
       expect_no_offenses(<<~RUBY)

@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
+RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
   describe '.check' do
     let(:cop_options) { { auto_correct: true } }
     let(:comments) { processed_source.comments }
     let(:corrected_source) do
-      Rubocop::Rule::Corrector
+      RuboCop::Rule::Corrector
         .new(processed_source.buffer, cop.corrections)
         .rewrite
     end
@@ -21,7 +21,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
       let(:source) { '' }
 
       it 'returns an empty array' do
-        expect(cop.offenses).to eq([])
+        expect(rule.offenses).to eq([])
       end
     end
 
@@ -39,7 +39,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `Metrics/MethodLength`.'])
-              expect(cop.highlights)
+              expect(rule.highlights)
                 .to eq(['# rubocop:disable Metrics/MethodLength'])
             end
 
@@ -61,7 +61,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `UnknownCop` (unknown cop).'])
-              expect(cop.highlights)
+              expect(rule.highlights)
                 .to eq(['# rubocop:disable UnknownCop'])
             end
           end
@@ -75,7 +75,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'does not return an offense' do
-              expect(cop.offenses.empty?).to be(true)
+              expect(rule.offenses.empty?).to be(true)
             end
           end
 
@@ -92,7 +92,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'does not return an offense' do
-                expect(cop.offenses.empty?).to be(true)
+                expect(rule.offenses.empty?).to be(true)
               end
             end
 
@@ -108,7 +108,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'does not return an offense' do
-                expect(cop.offenses.empty?).to be(true)
+                expect(rule.offenses.empty?).to be(true)
               end
             end
 
@@ -125,7 +125,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'does not return an offense' do
-                expect(cop.offenses.empty?).to be(true)
+                expect(rule.offenses.empty?).to be(true)
               end
             end
           end
@@ -159,7 +159,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
             let(:offenses) do
               [
-                Rubocop::Rule::Offense.new(:convention,
+                RuboCop::Rule::Offense.new(:convention,
                                           OpenStruct.new(line: 7, column: 0),
                                           'Class has too many lines.',
                                           'Metrics/ClassLength')
@@ -171,7 +171,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
                 .to eq(['Unnecessary disabling of `Metrics/MethodLength`.',
                         'Unnecessary disabling of `Lint/Debugger`.',
                         'Unnecessary disabling of `Lint/AmbiguousOperator`.'])
-              expect(cop.highlights).to eq(['Metrics/MethodLength',
+              expect(rule.highlights).to eq(['Metrics/MethodLength',
                                             'Lint/Debugger',
                                             'Lint/AmbiguousOperator'])
             end
@@ -193,7 +193,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
             let(:offenses) do
               [
-                Rubocop::Rule::Offense.new(:convention,
+                RuboCop::Rule::Offense.new(:convention,
                                           OpenStruct.new(line: 7, column: 0),
                                           'Method has too many lines.',
                                           'Metrics/MethodLength')
@@ -203,7 +203,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `Metrics/ClassLength`.'])
-              expect(cop.highlights).to eq(['Metrics/ClassLength'])
+              expect(rule.highlights).to eq(['Metrics/ClassLength'])
             end
 
             it 'autocorrects' do
@@ -225,7 +225,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
               let(:offenses) do
                 [
-                  Rubocop::Rule::Offense.new(:convention,
+                  RuboCop::Rule::Offense.new(:convention,
                                             OpenStruct.new(line: 7, column: 0),
                                             'Method has too many lines.',
                                             'Metrics/MethodLength')
@@ -236,7 +236,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
                 expect(cop.messages)
                   .to eq(['Unnecessary disabling of `Metrics/ClassLength`.',
                           'Unnecessary disabling of `Lint/Debugger`.'])
-                expect(cop.highlights).to eq(%w[ClassLength Debugger])
+                expect(rule.highlights).to eq(%w[ClassLength Debugger])
                 expect($stderr.string).to eq(<<~OUTPUT)
                   test: Warning: no department given for MethodLength.
                   test: Warning: no department given for ClassLength.
@@ -260,7 +260,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
               let(:offenses) do
                 [
-                  Rubocop::Rule::Offense.new(:convention,
+                  RuboCop::Rule::Offense.new(:convention,
                                             OpenStruct.new(line: 7, column: 0),
                                             'Method has too many lines.',
                                             'Metrics/MethodLength')
@@ -271,7 +271,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
                 expect(cop.messages).to eq(
                   ['Unnecessary disabling of `Metrics/ClassLength`.']
                 )
-                expect(cop.highlights).to eq(['Metrics/ClassLength'])
+                expect(rule.highlights).to eq(['Metrics/ClassLength'])
               end
             end
           end
@@ -305,7 +305,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
 
             it 'returns an offense' do
               expect(cop.messages).to eq(['Unnecessary disabling of all cops.'])
-              expect(cop.highlights).to eq([source])
+              expect(rule.highlights).to eq([source])
             end
           end
 
@@ -322,7 +322,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
               end
 
               it 'does not return an offense' do
-                expect(cop.offenses.empty?).to be(true)
+                expect(rule.offenses.empty?).to be(true)
               end
             end
           end
@@ -336,7 +336,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
         let(:cop_name) { 'Style/ClassVars' }
         let(:offenses) do
           offense_lines.map do |line|
-            Rubocop::Rule::Offense.new(:convention,
+            RuboCop::Rule::Offense.new(:convention,
                                       OpenStruct.new(line: line, column: 3),
                                       message,
                                       cop_name)
@@ -366,7 +366,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `Style/ClassVars`.'])
-              expect(cop.highlights)
+              expect(rule.highlights)
                 .to eq(['# rubocop:disable Style/ClassVars'])
             end
           end
@@ -389,7 +389,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `Style/ClassVars`.'])
-              expect(cop.highlights)
+              expect(rule.highlights)
                 .to eq(['# rubocop:disable Style/ClassVars'])
             end
           end
@@ -399,7 +399,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
       context 'and there is an offense' do
         let(:offenses) do
           [
-            Rubocop::Rule::Offense.new(:convention,
+            RuboCop::Rule::Offense.new(:convention,
                                       OpenStruct.new(line: 7, column: 0),
                                       'Tab detected.',
                                       'Layout/IndentationStyle')
@@ -414,7 +414,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'returns an empty array' do
-              expect(cop.offenses.empty?).to be(true)
+              expect(rule.offenses.empty?).to be(true)
             end
           end
 
@@ -429,7 +429,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             it 'returns an offense' do
               expect(cop.messages)
                 .to eq(['Unnecessary disabling of `Layout/IndentationStyle`.'])
-              expect(cop.highlights).to eq(
+              expect(rule.highlights).to eq(
                 ['# rubocop:disable Layout/IndentationStyle']
               )
             end
@@ -446,7 +446,7 @@ RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'returns an empty array' do
-              expect(cop.offenses.empty?).to be(true)
+              expect(rule.offenses.empty?).to be(true)
             end
           end
         end

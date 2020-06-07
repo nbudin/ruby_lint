@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::ShadowingOuterLocalVariable do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::ShadowingOuterLocalVariable do
+  subject(:rule) { described_class.new }
 
   context 'when a block argument has same name ' \
           'as an outer scope variable' do

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Rule, :config do
+RSpec.describe RuboCop::Rule::Rule, :config do
   let(:location) do
     source_range(0...1)
   end
 
   it 'initially has 0 offenses' do
-    expect(cop.offenses.empty?).to be(true)
+    expect(rule.offenses.empty?).to be(true)
   end
 
   describe '.qualified_cop_name' do
@@ -43,7 +43,7 @@ RSpec.describe Rubocop::Rule::Rule, :config do
     # there were no cop whose names overlapped.
     xit 'raises an error if the cop name is in more than one namespace' do
       expect { described_class.qualified_cop_name('SafeNavigation', '--only') }
-        .to raise_error(Rubocop::Rule::AmbiguousCopName)
+        .to raise_error(RuboCop::Rule::AmbiguousCopName)
     end
 
     it 'returns the given cop name if it already has a namespace even when ' \
@@ -56,40 +56,40 @@ RSpec.describe Rubocop::Rule::Rule, :config do
   end
 
   it 'keeps track of offenses' do
-    cop.add_offense(nil, location: location, message: 'message')
+    rule.add_offense(nil, location: location, message: 'message')
 
-    expect(cop.offenses.size).to eq(1)
+    expect(rule.offenses.size).to eq(1)
   end
 
   it 'will report registered offenses' do
-    cop.add_offense(nil, location: location, message: 'message')
+    rule.add_offense(nil, location: location, message: 'message')
 
-    expect(cop.offenses.empty?).to be(false)
+    expect(rule.offenses.empty?).to be(false)
   end
 
   it 'will set default severity' do
-    cop.add_offense(nil, location: location, message: 'message')
+    rule.add_offense(nil, location: location, message: 'message')
 
-    expect(cop.offenses.first.severity).to eq(:convention)
+    expect(rule.offenses.first.severity).to eq(:convention)
   end
 
   it 'will set custom severity if present' do
     cop.config[cop.name] = { 'Severity' => 'warning' }
-    cop.add_offense(nil, location: location, message: 'message')
+    rule.add_offense(nil, location: location, message: 'message')
 
-    expect(cop.offenses.first.severity).to eq(:warning)
+    expect(rule.offenses.first.severity).to eq(:warning)
   end
 
   it 'will warn if custom severity is invalid' do
     cop.config[cop.name] = { 'Severity' => 'superbad' }
-    expect { cop.add_offense(nil, location: location, message: 'message') }
+    expect { rule.add_offense(nil, location: location, message: 'message') }
       .to output(/Warning: Invalid severity 'superbad'./).to_stderr
   end
 
   context 'when disabled by a comment' do
     subject(:offense_status) do
-      cop.add_offense(nil, location: location, message: 'message')
-      cop.offenses.first.status
+      rule.add_offense(nil, location: location, message: 'message')
+      rule.offenses.first.status
     end
 
     before do
@@ -115,11 +115,11 @@ RSpec.describe Rubocop::Rule::Rule, :config do
   end
 
   describe 'for a cop with a name' do
-    let(:cop_class) { Rubocop::Rule::Style::For }
+    let(:cop_class) { RuboCop::Rule::Style::For }
 
     it 'registers offense with its name' do
-      cop.add_offense(nil, location: location, message: 'message')
-      expect(cop.offenses.first.cop_name).to eq('Style/For')
+      rule.add_offense(nil, location: location, message: 'message')
+      expect(rule.offenses.first.cop_name).to eq('Style/For')
     end
   end
 
@@ -130,8 +130,8 @@ RSpec.describe Rubocop::Rule::Rule, :config do
       end
 
       it 'is not specified (set to nil)' do
-        cop.add_offense(nil, location: location, message: 'message')
-        expect(cop.offenses.first.corrected?).to be(false)
+        rule.add_offense(nil, location: location, message: 'message')
+        expect(rule.offenses.first.corrected?).to be(false)
       end
 
       context 'when autocorrect is requested' do
@@ -140,8 +140,8 @@ RSpec.describe Rubocop::Rule::Rule, :config do
         end
 
         it 'is not specified (set to nil)' do
-          cop.add_offense(nil, location: location, message: 'message')
-          expect(cop.offenses.first.corrected?).to be(false)
+          rule.add_offense(nil, location: location, message: 'message')
+          expect(rule.offenses.first.corrected?).to be(false)
         end
 
         context 'when disable_uncorrectable is enabled' do
@@ -157,16 +157,16 @@ RSpec.describe Rubocop::Rule::Rule, :config do
           end
 
           it 'is set to true' do
-            cop.add_offense(node, location: location, message: 'message')
-            expect(cop.offenses.first.corrected?).to be(true)
-            expect(cop.offenses.first.status).to be(:corrected_with_todo)
+            rule.add_offense(node, location: location, message: 'message')
+            expect(rule.offenses.first.corrected?).to be(true)
+            expect(rule.offenses.first.status).to be(:corrected_with_todo)
           end
         end
       end
     end
 
     context 'when cop supports autocorrection' do
-      let(:cop_class) { Rubocop::Rule::Style::Alias }
+      let(:cop_class) { RuboCop::Rule::Style::Alias }
 
       context 'when offense was corrected' do
         before do
@@ -177,8 +177,8 @@ RSpec.describe Rubocop::Rule::Rule, :config do
         end
 
         it 'is set to true' do
-          cop.add_offense(nil, location: location, message: 'message')
-          expect(cop.offenses.first.corrected?).to eq(true)
+          rule.add_offense(nil, location: location, message: 'message')
+          expect(rule.offenses.first.corrected?).to eq(true)
         end
       end
 
@@ -188,8 +188,8 @@ RSpec.describe Rubocop::Rule::Rule, :config do
         end
 
         it 'is set to false' do
-          cop.add_offense(nil, location: location, message: 'message')
-          expect(cop.offenses.first.corrected?).to eq(false)
+          rule.add_offense(nil, location: location, message: 'message')
+          expect(rule.offenses.first.corrected?).to eq(false)
         end
       end
 
@@ -200,8 +200,8 @@ RSpec.describe Rubocop::Rule::Rule, :config do
         end
 
         it 'is set to false' do
-          cop.add_offense(nil, location: location, message: 'message')
-          expect(cop.offenses.first.corrected?).to eq(false)
+          rule.add_offense(nil, location: location, message: 'message')
+          expect(rule.offenses.first.corrected?).to eq(false)
         end
       end
     end
@@ -213,14 +213,14 @@ RSpec.describe Rubocop::Rule::Rule, :config do
   end
 
   context 'with style cops' do
-    let(:cop_class) { Rubocop::Rule::Style::For }
+    let(:cop_class) { RuboCop::Rule::Style::For }
 
     it('has right name') { expect(cop_class.cop_name).to eq('Style/For') }
     it('has right department') { expect(cop_class.department).to eq(:Style) }
   end
 
   context 'with lint cops' do
-    let(:cop_class) { Rubocop::Rule::Lint::Loop }
+    let(:cop_class) { RuboCop::Rule::Lint::Loop }
 
     it('has right name') { expect(cop_class.cop_name).to eq('Lint/Loop') }
     it('has right department') { expect(cop_class.department).to eq(:Lint) }
@@ -309,7 +309,7 @@ RSpec.describe Rubocop::Rule::Rule, :config do
   describe '#relevant_file?' do
     subject { cop.relevant_file?(file) }
 
-    let(:cop_config) { { 'Include' => ['foo.rb'] } }
+    let(:rule_config) { { 'Include' => ['foo.rb'] } }
 
     context 'when the file matches the Include configuration' do
       let(:file) { 'foo.rb' }
@@ -334,19 +334,19 @@ RSpec.describe Rubocop::Rule::Rule, :config do
     subject { cop.safe_autocorrect? }
 
     context 'when cop is declared unsafe' do
-      let(:cop_config) { { 'Safe' => false } }
+      let(:rule_config) { { 'Safe' => false } }
 
       it { is_expected.to be(false) }
     end
 
     context 'when auto-correction of the cop is declared unsafe' do
-      let(:cop_config) { { 'SafeAutoCorrect' => false } }
+      let(:rule_config) { { 'SafeAutoCorrect' => false } }
 
       it { is_expected.to be(false) }
     end
 
     context 'when safety is undeclared' do
-      let(:cop_config) { {} }
+      let(:rule_config) { {} }
 
       it { is_expected.to be(true) }
     end

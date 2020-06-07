@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ConditionalAssignment do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::ConditionalAssignment do
+  subject(:rule) { described_class.new(config) }
 
   shared_examples 'all variable types' do |variable|
     it 'registers an offense assigning any variable type to ternary' do

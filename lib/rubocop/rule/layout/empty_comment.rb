@@ -127,11 +127,11 @@ module RuboCop
         end
 
         def allow_border_comment?
-          cop_config['AllowBorderComment']
+          rule_config['AllowBorderComment']
         end
 
         def allow_margin_comment?
-          cop_config['AllowMarginComment']
+          rule_config['AllowMarginComment']
         end
 
         def current_token(comment)

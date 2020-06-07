@@ -51,7 +51,7 @@ module RuboCop
                     'disabling it.'
 
         def investigate(processed_source)
-          max_range = cop_config['MaximumRangeSize']
+          max_range = rule_config['MaximumRangeSize']
           processed_source.disabled_line_ranges.each do |cop, line_ranges|
             line_ranges.each do |line_range|
               # This has to remain a strict inequality to handle

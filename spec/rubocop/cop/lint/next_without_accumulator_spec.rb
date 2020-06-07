@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::NextWithoutAccumulator do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::NextWithoutAccumulator do
+  subject(:rule) { described_class.new }
 
   def code_without_accumulator(method_name)
     <<-RUBY
@@ -37,8 +37,8 @@ RSpec.describe Rubocop::Rule::Lint::NextWithoutAccumulator do
     context "given a #{reduce_alias} block" do
       it 'registers an offense for a bare next' do
         inspect_source(code_without_accumulator(reduce_alias))
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.highlights).to eq(['next'])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.highlights).to eq(['next'])
       end
 
       it 'accepts next with a value' do

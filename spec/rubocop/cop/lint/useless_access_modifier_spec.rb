@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Lint::UselessAccessModifier do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -499,7 +499,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -563,7 +563,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -585,7 +585,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     unless modifier == 'public'
@@ -742,7 +742,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'registers an offense if no method is defined after the modifier' do
@@ -756,7 +756,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'registers an offense even if a non-singleton-class method is ' \
@@ -771,7 +771,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
     end
 
@@ -793,7 +793,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'registers an offense if no method is defined after the modifier' do
@@ -805,7 +805,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
     end
   end
@@ -828,7 +828,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     context 'inside a class' do
@@ -844,7 +844,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'registers two offenses when a modifier is inside and outside the ' \
@@ -858,7 +858,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(2)
+        expect(rule.offenses.size).to eq(2)
       end
     end
   end
@@ -881,7 +881,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 
@@ -903,7 +903,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
         end
       RUBY
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     context 'inside a class' do
@@ -919,7 +919,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'registers two offenses when a modifier is inside and outside the ' \
@@ -933,7 +933,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(2)
+        expect(rule.offenses.size).to eq(2)
       end
     end
   end
@@ -967,7 +967,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(2)
+        expect(rule.offenses.size).to eq(2)
       end
 
       it "registers an offense when outside a nested #{keyword}" do
@@ -981,7 +981,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it "registers an offense when inside a nested #{keyword}" do
@@ -993,7 +993,7 @@ RSpec.describe Rubocop::Rule::Lint::UselessAccessModifier do
           end
         RUBY
         inspect_source(src)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
     end
   end

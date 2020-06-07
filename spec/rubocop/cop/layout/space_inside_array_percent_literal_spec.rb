@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayPercentLiteral do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideArrayPercentLiteral do
+  subject(:rule) { described_class.new }
 
   let(:message) do
     'Use only a single space inside array percent literal.'
@@ -21,8 +21,8 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayPercentLiteral do
         it 'registers an offense for unnecessary spaces' do
           source = code_example('1   2')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
-          expect(cop.highlights).to eq(['   '])
+          expect(rule.offenses.size).to eq(1)
+          expect(rule.highlights).to eq(['   '])
           expect(cop.messages).to eq([message])
           expect_corrected(source, code_example('1 2'))
         end
@@ -30,14 +30,14 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayPercentLiteral do
         it 'registers an offense for multiple spaces between items' do
           source = code_example('1   2   3')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(2)
+          expect(rule.offenses.size).to eq(2)
           expect_corrected(source, code_example('1 2 3'))
         end
 
         it 'accepts literals with escaped and additional spaces' do
           source = code_example('a\   b \ c')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect_corrected(source, code_example('a\  b \ c'))
         end
 

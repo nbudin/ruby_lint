@@ -110,7 +110,7 @@ module RuboCop
         end
 
         def style_for_empty_braces
-          case cop_config['EnforcedStyleForEmptyBraces']
+          case rule_config['EnforcedStyleForEmptyBraces']
           when 'space'    then :space
           when 'no_space' then :no_space
           when nil then style
@@ -124,7 +124,7 @@ module RuboCop
         end
 
         def block_delimiters_style
-          config.for_cop('Style/BlockDelimiters')['EnforcedStyle']
+          config.for_rule('Style/BlockDelimiters')['EnforcedStyle']
         end
 
         def empty_braces?(loc)

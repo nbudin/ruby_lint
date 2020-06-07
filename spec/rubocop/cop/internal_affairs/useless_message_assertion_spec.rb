@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::InternalAffairs::UselessMessageAssertion do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::InternalAffairs::UselessMessageAssertion do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for specs that assert using the MSG' do
     expect_offense(<<~RUBY, 'example_spec.rb')

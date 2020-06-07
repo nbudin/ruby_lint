@@ -76,7 +76,7 @@ module RuboCop
         end
 
         def short_group_regex
-          cop_config['Strict'] ? /_\d{1,2}(_|$)/ : /_\d{1,2}_/
+          rule_config['Strict'] ? /_\d{1,2}(_|$)/ : /_\d{1,2}_/
         end
 
         def format_number(node)
@@ -106,7 +106,7 @@ module RuboCop
         end
 
         def min_digits
-          cop_config['MinDigits']
+          rule_config['MinDigits']
         end
       end
     end

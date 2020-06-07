@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::IpAddresses, :config do
-  let(:cop_config) { {} }
+RSpec.describe RuboCop::Rule::Style::IpAddresses, :config do
+  let(:rule_config) { {} }
 
   it 'does not register an offense on an empty string' do
     expect_no_offenses("''")
@@ -70,7 +70,7 @@ RSpec.describe Rubocop::Rule::Style::IpAddresses, :config do
       end
 
       context 'when it is removed from the allowed addresses' do
-        let(:cop_config) { { 'AllowedAddresses' => [] } }
+        let(:rule_config) { { 'AllowedAddresses' => [] } }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)
@@ -83,7 +83,7 @@ RSpec.describe Rubocop::Rule::Style::IpAddresses, :config do
   end
 
   context 'with allowed addresses' do
-    let(:cop_config) { { 'AllowedAddresses' => ['a::b'] } }
+    let(:rule_config) { { 'AllowedAddresses' => ['a::b'] } }
 
     it 'does not register an offense for a allowed addresses' do
       expect_no_offenses('"a::b"')

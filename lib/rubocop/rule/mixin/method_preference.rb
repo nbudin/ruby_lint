@@ -15,15 +15,15 @@ module RuboCop
           begin
             # Make sure default configuration 'foo' => 'bar' is removed from
             # the total configuration if there is a 'bar' => 'foo' override.
-            default = default_cop_config['PreferredMethods']
-            merged = cop_config['PreferredMethods']
+            default = default_rule_config['PreferredMethods']
+            merged = rule_config['PreferredMethods']
             overrides = merged.values - default.values
             merged.reject { |key, _| overrides.include?(key) }
                   .map { |k, v| [k.to_sym, v] }.to_h
           end
       end
 
-      def default_cop_config
+      def default_rule_config
         ConfigLoader.default_configuration[cop_name]
       end
     end

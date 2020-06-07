@@ -13,7 +13,7 @@ module RuboCop
       end
 
       def min_size_config
-        cop_config['MinSize']
+        rule_config['MinSize']
       end
 
       def array_style_detected(style, ary_size)

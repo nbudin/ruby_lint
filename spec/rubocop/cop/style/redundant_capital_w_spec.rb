@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantCapitalW do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantCapitalW do
+  subject(:rule) { described_class.new }
 
   it 'registers no offense for normal arrays of strings' do
     expect_no_offenses('["one", "two", "three"]')

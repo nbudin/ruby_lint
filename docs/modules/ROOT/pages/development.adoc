@@ -244,9 +244,9 @@ Update the spec to cover the expected syntax:
 
 [source,ruby]
 ----
-describe Rubocop::Rule::Style::SimplifyNotEmptyWithAny do
+describe RuboCop::Rule::Style::SimplifyNotEmptyWithAny do
   let(:config) { RuboCop::Config.new }
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
   it 'registers an offense when using `!a.empty?`' do
     expect_offense(<<~RUBY)
@@ -301,7 +301,7 @@ ranges for expression or other internal information that the node holds.
 
 === Configuration
 
-Each cop can hold a configuration and you can refer to `cop_config` in the
+Each cop can hold a configuration and you can refer to `rule_config` in the
 instance and it will bring a hash with options declared in the `.rubocop.yml`
 file.
 
@@ -315,14 +315,14 @@ Style/SimplifyNotEmptyWithAny:
   ReplaceAnyWith: "size > 0"
 ----
 
-And then on the autocorrect method, you just need to use the `cop_config` it:
+And then on the autocorrect method, you just need to use the `rule_config` it:
 
 [source,ruby]
 ----
 def autocorrect(node)
   lambda do |corrector|
     internal_expression = node.children[0].children[0].source
-    replacement = cop_config['ReplaceAnyWith'] || "any?"
+    replacement = rule_config['ReplaceAnyWith'] || "any?"
     new_expression = "#{internal_expression}.#{replacement}"
     corrector.replace(node, new_expression)
   end

@@ -44,12 +44,12 @@ module RuleHelper
     _investigate(rule, processed_source)
 
     corrector =
-      Rubocop::Rule::Corrector.new(processed_source.buffer, rule.corrections)
+      RuboCop::Rule::Corrector.new(processed_source.buffer, rule.corrections)
     corrector.rewrite
   end
 
   def _investigate(rule, processed_source)
-    team = Rubocop::Rule::Team.new([rule], nil, raise_error: true)
+    team = RuboCop::Rule::Team.new([rule], nil, raise_error: true)
     team.inspect_file(processed_source)
   end
 end

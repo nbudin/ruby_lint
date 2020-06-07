@@ -216,21 +216,21 @@ module RuboCop
             (!allow_for_alignment? || !aligned_with_something?(right_operand))
         end
 
-        def align_hash_cop_config
-          config.for_cop('Layout/HashAlignment')
+        def align_hash_rule_config
+          config.for_rule('Layout/HashAlignment')
         end
 
         def hash_table_style?
-          align_hash_cop_config &&
-            align_hash_cop_config['EnforcedHashRocketStyle'] == 'table'
+          align_hash_rule_config &&
+            align_hash_rule_config['EnforcedHashRocketStyle'] == 'table'
         end
 
         def space_around_exponent_operator?
-          cop_config['EnforcedStyleForExponentOperator'] == 'space'
+          rule_config['EnforcedStyleForExponentOperator'] == 'space'
         end
 
         def force_equal_sign_alignment?
-          config.for_cop('Layout/ExtraSpacing')['ForceEqualSignAlignment']
+          config.for_rule('Layout/ExtraSpacing')['ForceEqualSignAlignment']
         end
 
         def should_not_have_surrounding_space?(operator)

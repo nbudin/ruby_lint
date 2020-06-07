@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ArrayAlignment do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::ArrayAlignment do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
-    RuboCop::Config.new('Layout/ArrayAlignment' => cop_config,
+    RuboCop::Config.new('Layout/ArrayAlignment' => rule_config,
                         'Layout/IndentationWidth' => {
                           'Width' => indentation_width
                         })
@@ -12,7 +12,7 @@ RSpec.describe Rubocop::Rule::Layout::ArrayAlignment do
   let(:indentation_width) { 2 }
 
   context 'when aligned with first parameter' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'with_first_element'
       }
@@ -172,7 +172,7 @@ RSpec.describe Rubocop::Rule::Layout::ArrayAlignment do
   end
 
   context 'when aligned with fixed indentation' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'with_fixed_indentation'
       }

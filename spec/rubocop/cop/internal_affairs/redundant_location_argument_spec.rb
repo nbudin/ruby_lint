@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::InternalAffairs::RedundantLocationArgument do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::InternalAffairs::RedundantLocationArgument do
+  subject(:rule) { described_class.new }
 
   context 'when location argument is passed' do
     context 'when location argument is :expression' do

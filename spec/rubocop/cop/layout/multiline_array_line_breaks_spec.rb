@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineArrayLineBreaks do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::MultilineArrayLineBreaks do
+  subject(:rule) { described_class.new }
 
   context 'when on same line' do
     it 'does not add any offenses' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::BooleanSymbol, :config do
+RSpec.describe RuboCop::Rule::Lint::BooleanSymbol, :config do
   it 'registers an offense when using `:true`' do
     expect_offense(<<~RUBY)
       :true

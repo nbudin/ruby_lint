@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ColonMethodCall do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::ColonMethodCall do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for instance method call' do
     expect_offense(<<~RUBY)

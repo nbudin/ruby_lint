@@ -127,7 +127,7 @@ module RuboCop
           if is_same_braces && style == :compact
             false
           elsif is_empty_braces
-            cop_config['EnforcedStyleForEmptyBraces'] != 'no_space'
+            rule_config['EnforcedStyleForEmptyBraces'] != 'no_space'
           else
             style != :no_space
           end

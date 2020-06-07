@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
+RSpec.describe RuboCop::Rule::Lint::EmptyWhen, :config do
   before do
     inspect_source(source)
   end
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
       let(:source) { code }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq([message])
       end
 
@@ -30,11 +30,11 @@ RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
-  let(:cop_config) { { 'AllowComments' => false } }
+  let(:rule_config) { { 'AllowComments' => false } }
 
   let(:message) { 'Avoid `when` branches without a body.' }
 
@@ -149,7 +149,7 @@ RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
   end
 
   context 'when `AllowComments: true`' do
-    let(:cop_config) { { 'AllowComments' => true } }
+    let(:rule_config) { { 'AllowComments' => true } }
 
     it_behaves_like 'code without offense', <<~RUBY
       case condition
@@ -162,7 +162,7 @@ RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
   end
 
   context 'when `AllowComments: false`' do
-    let(:cop_config) { { 'AllowComments' => false } }
+    let(:rule_config) { { 'AllowComments' => false } }
 
     it_behaves_like 'code with offense', <<~RUBY
       case condition

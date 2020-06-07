@@ -922,8 +922,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       end
     end
 
-    let(:cops) { Rubocop::Rule::Rule.all }
-    let(:registry) { Rubocop::Rule::Rule.registry }
+    let(:cops) { RuboCop::Rule::Rule.all }
+    let(:registry) { RuboCop::Rule::Rule.registry }
 
     let(:global_conf) do
       config_path =
@@ -953,8 +953,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
       # Gets the full description of the cop or nil if no description is set.
       def full_description_of_cop(cop)
-        cop_config = global_conf.for_cop(cop)
-        cop_config['Description']
+        rule_config = global_conf.for_rule(cop)
+        rule_config['Description']
       end
 
       it 'prints all available cops and their description' do

@@ -46,7 +46,7 @@ module RuboCop
       end
 
       def preferred_delimiters_config
-        config.for_cop('Style/PercentLiteralDelimiters')['PreferredDelimiters']
+        config.for_rule('Style/PercentLiteralDelimiters')['PreferredDelimiters']
       end
     end
   end

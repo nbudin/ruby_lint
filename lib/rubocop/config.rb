@@ -7,7 +7,7 @@ require 'pathname'
 # rubocop:disable Metrics/ClassLength
 module RuboCop
   # This class represents the configuration of the RuboCop application
-  # and all its cops. A Config is associated with a YAML configuration
+  # and all its rules. A Config is associated with a YAML configuration
   # file from which it was read. Several different Configs can be used
   # during a run of the rubocop program, if files in several
   # directories are inspected.
@@ -16,18 +16,18 @@ module RuboCop
     include FileFinder
     extend Forwardable
 
-    CopConfig = Struct.new(:name, :metadata)
+    RuleConfig = Struct.new(:name, :metadata)
 
     DEFAULT_RAILS_VERSION = 5.0
     attr_reader :loaded_path
 
     def initialize(hash = {}, loaded_path = nil)
       @loaded_path = loaded_path
-      @for_cop = Hash.new do |h, cop|
-        qualified_cop_name = Cop::Cop.qualified_cop_name(cop, loaded_path)
-        cop_options = self[qualified_cop_name] || {}
-        cop_options['Enabled'] = enable_cop?(qualified_cop_name, cop_options)
-        h[cop] = cop_options
+      @for_rule = Hash.new do |h, rule|
+        qualified_rule_name = Rule::Rule.qualified_rule_name(rule, loaded_path)
+        rule_options = self[qualified_rule_name] || {}
+        rule_options['Enabled'] = enable_rule?(qualified_rule_name, rule_options)
+        h[rule] = rule_options
       end
       @hash = hash
       @validator = ConfigValidator.new(self)
@@ -82,10 +82,10 @@ module RuboCop
     end
 
     def add_excludes_from_higher_level(highest_config)
-      return unless highest_config.for_all_cops['Exclude']
+      return unless highest_config.for_all_rules['Exclude']
 
-      excludes = for_all_cops['Exclude'] ||= []
-      highest_config.for_all_cops['Exclude'].each do |path|
+      excludes = for_all_rules['Exclude'] ||= []
+      highest_config.for_all_rules['Exclude'].each do |path|
         unless path.is_a?(Regexp) || absolute?(path)
           path = File.join(File.dirname(highest_config.loaded_path), path)
         end
@@ -96,32 +96,32 @@ module RuboCop
     def deprecation_check
       %w[Exclude Include].each do |key|
         plural = "#{key}s"
-        next unless for_all_cops[plural]
+        next unless for_all_rules[plural]
 
-        for_all_cops[key] = for_all_cops[plural] # Stay backwards compatible.
-        for_all_cops.delete(plural)
-        yield "AllCops/#{plural} was renamed to AllCops/#{key}"
+        for_all_rules[key] = for_all_rules[plural] # Stay backwards compatible.
+        for_all_rules.delete(plural)
+        yield "AllRules/#{plural} was renamed to AllRules/#{key}"
       end
     end
 
-    def for_cop(cop)
-      @for_cop[cop.respond_to?(:cop_name) ? cop.cop_name : cop]
+    def for_rule(rule)
+      @for_rule[rule.respond_to?(:cop_name) ? rule.cop_name : rule]
     end
 
     def for_department(department_name)
-      @for_cop[department_name]
+      @for_rule[department_name]
     end
 
-    def for_all_cops
-      @for_all_cops ||= self['AllCops'] || {}
+    def for_all_rules
+      @for_all_rules ||= self['AllRules'] || {}
     end
 
-    def disabled_new_cops?
-      for_all_cops['NewCops'] == 'disable'
+    def disabled_new_rules?
+      for_all_rules['NewRules'] == 'disable'
     end
 
-    def enabled_new_cops?
-      for_all_cops['NewCops'] == 'enable'
+    def enabled_new_rules?
+      for_all_rules['NewRules'] == 'enable'
     end
 
     def file_to_include?(file)
@@ -176,11 +176,11 @@ module RuboCop
     end
 
     def patterns_to_include
-      for_all_cops['Include'] || []
+      for_all_rules['Include'] || []
     end
 
     def patterns_to_exclude
-      for_all_cops['Exclude'] || []
+      for_all_rules['Exclude'] || []
     end
 
     def path_relative_to_config(path)
@@ -204,8 +204,8 @@ module RuboCop
 
     def target_rails_version
       @target_rails_version ||=
-        if for_all_cops['TargetRailsVersion']
-          for_all_cops['TargetRailsVersion'].to_f
+        if for_all_rules['TargetRailsVersion']
+          for_all_rules['TargetRailsVersion'].to_f
         elsif target_rails_version_from_bundler_lock_file
           target_rails_version_from_bundler_lock_file
         else
@@ -228,15 +228,15 @@ module RuboCop
       nil
     end
 
-    def pending_cops
-      keys.each_with_object([]) do |qualified_cop_name, pending_cops|
-        department = department_of(qualified_cop_name)
+    def pending_rules
+      keys.each_with_object([]) do |qualified_rule_name, pending_rules|
+        department = department_of(qualified_rule_name)
         next if department && department['Enabled'] == false
 
-        cop_metadata = self[qualified_cop_name]
+        cop_metadata = self[qualified_rule_name]
         next unless cop_metadata['Enabled'] == 'pending'
 
-        pending_cops << CopConfig.new(qualified_cop_name, cop_metadata)
+        pending_rules << RuleConfig.new(qualified_rule_name, cop_metadata)
       end
     end
 
@@ -259,22 +259,22 @@ module RuboCop
       end
     end
 
-    def enable_cop?(qualified_cop_name, cop_options)
-      department = department_of(qualified_cop_name)
-      cop_enabled = cop_options.fetch('Enabled') do
-        !for_all_cops['DisabledByDefault']
+    def enable_rule?(qualified_rule_name, rule_options)
+      department = department_of(qualified_rule_name)
+      rule_enabled = rule_options.fetch('Enabled') do
+        !for_all_rules['DisabledByDefault']
       end
-      return true if cop_enabled == 'override_department'
+      return true if rule_enabled == 'override_department'
       return false if department && department['Enabled'] == false
 
-      cop_enabled
+      rule_enabled
     end
 
-    def department_of(qualified_cop_name)
-      cop_department, cop_name = qualified_cop_name.split('/')
-      return nil if cop_name.nil?
+    def department_of(qualified_rule_name)
+      rule_department, rule_name = qualified_rule_name.split('/')
+      return nil if rule_name.nil?
 
-      self[cop_department]
+      self[rule_department]
     end
   end
 end

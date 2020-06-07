@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundExceptionHandlingKeywords do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundExceptionHandlingKeywords do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
   shared_examples 'offense' do |name, message, code, correction|
     it "registers an offense for #{name} with a blank" do
       inspect_source(code)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages).to eq(["Extra empty line detected #{message}."])
     end
 
@@ -183,7 +183,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundExceptionHandlingKeywords 
 
     it 'registers many offenses' do
       inspect_source(source)
-      expect(cop.offenses.size).to eq(10)
+      expect(rule.offenses.size).to eq(10)
     end
 
     it 'autocorrects' do
@@ -241,7 +241,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundExceptionHandlingKeywords 
 
     it 'registers many offenses' do
       inspect_source(source)
-      expect(cop.offenses.size).to eq(10)
+      expect(rule.offenses.size).to eq(10)
     end
 
     it 'autocorrects' do

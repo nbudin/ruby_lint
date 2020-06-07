@@ -29,9 +29,9 @@ module RuboCop
     #       end.c
     #     RUBY
     #
-    #     expect(cop.offenses.size).to be(1)
+    #     expect(rule.offenses.size).to be(1)
     #
-    #     offense = cop.offenses.first
+    #     offense = rule.offenses.first
     #     expect(offense.line).to be(3)
     #     expect(offense.column_range).to be(0...5)
     #     expect(offense.message).to eql(
@@ -95,7 +95,7 @@ module RuboCop
         RuboCop::Formatter::DisabledConfigFormatter
           .config_to_allow_offenses = {}
         RuboCop::Formatter::DisabledConfigFormatter.detected_styles = {}
-        cop.instance_variable_get(:@options)[:auto_correct] = true
+        rule.instance_variable_get(:@options)[:auto_correct] = true
 
         expected_annotations = AnnotatedSource.parse(source)
 
@@ -108,9 +108,9 @@ module RuboCop
 
         raise 'Error parsing example code' unless @processed_source.valid_syntax?
 
-        _investigate(cop, @processed_source)
+        _investigate(rule, @processed_source)
         actual_annotations =
-          expected_annotations.with_offense_annotations(cop.offenses)
+          expected_annotations.with_offense_annotations(rule.offenses)
 
         expect(actual_annotations.to_s).to eq(expected_annotations.to_s)
       end
@@ -123,11 +123,11 @@ module RuboCop
           iteration += 1
 
           corrector =
-            Rubocop::Rule::Corrector.new(@processed_source.buffer, cop.corrections)
+            RuboCop::Rule::Corrector.new(@processed_source.buffer, rule.corrections)
           corrected_source = corrector.rewrite
 
           break corrected_source unless loop
-          break corrected_source if cop.corrections.empty?
+          break corrected_source if rule.corrections.empty?
           break corrected_source if corrected_source == @processed_source.buffer.source
 
           if iteration > RuboCop::Runner::MAX_ITERATIONS
@@ -135,12 +135,12 @@ module RuboCop
           end
 
           # Prepare for next loop
-          cop.instance_variable_set(:@corrections, [])
+          rule.instance_variable_set(:@corrections, [])
           # Cache invalidation. This is bad!
-          cop.instance_variable_set(:@token_table, nil)
+          rule.instance_variable_set(:@token_table, nil)
           @processed_source = parse_source(corrected_source,
                                            @processed_source.path)
-          _investigate(cop, @processed_source)
+          _investigate(rule, @processed_source)
         end
 
         expect(new_source).to eq(correction)
@@ -150,13 +150,13 @@ module RuboCop
       def expect_no_corrections
         raise '`expect_no_corrections` must follow `expect_offense`' unless @processed_source
 
-        return if cop.corrections.empty?
+        return if rule.corrections.empty?
 
         # In order to print a nice diff, e.g. what source got corrected to,
         # we need to run the actual corrections
 
         corrector =
-          Rubocop::Rule::Corrector.new(@processed_source.buffer, cop.corrections)
+          RuboCop::Rule::Corrector.new(@processed_source.buffer, rule.corrections)
         new_source = corrector.rewrite
 
         expect(new_source).to eq(@processed_source.buffer.source)
@@ -167,7 +167,7 @@ module RuboCop
 
         expected_annotations = AnnotatedSource.parse(source)
         actual_annotations =
-          expected_annotations.with_offense_annotations(cop.offenses)
+          expected_annotations.with_offense_annotations(rule.offenses)
         expect(actual_annotations.to_s).to eq(source)
       end
 
@@ -249,7 +249,7 @@ module RuboCop
 
         # Annotate the source code with the RuboCop offenses provided
         #
-        # @param offenses [Array<Rubocop::Rule::Offense>]
+        # @param offenses [Array<RuboCop::Rule::Offense>]
         #
         # @return [self]
         def with_offense_annotations(offenses)

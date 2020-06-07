@@ -8,7 +8,7 @@ module RuboCop
       private
 
       def allow_for_alignment?
-        cop_config['AllowForAlignment']
+        rule_config['AllowForAlignment']
       end
 
       def aligned_with_something?(range)

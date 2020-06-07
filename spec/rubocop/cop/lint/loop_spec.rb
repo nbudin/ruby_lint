@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::Loop do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::Loop do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for begin/end/while' do
     expect_offense(<<~RUBY)

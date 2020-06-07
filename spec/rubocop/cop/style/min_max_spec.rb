@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MinMax, :config do
+RSpec.describe RuboCop::Rule::Style::MinMax, :config do
   context 'with an array literal containing calls to `#min` and `#max`' do
     context 'when the expression stands alone' do
       it 'registers an offense if the receivers match' do

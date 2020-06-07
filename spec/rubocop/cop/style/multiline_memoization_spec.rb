@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
+RSpec.describe RuboCop::Rule::Style::MultilineMemoization, :config do
   let(:message) { 'Wrap multiline memoization blocks in `begin` and `end`.' }
 
   before do
@@ -11,7 +11,7 @@ RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
     let(:source) { code }
 
     it 'registers an offense' do
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages).to eq([message])
     end
 
@@ -24,7 +24,7 @@ RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -85,7 +85,7 @@ RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
   end
 
   context 'EnforcedStyle: keyword' do
-    let(:cop_config) { { 'EnforcedStyle' => 'keyword' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'keyword' } }
 
     include_examples 'with all enforced styles'
 
@@ -158,7 +158,7 @@ RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
   end
 
   context 'EnforcedStyle: braces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'braces' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'braces' } }
 
     include_examples 'with all enforced styles'
 

@@ -40,7 +40,7 @@ module RuboCop
         end
 
         def on_begin(node)
-          return if cop_config['AllowAsExpressionSeparator']
+          return if rule_config['AllowAsExpressionSeparator']
 
           exprs = node.children
 

@@ -49,7 +49,7 @@ module RuboCop
       end
 
       def treat_comments_as_separators
-        cop_config['TreatCommentsAsGroupSeparators']
+        rule_config['TreatCommentsAsGroupSeparators']
       end
     end
   end

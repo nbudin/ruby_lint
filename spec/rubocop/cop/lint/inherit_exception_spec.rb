@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::InheritException, :config do
+RSpec.describe RuboCop::Rule::Lint::InheritException, :config do
   context 'when class inherits from `Exception`' do
     context 'with enforced style set to `runtime_error`' do
-      let(:cop_config) { { 'EnforcedStyle' => 'runtime_error' } }
+      let(:rule_config) { { 'EnforcedStyle' => 'runtime_error' } }
 
       it 'registers an offense and corrects' do
         expect_offense(<<~RUBY)
@@ -31,7 +31,7 @@ RSpec.describe Rubocop::Rule::Lint::InheritException, :config do
     end
 
     context 'with enforced style set to `standard_error`' do
-      let(:cop_config) { { 'EnforcedStyle' => 'standard_error' } }
+      let(:rule_config) { { 'EnforcedStyle' => 'standard_error' } }
 
       it 'registers an offense and corrects' do
         expect_offense(<<~RUBY)

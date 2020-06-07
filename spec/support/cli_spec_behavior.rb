@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'support/file_helper'
+
 RSpec.shared_context 'cli spec behavior' do
   include_context 'mock console output'
 

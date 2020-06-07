@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MultilineTernaryOperator do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::MultilineTernaryOperator do
+  subject(:rule) { described_class.new }
 
   it 'registers offense when the if branch and the else branch are ' \
      'on a separate line from the condition' do

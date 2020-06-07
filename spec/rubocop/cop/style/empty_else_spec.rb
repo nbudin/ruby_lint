@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EmptyElse do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::EmptyElse do
+  subject(:rule) { described_class.new(config) }
 
   let(:missing_else_config) { {} }
 
@@ -22,7 +22,7 @@ RSpec.describe Rubocop::Rule::Style::EmptyElse do
         if ['both', keyword].include? missing_else_style
           it 'does not auto-correct' do
             expect(autocorrect_source(source)).to eq(source)
-            expect(cop.offenses.map(&:corrected?)).to eq [false]
+            expect(rule.offenses.map(&:corrected?)).to eq [false]
           end
         else
           it 'does auto-correction' do
@@ -41,7 +41,7 @@ RSpec.describe Rubocop::Rule::Style::EmptyElse do
 
     it 'registers an offense with correct location' do
       inspect_source(source)
-      expect(cop.highlights).to eq(['else'])
+      expect(rule.highlights).to eq(['else'])
     end
   end
 

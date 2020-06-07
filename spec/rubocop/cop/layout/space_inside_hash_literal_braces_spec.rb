@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
-  let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
+  let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
   context 'with space inside empty braces not allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'no_space' } }
 
     it 'accepts empty braces with no space inside' do
       expect_no_offenses('h = {}')
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
   end
 
   context 'with space inside empty braces allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'space' } }
 
     it 'accepts empty braces with space inside' do
       expect_no_offenses('h = { }')
@@ -69,7 +69,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
   end
 
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'registers an offense for hashes with spaces' do
       expect_offense(<<~RUBY)
@@ -121,7 +121,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
   end
 
   context 'when EnforcedStyle is compact' do
-    let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'compact' } }
 
     it "doesn't register an offense for non-nested hashes with spaces" do
       expect_no_offenses(<<~RUBY)

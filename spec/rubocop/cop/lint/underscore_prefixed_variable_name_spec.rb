@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UnderscorePrefixedVariableName, :config do
-  let(:cop_config) { { 'AllowKeywordBlockArguments' => false } }
+RSpec.describe RuboCop::Rule::Lint::UnderscorePrefixedVariableName, :config do
+  let(:rule_config) { { 'AllowKeywordBlockArguments' => false } }
 
   context 'when an underscore-prefixed variable is used' do
     it 'registers an offense' do
@@ -50,7 +50,7 @@ RSpec.describe Rubocop::Rule::Lint::UnderscorePrefixedVariableName, :config do
 
   context 'when an underscore-prefixed block argument is used' do
     [true, false].each do |config|
-      let(:cop_config) { { 'AllowKeywordBlockArguments' => config } }
+      let(:rule_config) { { 'AllowKeywordBlockArguments' => config } }
 
       it 'registers an offense' do
         expect_offense(<<~RUBY)
@@ -74,7 +74,7 @@ RSpec.describe Rubocop::Rule::Lint::UnderscorePrefixedVariableName, :config do
     end
 
     context 'when AllowKeywordBlockArguments is set' do
-      let(:cop_config) { { 'AllowKeywordBlockArguments' => true } }
+      let(:rule_config) { { 'AllowKeywordBlockArguments' => true } }
 
       it 'does not register an offense' do
         expect_no_offenses(<<~RUBY)

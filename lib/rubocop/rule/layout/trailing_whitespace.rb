@@ -56,7 +56,7 @@ module RuboCop
         private
 
         def skip_heredoc?
-          cop_config.fetch('AllowInHeredoc', false)
+          rule_config.fetch('AllowInHeredoc', false)
         end
 
         def inside_heredoc?(heredoc_ranges, line_number)

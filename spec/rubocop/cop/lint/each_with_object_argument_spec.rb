@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::EachWithObjectArgument do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::EachWithObjectArgument do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for fixnum argument' do
     expect_offense(<<~RUBY)

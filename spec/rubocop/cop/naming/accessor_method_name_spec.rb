@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::AccessorMethodName do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Naming::AccessorMethodName do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for method get_... with no args' do
     expect_offense(<<~RUBY)

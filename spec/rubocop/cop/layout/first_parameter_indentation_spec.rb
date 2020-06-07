@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstParameterIndentation, :config do
+RSpec.describe RuboCop::Rule::Layout::FirstParameterIndentation, :config do
   let(:config) do
     supported_styles = {
       'SupportedStyles' => %w[consistent align_parentheses]
     }
     RuboCop::Config.new('Layout/FirstParameterIndentation' =>
-                        cop_config.merge(supported_styles).merge(
+                        rule_config.merge(supported_styles).merge(
                           'IndentationWidth' => cop_indent
                         ),
                         'Layout/IndentationWidth' => { 'Width' => 2 })
@@ -14,7 +14,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstParameterIndentation, :config do
   let(:cop_indent) { nil } # use indent from Layout/IndentationWidth
 
   context 'consistent style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'consistent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'consistent' } }
 
     context 'no paren method defs' do
       it 'ignores' do
@@ -186,7 +186,7 @@ RSpec.describe Rubocop::Rule::Layout::FirstParameterIndentation, :config do
   end
 
   context 'align_parentheses style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'align_parentheses' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'align_parentheses' } }
 
     context 'no paren method defs' do
       it 'ignores' do

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NumericLiteralPrefix, :config do
+RSpec.describe RuboCop::Rule::Style::NumericLiteralPrefix, :config do
   context 'octal literals' do
     context 'when config is zero_with_o' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedOctalStyle' => 'zero_with_o'
         }
@@ -37,7 +37,7 @@ RSpec.describe Rubocop::Rule::Style::NumericLiteralPrefix, :config do
     end
 
     context 'when config is zero_only' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedOctalStyle' => 'zero_only'
         }

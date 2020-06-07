@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::LiteralAsCondition do
+  subject(:rule) { described_class.new }
 
   %w(1 2.0 [1] {} :sym :"#{a}").each do |lit|
     it "registers an offense for literal #{lit} in if" do
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in while" do
@@ -19,7 +19,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in post-loop while" do
@@ -28,7 +28,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end while(#{lit})
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in until" do
@@ -37,7 +37,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in post-loop until" do
@@ -46,7 +46,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end until #{lit}
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in case" do
@@ -55,7 +55,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
         when x then top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in a when " \
@@ -65,7 +65,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
         when #{lit} then top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "accepts literal #{lit} in a when of a case with " \
@@ -83,7 +83,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in complex cond" do
@@ -92,7 +92,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in !" do
@@ -101,7 +101,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for literal #{lit} in complex !" do
@@ -110,7 +110,7 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
           top
         end
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "accepts literal #{lit} if it's not an and/or operand" do
@@ -133,14 +133,14 @@ RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
       inspect_source(<<~RUBY)
         !#{lit}
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it "registers an offense for `not #{lit}`" do
       inspect_source(<<~RUBY)
         not(#{lit})
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 

@@ -2,7 +2,7 @@
 
 require 'rubocop/ast/sexp'
 
-RSpec.describe Rubocop::Rule::VariableForce::Variable do
+RSpec.describe RuboCop::Rule::VariableForce::Variable do
   include RuboCop::AST::Sexp
 
   describe '.new' do
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::VariableForce::Variable do
       it 'raises error' do
         name = :foo
         declaration_node = s(:def)
-        scope = Rubocop::Rule::VariableForce::Scope.new(s(:class))
+        scope = RuboCop::Rule::VariableForce::Scope.new(s(:class))
         expect { described_class.new(name, declaration_node, scope) }
           .to raise_error(ArgumentError)
       end
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::VariableForce::Variable do
     let(:name) { :foo }
     let(:declaration_node) { s(:arg, name) }
     let(:scope) do
-      instance_double(Rubocop::Rule::VariableForce::Scope).as_null_object
+      instance_double(RuboCop::Rule::VariableForce::Scope).as_null_object
     end
     let(:variable) { described_class.new(name, declaration_node, scope) }
 

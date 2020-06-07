@@ -89,7 +89,7 @@ module RuboCop
           check_var(expr)
           check_self(expr)
           check_defined(expr)
-          return unless cop_config['CheckForMethodsWithNoSideEffects']
+          return unless rule_config['CheckForMethodsWithNoSideEffects']
 
           check_nonmutating(expr)
         end

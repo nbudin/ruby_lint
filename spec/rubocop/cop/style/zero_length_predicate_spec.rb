@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ZeroLengthPredicate do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::ZeroLengthPredicate do
+  subject(:rule) { described_class.new }
 
   let(:source) { '' }
 
@@ -14,9 +14,9 @@ RSpec.describe Rubocop::Rule::Style::ZeroLengthPredicate do
       let(:source) { code }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.offenses.first.message).to eq(message)
-        expect(cop.highlights).to eq([code])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.offenses.first.message).to eq(message)
+        expect(rule.highlights).to eq([code])
       end
 
       it 'auto-corrects' do
@@ -29,7 +29,7 @@ RSpec.describe Rubocop::Rule::Style::ZeroLengthPredicate do
     let(:source) { code }
 
     it 'does not register any offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 

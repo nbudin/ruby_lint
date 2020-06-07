@@ -147,7 +147,7 @@ module RuboCop
         end
 
         def force_equal_sign_alignment?
-          cop_config['ForceEqualSignAlignment']
+          rule_config['ForceEqualSignAlignment']
         end
 
         def align_equal_signs(range, corrector)
@@ -193,7 +193,7 @@ module RuboCop
         end
 
         def allow_for_trailing_comments?
-          cop_config['AllowBeforeTrailingComments']
+          rule_config['AllowBeforeTrailingComments']
         end
       end
     end

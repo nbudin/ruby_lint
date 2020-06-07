@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsidePercentLiteralDelimiters do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::SpaceInsidePercentLiteralDelimiters do
+  subject(:rule) { described_class.new }
 
   let(:message) do
     'Do not use spaces inside percent literal delimiters.'
@@ -21,30 +21,30 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsidePercentLiteralDelimiters do
         it 'registers an offense for unnecessary spaces' do
           source = code_example(' 1 2  ')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(2)
+          expect(rule.offenses.size).to eq(2)
           expect(cop.messages.uniq).to eq([message])
-          expect(cop.highlights).to eq([' ', '  '])
+          expect(rule.highlights).to eq([' ', '  '])
           expect_corrected(source, code_example('1 2'))
         end
 
         it 'registers an offense for spaces after first delimiter' do
           source = code_example(' 1 2')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect_corrected(source, code_example('1 2'))
         end
 
         it 'registers an offense for spaces before final delimiter' do
           source = code_example('1 2 ')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect_corrected(source, code_example('1 2'))
         end
 
         it 'registers an offense for literals with escaped and other spaces' do
           source = code_example(' \ a b c\  ')
           inspect_source(source)
-          expect(cop.offenses.size).to eq(2)
+          expect(rule.offenses.size).to eq(2)
           expect_corrected(source, code_example('\ a b c\ '))
         end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::AssignmentIndentation, :config do
+RSpec.describe RuboCop::Rule::Layout::AssignmentIndentation, :config do
   let(:config) do
     RuboCop::Config.new('Layout/AssignmentIndentation' => {
                           'IndentationWidth' => cop_indent

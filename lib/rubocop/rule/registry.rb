@@ -2,10 +2,10 @@
 
 module RuboCop
   module Rule
-    # Error raised when an unqualified cop name is used that could
+    # Error raised when an unqualified rule name is used that could
     # refer to two or more cops under different departments
-    class AmbiguousCopName < RuboCop::Error
-      MSG = 'Ambiguous cop name `%<name>s` used in %<origin>s needs ' \
+    class AmbiguousRuleName < RuboCop::Error
+      MSG = 'Ambiguous rule name `%<name>s` used in %<origin>s needs ' \
             'department qualifier. Did you mean %<options>s?'
 
       def initialize(name, origin, badges)
@@ -26,36 +26,36 @@ module RuboCop
 
       attr_reader :options
 
-      def initialize(cops = [], options = {})
+      def initialize(rules = [], options = {})
         @registry = {}
         @departments = {}
-        @cops_by_cop_name = Hash.new { |hash, key| hash[key] = [] }
+        @rules_by_rule_name = Hash.new { |hash, key| hash[key] = [] }
 
-        @enrollment_queue = cops
+        @enrollment_queue = rules
         @options = options
       end
 
-      def enlist(cop)
-        @enrollment_queue << cop
+      def enlist(rule)
+        @enrollment_queue << rule
       end
 
-      def dismiss(cop)
-        raise "Cop #{cop} could not be dismissed" unless @enrollment_queue.delete(cop)
+      def dismiss(rule)
+        raise "Rule #{rule} could not be dismissed" unless @enrollment_queue.delete(rule)
       end
 
-      # @return [Array<Symbol>] list of departments for current cops.
+      # @return [Array<Symbol>] list of departments for current rules.
       def departments
         clear_enrollment_queue
         @departments.keys
       end
 
-      # @return [Registry] Cops for that specific department.
+      # @return [Registry] Rules for that specific department.
       def with_department(department)
         clear_enrollment_queue
         with(@departments.fetch(department, []))
       end
 
-      # @return [Registry] Cops not for a specific department.
+      # @return [Registry] Rules not for a specific department.
       def without_department(department)
         clear_enrollment_queue
         without_department = @departments.dup
@@ -64,43 +64,43 @@ module RuboCop
         with(without_department.values.flatten)
       end
 
-      def contains_cop_matching?(names)
-        cops.any? { |cop| cop.match?(names) }
+      def contains_rule_matching?(names)
+        rules.any? { |rule| rule.match?(names) }
       end
 
-      # Convert a user provided cop name into a properly namespaced name
+      # Convert a user provided rule name into a properly namespaced name
       #
-      # @example gives back a correctly qualified cop name
+      # @example gives back a correctly qualified rule name
       #
-      #   cops = Rubocop::Rule::Rule.all
-      #   cops.
-      #     qualified_cop_name('Layout/EndOfLine') # => 'Layout/EndOfLine'
+      #   rules = RuboCop::Rule::Rule.all
+      #   rules.
+      #     qualified_rule_name('Layout/EndOfLine') # => 'Layout/EndOfLine'
       #
       # @example fixes incorrect namespaces
       #
-      #   cops = Rubocop::Rule::Rule.all
-      #   cops.qualified_cop_name('Lint/EndOfLine') # => 'Layout/EndOfLine'
+      #   rules = RuboCop::Rule::Rule.all
+      #   rules.qualified_rule_name('Lint/EndOfLine') # => 'Layout/EndOfLine'
       #
-      # @example namespaces bare cop identifiers
+      # @example namespaces bare rule identifiers
       #
-      #   cops = Rubocop::Rule::Rule.all
-      #   cops.qualified_cop_name('EndOfLine') # => 'Layout/EndOfLine'
+      #   rules = RuboCop::Rule::Rule.all
+      #   rules.qualified_rule_name('EndOfLine') # => 'Layout/EndOfLine'
       #
-      # @example passes back unrecognized cop names
+      # @example passes back unrecognized rule names
       #
-      #   cops = Rubocop::Rule::Rule.all
-      #   cops.qualified_cop_name('NotACop') # => 'NotACop'
+      #   rules = RuboCop::Rule::Rule.all
+      #   rules.qualified_rule_name('NotARule') # => 'NotARule'
       #
-      # @param name [String] Cop name extracted from config
+      # @param name [String] Rule name extracted from config
       # @param path [String, nil] Path of file that `name` was extracted from
       #
-      # @raise [AmbiguousCopName]
+      # @raise [AmbiguousRuleName]
       #   if a bare identifier with two possible namespaces is provided
       #
       # @note Emits a warning if the provided name has an incorrect namespace
       #
-      # @return [String] Qualified cop name
-      def qualified_cop_name(name, path, shall_warn = true)
+      # @return [String] Qualified rule name
+      def qualified_rule_name(name, path, shall_warn = true)
         badge = Badge.parse(name)
         print_warning(name, path) if shall_warn && department_missing?(badge, name)
         return name if registered?(badge)
@@ -115,7 +115,7 @@ module RuboCop
       end
 
       def department_missing?(badge, name)
-        !badge.qualified? && unqualified_cop_names.include?(name)
+        !badge.qualified? && unqualified_rule_names.include?(name)
       end
 
       def print_warning(name, path)
@@ -126,20 +126,20 @@ module RuboCop
         warn message
       end
 
-      def unqualified_cop_names
+      def unqualified_rule_names
         clear_enrollment_queue
-        @unqualified_cop_names ||=
-          Set.new(@cops_by_cop_name.keys.map { |qn| File.basename(qn) }) <<
-          'RedundantCopDisableDirective'
+        @unqualified_rule_names ||=
+          Set.new(@rules_by_rule_name.keys.map { |qn| File.basename(qn) }) <<
+          'RedundantRuleDisableDirective'
       end
 
       # @return [Hash{String => Array<Class>}]
       def to_h
         clear_enrollment_queue
-        @cops_by_cop_name
+        @rules_by_rule_name
       end
 
-      def cops
+      def rules
         clear_enrollment_queue
         @registry.values
       end
@@ -150,58 +150,58 @@ module RuboCop
       end
 
       def enabled(config, only = [], only_safe = false)
-        select do |cop|
-          only.include?(cop.cop_name) || enabled?(cop, config, only_safe)
+        select do |rule|
+          only.include?(rule.rule_name) || enabled?(rule, config, only_safe)
         end
       end
 
-      def enabled?(cop, config, only_safe)
-        cfg = config.for_cop(cop)
+      def enabled?(rule, config, only_safe)
+        cfg = config.for_rule(rule)
 
-        cop_enabled = cfg.fetch('Enabled') == true ||
-                      enabled_pending_cop?(cfg, config)
+        rule_enabled = cfg.fetch('Enabled') == true ||
+                      enabled_pending_rule?(cfg, config)
 
         if only_safe
-          cop_enabled && cfg.fetch('Safe', true)
+          rule_enabled && cfg.fetch('Safe', true)
         else
-          cop_enabled
+          rule_enabled
         end
       end
 
-      def enabled_pending_cop?(cop_cfg, config)
-        return false if @options[:disable_pending_cops]
+      def enabled_pending_rule?(rule_cfg, config)
+        return false if @options[:disable_pending_rules]
 
-        cop_cfg.fetch('Enabled') == 'pending' &&
-          (@options[:enable_pending_cops] || config.enabled_new_cops?)
+        rule_cfg.fetch('Enabled') == 'pending' &&
+          (@options[:enable_pending_rules] || config.enabled_new_rules?)
       end
 
       def names
-        cops.map(&:cop_name)
+        rules.map(&:rule_name)
       end
 
       def ==(other)
-        cops == other.cops
+        rules == other.rules
       end
 
       def sort!
         clear_enrollment_queue
-        @registry = Hash[@registry.sort_by { |badge, _| badge.cop_name }]
+        @registry = Hash[@registry.sort_by { |badge, _| badge.rule_name }]
 
         self
       end
 
       def select(&block)
-        cops.select(&block)
+        rules.select(&block)
       end
 
       def each(&block)
         cops.each(&block)
       end
 
-      # @param [String] cop_name
+      # @param [String] rule_name
       # @return [Class, nil]
-      def find_by_cop_name(cop_name)
-        to_h[cop_name].first
+      def find_by_rule_name(rule_name)
+        to_h[rule_name].first
       end
 
       @global = new
@@ -211,11 +211,11 @@ module RuboCop
       end
 
       def self.all
-        global.without_department(:Test).cops
+        global.without_department(:Test).rules
       end
 
-      def self.qualified_cop_name(name, origin)
-        global.qualified_cop_name(name, origin)
+      def self.qualified_rule_name(name, origin)
+        global.qualified_rule_name(name, origin)
       end
 
       # Changes momentarily the global registry
@@ -231,23 +231,23 @@ module RuboCop
       private
 
       def initialize_copy(reg)
-        initialize(reg.cops, reg.options)
+        initialize(reg.rules, reg.options)
       end
 
       def clear_enrollment_queue
         return if @enrollment_queue.empty?
 
-        @enrollment_queue.each do |cop|
-          @registry[cop.badge] = cop
-          @departments[cop.department] ||= []
-          @departments[cop.department] << cop
-          @cops_by_cop_name[cop.cop_name] << cop
+        @enrollment_queue.each do |rule|
+          @registry[rule.badge] = rule
+          @departments[rule.department] ||= []
+          @departments[rule.department] << rule
+          @rules_by_rule_name[rule.rule_name] << rule
         end
         @enrollment_queue = []
       end
 
-      def with(cops)
-        self.class.new(cops)
+      def with(rules)
+        self.class.new(rules)
       end
 
       def qualify_badge(badge)

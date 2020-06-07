@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::UnlessElse do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::UnlessElse do
+  subject(:rule) { described_class.new }
 
   context 'unless with else' do
     it 'registers an offense' do

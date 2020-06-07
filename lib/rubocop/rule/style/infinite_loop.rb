@@ -120,7 +120,7 @@ module RuboCop
         end
 
         def configured_indent
-          ' ' * config.for_cop('Layout/IndentationWidth')['Width']
+          ' ' * config.for_rule('Layout/IndentationWidth')['Width']
         end
       end
     end

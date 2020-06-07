@@ -62,7 +62,7 @@ RSpec.describe RuboCop::Formatter::FuubarStyleFormatter do
                                                line_length + 2,
                                                line_length + 3)
 
-      Rubocop::Rule::Offense.new(
+      RuboCop::Rule::Offense.new(
         severity, source_range,
         'message', 'Cop', status
       )

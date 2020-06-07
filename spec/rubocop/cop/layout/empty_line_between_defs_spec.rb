@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLineBetweenDefs, :config do
-  let(:cop_config) { { 'AllowAdjacentOneLineDefs' => false } }
+RSpec.describe RuboCop::Rule::Layout::EmptyLineBetweenDefs, :config do
+  let(:rule_config) { { 'AllowAdjacentOneLineDefs' => false } }
 
   it 'finds offenses in inner classes' do
     expect_offense(<<~RUBY)
@@ -277,7 +277,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLineBetweenDefs, :config do
   end
 
   context 'when AllowAdjacentOneLineDefs is enabled' do
-    let(:cop_config) { { 'AllowAdjacentOneLineDefs' => true } }
+    let(:rule_config) { { 'AllowAdjacentOneLineDefs' => true } }
 
     it 'accepts adjacent one-liners' do
       expect_no_offenses(<<~RUBY)
@@ -310,7 +310,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLineBetweenDefs, :config do
   end
 
   context 'when a maximum of empty lines is specified' do
-    let(:cop_config) { { 'NumberOfEmptyLines' => [0, 1] } }
+    let(:rule_config) { { 'NumberOfEmptyLines' => [0, 1] } }
 
     it 'finds no offense for no empty line' do
       expect_no_offenses(<<~RUBY)
@@ -353,7 +353,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLineBetweenDefs, :config do
   end
 
   context 'when multiple lines between defs are allowed' do
-    let(:cop_config) { { 'NumberOfEmptyLines' => 2 } }
+    let(:rule_config) { { 'NumberOfEmptyLines' => 2 } }
 
     it 'treats lines with whitespaces as blank' do
       expect_offense(<<~RUBY)

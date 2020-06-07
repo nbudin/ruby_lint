@@ -95,7 +95,7 @@ module RuboCop
         end
 
         def fixed_indentation?
-          cop_config['EnforcedStyle'] == 'with_fixed_indentation'
+          rule_config['EnforcedStyle'] == 'with_fixed_indentation'
         end
 
         def base_column(node, args)

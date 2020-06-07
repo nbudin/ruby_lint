@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ColonMethodDefinition do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::ColonMethodDefinition do
+  subject(:rule) { described_class.new }
 
   it 'accepts a class method defined using .' do
     expect_no_offenses(<<~RUBY)

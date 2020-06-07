@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
+RSpec.describe RuboCop::Rule::Layout::ExtraSpacing, :config do
   shared_examples 'common behavior' do
     it 'registers an offense and corrects alignment with token ' \
       'not preceded by space' do
@@ -226,7 +226,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
   }.freeze
 
   context 'when AllowForAlignment is true' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowForAlignment' => true, 'ForceEqualSignAlignment' => false }
     end
 
@@ -244,7 +244,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
   end
 
   context 'when AllowForAlignment is false' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowForAlignment' => false, 'ForceEqualSignAlignment' => false }
     end
 
@@ -255,7 +255,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
         context "such as #{reason}" do
           it 'registers offense(s)' do
             inspect_source(src)
-            expect(cop.offenses.empty?).to be(false)
+            expect(rule.offenses.empty?).to be(false)
           end
         end
       end
@@ -264,7 +264,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
 
   context 'when AllowBeforeTrailingComments is' do
     let(:allow_alignment) { false }
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowForAlignment' => allow_alignment,
         'AllowBeforeTrailingComments' => allow_comments }
     end
@@ -300,9 +300,9 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
                 # being true.  Yes, that means technically it interferes a bit,
                 # but specifically in the way it was intended to.
                 if reason == 'aligning tokens with empty line between'
-                  expect(cop.offenses.empty?).to be(true)
+                  expect(rule.offenses.empty?).to be(true)
                 else
-                  expect(cop.offenses.empty?).to be(false)
+                  expect(rule.offenses.empty?).to be(false)
                 end
               end
             end
@@ -316,7 +316,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
 
       it 'regsiters offense' do
         inspect_source(src_with_extra)
-        expect(cop.offenses.empty?).to be(false)
+        expect(rule.offenses.empty?).to be(false)
       end
 
       it 'does not trigger on only one space before comment' do
@@ -327,7 +327,7 @@ RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
   end
 
   context 'when ForceEqualSignAlignment is true' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowForAlignment' => true, 'ForceEqualSignAlignment' => true }
     end
 

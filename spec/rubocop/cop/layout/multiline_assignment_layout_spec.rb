@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineAssignmentLayout, :config do
+RSpec.describe RuboCop::Rule::Layout::MultilineAssignmentLayout, :config do
   let(:supported_types) { %w[if] }
 
-  let(:cop_config) do
+  let(:rule_config) do
     {
       'EnforcedStyle' => enforced_style,
       'SupportedTypes' => supported_types

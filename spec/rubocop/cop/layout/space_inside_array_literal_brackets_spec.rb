@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config do
   it 'does not register offense for any kind of reference brackets' do
     expect_no_offenses(<<~RUBY)
       a[1]
@@ -11,7 +11,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
   end
 
   context 'with space inside empty brackets not allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBrackets' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBrackets' => 'no_space' } }
 
     it 'accepts empty brackets with no space inside' do
       expect_no_offenses('a = []')
@@ -54,7 +54,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
   end
 
   context 'with space inside empty braces allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBrackets' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBrackets' => 'space' } }
 
     it 'accepts empty brackets with space inside' do
       expect_no_offenses('a = [ ]')
@@ -86,7 +86,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
   end
 
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     it 'does not register offense for arrays with no spaces' do
       expect_no_offenses(<<~RUBY)
@@ -456,7 +456,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
   end
 
   context 'when EnforcedStyle is space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
     it_behaves_like 'space inside arrays'
 
@@ -468,7 +468,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
   end
 
   context 'when EnforcedStyle is compact' do
-    let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'compact' } }
 
     it_behaves_like 'space inside arrays'
 
@@ -576,8 +576,8 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
             [ 3, 4, 5, 6 ]]
         RUBY
 
-        expect(cop.offenses.size).to eq(1)
-        offense = cop.offenses.first
+        expect(rule.offenses.size).to eq(1)
+        offense = rule.offenses.first
         expect(offense.line).to eq(1)
         expect(offense.column_range).to eq(13...13) # thus, can't expect_offense
         expect(offense.message).to eq('Do not use space inside array brackets.')
@@ -610,8 +610,8 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayLiteralBrackets, :config d
           ]
         RUBY
 
-        expect(cop.offenses.size).to eq(1)
-        offense = cop.offenses.first
+        expect(rule.offenses.size).to eq(1)
+        offense = rule.offenses.first
         expect(offense.line).to eq(1)
         expect(offense.column_range).to eq(9...9) # thus, can't expect_offense
         expect(offense.message).to eq('Do not use space inside array brackets.')

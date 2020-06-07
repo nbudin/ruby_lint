@@ -87,7 +87,7 @@ module RuboCop
         private
 
         def supported_types
-          @supported_types ||= cop_config['SupportedTypes'].map(&:to_sym)
+          @supported_types ||= rule_config['SupportedTypes'].map(&:to_sym)
         end
       end
     end

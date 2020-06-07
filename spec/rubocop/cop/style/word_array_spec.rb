@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::WordArray, :config do
+RSpec.describe RuboCop::Rule::Style::WordArray, :config do
   before do
     # Reset data which is shared by all instances of WordArray
     described_class.largest_brackets = -Float::INFINITY
@@ -17,7 +17,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'when EnforcedStyle is percent' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinSize' => 0,
         'WordRegex' => /\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z/,
         'EnforcedStyle' => 'percent' }
@@ -60,7 +60,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
 
     it 'registers an offense for strings with embedded newlines and tabs' do
       inspect_source(%(["one\n", "hi\tthere"]))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
 
     it 'registers an offense for strings with newline and tab escapes' do
@@ -108,7 +108,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
     end
 
     it 'does not register offense for array with allowed number of strings' do
-      cop_config['MinSize'] = 4
+      rule_config['MinSize'] = 4
       expect_no_offenses('["one", "two", "three"]')
     end
 
@@ -232,7 +232,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'when EnforcedStyle is array' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinSize' => 0,
         'WordRegex' => /\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z/,
         'EnforcedStyle' => 'brackets' }
@@ -312,7 +312,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'with a custom WordRegex configuration' do
-    let(:cop_config) { { 'MinSize' => 0, 'WordRegex' => /\A[\w@.]+\z/ } }
+    let(:rule_config) { { 'MinSize' => 0, 'WordRegex' => /\A[\w@.]+\z/ } }
 
     it 'registers an offense for arrays of email addresses' do
       expect_offense(<<~RUBY)
@@ -328,7 +328,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'when the WordRegex configuration is not a Regexp' do
-    let(:cop_config) { { 'WordRegex' => 'just_a_string' } }
+    let(:rule_config) { { 'WordRegex' => 'just_a_string' } }
 
     it 'still parses the code without raising an error' do
       expect { inspect_source('') }.not_to raise_error
@@ -336,7 +336,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'with a WordRegex configuration which accepts almost anything' do
-    let(:cop_config) { { 'MinSize' => 0, 'WordRegex' => /\S+/ } }
+    let(:rule_config) { { 'MinSize' => 0, 'WordRegex' => /\S+/ } }
 
     it 'uses %W when autocorrecting strings with non-printable chars' do
       new_source = autocorrect_source('["\x1f\x1e", "hello"]')
@@ -350,7 +350,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'with a treacherous WordRegex configuration' do
-    let(:cop_config) { { 'MinSize' => 0, 'WordRegex' => /[\w \[\]()]/ } }
+    let(:rule_config) { { 'MinSize' => 0, 'WordRegex' => /[\w \[\]()]/ } }
 
     it "doesn't break when words contain whitespace" do
       new_source = autocorrect_source("['hi there', 'something\telse']")
@@ -381,7 +381,7 @@ RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   end
 
   context 'with non-default MinSize' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinSize' => 2,
         'WordRegex' => /\A(?:\p{Word}|\p{Word}-\p{Word}|\n|\t)+\z/,
         'EnforcedStyle' => 'percent' }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ClassVars do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::ClassVars do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for class variable declaration' do
     expect_offense(<<~RUBY)

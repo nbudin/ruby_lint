@@ -298,7 +298,7 @@ module RuboCop
         end
 
         def braces_required_methods
-          cop_config.fetch('BracesRequiredMethods', [])
+          rule_config.fetch('BracesRequiredMethods', [])
         end
 
         def line_count_based_block_style?(node)
@@ -337,7 +337,7 @@ module RuboCop
         end
 
         def functional_method?(method_name)
-          cop_config['FunctionalMethods'].map(&:to_sym).include?(method_name)
+          rule_config['FunctionalMethods'].map(&:to_sym).include?(method_name)
         end
 
         def functional_block?(node)
@@ -345,11 +345,11 @@ module RuboCop
         end
 
         def procedural_oneliners_may_have_braces?
-          cop_config['AllowBracesOnProceduralOneLiners']
+          rule_config['AllowBracesOnProceduralOneLiners']
         end
 
         def procedural_method?(method_name)
-          cop_config['ProceduralMethods'].map(&:to_sym).include?(method_name)
+          rule_config['ProceduralMethods'].map(&:to_sym).include?(method_name)
         end
 
         def return_value_used?(node)

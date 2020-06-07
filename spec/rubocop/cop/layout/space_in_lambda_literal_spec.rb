@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInLambdaLiteral, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceInLambdaLiteral, :config do
   context 'when configured to enforce spaces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_space' } }
 
     it 'registers an offense and corrects no space between -> and (' do
       expect_offense(<<~RUBY)
@@ -71,7 +71,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInLambdaLiteral, :config do
   end
 
   context 'when configured to enforce no space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'require_no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'require_no_space' } }
 
     it 'registers an offense and corrects a space between -> and (' do
       expect_offense(<<~RUBY)

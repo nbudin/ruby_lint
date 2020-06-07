@@ -36,7 +36,7 @@ module RuboCop
         # Accepts empty methods always.
         return unless node.body
 
-        max = cop_config['Max']
+        max = rule_config['Max']
         complexity, abc_vector = complexity(node.body)
 
         return unless complexity > max

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MultilineIfModifier do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::MultilineIfModifier do
+  subject(:rule) { described_class.new }
 
   shared_examples 'offense' do |modifier|
     it 'registers an offense' do

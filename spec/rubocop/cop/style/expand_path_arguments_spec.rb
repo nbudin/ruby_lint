@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ExpandPathArguments, :config do
+RSpec.describe RuboCop::Rule::Style::ExpandPathArguments, :config do
   it "registers an offense when using `File.expand_path('..', __FILE__)`" do
     expect_offense(<<~RUBY)
       File.expand_path('..', __FILE__)

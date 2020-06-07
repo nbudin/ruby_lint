@@ -9,11 +9,11 @@ module RuboCop
       private
 
       def max_length
-        cop_config['Max']
+        rule_config['Max']
       end
 
       def count_comments?
-        cop_config['CountComments']
+        rule_config['CountComments']
       end
 
       def check_code_length(node)

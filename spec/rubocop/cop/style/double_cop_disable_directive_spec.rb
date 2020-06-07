@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::DoubleCopDisableDirective do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::DoubleCopDisableDirective do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for duplicate disable directives' do
     expect_offense(<<~RUBY)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NegatedWhile do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::NegatedWhile do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for while with exclamation point condition' do
     expect_offense(<<~RUBY)

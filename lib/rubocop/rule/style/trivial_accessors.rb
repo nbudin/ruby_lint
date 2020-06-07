@@ -80,23 +80,23 @@ module RuboCop
         end
 
         def exact_name_match?
-          cop_config['ExactNameMatch']
+          rule_config['ExactNameMatch']
         end
 
         def allow_predicates?
-          cop_config['AllowPredicates']
+          rule_config['AllowPredicates']
         end
 
         def allow_dsl_writers?
-          cop_config['AllowDSLWriters']
+          rule_config['AllowDSLWriters']
         end
 
         def ignore_class_methods?
-          cop_config['IgnoreClassMethods']
+          rule_config['IgnoreClassMethods']
         end
 
         def allowed_methods
-          allowed_methods = cop_config['AllowedMethods']
+          allowed_methods = rule_config['AllowedMethods']
           Array(allowed_methods).map(&:to_sym) + [:initialize]
         end
 

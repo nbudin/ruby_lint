@@ -143,13 +143,13 @@ module RuboCop
         private
 
         def inverse_methods
-          @inverse_methods ||= cop_config['InverseMethods']
-                               .merge(cop_config['InverseMethods'].invert)
+          @inverse_methods ||= rule_config['InverseMethods']
+                               .merge(rule_config['InverseMethods'].invert)
         end
 
         def inverse_blocks
-          @inverse_blocks ||= cop_config['InverseBlocks']
-                              .merge(cop_config['InverseBlocks'].invert)
+          @inverse_blocks ||= rule_config['InverseBlocks']
+                              .merge(rule_config['InverseBlocks'].invert)
         end
 
         def negated?(node)

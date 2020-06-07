@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::ShadowedArgument, :config do
-  let(:cop_config) { { 'IgnoreImplicitReferences' => false } }
+RSpec.describe RuboCop::Rule::Lint::ShadowedArgument, :config do
+  let(:rule_config) { { 'IgnoreImplicitReferences' => false } }
 
   describe 'method argument shadowing' do
     context 'when a single argument is shadowed' do
@@ -39,7 +39,7 @@ RSpec.describe Rubocop::Rule::Lint::ShadowedArgument, :config do
         end
 
         context 'when IgnoreImplicitReferences config option is set to true' do
-          let(:cop_config) { { 'IgnoreImplicitReferences' => true } }
+          let(:rule_config) { { 'IgnoreImplicitReferences' => true } }
 
           it 'accepts' do
             expect_no_offenses(<<~RUBY)
@@ -109,7 +109,7 @@ RSpec.describe Rubocop::Rule::Lint::ShadowedArgument, :config do
         end
 
         context 'when IgnoreImplicitReferences config option is set to true' do
-          let(:cop_config) { { 'IgnoreImplicitReferences' => true } }
+          let(:rule_config) { { 'IgnoreImplicitReferences' => true } }
 
           it 'accepts' do
             expect_no_offenses(<<~RUBY)
@@ -461,7 +461,7 @@ RSpec.describe Rubocop::Rule::Lint::ShadowedArgument, :config do
         end
 
         context 'when IgnoreImplicitReferences config option is set to true' do
-          let(:cop_config) { { 'IgnoreImplicitReferences' => true } }
+          let(:rule_config) { { 'IgnoreImplicitReferences' => true } }
 
           it 'accepts' do
             expect_no_offenses(<<~RUBY)

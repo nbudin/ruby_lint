@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantSortBy do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantSortBy do
+  subject(:rule) { described_class.new }
 
   it 'autocorrects array.sort_by { |x| x }' do
     new_source = autocorrect_source('array.sort_by { |x| x }')

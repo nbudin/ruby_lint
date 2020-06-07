@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineHashKeyLineBreaks do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::MultilineHashKeyLineBreaks do
+  subject(:rule) { described_class.new }
 
   context 'with line break after opening bracket' do
     context 'when on different lines than brackets but keys on one' do

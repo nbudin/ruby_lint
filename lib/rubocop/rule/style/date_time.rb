@@ -69,7 +69,7 @@ module RuboCop
         private
 
         def disallow_coercion?
-          !cop_config['AllowCoercion']
+          !rule_config['AllowCoercion']
         end
       end
     end

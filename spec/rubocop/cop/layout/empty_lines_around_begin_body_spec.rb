@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundBeginBody do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBeginBody do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -188,7 +188,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundBeginBody do
 
     it 'registers many offenses' do
       inspect_source(source)
-      expect(cop.offenses.size).to eq(2)
+      expect(rule.offenses.size).to eq(2)
     end
 
     it 'autocorrects' do

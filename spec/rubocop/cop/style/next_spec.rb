@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Next, :config do
-  let(:cop_config) { { 'MinBodyLength' => 1 } }
+RSpec.describe RuboCop::Rule::Style::Next, :config do
+  let(:rule_config) { { 'MinBodyLength' => 1 } }
 
   shared_examples 'iterators' do |condition|
     let(:opposite) { condition == 'if' ? 'unless' : 'if' }
@@ -16,7 +16,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "autocorrects #{condition} inside of downto" do
@@ -45,7 +45,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "autocorrects #{condition} inside of each" do
@@ -74,7 +74,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of for" do
@@ -87,7 +87,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "autocorrects #{condition} inside of for" do
@@ -116,7 +116,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of map" do
@@ -131,7 +131,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} v == 1"])
+      expect(rule.highlights).to eq(["#{condition} v == 1"])
     end
 
     it "registers an offense for #{condition} inside of times" do
@@ -146,7 +146,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of collect" do
@@ -159,7 +159,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of select" do
@@ -172,7 +172,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of select!" do
@@ -185,7 +185,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of reject" do
@@ -198,7 +198,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of reject!" do
@@ -211,7 +211,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of nested iterators" do
@@ -226,7 +226,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it "registers an offense for #{condition} inside of nested iterators" do
@@ -241,7 +241,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it 'registers an offense for a condition at the end of an iterator ' \
@@ -256,7 +256,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
       RUBY
 
       expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-      expect(cop.highlights).to eq(["#{condition} o == 1"])
+      expect(rule.highlights).to eq(["#{condition} o == 1"])
     end
 
     it 'allows loops with conditional break' do
@@ -328,12 +328,12 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
         end
       RUBY
 
-      expect(cop.offenses.size).to eq(1)
-      expect(cop.highlights).to eq(["#{condition} something"])
+      expect(rule.offenses.size).to eq(1)
+      expect(rule.highlights).to eq(["#{condition} something"])
     end
 
     context 'EnforcedStyle: skip_modifier_ifs' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'skip_modifier_ifs' }
       end
 
@@ -347,7 +347,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
     end
 
     context 'EnforcedStyle: always' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'always' }
       end
       let(:opposite) { condition == 'if' ? 'unless' : 'if' }
@@ -363,7 +363,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
         inspect_source(source)
 
         expect(cop.messages).to eq(['Use `next` to skip iteration.'])
-        expect(cop.highlights).to eq(["puts o #{condition} o == 1"])
+        expect(rule.highlights).to eq(["puts o #{condition} o == 1"])
       end
 
       it "auto-corrects modifier #{condition}" do
@@ -548,7 +548,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
   end
 
   context 'MinBodyLength: 3' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinBodyLength' => 3 }
     end
 
@@ -564,7 +564,7 @@ RSpec.describe Rubocop::Rule::Style::Next, :config do
   end
 
   context 'Invalid MinBodyLength' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinBodyLength' => -2 }
     end
 

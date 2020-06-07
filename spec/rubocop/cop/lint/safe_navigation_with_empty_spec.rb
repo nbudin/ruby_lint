@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::SafeNavigationWithEmpty do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::SafeNavigationWithEmpty do
+  subject(:rule) { described_class.new }
 
   context 'in a conditional' do
     it 'registers an offense on `&.empty?`' do

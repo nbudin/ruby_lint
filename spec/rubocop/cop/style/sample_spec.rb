@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Sample do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::Sample do
+  subject(:rule) { described_class.new }
 
   shared_examples 'offense' do |wrong, right|
     it "when using #{wrong}" do

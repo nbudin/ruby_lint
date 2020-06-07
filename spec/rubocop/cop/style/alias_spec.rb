@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Alias, :config do
+RSpec.describe RuboCop::Rule::Style::Alias, :config do
   context 'when EnforcedStyle is prefer_alias_method' do
-    let(:cop_config) { { 'EnforcedStyle' => 'prefer_alias_method' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'prefer_alias_method' } }
 
     it 'registers an offense for alias with symbol args' do
       expect_offense(<<~RUBY)
@@ -50,7 +50,7 @@ RSpec.describe Rubocop::Rule::Style::Alias, :config do
   end
 
   context 'when EnforcedStyle is prefer_alias' do
-    let(:cop_config) { { 'EnforcedStyle' => 'prefer_alias' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'prefer_alias' } }
 
     it 'registers an offense for alias with symbol args' do
       expect_offense(<<~RUBY)

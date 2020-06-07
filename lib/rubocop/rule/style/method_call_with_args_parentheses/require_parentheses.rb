@@ -37,11 +37,11 @@ module RuboCop
           end
 
           def included_macros_list
-            cop_config.fetch('IncludedMacros', []).map(&:to_sym)
+            rule_config.fetch('IncludedMacros', []).map(&:to_sym)
           end
 
           def ignored_macro?(node)
-            cop_config['IgnoreMacros'] &&
+            rule_config['IgnoreMacros'] &&
               node.macro? &&
               !included_macros_list.include?(node.method_name)
           end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UselessAssignment do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::UselessAssignment do
+  subject(:rule) { described_class.new }
 
   context 'when a variable is assigned and assigned again in a modifier ' \
           'condition' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceAroundBlockParameters, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceAroundBlockParameters, :config do
   shared_examples 'common behavior' do
     it 'accepts an empty block' do
       expect_no_offenses('{}.each {}')
@@ -16,7 +16,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundBlockParameters, :config do
   end
 
   context 'when EnforcedStyleInsidePipes is no_space' do
-    let(:cop_config) { { 'EnforcedStyleInsidePipes' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyleInsidePipes' => 'no_space' } }
 
     include_examples 'common behavior'
 
@@ -190,7 +190,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundBlockParameters, :config do
   end
 
   context 'when EnforcedStyleInsidePipes is space' do
-    let(:cop_config) { { 'EnforcedStyleInsidePipes' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyleInsidePipes' => 'space' } }
 
     include_examples 'common behavior'
 

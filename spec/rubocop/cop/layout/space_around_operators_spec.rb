@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceAroundOperators do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::SpaceAroundOperators do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config
@@ -250,7 +250,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundOperators do
           c=2
         RUBY
         inspect_source(src)
-        expect(cop.offenses.map(&:line)).to eq([1, 2])
+        expect(rule.offenses.map(&:line)).to eq([1, 2])
         expect(cop.messages).to eq(
           ['Surrounding space missing for operator `=`.'] * 2
         )
@@ -600,7 +600,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceAroundOperators do
           c =   2
         RUBY
         inspect_source(src)
-        expect(cop.offenses.map(&:line)).to eq([1, 2])
+        expect(rule.offenses.map(&:line)).to eq([1, 2])
         expect(cop.messages).to eq(
           ['Operator `=` should be surrounded by a single space.'] * 2
         )

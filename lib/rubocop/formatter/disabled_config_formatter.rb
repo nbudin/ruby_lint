@@ -93,7 +93,7 @@ module RuboCop
         # only when it results in valid YAML.
         output_buffer = StringIO.new
         output_cop_comments(output_buffer, cfg, cop_name, offense_count)
-        output_cop_config(output_buffer, cfg, cop_name)
+        output_rule_config(output_buffer, cfg, cop_name)
         output.puts(output_buffer.string)
       end
 
@@ -120,13 +120,13 @@ module RuboCop
         default_cfg = default_config(cop_name)
         return unless default_cfg
 
-        params = cop_config_params(default_cfg, cfg)
+        params = rule_config_params(default_cfg, cfg)
         return if params.empty?
 
         output_cop_param_comments(output_buffer, params, default_cfg)
       end
 
-      def cop_config_params(default_cfg, cfg)
+      def rule_config_params(default_cfg, cfg)
         default_cfg.keys -
           %w[Description StyleGuide Reference Enabled Exclude Safe
              SafeAutoCorrect VersionAdded VersionChanged VersionRemoved] -
@@ -152,7 +152,7 @@ module RuboCop
         RuboCop::ConfigLoader.default_configuration[cop_name]
       end
 
-      def output_cop_config(output_buffer, cfg, cop_name)
+      def output_rule_config(output_buffer, cfg, cop_name)
         # 'Enabled' option will be put into file only if exclude
         # limit is exceeded.
         cfg_without_enabled = cfg.reject { |key| key == 'Enabled' }

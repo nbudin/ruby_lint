@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::ClassAndModuleCamelCase, :config do
+RSpec.describe RuboCop::Rule::Naming::ClassAndModuleCamelCase, :config do
   it 'registers an offense for underscore in class and module name' do
     expect_offense(<<~RUBY)
       class My_Class
@@ -43,7 +43,7 @@ RSpec.describe Rubocop::Rule::Naming::ClassAndModuleCamelCase, :config do
   end
 
   context 'custom allowed names' do
-    let(:cop_config) { { 'AllowedNames' => %w[getter_class setter_class] } }
+    let(:rule_config) { { 'AllowedNames' => %w[getter_class setter_class] } }
 
     it 'does not register offense for multiple allowed names' do
       expect_no_offenses(<<~RUBY)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::DuplicateHashKey do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::DuplicateHashKey do
+  subject(:rule) { described_class.new }
 
   context 'when there is a duplicated key in the hash literal' do
     it 'registers an offense' do
@@ -43,10 +43,10 @@ RSpec.describe Rubocop::Rule::Lint::DuplicateHashKey do
   shared_examples 'duplicated literal key' do |key|
     it "registers an offense for duplicated `#{key}` hash keys" do
       inspect_source("hash = { #{key} => 1, #{key} => 4}")
-      expect(cop.offenses.size).to eq(1)
-      expect(cop.offenses.first.message)
+      expect(rule.offenses.size).to eq(1)
+      expect(rule.offenses.first.message)
         .to eq('Duplicated key in hash literal.')
-      expect(cop.highlights).to eq [key]
+      expect(rule.highlights).to eq [key]
     end
   end
 

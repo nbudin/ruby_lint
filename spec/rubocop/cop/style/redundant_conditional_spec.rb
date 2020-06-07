@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantConditional do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::RedundantConditional do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
 
@@ -15,7 +15,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantConditional do
         expected_message =
           'This conditional expression '\
           "can just be replaced by `#{message_expression || expected}`."
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq([expected_message])
       end
 
@@ -25,7 +25,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantConditional do
 
       it 'claims to auto-correct' do
         autocorrect_source(code)
-        expect(cop.offenses.last.status).to eq(:corrected)
+        expect(rule.offenses.last.status).to eq(:corrected)
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe Rubocop::Rule::Style::RedundantConditional do
 
     context "when checking #{code.inspect}" do
       it 'does not register an offense' do
-        expect(cop.offenses.empty?).to be(true)
+        expect(rule.offenses.empty?).to be(true)
       end
     end
   end

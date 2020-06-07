@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::AndOr, :config do
+RSpec.describe RuboCop::Rule::Style::AndOr, :config do
   context 'when style is conditionals' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'conditionals'
     }
 
-    subject(:cop) { described_class.new(config) }
+    subject(:rule) { described_class.new(config) }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     %w[and or].each do |operator|
       it "accepts \"#{operator}\" outside of conditional" do
@@ -32,7 +32,7 @@ RSpec.describe Rubocop::Rule::Style::AndOr, :config do
           source = format(snippet_format, elements)
 
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
         end
 
         it "accepts \"#{operator}\" in #{type} body" do
@@ -63,13 +63,13 @@ RSpec.describe Rubocop::Rule::Style::AndOr, :config do
   end
 
   context 'when style is always' do
-    cop_config = {
+    rule_config = {
       'EnforcedStyle' => 'always'
     }
 
-    subject(:cop) { described_class.new(config) }
+    subject(:rule) { described_class.new(config) }
 
-    let(:cop_config) { cop_config }
+    let(:rule_config) { rule_config }
 
     it 'registers an offense for "or"' do
       expect_offense(<<~RUBY)

@@ -48,7 +48,7 @@ module RuboCop
         private
 
         def allowed_addresses
-          allowed_addresses = cop_config['AllowedAddresses']
+          allowed_addresses = rule_config['AllowedAddresses']
           Array(allowed_addresses).map(&:downcase)
         end
 

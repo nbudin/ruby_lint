@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstMethodParameterLineBreak do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::FirstMethodParameterLineBreak do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects params listed on the first line' do
     expect_offense(<<~RUBY)

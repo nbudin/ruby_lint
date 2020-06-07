@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NumericLiterals, :config do
-  let(:cop_config) { { 'MinDigits' => 5 } }
+RSpec.describe RuboCop::Rule::Style::NumericLiterals, :config do
+  let(:rule_config) { { 'MinDigits' => 5 } }
 
   it 'registers an offense for a long undelimited integer' do
     expect_offense(<<~RUBY)
@@ -29,7 +29,7 @@ RSpec.describe Rubocop::Rule::Style::NumericLiterals, :config do
       a = 123_456_78_90_00
       b = 1_8192
     RUBY
-    expect(cop.offenses.size).to eq(2)
+    expect(rule.offenses.size).to eq(2)
     expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
   end
 
@@ -119,7 +119,7 @@ RSpec.describe Rubocop::Rule::Style::NumericLiterals, :config do
   end
 
   context 'strict' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'MinDigits' => 5,
         'Strict' => true

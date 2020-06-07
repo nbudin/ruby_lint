@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantPercentQ do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantPercentQ do
+  subject(:rule) { described_class.new }
 
   context 'with %q strings' do
     it 'registers an offense for only single quotes' do

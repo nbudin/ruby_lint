@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MultilineBlockChain do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::MultilineBlockChain do
+  subject(:rule) { described_class.new }
 
   context 'with multi-line block chaining' do
     it 'registers an offense for a simple case' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::RescuedExceptionsVariableName, :config do
+RSpec.describe RuboCop::Rule::Naming::RescuedExceptionsVariableName, :config do
   context 'with default config' do
     context 'with explicit rescue' do
       context 'with `Exception` variable' do
@@ -304,7 +304,7 @@ RSpec.describe Rubocop::Rule::Naming::RescuedExceptionsVariableName, :config do
   end
 
   context 'with the `PreferredName` setup' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'PreferredName' => 'exception'
       }

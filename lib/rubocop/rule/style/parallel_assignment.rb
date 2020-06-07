@@ -214,8 +214,8 @@ module RuboCop
             node.children.map(&:source)
           end
 
-          def cop_config
-            @config.for_cop('Style/ParallelAssignment')
+          def rule_config
+            @config.for_rule('Style/ParallelAssignment')
           end
         end
 

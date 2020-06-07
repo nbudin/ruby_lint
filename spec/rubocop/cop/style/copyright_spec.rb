@@ -2,11 +2,11 @@
 
 def expect_copyright_offense(cop, source)
   inspect_source(source)
-  expect(cop.offenses.size).to eq(1)
+  expect(rule.offenses.size).to eq(1)
 end
 
-RSpec.describe Rubocop::Rule::Style::Copyright, :config do
-  let(:cop_config) { { 'Notice' => 'Copyright (\(c\) )?2015 Acme Inc' } }
+RSpec.describe RuboCop::Rule::Style::Copyright, :config do
+  let(:rule_config) { { 'Notice' => 'Copyright (\(c\) )?2015 Acme Inc' } }
 
   it 'does not register an offense when the notice is present' do
     expect_no_offenses(<<~RUBY)
@@ -50,7 +50,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source)).to eq(<<~RUBY)
         # Copyright (c) 2015 Acme Inc.
@@ -63,14 +63,14 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
 
     it 'fails to autocorrect when the AutocorrectNotice does ' \
        'not match the Notice pattern' do
-      cop_config['AutocorrectNotice'] = '# Copyleft (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyleft (c) 2015 Acme Inc.'
       expect do
         autocorrect_source(source)
       end.to raise_error(RuboCop::Warning)
     end
 
     it 'fails to autocorrect if no AutocorrectNotice is given' do
-      # cop_config['AutocorrectNotice'] = '# Copyleft (c) 2015 Acme Inc.'
+      # rule_config['AutocorrectNotice'] = '# Copyleft (c) 2015 Acme Inc.'
       expect do
         autocorrect_source(source)
       end.to raise_error(RuboCop::Warning)
@@ -90,7 +90,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source)).to eq(<<~RUBY)
         # Copyright (c) 2015 Acme Inc.
@@ -110,7 +110,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source))
         .to eq("# Copyright (c) 2015 Acme Inc.\n")
@@ -130,7 +130,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source)).to eq(<<~RUBY)
         #!/usr/bin/env ruby
@@ -154,7 +154,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source)).to eq(<<~RUBY)
         # encoding: utf-8
@@ -180,7 +180,7 @@ RSpec.describe Rubocop::Rule::Style::Copyright, :config do
     end
 
     it 'correctly autocorrects the source code' do
-      cop_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
+      rule_config['AutocorrectNotice'] = '# Copyright (c) 2015 Acme Inc.'
 
       expect(autocorrect_source(source)).to eq(<<~RUBY)
         #!/usr/bin/env ruby

@@ -76,7 +76,7 @@ module RuboCop
         if kw_node && !postfix_conditional?(kw_node)
           # This cop could have its own IndentationWidth configuration
           configured_indentation_width +
-            @config.for_cop('Layout/IndentationWidth')['Width']
+            @config.for_rule('Layout/IndentationWidth')['Width']
         else
           configured_indentation_width
         end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RedundantRegexpEscape do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::RedundantRegexpEscape do
+  subject(:rule) { described_class.new }
 
   context 'with a single-line `//` regexp' do
     context 'without escapes' do

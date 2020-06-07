@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config do
+  subject(:rule) { described_class.new(config) }
 
   it 'registers an offense and corrects for code ' \
      'that immediately follows accessor' do
@@ -76,7 +76,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config
   end
 
   context 'when `AllowAliasSyntax: true`' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowAliasSyntax' => true }
     end
 
@@ -92,7 +92,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config
   end
 
   context 'when `AllowAliasSyntax: false`' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowAliasSyntax' => false }
     end
 
@@ -109,7 +109,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config
   end
 
   context 'when `AllowedMethods: private`' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowedMethods' => [
           'private'
@@ -129,7 +129,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config
   end
 
   context 'when `AllowedMethods: []`' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'AllowedMethods' => []
       }

@@ -154,7 +154,7 @@ module RuboCop
       if check_for_redundant_disables?(source)
         redundant_cop_disable_directive(file) do |cop|
           cop.check(offenses, source.disabled_line_ranges, source.comments)
-          offenses += cop.offenses
+          offenses += rule.offenses
           offenses += autocorrect_redundant_disables(file, source, cop,
                                                      offenses)
         end
@@ -169,7 +169,7 @@ module RuboCop
 
     def redundant_cop_disable_directive(file)
       config = @config_store.for_file(file)
-      if config.for_cop(Cop::Lint::RedundantCopDisableDirective)
+      if config.for_rule(Cop::Lint::RedundantCopDisableDirective)
                .fetch('Enabled')
         cop = Cop::Lint::RedundantCopDisableDirective.new(config, @options)
         yield cop if cop.relevant_file?(file)
@@ -183,7 +183,7 @@ module RuboCop
     def autocorrect_redundant_disables(file, source, cop, offenses)
       cop.processed_source = source
 
-      team = Cop::Team.mobilize(Rubocop::Rule::Registry.new, nil, @options)
+      team = Cop::Team.mobilize(RuboCop::Rule::Registry.new, nil, @options)
       team.autocorrect(source.buffer, [cop])
 
       return [] unless team.updated_source_file?
@@ -325,7 +325,7 @@ module RuboCop
       # use only cops that link to a style guide if requested
       return unless style_guide_cops_only?(config)
 
-      cop_classes.select! { |cop| config.for_cop(cop)['StyleGuide'] }
+      cop_classes.select! { |cop| config.for_rule(cop)['StyleGuide'] }
     end
 
     def style_guide_cops_only?(config)
@@ -355,7 +355,7 @@ module RuboCop
     def minimum_severity_to_fail
       @minimum_severity_to_fail ||= begin
         name = @options[:fail_level] || :refactor
-        Rubocop::Rule::Severity.new(name)
+        RuboCop::Rule::Severity.new(name)
       end
     end
 

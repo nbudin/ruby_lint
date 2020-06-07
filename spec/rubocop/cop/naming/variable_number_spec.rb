@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::VariableNumber, :config do
+RSpec.describe RuboCop::Rule::Naming::VariableNumber, :config do
   shared_examples 'offense' do |style, variable, style_to_allow_offenses|
     it "registers an offense for #{Array(variable).first} in #{style}" do
       inspect_source(Array(variable).map { |v| "#{v} = 1" }.join("\n"))
 
       expect(cop.messages).to eq(["Use #{style} for variable numbers."])
-      expect(cop.highlights).to eq(Array(variable)[0, 1])
+      expect(rule.highlights).to eq(Array(variable)[0, 1])
       config_to_allow_offenses =
         if style_to_allow_offenses
           { 'EnforcedStyle' => style_to_allow_offenses.to_s }
@@ -24,7 +24,7 @@ RSpec.describe Rubocop::Rule::Naming::VariableNumber, :config do
   end
 
   context 'when configured for snake_case' do
-    let(:cop_config) { { 'EnforcedStyle' => 'snake_case' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'snake_case' } }
 
     it_behaves_like 'offense', 'snake_case', 'local1', :normalcase
     it_behaves_like 'offense', 'snake_case', '@local1', :normalcase
@@ -64,7 +64,7 @@ RSpec.describe Rubocop::Rule::Naming::VariableNumber, :config do
   end
 
   context 'when configured for normal' do
-    let(:cop_config) { { 'EnforcedStyle' => 'normalcase' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'normalcase' } }
 
     it_behaves_like 'offense', 'normalcase', 'local_1', :snake_case
     it_behaves_like 'offense', 'normalcase', 'sha_256', :snake_case
@@ -108,7 +108,7 @@ RSpec.describe Rubocop::Rule::Naming::VariableNumber, :config do
   end
 
   context 'when configured for non integer' do
-    let(:cop_config) { { 'EnforcedStyle' => 'non_integer' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'non_integer' } }
 
     it_behaves_like 'offense', 'non_integer', 'local_1', :snake_case
     it_behaves_like 'offense', 'non_integer', 'local1', :normalcase

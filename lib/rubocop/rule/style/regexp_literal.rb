@@ -147,7 +147,7 @@ module RuboCop
         end
 
         def allow_inner_slashes?
-          cop_config['AllowInnerSlashes']
+          rule_config['AllowInnerSlashes']
         end
 
         def node_body(node, include_begin_nodes: false)
@@ -160,7 +160,7 @@ module RuboCop
         end
 
         def preferred_delimiters
-          config.for_cop('Style/PercentLiteralDelimiters') \
+          config.for_rule('Style/PercentLiteralDelimiters') \
             ['PreferredDelimiters']['%r'].split(//)
         end
 

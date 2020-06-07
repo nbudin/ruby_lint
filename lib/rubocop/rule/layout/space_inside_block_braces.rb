@@ -172,7 +172,7 @@ module RuboCop
         def no_space_inside_left_brace(left_brace, args_delimiter)
           if pipe?(args_delimiter)
             if left_brace.end_pos == args_delimiter.begin_pos &&
-               cop_config['SpaceBeforeBlockParameters']
+               rule_config['SpaceBeforeBlockParameters']
               offense(left_brace.begin_pos, args_delimiter.end_pos,
                       'Space between { and | missing.') do
                 opposite_style_detected
@@ -189,7 +189,7 @@ module RuboCop
 
         def space_inside_left_brace(left_brace, args_delimiter)
           if pipe?(args_delimiter)
-            unless cop_config['SpaceBeforeBlockParameters']
+            unless rule_config['SpaceBeforeBlockParameters']
               offense(left_brace.end_pos, args_delimiter.begin_pos,
                       'Space between { and | detected.') do
                 opposite_style_detected
@@ -236,7 +236,7 @@ module RuboCop
         end
 
         def style_for_empty_braces
-          case cop_config['EnforcedStyleForEmptyBraces']
+          case rule_config['EnforcedStyleForEmptyBraces']
           when 'space'    then :space
           when 'no_space' then :no_space
           else raise 'Unknown EnforcedStyleForEmptyBraces selected!'

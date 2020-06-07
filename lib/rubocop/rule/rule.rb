@@ -266,13 +266,13 @@ module RuboCop
       end
 
       def annotate(message)
-        Rubocop::Rule::MessageAnnotator.new(
-          config, rule_name, cop_config, @options
+        RuboCop::Rule::MessageAnnotator.new(
+          config, rule_name, rule_config, @options
         ).annotate(message)
       end
 
       def file_name_matches_any?(file, parameter, default_result)
-        patterns = cop_config[parameter]
+        patterns = rule_config[parameter]
         return default_result unless patterns
 
         path = nil
@@ -301,7 +301,7 @@ module RuboCop
       end
 
       def custom_severity
-        severity = cop_config['Severity']
+        severity = rule_config['Severity']
         return unless severity
 
         if Severity::NAMES.include?(severity.to_sym)

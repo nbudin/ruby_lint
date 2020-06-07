@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::SuppressedException, :config do
+RSpec.describe RuboCop::Rule::Lint::SuppressedException, :config do
   context 'with AllowComments set to false' do
-    let(:cop_config) { { 'AllowComments' => false } }
+    let(:rule_config) { { 'AllowComments' => false } }
 
     it 'registers an offense for empty rescue block' do
       expect_offense(<<~RUBY)
@@ -98,7 +98,7 @@ RSpec.describe Rubocop::Rule::Lint::SuppressedException, :config do
   end
 
   context 'with AllowComments set to true' do
-    let(:cop_config) { { 'AllowComments' => true } }
+    let(:rule_config) { { 'AllowComments' => true } }
 
     it 'does not register an offense for empty rescue with comment' do
       expect_no_offenses(<<~RUBY)

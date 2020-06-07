@@ -61,12 +61,12 @@ module RuboCop
       alias unrecognized_style_detected no_acceptable_style!
 
       def style_configured?
-        cop_config.key?(style_parameter_name)
+        rule_config.key?(style_parameter_name)
       end
 
       def style
         @style ||= begin
-          s = cop_config[style_parameter_name].to_sym
+          s = rule_config[style_parameter_name].to_sym
           raise "Unknown style #{s} selected!" unless supported_styles.include?(s)
 
           s
@@ -88,7 +88,7 @@ module RuboCop
       def supported_styles
         @supported_styles ||= begin
           supported_styles = Util.to_supported_styles(style_parameter_name)
-          cop_config[supported_styles].map(&:to_sym)
+          rule_config[supported_styles].map(&:to_sym)
         end
       end
 

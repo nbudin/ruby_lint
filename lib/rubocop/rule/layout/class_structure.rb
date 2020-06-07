@@ -329,13 +329,13 @@ module RuboCop
         # Load expected order from `ExpectedOrder` config.
         # Define new terms in the expected order by adding new {categories}.
         def expected_order
-          cop_config['ExpectedOrder']
+          rule_config['ExpectedOrder']
         end
 
         # Setting categories hash allow you to group methods in group to match
         # in the {expected_order}.
         def categories
-          cop_config['Categories']
+          rule_config['Categories']
         end
       end
     end

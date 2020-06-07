@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::ClosingHeredocIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::ClosingHeredocIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
-    RuboCop::Config.new('Layout/ClosingHeredocIndentation' => cop_config)
+    RuboCop::Config.new('Layout/ClosingHeredocIndentation' => rule_config)
   end
-  let(:cop_config) { { 'Enabled' => true } }
+  let(:rule_config) { { 'Enabled' => true } }
 
   it 'accepts correctly indented closing heredoc' do
     expect_no_offenses(<<~RUBY)

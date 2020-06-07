@@ -11,7 +11,7 @@ module RuboCop
       end
 
       def min_body_length
-        length = cop_config['MinBodyLength'] || 1
+        length = rule_config['MinBodyLength'] || 1
         return length if length.is_a?(Integer) && length.positive?
 
         raise 'MinBodyLength needs to be a positive integer!'

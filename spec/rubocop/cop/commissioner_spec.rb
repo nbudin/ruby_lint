@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Commissioner do
+RSpec.describe RuboCop::Rule::Commissioner do
   describe '#investigate' do
     subject(:offenses) { commissioner.investigate(processed_source) }
 
     let(:cop) do
       # rubocop:disable RSpec/VerifiedDoubles
-      double(Rubocop::Rule::Rule, offenses: []).as_null_object
+      double(RuboCop::Rule::Rule, offenses: []).as_null_object
       # rubocop:enable RSpec/VerifiedDoubles
     end
     let(:cops) { [cop] }
@@ -57,7 +57,7 @@ RSpec.describe Rubocop::Rule::Commissioner do
     end
 
     context 'when given a force' do
-      let(:force) { instance_double(Rubocop::Rule::Force).as_null_object }
+      let(:force) { instance_double(RuboCop::Rule::Force).as_null_object }
       let(:forces) { [force] }
 
       it 'passes the input params to all cops/forces that implement their own' \

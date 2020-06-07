@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::Debugger, :config do
+RSpec.describe RuboCop::Rule::Lint::Debugger, :config do
   shared_examples_for 'debugger' do |name, src|
     it "reports an offense for a #{name} call" do
       inspect_source(src)
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(["Remove debugger entry point `#{src}`."])
-      expect(cop.highlights).to eq([src])
+      expect(rule.highlights).to eq([src])
     end
   end
 

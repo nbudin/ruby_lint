@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideBlockBraces, :config do
+  subject(:rule) { described_class.new(config) }
 
   let(:supported_styles) { %w[space no_space] }
-  let(:cop_config) do
+  let(:rule_config) do
     {
       'EnforcedStyle' => 'space',
       'SupportedStyles' => supported_styles,
@@ -13,7 +13,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
   end
 
   context 'with space inside empty braces not allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'no_space' } }
 
     it 'accepts empty braces with no space inside' do
       expect_no_offenses('each {}')
@@ -65,7 +65,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
   end
 
   context 'with space inside empty braces allowed' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'space' } }
 
     it 'accepts empty braces with space inside' do
       expect_no_offenses('each { }')
@@ -84,7 +84,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
   end
 
   context 'with invalid value for EnforcedStyleForEmptyBraces' do
-    let(:cop_config) { { 'EnforcedStyleForEmptyBraces' => 'unknown' } }
+    let(:rule_config) { { 'EnforcedStyleForEmptyBraces' => 'unknown' } }
 
     it 'fails with an error' do
       expect { inspect_source('each { }') }
@@ -189,7 +189,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
     context 'and BlockDelimiters cop enabled' do
       let(:config) do
         RuboCop::Config.new('Style/BlockDelimiters' => { 'Enabled' => true },
-                            'Layout/SpaceInsideBlockBraces' => cop_config)
+                            'Layout/SpaceInsideBlockBraces' => rule_config)
       end
 
       it 'registers an offense and corrects for single-line blocks' do
@@ -221,7 +221,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
     end
 
     context 'and space before block parameters not allowed' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle'              => 'space',
           'SupportedStyles'            => supported_styles,
@@ -251,7 +251,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
   end
 
   context 'configured with no_space' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle'              => 'no_space',
         'SupportedStyles'            => supported_styles,
@@ -312,7 +312,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
       end
 
       context 'and space before block parameters not allowed' do
-        let(:cop_config) do
+        let(:rule_config) do
           {
             'EnforcedStyle'              => 'no_space',
             'SupportedStyles'            => supported_styles,
@@ -351,7 +351,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideBlockBraces, :config do
               }
           RUBY
 
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect(cop.messages).to eq(['Space inside } detected.'])
         end
       end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::UnifiedInteger, :config do
+RSpec.describe RuboCop::Rule::Lint::UnifiedInteger, :config do
   shared_examples 'registers an offense' do |klass|
     context "when #{klass}" do
       context 'without any decorations' do
@@ -8,7 +8,7 @@ RSpec.describe Rubocop::Rule::Lint::UnifiedInteger, :config do
 
         it 'registers an offense' do
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect(cop.messages).to eq(["Use `Integer` instead of `#{klass}`."])
         end
 
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::Lint::UnifiedInteger, :config do
 
         it 'registers an offense' do
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
           expect(cop.messages).to eq(["Use `Integer` instead of `#{klass}`."])
         end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::HeredocArgumentClosingParenthesis do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::HeredocArgumentClosingParenthesis do
+  subject(:rule) { described_class.new }
 
   context 'correct cases' do
     it 'accepts simple correct case' do

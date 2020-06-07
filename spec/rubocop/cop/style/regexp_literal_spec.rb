@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
+RSpec.describe RuboCop::Rule::Style::RegexpLiteral, :config do
   let(:config) do
     supported_styles = {
       'SupportedStyles' => %w[slashes percent_r mixed]
@@ -8,14 +8,14 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
     RuboCop::Config.new('Style/PercentLiteralDelimiters' =>
                           percent_literal_delimiters_config,
                         'Style/RegexpLiteral' =>
-                          cop_config.merge(supported_styles))
+                          rule_config.merge(supported_styles))
   end
   let(:percent_literal_delimiters_config) do
     { 'PreferredDelimiters' => { '%r' => '{}' } }
   end
 
   describe 'when regex contains slashes in interpolation' do
-    let(:cop_config) { { 'EnforcedStyle' => 'slashes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'slashes' } }
 
     it 'ignores the slashes that do not belong // regex' do
       expect_no_offenses('x =~ /\s{#{x[/\s+/].length}}/')
@@ -23,7 +23,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   describe '%r regex with other delimiters than curly braces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'slashes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'slashes' } }
 
     it 'registers an offense' do
       expect_offense(<<~RUBY)
@@ -34,7 +34,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   describe 'when PercentLiteralDelimiters is configured with brackets' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_r' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_r' } }
     let(:percent_literal_delimiters_config) do
       { 'PreferredDelimiters' => { '%r' => '[]' } }
     end
@@ -46,7 +46,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   describe 'when PercentLiteralDelimiters is configured with slashes' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_r' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_r' } }
     let(:percent_literal_delimiters_config) do
       { 'PreferredDelimiters' => { '%r' => '//' } }
     end
@@ -58,7 +58,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to slashes' do
-    let(:cop_config) { { 'EnforcedStyle' => 'slashes' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'slashes' } }
 
     describe 'a single-line `//` regex without slashes' do
       it 'is accepted' do
@@ -82,7 +82,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'is accepted' do
           expect_no_offenses('foo = /home\\//')
@@ -106,7 +106,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'is accepted' do
           expect_no_offenses('foo = /users\/#{user.id}\/forms/')
@@ -122,7 +122,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       context 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'remains slashes after auto-correction' do
           new_source = autocorrect_source(source)
@@ -168,7 +168,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'is accepted' do
           expect_no_offenses(<<~'RUBY')
@@ -205,7 +205,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)
@@ -262,7 +262,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'registers an offense' do
           inspect_source(source)
@@ -283,7 +283,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to percent_r' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_r' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_r' } }
 
     describe 'a single-line `//` regex without slashes' do
       let(:source) { 'foo = /a/' }
@@ -400,7 +400,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to mixed' do
-    let(:cop_config) { { 'EnforcedStyle' => 'mixed' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'mixed' } }
 
     describe 'a single-line `//` regex without slashes' do
       it 'is accepted' do
@@ -424,7 +424,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'is accepted' do
           expect_no_offenses('foo = /home\\//')
@@ -503,7 +503,7 @@ RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
       end
 
       describe 'when configured to allow inner slashes' do
-        before { cop_config['AllowInnerSlashes'] = true }
+        before { rule_config['AllowInnerSlashes'] = true }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)

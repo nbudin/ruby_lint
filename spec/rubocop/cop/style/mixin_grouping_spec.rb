@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MixinGrouping, :config do
+RSpec.describe RuboCop::Rule::Style::MixinGrouping, :config do
   before do
     inspect_source(source)
   end
@@ -10,7 +10,7 @@ RSpec.describe Rubocop::Rule::Style::MixinGrouping, :config do
       let(:source) { code }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(offenses)
+        expect(rule.offenses.size).to eq(offenses)
         expect(cop.messages).to eq([message] * offenses)
       end
 
@@ -30,12 +30,12 @@ RSpec.describe Rubocop::Rule::Style::MixinGrouping, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   context 'when configured with separated style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'separated' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'separated' } }
 
     let(:offenses) { 1 }
 
@@ -158,7 +158,7 @@ RSpec.describe Rubocop::Rule::Style::MixinGrouping, :config do
   end
 
   context 'when configured with grouped style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'grouped' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'grouped' } }
 
     context 'when using include' do
       context 'with single mixins in separate calls' do

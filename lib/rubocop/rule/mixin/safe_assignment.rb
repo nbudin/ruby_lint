@@ -16,7 +16,7 @@ module RuboCop
                        '(begin {equals_asgn? #setter_method?})'
 
       def safe_assignment_allowed?
-        cop_config['AllowSafeAssignment']
+        rule_config['AllowSafeAssignment']
       end
     end
   end

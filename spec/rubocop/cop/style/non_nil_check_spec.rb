@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NonNilCheck, :config do
+RSpec.describe RuboCop::Rule::Style::NonNilCheck, :config do
   context 'when not allowing semantic changes' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IncludeSemanticChanges' => false
       }
@@ -86,9 +86,9 @@ RSpec.describe Rubocop::Rule::Style::NonNilCheck, :config do
   end
 
   context 'when allowing semantic changes' do
-    subject(:cop) { described_class.new(config) }
+    subject(:rule) { described_class.new(config) }
 
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'IncludeSemanticChanges' => true
       }

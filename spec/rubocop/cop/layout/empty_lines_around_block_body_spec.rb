@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
   # Test blocks using both {} and do..end
   [%w[{ }], %w[do end]].each do |open, close|
     context "when EnforcedStyle is no_empty_lines for #{open} #{close} block" do
-      let(:cop_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
+      let(:rule_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
 
       it 'registers an offense for block body starting with a blank' do
         inspect_source(<<~RUBY)
@@ -76,7 +76,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
     end
 
     context "when EnforcedStyle is empty_lines for #{open} #{close} block" do
-      let(:cop_config) { { 'EnforcedStyle' => 'empty_lines' } }
+      let(:rule_config) { { 'EnforcedStyle' => 'empty_lines' } }
 
       it 'registers an offense for block body not starting or ending with a ' \
          'blank' do

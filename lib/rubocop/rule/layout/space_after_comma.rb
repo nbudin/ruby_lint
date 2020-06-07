@@ -22,7 +22,7 @@ module RuboCop
         end
 
         def space_style_before_rcurly
-          cfg = config.for_cop('Layout/SpaceInsideHashLiteralBraces')
+          cfg = config.for_rule('Layout/SpaceInsideHashLiteralBraces')
           cfg['EnforcedStyle'] || 'space'
         end
 

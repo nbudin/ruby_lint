@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
+RSpec.describe RuboCop::Rule::Style::NumericPredicate, :config do
   before do
     inspect_source(source)
   end
@@ -16,7 +16,7 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
       let(:message) { "Use `#{use}` instead of `#{instead_of}`." }
 
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages).to eq([message])
       end
 
@@ -36,12 +36,12 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
   context 'when configured to enforce numeric predicate methods' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'predicate', 'AutoCorrect' => true }
     end
 
@@ -153,7 +153,7 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
   end
 
   context 'when configured to enforce numeric comparison methods' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'comparison', 'AutoCorrect' => true }
     end
 
@@ -182,7 +182,7 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
   end
 
   context 'when there are ignored methods' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'predicate',
         'AutoCorrect' => true,
@@ -192,7 +192,7 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
 
     context 'simple method call' do
       context '`EnforcedStyle` is `predicate`' do
-        let(:cop_config) do
+        let(:rule_config) do
           {
             'EnforcedStyle' => 'predicate',
             'IgnoredMethods' => %w[==]
@@ -209,7 +209,7 @@ RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
       end
 
       context '`EnforcedStyle` is `comparison`' do
-        let(:cop_config) do
+        let(:rule_config) do
           {
             'EnforcedStyle' => 'comparison',
             'IgnoredMethods' => %w[zero?]

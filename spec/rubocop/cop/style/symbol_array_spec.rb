@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SymbolArray, :config do
+RSpec.describe RuboCop::Rule::Style::SymbolArray, :config do
   before do
     # Reset data which is shared by all instances of SymbolArray
     described_class.largest_brackets = -Float::INFINITY
@@ -17,7 +17,7 @@ RSpec.describe Rubocop::Rule::Style::SymbolArray, :config do
   end
 
   context 'when EnforcedStyle is percent' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinSize' => 0,
         'EnforcedStyle' => 'percent' }
     end
@@ -148,7 +148,7 @@ RSpec.describe Rubocop::Rule::Style::SymbolArray, :config do
   end
 
   context 'when EnforcedStyle is brackets' do
-    let(:cop_config) { { 'EnforcedStyle' => 'brackets', 'MinSize' => 0 } }
+    let(:rule_config) { { 'EnforcedStyle' => 'brackets', 'MinSize' => 0 } }
 
     it 'does not register an offense for arrays of symbols' do
       expect_no_offenses('[:one, :two, :three]')
@@ -173,7 +173,7 @@ RSpec.describe Rubocop::Rule::Style::SymbolArray, :config do
   end
 
   context 'with non-default MinSize' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'MinSize' => 2,
         'EnforcedStyle' => 'percent' }
     end

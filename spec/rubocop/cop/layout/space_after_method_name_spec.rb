@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceAfterMethodName do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::SpaceAfterMethodName do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects def with space ' \
     'before the parenthesis' do

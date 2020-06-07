@@ -119,7 +119,7 @@ module RuboCop
         end
 
         def empty_config
-          cop_config['EnforcedStyleForEmptyBrackets']
+          rule_config['EnforcedStyleForEmptyBrackets']
         end
 
         def next_to_newline?(node, token)

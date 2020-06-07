@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::BarePercentLiterals, :config do
+RSpec.describe RuboCop::Rule::Style::BarePercentLiterals, :config do
   shared_examples 'accepts other delimiters' do
     it 'accepts __FILE__' do
       expect_no_offenses('__FILE__')
@@ -36,7 +36,7 @@ RSpec.describe Rubocop::Rule::Style::BarePercentLiterals, :config do
   end
 
   context 'when EnforcedStyle is percent_q' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_q' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_q' } }
 
     context 'and strings are static' do
       it 'registers an offense for %()' do
@@ -80,7 +80,7 @@ RSpec.describe Rubocop::Rule::Style::BarePercentLiterals, :config do
   end
 
   context 'when EnforcedStyle is bare_percent' do
-    let(:cop_config) { { 'EnforcedStyle' => 'bare_percent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'bare_percent' } }
 
     context 'and strings are static' do
       it 'registers an offense for %Q()' do

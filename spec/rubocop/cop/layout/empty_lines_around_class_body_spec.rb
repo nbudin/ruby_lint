@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   let(:extra_begin) { 'Extra empty line detected at class body beginning.' }
   let(:extra_end) { 'Extra empty line detected at class body end.' }
   let(:missing_begin) { 'Empty line missing at class body beginning.' }
@@ -9,7 +9,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   let(:missing_type) { 'Empty line missing before first class definition' }
 
   context 'when EnforcedStyle is no_empty_lines' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_empty_lines' } }
 
     it 'registers an offense for class body starting with a blank' do
       inspect_source(<<~RUBY)
@@ -81,7 +81,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   end
 
   context 'when EnforcedStyle is empty_lines' do
-    let(:cop_config) { { 'EnforcedStyle' => 'empty_lines' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'empty_lines' } }
 
     it 'does not register offenses' do
       expect_no_offenses(<<~RUBY)
@@ -171,7 +171,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   end
 
   context 'when EnforcedStyle is empty_lines_except_namespace' do
-    let(:cop_config) { { 'EnforcedStyle' => 'empty_lines_except_namespace' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'empty_lines_except_namespace' } }
 
     context 'when only child is class' do
       it 'requires no empty lines for namespace' do
@@ -336,7 +336,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   end
 
   context 'when EnforcedStyle is beginning_only' do
-    let(:cop_config) { { 'EnforcedStyle' => 'beginning_only' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'beginning_only' } }
 
     it 'ignores empty lines at the beginning of a class' do
       expect_no_offenses(<<~RUBY)
@@ -378,7 +378,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   end
 
   context 'when EnforcedStyle is ending_only' do
-    let(:cop_config) { { 'EnforcedStyle' => 'ending_only' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'ending_only' } }
 
     it 'ignores empty lines at the beginning of a class' do
       expect_no_offenses(<<~RUBY)

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::FirstHashElementLineBreak do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::FirstHashElementLineBreak do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects elements listed on the first line' do
     expect_offense(<<~RUBY)

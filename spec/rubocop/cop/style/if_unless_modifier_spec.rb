@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::IfUnlessModifier do
+RSpec.describe RuboCop::Rule::Style::IfUnlessModifier do
   include StatementModifierHelper
 
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config.new('Layout/LineLength' => line_length_config)
@@ -376,7 +376,7 @@ RSpec.describe Rubocop::Rule::Style::IfUnlessModifier do
         expect("  #{body} if #{conditional}".length).to eq(80)
 
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'does auto-correction' do

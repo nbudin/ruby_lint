@@ -3,7 +3,7 @@
 module RuboCop
   # This class handles obsolete configuration.
   class ConfigObsoletion
-    RENAMED_COPS = {
+    RENAMED_RULES = {
       'Layout/AlignArguments' => 'Layout/ArgumentAlignment',
       'Layout/AlignArray' => 'Layout/ArrayAlignment',
       'Layout/AlignHash' => 'Layout/HashAlignment',
@@ -40,10 +40,10 @@ module RuboCop
       'Style/UnneededPercentQ' => 'Style/RedundantPercentQ',
       'Style/UnneededSort' => 'Style/RedundantSort'
     }.map do |old_name, new_name|
-      [old_name, "The `#{old_name}` cop has been renamed to `#{new_name}`."]
+      [old_name, "The `#{old_name}` rule has been renamed to `#{new_name}`."]
     end
 
-    MOVED_COPS = {
+    MOVED_RULES = {
       'Security' => 'Lint/Eval',
       'Naming' => %w[Style/ClassAndModuleCamelCase Style/ConstantName
                      Style/FileName Style/MethodName Style/PredicateName
@@ -54,12 +54,12 @@ module RuboCop
       'Lint' => 'Style/FlipFlop'
     }.map do |new_department, old_names|
       Array(old_names).map do |old_name|
-        [old_name, "The `#{old_name}` cop has been moved to " \
+        [old_name, "The `#{old_name}` rule has been moved to " \
                    "`#{new_department}/#{old_name.split('/').last}`."]
       end
     end
 
-    REMOVED_COPS = {
+    REMOVED_RULES = {
       'Layout/SpaceAfterControlKeyword' => 'Layout/SpaceAroundKeyword',
       'Layout/SpaceBeforeModifierKeyword' => 'Layout/SpaceAroundKeyword',
       'Lint/RescueWithoutErrorClass' => 'Style/RescueStandardError',
@@ -73,101 +73,101 @@ module RuboCop
                                         'and/or ' \
                                         'Style/TrailingCommaInHashLiteral',
       'Style/BracesAroundHashParameters' => nil
-    }.map do |old_name, other_cops|
-      if other_cops
-        more = ". Please use #{other_cops} instead".gsub(%r{[A-Z]\w+/\w+},
+    }.map do |old_name, other_rules|
+      if other_rules
+        more = ". Please use #{other_rules} instead".gsub(%r{[A-Z]\w+/\w+},
                                                          '`\&`')
       end
-      [old_name, "The `#{old_name}` cop has been removed#{more}."]
+      [old_name, "The `#{old_name}` rule has been removed#{more}."]
     end
 
-    REMOVED_COPS_WITH_REASON = {
+    REMOVED_RULES_WITH_REASON = {
       'Lint/InvalidCharacterLiteral' => 'it was never being actually triggered',
       'Lint/SpaceBeforeFirstArg' =>
         'it was a duplicate of `Layout/SpaceBeforeFirstArg`. Please use ' \
         '`Layout/SpaceBeforeFirstArg` instead'
-    }.map do |cop_name, reason|
-      [cop_name, "The `#{cop_name}` cop has been removed since #{reason}."]
+    }.map do |rule_name, reason|
+      [rule_name, "The `#{rule_name}` rule has been removed since #{reason}."]
     end
 
-    SPLIT_COPS = {
+    SPLIT_RULES = {
       'Style/MethodMissing' =>
-        'The `Style/MethodMissing` cop has been split into ' \
+        'The `Style/MethodMissing` rule has been split into ' \
         '`Style/MethodMissingSuper` and `Style/MissingRespondToMissing`.'
     }.to_a
 
-    OBSOLETE_COPS = Hash[*(RENAMED_COPS + MOVED_COPS + REMOVED_COPS +
-                           REMOVED_COPS_WITH_REASON + SPLIT_COPS).flatten]
+    OBSOLETE_RULES = Hash[*(RENAMED_RULES + MOVED_RULES + REMOVED_RULES +
+                           REMOVED_RULES_WITH_REASON + SPLIT_RULES).flatten]
 
     OBSOLETE_PARAMETERS = [
       {
-        cops: %w[Layout/SpaceAroundOperators Style/SpaceAroundOperators],
+        rule: %w[Layout/SpaceAroundOperators Style/SpaceAroundOperators],
         parameters: 'MultiSpaceAllowedForOperators',
         alternative: 'If your intention was to allow extra spaces for ' \
                      'alignment, please use AllowForAlignment: true instead.'
       },
       {
-        cops: 'Style/Encoding',
+        rule: 'Style/Encoding',
         parameters: %w[EnforcedStyle SupportedStyles
                        AutoCorrectEncodingComment],
         alternative: 'Style/Encoding no longer supports styles. ' \
                      'The "never" behavior is always assumed.'
       },
       {
-        cops: 'Style/IfUnlessModifier',
+        rule: 'Style/IfUnlessModifier',
         parameters: 'MaxLineLength',
         alternative: '`Style/IfUnlessModifier: MaxLineLength` has been ' \
                      'removed. Use `Layout/LineLength: Max` instead'
       },
       {
-        cops: 'Style/WhileUntilModifier',
+        rule: 'Style/WhileUntilModifier',
         parameters: 'MaxLineLength',
         alternative: '`Style/WhileUntilModifier: MaxLineLength` has been ' \
                      'removed. Use `Layout/LineLength: Max` instead'
       },
       {
-        cops: 'AllCops',
+        rule: 'AllCops',
         parameters: 'RunRailsCops',
         alternative: "Use the following configuration instead:\n" \
                      "Rails:\n  Enabled: true"
       },
       {
-        cops: 'Layout/CaseIndentation',
+        rule: 'Layout/CaseIndentation',
         parameters: 'IndentWhenRelativeTo',
         alternative: '`IndentWhenRelativeTo` has been renamed to ' \
                      '`EnforcedStyle`'
       },
       {
-        cops: %w[Lint/BlockAlignment Layout/BlockAlignment Lint/EndAlignment
+        rule: %w[Lint/BlockAlignment Layout/BlockAlignment Lint/EndAlignment
                  Layout/EndAlignment Lint/DefEndAlignment
                  Layout/DefEndAlignment],
         parameters: 'AlignWith',
         alternative: '`AlignWith` has been renamed to `EnforcedStyleAlignWith`'
       },
       {
-        cops: 'Rails/UniqBeforePluck',
+        rule: 'Rails/UniqBeforePluck',
         parameters: 'EnforcedMode',
         alternative: '`EnforcedMode` has been renamed to `EnforcedStyle`'
       },
       {
-        cops: 'Style/MethodCallWithArgsParentheses',
+        rule: 'Style/MethodCallWithArgsParentheses',
         parameters: 'IgnoredMethodPatterns',
         alternative: '`IgnoredMethodPatterns` has been renamed to ' \
                      '`IgnoredPatterns`'
       },
       {
-        cops: %w[Performance/Count Performance/Detect],
+        rule: %w[Performance/Count Performance/Detect],
         parameters: 'SafeMode',
         alternative: '`SafeMode` has been removed. ' \
                      'Use `SafeAutoCorrect` instead.'
       },
       {
-        cops: 'Bundler/GemComment',
+        rule: 'Bundler/GemComment',
         parameters: 'Whitelist',
         alternative: '`Whitelist` has been renamed to `IgnoredGems`.'
       },
       {
-        cops: %w[
+        rule: %w[
           Lint/SafeNavigationChain Lint/SafeNavigationConsistency
           Style/NestedParenthesizedCalls Style/SafeNavigation
           Style/TrivialAccessors
@@ -176,23 +176,23 @@ module RuboCop
         alternative: '`Whitelist` has been renamed to `AllowedMethods`.'
       },
       {
-        cops: 'Style/IpAddresses',
+        rule: 'Style/IpAddresses',
         parameters: 'Whitelist',
         alternative: '`Whitelist` has been renamed to `AllowedAddresses`.'
       },
       {
-        cops: 'Naming/HeredocDelimiterNaming',
+        rule: 'Naming/HeredocDelimiterNaming',
         parameters: 'Blacklist',
         alternative: '`Blacklist` has been renamed to `ForbiddenDelimiters`.'
       },
       {
-        cops: 'Naming/PredicateName',
+        rule: 'Naming/PredicateName',
         parameters: 'NamePrefixBlacklist',
         alternative: '`NamePrefixBlacklist` has been renamed to ' \
                      '`ForbiddenPrefixes`.'
       },
       {
-        cops: 'Naming/PredicateName',
+        rule: 'Naming/PredicateName',
         parameters: 'NameWhitelist',
         alternative: '`NameWhitelist` has been renamed to ' \
                      '`AllowedMethods`.'
@@ -201,7 +201,7 @@ module RuboCop
 
     OBSOLETE_ENFORCED_STYLES = [
       {
-        cop: 'Layout/IndentationConsistency',
+        rule: 'Layout/IndentationConsistency',
         parameter: 'EnforcedStyle',
         enforced_style: 'rails',
         alternative: '`EnforcedStyle: rails` has been renamed to ' \
@@ -213,8 +213,8 @@ module RuboCop
       @config = config
     end
 
-    def reject_obsolete_cops_and_parameters
-      messages = [obsolete_cops, obsolete_parameters,
+    def reject_obsolete_rules_and_parameters
+      messages = [obsolete_rules, obsolete_parameters,
                   obsolete_enforced_style].flatten.compact
       return if messages.empty?
 
@@ -223,10 +223,10 @@ module RuboCop
 
     private
 
-    def obsolete_cops
-      OBSOLETE_COPS.map do |cop_name, message|
-        next unless @config.key?(cop_name) ||
-                    @config.key?(Cop::Badge.parse(cop_name).cop_name)
+    def obsolete_rules
+      OBSOLETE_RULES.map do |rule_name, message|
+        next unless @config.key?(rule_name) ||
+                    @config.key?(Rule::Badge.parse(rule_name).rule_name)
 
         message + "\n(obsolete configuration found in " \
                   "#{smart_loaded_path}, please update it)"
@@ -235,37 +235,37 @@ module RuboCop
 
     def obsolete_enforced_style
       OBSOLETE_ENFORCED_STYLES.map do |params|
-        obsolete_enforced_style_message(params[:cop], params[:parameter],
+        obsolete_enforced_style_message(params[:rule], params[:parameter],
                                         params[:enforced_style],
                                         params[:alternative])
       end
     end
 
-    def obsolete_enforced_style_message(cop, param, enforced_style, alternative)
-      style = @config[cop]&.detect { |key, _| key.start_with?(param) }
+    def obsolete_enforced_style_message(rule, param, enforced_style, alternative)
+      style = @config[rule]&.detect { |key, _| key.start_with?(param) }
 
       return unless style && style[1] == enforced_style
 
-      "obsolete `#{param}: #{enforced_style}` (for #{cop}) found in " \
+      "obsolete `#{param}: #{enforced_style}` (for #{rule}) found in " \
       "#{smart_loaded_path}\n#{alternative}"
     end
 
     def obsolete_parameters
       OBSOLETE_PARAMETERS.map do |params|
-        obsolete_parameter_message(params[:cops], params[:parameters],
+        obsolete_parameter_message(params[:rules], params[:parameters],
                                    params[:alternative])
       end
     end
 
-    def obsolete_parameter_message(cops, parameters, alternative)
-      Array(cops).map do |cop|
+    def obsolete_parameter_message(rules, parameters, alternative)
+      Array(rules).map do |rule|
         obsolete_parameters = Array(parameters).select do |param|
-          @config[cop]&.key?(param)
+          @config[rule]&.key?(param)
         end
         next if obsolete_parameters.empty?
 
         obsolete_parameters.map do |parameter|
-          "obsolete parameter #{parameter} (for #{cop}) found in " \
+          "obsolete parameter #{parameter} (for #{rule}) found in " \
           "#{smart_loaded_path}\n#{alternative}"
         end
       end

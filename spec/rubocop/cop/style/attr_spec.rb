@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Attr do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::Attr do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense attr' do
     expect_offense(<<~RUBY)

@@ -53,7 +53,7 @@ module RuboCop
         # rubocop:enable Metrics/AbcSize
 
         def indent(cop, source)
-          conf = cop.config.for_cop(END_ALIGNMENT)
+          conf = cop.config.for_rule(END_ALIGNMENT)
           if conf[ALIGN_WITH] == KEYWORD
             ' ' * source.length
           else
@@ -403,23 +403,23 @@ module RuboCop
         end
 
         def line_length_cop_enabled?
-          config.for_cop(LINE_LENGTH)[ENABLED]
+          config.for_rule(LINE_LENGTH)[ENABLED]
         end
 
         def max_line_length
-          config.for_cop(LINE_LENGTH)[MAX]
+          config.for_rule(LINE_LENGTH)[MAX]
         end
 
         def indentation_width
-          config.for_cop(INDENTATION_WIDTH)[WIDTH] || 2
+          config.for_rule(INDENTATION_WIDTH)[WIDTH] || 2
         end
 
         def single_line_conditions_only?
-          cop_config[SINGLE_LINE_CONDITIONS_ONLY]
+          rule_config[SINGLE_LINE_CONDITIONS_ONLY]
         end
 
         def include_ternary?
-          cop_config['IncludeTernaryExpressions']
+          rule_config['IncludeTernaryExpressions']
         end
       end
 

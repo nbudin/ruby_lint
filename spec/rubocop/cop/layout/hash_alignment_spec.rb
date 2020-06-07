@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Layout::HashAlignment, :config do
+  let(:rule_config) do
     {
       'EnforcedHashRocketStyle' => 'key',
       'EnforcedColonStyle' => 'key'
@@ -36,7 +36,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'always inspect last argument hash' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedLastArgumentHashStyle' => 'always_inspect'
       }
@@ -126,7 +126,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'always ignore last argument hash' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedLastArgumentHashStyle' => 'always_ignore'
       }
@@ -176,7 +176,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'ignore implicit last argument hash' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedLastArgumentHashStyle' => 'ignore_implicit'
       }
@@ -246,7 +246,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'ignore explicit last argument hash' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedLastArgumentHashStyle' => 'ignore_explicit'
       }
@@ -574,7 +574,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   include_examples 'not on separate lines'
 
   context 'with table alignment configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => 'table',
         'EnforcedColonStyle' => 'table'
@@ -711,7 +711,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'with table+separator alignment configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => 'table',
         'EnforcedColonStyle' => 'separator'
@@ -724,7 +724,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'with invalid configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => 'junk',
         'EnforcedColonStyle' => 'junk'
@@ -743,7 +743,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'with separator alignment configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => 'separator',
         'EnforcedColonStyle' => 'separator'
@@ -855,7 +855,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'with multiple preferred(key and table) alignment configuration' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => %w[key table],
         'EnforcedColonStyle' => %w[key table]
@@ -1047,7 +1047,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
     end
 
     describe 'table and key config' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedHashRocketStyle' => %w[table key],
           'EnforcedColonStyle' => %w[table key]
@@ -1084,7 +1084,7 @@ RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   end
 
   context 'with different settings for => and :' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedHashRocketStyle' => 'key',
         'EnforcedColonStyle' => 'separator'

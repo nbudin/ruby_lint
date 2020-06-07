@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
-  let(:cop_config) { { 'AllowInHeredoc' => false } }
+RSpec.describe RuboCop::Rule::Layout::TrailingWhitespace, :config do
+  let(:rule_config) { { 'AllowInHeredoc' => false } }
 
   it 'registers an offense for a line ending with space' do
     inspect_source('x = 0 ')
-    expect(cop.offenses.size).to eq(1)
+    expect(rule.offenses.size).to eq(1)
   end
 
   it 'registers an offense for a blank line with space' do
     inspect_source('  ')
-    expect(cop.offenses.size).to eq(1)
+    expect(rule.offenses.size).to eq(1)
   end
 
   it 'registers an offense for a line ending with tab' do
     inspect_source("x = 0\t")
-    expect(cop.offenses.size).to eq(1)
+    expect(rule.offenses.size).to eq(1)
   end
 
   it 'registers an offense for trailing whitespace in a heredoc string' do
     inspect_source(['x = <<RUBY',
                     '  Hi   ',
                     'RUBY'].join("\n"))
-    expect(cop.offenses.size).to eq(1)
+    expect(rule.offenses.size).to eq(1)
   end
 
   it 'registers offenses before __END__ but not after' do
@@ -30,7 +30,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
                     ' ',
                     '__END__',
                     "x = 0\t"].join("\n"))
-    expect(cop.offenses.map(&:line)).to eq([1, 2])
+    expect(rule.offenses.map(&:line)).to eq([1, 2])
   end
 
   it 'is not fooled by __END__ within a documentation comment' do
@@ -39,7 +39,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
                     '__END__',
                     '=end',
                     "x = 0\t"].join("\n"))
-    expect(cop.offenses.map(&:line)).to eq([1, 5])
+    expect(rule.offenses.map(&:line)).to eq([1, 5])
   end
 
   it 'is not fooled by heredoc containing __END__' do
@@ -48,7 +48,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
                     "x2 = 0\t",
                     'RUBY',
                     "x3 = 0\t"].join("\n"))
-    expect(cop.offenses.map(&:line)).to eq([1, 3, 5])
+    expect(rule.offenses.map(&:line)).to eq([1, 3, 5])
   end
 
   it 'is not fooled by heredoc containing __END__ within a doc comment' do
@@ -59,7 +59,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
                     "x2 = 0\t",
                     'RUBY',
                     "x3 = 0\t"].join("\n"))
-    expect(cop.offenses.map(&:line)).to eq([1, 2, 5, 7])
+    expect(rule.offenses.map(&:line)).to eq([1, 2, 5, 7])
   end
 
   it 'accepts a line without trailing whitespace' do
@@ -74,7 +74,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
   end
 
   context 'when `AllowInHeredoc` is set to true' do
-    let(:cop_config) { { 'AllowInHeredoc' => true } }
+    let(:rule_config) { { 'AllowInHeredoc' => true } }
 
     it 'accepts trailing whitespace in a heredoc string' do
       expect_no_offenses(['x = <<RUBY',
@@ -86,7 +86,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
       inspect_source(['x = <<RUBY ',
                       '  Hi   ',
                       'RUBY'].join("\n"))
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
     end
   end
 end

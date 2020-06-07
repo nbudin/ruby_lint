@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
-  let(:cop_config) { { 'Max' => 80, 'IgnoredPatterns' => nil } }
+RSpec.describe RuboCop::Rule::Layout::LineLength, :config do
+  let(:rule_config) { { 'Max' => 80, 'IgnoredPatterns' => nil } }
 
   let(:config) do
     RuboCop::Config.new(
       'Layout/LineLength' => {
         'URISchemes' => %w[http https]
-      }.merge(cop_config),
+      }.merge(rule_config),
       'Layout/IndentationStyle' => { 'IndentationWidth' => 2 }
     )
   end
 
   it "registers an offense for a line that's 81 characters wide" do
     inspect_source('#' * 81)
-    expect(cop.offenses.size).to eq(1)
-    expect(cop.offenses.first.message).to eq('Line is too long. [81/80]')
+    expect(rule.offenses.size).to eq(1)
+    expect(rule.offenses.first.message).to eq('Line is too long. [81/80]')
     expect(cop.config_to_allow_offenses).to eq(exclude_limit: { 'Max' => 81 })
   end
 
   it 'highlights excessive characters' do
     inspect_source('#' * 80 + 'abc')
-    expect(cop.highlights).to eq(['abc'])
+    expect(rule.highlights).to eq(['abc'])
   end
 
   it "accepts a line that's 80 characters wide" do
@@ -44,7 +44,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   end
 
   context 'when line is indented with tabs' do
-    let(:cop_config) { { 'Max' => 10, 'IgnoredPatterns' => nil } }
+    let(:rule_config) { { 'Max' => 10, 'IgnoredPatterns' => nil } }
 
     it 'accepts a short line' do
       expect_no_offenses("\t\t\t123")
@@ -59,7 +59,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   end
 
   context 'when AllowURI option is enabled' do
-    let(:cop_config) { { 'Max' => 80, 'AllowURI' => true } }
+    let(:rule_config) { { 'Max' => 80, 'AllowURI' => true } }
 
     context 'and the URL fits within the max allowed characters' do
       it 'registers an offense for the line' do
@@ -118,7 +118,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
     context 'and an error other than URI::InvalidURIError is raised ' \
             'while validating a URI-ish string' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'Max' => 80, 'AllowURI' => true, 'URISchemes' => %w[LDAP] }
       end
 
@@ -138,11 +138,11 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
       it 'rejects the line' do
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       context 'and the scheme has been configured' do
-        let(:cop_config) do
+        let(:rule_config) do
           { 'Max' => 80, 'AllowURI' => true, 'URISchemes' => %w[otherprotocol] }
         end
 
@@ -154,7 +154,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   end
 
   context 'when IgnoredPatterns option is set' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'Max' => 18,
         'IgnoredPatterns' => ['^\s*test\s', /^\s*def\s+test_/]
@@ -174,12 +174,12 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
     it 'accepts long lines matching a pattern but not other long lines' do
       inspect_source(source)
-      expect(cop.highlights).to eq(['< TestCase'])
+      expect(rule.highlights).to eq(['< TestCase'])
     end
   end
 
   context 'when AllowHeredoc option is enabled' do
-    let(:cop_config) { { 'Max' => 80, 'AllowHeredoc' => true } }
+    let(:rule_config) { { 'Max' => 80, 'AllowHeredoc' => true } }
 
     let(:source) { <<-RUBY }
       <<-SQL
@@ -200,7 +200,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
     end
 
     context 'and only certain heredoc delimiters are permitted' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'Max' => 80, 'AllowHeredoc' => %w[SQL OK], 'IgnoredPatterns' => [] }
       end
 
@@ -228,13 +228,13 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
       it 'rejects long lines in heredocs with not permitted delimiters' do
         inspect_source(source)
-        expect(cop.offenses.size).to eq(4)
+        expect(rule.offenses.size).to eq(4)
       end
     end
   end
 
   context 'when AllowURI option is disabled' do
-    let(:cop_config) { { 'Max' => 80, 'AllowURI' => false } }
+    let(:rule_config) { { 'Max' => 80, 'AllowURI' => false } }
 
     context 'and all the excessive characters are part of a URL' do
       it 'registers an offense for the line' do
@@ -248,7 +248,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   end
 
   context 'when IgnoreCopDirectives is disabled' do
-    let(:cop_config) { { 'Max' => 80, 'IgnoreCopDirectives' => false } }
+    let(:rule_config) { { 'Max' => 80, 'IgnoreCopDirectives' => false } }
 
     context 'and the source is acceptable length' do
       let(:acceptable_source) { 'a' * 80 }
@@ -259,12 +259,12 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
         it 'registers an offense for the line' do
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
         end
 
         it 'highlights the excess directive' do
           inspect_source(source)
-          expect(cop.highlights).to eq([cop_directive])
+          expect(rule.highlights).to eq([cop_directive])
         end
       end
 
@@ -274,7 +274,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
         it 'highlights the excess comment' do
           inspect_source(source)
-          expect(cop.highlights).to eq([excess_comment])
+          expect(rule.highlights).to eq([excess_comment])
         end
       end
     end
@@ -285,13 +285,13 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
       it 'highlights the excess source and cop directive' do
         inspect_source(source)
-        expect(cop.highlights).to eq([excess_with_directive])
+        expect(rule.highlights).to eq([excess_with_directive])
       end
     end
   end
 
   context 'when IgnoreCopDirectives is enabled' do
-    let(:cop_config) { { 'Max' => 80, 'IgnoreCopDirectives' => true } }
+    let(:rule_config) { { 'Max' => 80, 'IgnoreCopDirectives' => true } }
 
     context 'and the Rubocop directive is excessively long' do
       let(:source) { <<-RUBY }
@@ -332,12 +332,12 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
       it 'registers an offense for the line' do
         inspect_source(source)
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
       end
 
       it 'highlights only the non-directive part' do
         inspect_source(source)
-        expect(cop.highlights).to eq(['bcd'])
+        expect(rule.highlights).to eq(['bcd'])
       end
 
       context 'and the source contains non-directive # as comment' do
@@ -347,12 +347,12 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
         it 'registers an offense for the line' do
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
         end
 
         it 'highlights only the non-directive part' do
           inspect_source(source)
-          expect(cop.highlights).to eq(['bbbbbbb'])
+          expect(rule.highlights).to eq(['bbbbbbb'])
         end
       end
 
@@ -363,12 +363,12 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
 
         it 'registers an offense for the line' do
           inspect_source(source)
-          expect(cop.offenses.size).to eq(1)
+          expect(rule.offenses.size).to eq(1)
         end
 
         it 'highlights only the non-directive part' do
           inspect_source(source)
-          expect(cop.highlights).to eq([']*={0,2})#([A-Za-z0-9+/#]*={0,2})z}'])
+          expect(rule.highlights).to eq([']*={0,2})#([A-Za-z0-9+/#]*={0,2})z}'])
         end
       end
     end
@@ -379,15 +379,15 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
       it "registers an offense for a line that's including 2 tab with size 2" \
          ' and 28 other characters' do
         inspect_source("\t\t" + '#' * 28)
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.offenses.first.message).to eq('Line is too long. [32/30]')
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.offenses.first.message).to eq('Line is too long. [32/30]')
         expect(cop.config_to_allow_offenses)
           .to eq(exclude_limit: { 'Max' => 32 })
       end
 
       it 'highlights excessive characters' do
         inspect_source("\t" + '#' * 28 + 'a')
-        expect(cop.highlights).to eq(['a'])
+        expect(rule.highlights).to eq(['a'])
       end
 
       it "accepts a line that's including 1 tab with size 2" \
@@ -453,7 +453,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   end
 
   context 'autocorrection' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'Max' => 40, 'IgnoredPatterns' => nil, 'AutoCorrect' => true }
     end
 
@@ -971,7 +971,7 @@ RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
     end
 
     context 'HEREDOC' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'Max' => 40, 'AllowURI' => false, 'AllowHeredoc' => false }
       end
 

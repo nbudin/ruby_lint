@@ -489,7 +489,7 @@ RSpec.describe RuboCop::ConfigLoader do
           YAML
 
           def enabled?(cop)
-            configuration_from_file.for_cop(cop)['Enabled']
+            configuration_from_file.for_rule(cop)['Enabled']
           end
 
           # Department disabled in parent config, cop enabled in child.
@@ -528,7 +528,7 @@ RSpec.describe RuboCop::ConfigLoader do
 
     context 'when a third party require defines a new gem' do
       around do |example|
-        Rubocop::Rule::Registry.with_temporary_global { example.run }
+        RuboCop::Rule::Registry.with_temporary_global { example.run }
       end
 
       context 'when the gem is not loaded' do
@@ -978,7 +978,7 @@ RSpec.describe RuboCop::ConfigLoader do
 
     context 'EnabledByDefault / DisabledByDefault' do
       def cop_enabled?(cop_class)
-        configuration_from_file.for_cop(cop_class).fetch('Enabled')
+        configuration_from_file.for_rule(cop_class).fetch('Enabled')
       end
 
       let(:file_path) { '.rubocop.yml' }
@@ -1000,12 +1000,12 @@ RSpec.describe RuboCop::ConfigLoader do
 
         it 'enables cops that are explicitly in the config file '\
           'even if they are disabled by default' do
-          cop_class = Rubocop::Rule::Style::Copyright
+          cop_class = RuboCop::Rule::Style::Copyright
           expect(cop_enabled?(cop_class)).to be true
         end
 
         it 'disables cops that are normally enabled by default' do
-          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
+          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled?(cop_class)).to be false
         end
 
@@ -1020,17 +1020,17 @@ RSpec.describe RuboCop::ConfigLoader do
           end
 
           it 'enables cops in that department' do
-            cop_class = Rubocop::Rule::Style::Alias
+            cop_class = RuboCop::Rule::Style::Alias
             expect(cop_enabled?(cop_class)).to be true
           end
 
           it 'disables cops in other departments' do
-            cop_class = Rubocop::Rule::Layout::HashAlignment
+            cop_class = RuboCop::Rule::Layout::HashAlignment
             expect(cop_enabled?(cop_class)).to be false
           end
 
           it 'keeps cops that are disabled in default configuration disabled' do
-            cop_class = Rubocop::Rule::Style::AutoResourceCleanup
+            cop_class = RuboCop::Rule::Style::AutoResourceCleanup
             expect(cop_enabled?(cop_class)).to be false
           end
         end
@@ -1047,12 +1047,12 @@ RSpec.describe RuboCop::ConfigLoader do
         end
 
         it 'enables cops that are disabled by default' do
-          cop_class = Rubocop::Rule::Layout::FirstMethodArgumentLineBreak
+          cop_class = RuboCop::Rule::Layout::FirstMethodArgumentLineBreak
           expect(cop_enabled?(cop_class)).to be true
         end
 
         it 'respects cops that are disbled in the config' do
-          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
+          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled?(cop_class)).to be false
         end
       end
@@ -1060,11 +1060,11 @@ RSpec.describe RuboCop::ConfigLoader do
 
     context 'when a new cop is introduced' do
       def cop_enabled?(cop_class)
-        configuration_from_file.for_cop(cop_class).fetch('Enabled')
+        configuration_from_file.for_rule(cop_class).fetch('Enabled')
       end
 
       let(:file_path) { '.rubocop.yml' }
-      let(:cop_class) { Rubocop::Rule::Metrics::MethodLength }
+      let(:cop_class) { RuboCop::Rule::Metrics::MethodLength }
 
       before do
         stub_const('RuboCop::ConfigLoader::RUBOCOP_HOME', 'rubocop')
@@ -1387,7 +1387,7 @@ RSpec.describe RuboCop::ConfigLoader do
 
       it 'gets an Exclude relative to the inherited file converted to ' \
          'absolute' do
-        expect(config.for_cop(Rubocop::Rule::Style::CharacterLiteral)['Exclude'])
+        expect(config.for_rule(RuboCop::Rule::Style::CharacterLiteral)['Exclude'])
           .to eq([File.join(Dir.pwd, 'test/blargh/blah.rb')])
       end
     end
@@ -1398,7 +1398,7 @@ RSpec.describe RuboCop::ConfigLoader do
       it 'is enabled by default' do
         default_config = described_class.default_configuration
         symbol_name_config =
-          default_config.for_cop('Lint/AssignmentInCondition')
+          default_config.for_rule('Lint/AssignmentInCondition')
         expect(symbol_name_config['AllowSafeAssignment']).to be_truthy
       end
     end

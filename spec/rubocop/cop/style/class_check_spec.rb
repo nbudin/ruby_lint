@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ClassCheck, :config do
+RSpec.describe RuboCop::Rule::Style::ClassCheck, :config do
   context 'when enforced style is is_a?' do
-    let(:cop_config) { { 'EnforcedStyle' => 'is_a?' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'is_a?' } }
 
     it 'registers an offense for kind_of?' do
       expect_offense(<<~RUBY)
@@ -18,7 +18,7 @@ RSpec.describe Rubocop::Rule::Style::ClassCheck, :config do
   end
 
   context 'when enforced style is kind_of?' do
-    let(:cop_config) { { 'EnforcedStyle' => 'kind_of?' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'kind_of?' } }
 
     it 'registers an offense for is_a?' do
       expect_offense(<<~RUBY)

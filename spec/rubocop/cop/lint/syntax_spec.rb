@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::Syntax do
+RSpec.describe RuboCop::Rule::Lint::Syntax do
   let(:options) { nil }
   let(:ruby_version) { 2.4 }
   let(:path) { 'test.rb' }
@@ -29,7 +29,7 @@ RSpec.describe Rubocop::Rule::Lint::Syntax do
       end
 
       context 'with --display-cop-names option' do
-        let(:options) { { display_cop_names: true } }
+        let(:options) { { display_rule_names: true } }
 
         it 'returns an offense with cop name' do
           expect(offenses.size).to eq(1)
@@ -73,7 +73,7 @@ RSpec.describe Rubocop::Rule::Lint::Syntax do
       end
 
       context 'with --display-cop-names option' do
-        let(:options) { { display_cop_names: true } }
+        let(:options) { { display_rule_names: true } }
 
         it 'returns an offense with cop name' do
           expect(offenses.size).to eq(1)

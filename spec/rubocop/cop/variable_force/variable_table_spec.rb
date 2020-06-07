@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::VariableForce::VariableTable do
+RSpec.describe RuboCop::Rule::VariableForce::VariableTable do
   include RuboCop::AST::Sexp
 
   subject(:variable_table) { described_class.new }

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::InternalAffairs::OffenseLocationKeyword do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::InternalAffairs::OffenseLocationKeyword do
+  subject(:rule) { described_class.new }
 
   context 'when `node.loc.selector` is passed' do
     it 'registers an offense' do

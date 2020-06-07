@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::FormatParameterMismatch do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::FormatParameterMismatch do
+  subject(:rule) { described_class.new }
 
   shared_examples 'variables' do |variable|
     it 'does not register an offense for % called on a variable' do

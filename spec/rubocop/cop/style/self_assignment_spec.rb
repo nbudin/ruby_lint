@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SelfAssignment do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::SelfAssignment do
+  subject(:rule) { described_class.new }
 
   %i[+ - * ** / | & || &&].product(['x', '@x', '@@x']).each do |op, var|
     it "registers an offense for non-shorthand assignment #{op} and #{var}" do
       inspect_source("#{var} = #{var} #{op} y")
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(["Use self-assignment shorthand `#{op}=`."])
     end

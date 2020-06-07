@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::For, :config do
+RSpec.describe RuboCop::Rule::Style::For, :config do
   context 'when each is the enforced style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'each' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'each' } }
 
     it 'registers an offense for for' do
       expect_offense(<<~RUBY)
@@ -167,7 +167,7 @@ RSpec.describe Rubocop::Rule::Style::For, :config do
   end
 
   context 'when for is the enforced style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'for' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'for' } }
 
     it 'accepts for' do
       expect_no_offenses(<<~RUBY)

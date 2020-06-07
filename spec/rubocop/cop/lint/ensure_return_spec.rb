@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::EnsureReturn do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::EnsureReturn do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects for return in ensure' do
     expect_offense(<<~RUBY)

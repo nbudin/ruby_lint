@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
+RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
   context 'EnforcedStyle is `around`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'around' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'around' } }
 
     %w[private protected public module_function].each do |access_modifier|
       it "requires blank line before #{access_modifier}" do
@@ -14,7 +14,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
             def test; end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Keep a blank line before and after `#{access_modifier}`."])
       end
@@ -28,7 +28,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
             def test; end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Keep a blank line before and after `#{access_modifier}`."])
       end
@@ -224,7 +224,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
             end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Keep a blank line after `#{access_modifier}`."])
       end
@@ -259,7 +259,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
                 end
               end
             RUBY
-            expect(cop.offenses.size).to eq(1)
+            expect(rule.offenses.size).to eq(1)
             expect(cop.messages)
               .to eq(["Keep a blank line after `#{access_modifier}`."])
           end
@@ -328,7 +328,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
 
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Keep a blank line after `#{access_modifier}`."])
       end
@@ -347,7 +347,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
   end
 
   context 'EnforcedStyle is `only_before`' do
-    let(:cop_config) { { 'EnforcedStyle' => 'only_before' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'only_before' } }
 
     %w[private protected].each do |access_modifier|
       it "accepts missing blank line after #{access_modifier}" do
@@ -372,7 +372,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
           end
         RUBY
 
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Remove a blank line after `#{access_modifier}`."])
       end
@@ -421,7 +421,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
             def test; end
           end
         RUBY
-        expect(cop.offenses.size).to eq(1)
+        expect(rule.offenses.size).to eq(1)
         expect(cop.messages)
           .to eq(["Keep a blank line before `#{access_modifier}`."])
       end

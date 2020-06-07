@@ -36,7 +36,7 @@ RSpec.describe RuboCop::Formatter::TapFormatter do
         line_length = source[0].length + 1
 
         [
-          Rubocop::Rule::Offense.new(
+          RuboCop::Rule::Offense.new(
             :convention,
             Parser::Source::Range.new(source_buffer,
                                       line_length + 2,
@@ -71,7 +71,7 @@ RSpec.describe RuboCop::Formatter::TapFormatter do
         formatter.file_finished(
           files[0],
           [
-            Rubocop::Rule::Offense.new(
+            RuboCop::Rule::Offense.new(
               :convention,
               Parser::Source::Range.new(source_buffer,
                                         line_length + 2,
@@ -89,7 +89,7 @@ RSpec.describe RuboCop::Formatter::TapFormatter do
         formatter.file_finished(
           files[2],
           [
-            Rubocop::Rule::Offense.new(
+            RuboCop::Rule::Offense.new(
               :error,
               Parser::Source::Range.new(source_buffer,
                                         4 * line_length + 1,
@@ -97,7 +97,7 @@ RSpec.describe RuboCop::Formatter::TapFormatter do
               'bar',
               'Cop'
             ),
-            Rubocop::Rule::Offense.new(
+            RuboCop::Rule::Offense.new(
               :convention,
               Parser::Source::Range.new(source_buffer,
                                         5 * line_length,

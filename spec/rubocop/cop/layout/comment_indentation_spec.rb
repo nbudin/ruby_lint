@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::CommentIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::CommentIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     RuboCop::Config

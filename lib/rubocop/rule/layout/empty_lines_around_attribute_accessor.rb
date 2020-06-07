@@ -110,7 +110,7 @@ module RuboCop
         end
 
         def allow_alias_syntax?
-          cop_config.fetch('AllowAliasSyntax', true)
+          rule_config.fetch('AllowAliasSyntax', true)
         end
 
         def allowed_method?(name)
@@ -118,7 +118,7 @@ module RuboCop
         end
 
         def allowed_methods
-          cop_config.fetch('AllowedMethods', [])
+          rule_config.fetch('AllowedMethods', [])
         end
       end
     end

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ClassAndModuleChildren, :config do
+RSpec.describe RuboCop::Rule::Style::ClassAndModuleChildren, :config do
   context 'nested style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'nested' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'nested' } }
 
     it 'registers an offense for not nested classes' do
       expect_offense(<<~RUBY)
@@ -56,7 +56,7 @@ RSpec.describe Rubocop::Rule::Style::ClassAndModuleChildren, :config do
   end
 
   context 'compact style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'compact' } }
 
     it 'registers a offense for classes with nested children' do
       expect_offense(<<~RUBY)
@@ -126,7 +126,7 @@ RSpec.describe Rubocop::Rule::Style::ClassAndModuleChildren, :config do
   end
 
   context 'autocorrect' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AutoCorrect' => 'true', 'EnforcedStyle' => enforced_style }
     end
 

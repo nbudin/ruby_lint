@@ -140,7 +140,7 @@ module RuboCop
         def acceptable_19_syntax_symbol?(sym_name)
           sym_name.sub!(/\A:/, '')
 
-          if cop_config['PreferHashRocketsForNonAlnumEndingSymbols']
+          if rule_config['PreferHashRocketsForNonAlnumEndingSymbols']
             # Prefer { :production? => false } over { production?: false } and
             # similarly for other non-alnum final characters (except quotes,
             # to prefer { "x y": 1 } over { :"x y" => 1 }).
@@ -212,7 +212,7 @@ module RuboCop
         end
 
         def force_hash_rockets?(pairs)
-          cop_config['UseHashRocketsWithSymbolValues'] &&
+          rule_config['UseHashRocketsWithSymbolValues'] &&
             pairs.map(&:value).any?(&:sym_type?)
         end
       end

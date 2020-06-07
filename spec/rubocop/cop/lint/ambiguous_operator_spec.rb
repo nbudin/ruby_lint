@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::AmbiguousOperator do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::AmbiguousOperator do
+  subject(:rule) { described_class.new }
 
   context 'with `+` unary operator in the first argument' do
     context 'without parentheses' do

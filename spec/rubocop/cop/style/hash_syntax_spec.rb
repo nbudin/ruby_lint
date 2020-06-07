@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
+RSpec.describe RuboCop::Rule::Style::HashSyntax, :config do
   context 'configured to enforce ruby19 style' do
     context 'with SpaceAroundOperators enabled' do
       let(:config) do
         RuboCop::Config.new('AllCops' => {
                               'TargetRubyVersion' => ruby_version
                             },
-                            'Style/HashSyntax' => cop_config,
+                            'Style/HashSyntax' => rule_config,
                             'Layout/SpaceAroundOperators' => {
                               'Enabled' => true
                             })
       end
 
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'ruby19',
           'SupportedStyles' => %w[ruby19 hash_rockets],
           'UseHashRocketsWithSymbolValues' => false,
           'PreferHashRocketsForNonAlnumEndingSymbols' => false
-        }.merge(cop_config_overrides)
+        }.merge(rule_config_overrides)
       end
 
-      let(:cop_config_overrides) { {} }
+      let(:rule_config_overrides) { {} }
 
       it 'registers offense for hash rocket syntax when new is possible' do
         expect_offense(<<~RUBY)
@@ -82,7 +82,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
       end
 
       context 'if PreferHashRocketsForNonAlnumEndingSymbols is true' do
-        let(:cop_config_overrides) do
+        let(:rule_config_overrides) do
           {
             'PreferHashRocketsForNonAlnumEndingSymbols' => true
           }
@@ -273,7 +273,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
   end
 
   context 'configured to enforce hash rockets style' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'hash_rockets',
         'SupportedStyles' => %w[ruby19 hash_rockets],
@@ -320,7 +320,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
     end
 
     context 'UseHashRocketsWithSymbolValues has no impact' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'hash_rockets',
           'SupportedStyles' => %w[ruby19 hash_rockets],
@@ -336,7 +336,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
 
   context 'configured to enforce ruby 1.9 style with no mixed keys' do
     context 'UseHashRocketsWithSymbolValues disabled' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'ruby19_no_mixed_keys',
           'UseHashRocketsWithSymbolValues' => false
@@ -426,7 +426,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
     end
 
     context 'UseHashRocketsWithSymbolValues enabled' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => 'ruby19_no_mixed_keys',
           'UseHashRocketsWithSymbolValues' => true
@@ -548,7 +548,7 @@ RSpec.describe Rubocop::Rule::Style::HashSyntax, :config do
   end
 
   context 'configured to enforce no mixed keys' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'EnforcedStyle' => 'no_mixed_keys'
       }

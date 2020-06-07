@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NilComparison, :config do
+RSpec.describe RuboCop::Rule::Style::NilComparison, :config do
   context 'configured with predicate preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'predicate' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'predicate' } }
 
     it 'registers an offense for == nil' do
       expect_offense(<<~RUBY)
@@ -30,7 +30,7 @@ RSpec.describe Rubocop::Rule::Style::NilComparison, :config do
   end
 
   context 'configured with comparison preferred' do
-    let(:cop_config) { { 'EnforcedStyle' => 'comparison' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'comparison' } }
 
     it 'registers an offense for nil?' do
       expect_offense(<<~RUBY)

@@ -54,7 +54,7 @@ module RuboCop
           return if blank_lines_between?(*nodes)
           return if multiple_blank_lines_groups?(*nodes)
           return if nodes.all?(&:single_line?) &&
-                    cop_config['AllowAdjacentOneLineDefs']
+                    rule_config['AllowAdjacentOneLineDefs']
 
           location = nodes.last.loc.keyword.join(nodes.last.loc.name)
           add_offense(nodes.last, location: location)
@@ -104,11 +104,11 @@ module RuboCop
         end
 
         def minimum_empty_lines
-          Array(cop_config['NumberOfEmptyLines']).first
+          Array(rule_config['NumberOfEmptyLines']).first
         end
 
         def maximum_empty_lines
-          Array(cop_config['NumberOfEmptyLines']).last
+          Array(rule_config['NumberOfEmptyLines']).last
         end
 
         def prev_node(node)

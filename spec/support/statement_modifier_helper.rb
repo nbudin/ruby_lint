@@ -17,7 +17,7 @@ module StatementModifierHelper
     expect(cop.messages).to eq(
       ["Favor modifier `#{keyword}` usage when having a single-line body."]
     )
-    expect(cop.offenses.map { |o| o.location.source }).to eq([keyword])
+    expect(rule.offenses.map { |o| o.location.source }).to eq([keyword])
   end
 
   def autocorrect_really_short(keyword)

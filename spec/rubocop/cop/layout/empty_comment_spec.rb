@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::EmptyComment, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Layout::EmptyComment, :config do
+  let(:rule_config) do
     { 'AllowBorderComment' => true, 'AllowMarginComment' => true }
   end
 
@@ -78,7 +78,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyComment, :config do
   end
 
   context 'disallow border comment' do
-    let(:cop_config) { { 'AllowBorderComment' => false } }
+    let(:rule_config) { { 'AllowBorderComment' => false } }
 
     it 'registers an offense and corrects using single line empty comment' do
       expect_offense(<<~RUBY)
@@ -114,7 +114,7 @@ RSpec.describe Rubocop::Rule::Layout::EmptyComment, :config do
   end
 
   context 'disallow margin comment' do
-    let(:cop_config) { { 'AllowMarginComment' => false } }
+    let(:rule_config) { { 'AllowMarginComment' => false } }
 
     it 'registers an offense and corrects using margin comment' do
       expect_offense(<<~RUBY)

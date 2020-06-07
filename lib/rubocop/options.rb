@@ -148,9 +148,9 @@ module RuboCop
     end
 
     def add_severity_option(opts)
-      table = Rubocop::Rule::Severity::CODE_TABLE.merge(A: :autocorrect)
+      table = RuboCop::Rule::Severity::CODE_TABLE.merge(A: :autocorrect)
       option(opts, '--fail-level SEVERITY',
-             Rubocop::Rule::Severity::NAMES + [:autocorrect],
+             RuboCop::Rule::Severity::NAMES + [:autocorrect],
              table) do |severity|
         @options[:fail_level] = severity
       end
@@ -456,7 +456,7 @@ module RuboCop
                                          '(FLAG=false), default determined by',
                                          'configuration parameter AllCops: UseCache.'],
       debug:                            'Display debug info.',
-      display_cop_names:                ['Display cop names in offense messages.',
+      display_rule_names:                ['Display cop names in offense messages.',
                                          'Default is true.'],
       disable_pending_cops:             'Run without pending cops.',
       display_style_guide:              'Display style guide URLs in offense messages.',

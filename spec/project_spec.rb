@@ -2,7 +2,7 @@
 
 RSpec.describe 'RuboCop Project', type: :feature do
   let(:cop_names) do
-    Rubocop::Rule::Rule
+    RuboCop::Rule::Rule
       .registry
       .without_department(:Test)
       .without_department(:InternalAffairs)
@@ -59,7 +59,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
         enforced_styles = config[name]
                           .select { |key, _| key.start_with?('Enforced') }
         enforced_styles.each do |style_name, style|
-          supported_key = Rubocop::Rule::Util.to_supported_styles(style_name)
+          supported_key = RuboCop::Rule::Util.to_supported_styles(style_name)
           valid = config[name][supported_key]
           unless valid
             errors.push("#{supported_key} is missing for #{name}")
@@ -85,7 +85,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
   end
 
   describe 'cop message' do
-    let(:cops) { Rubocop::Rule::Rule.all }
+    let(:cops) { RuboCop::Rule::Rule.all }
 
     it 'end with a period or a question mark' do
       cops.each do |cop|

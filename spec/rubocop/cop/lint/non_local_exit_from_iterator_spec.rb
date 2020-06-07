@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::NonLocalExitFromIterator do
+  subject(:rule) { described_class.new }
 
   context 'inspection' do
     before do
@@ -15,10 +15,10 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
 
     shared_examples_for 'offense detector' do
       it 'registers an offense' do
-        expect(cop.offenses.size).to eq(1)
-        expect(cop.offenses.first.message).to eq(message)
-        expect(cop.offenses.first.severity.name).to eq(:warning)
-        expect(cop.highlights).to eq(['return'])
+        expect(rule.offenses.size).to eq(1)
+        expect(rule.offenses.first.message).to eq(message)
+        expect(rule.offenses.first.severity.name).to eq(:warning)
+        expect(rule.highlights).to eq(['return'])
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         RUBY
 
         it_behaves_like('offense detector')
-        it { expect(cop.offenses.first.line).to eq(2) }
+        it { expect(rule.offenses.first.line).to eq(2) }
       end
 
       context 'and has multiple arguments' do
@@ -44,7 +44,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         RUBY
 
         it_behaves_like('offense detector')
-        it { expect(cop.offenses.first.line).to eq(2) }
+        it { expect(rule.offenses.first.line).to eq(2) }
       end
 
       context 'and has no argument' do
@@ -55,7 +55,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
           end
         RUBY
 
-        it { expect(cop.offenses.empty?).to be(true) }
+        it { expect(rule.offenses.empty?).to be(true) }
       end
     end
 
@@ -70,7 +70,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         end
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when block is lambda' do
@@ -85,7 +85,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         }
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when lambda is inside of block followed by method chain' do
@@ -107,7 +107,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         end
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when block in middle of nest is followed by method chain' do
@@ -125,14 +125,14 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
       RUBY
 
       it 'registers offenses' do
-        expect(cop.offenses.size).to eq(2)
-        expect(cop.offenses[0].message).to eq(message)
-        expect(cop.offenses[0].severity.name).to eq(:warning)
-        expect(cop.offenses[0].line).to eq(4)
-        expect(cop.offenses[1].message).to eq(message)
-        expect(cop.offenses[1].severity.name).to eq(:warning)
-        expect(cop.offenses[1].line).to eq(6)
-        expect(cop.highlights).to eq(%w[return return])
+        expect(rule.offenses.size).to eq(2)
+        expect(rule.offenses[0].message).to eq(message)
+        expect(rule.offenses[0].severity.name).to eq(:warning)
+        expect(rule.offenses[0].line).to eq(4)
+        expect(rule.offenses[1].message).to eq(message)
+        expect(rule.offenses[1].severity.name).to eq(:warning)
+        expect(rule.offenses[1].line).to eq(6)
+        expect(rule.highlights).to eq(%w[return return])
       end
     end
 
@@ -146,7 +146,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         end
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when the message is define_method' do
@@ -158,7 +158,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         end
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when the message is define_singleton_method' do
@@ -170,7 +170,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
         end
       RUBY
 
-      it { expect(cop.offenses.empty?).to be(true) }
+      it { expect(rule.offenses.empty?).to be(true) }
     end
 
     context 'when the return is within a nested method definition' do
@@ -183,7 +183,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
           end
         RUBY
 
-        it { expect(cop.offenses.empty?).to be(true) }
+        it { expect(rule.offenses.empty?).to be(true) }
       end
 
       context 'with a class method definition' do
@@ -195,7 +195,7 @@ RSpec.describe Rubocop::Rule::Lint::NonLocalExitFromIterator do
           end
         RUBY
 
-        it { expect(cop.offenses.empty?).to be(true) }
+        it { expect(rule.offenses.empty?).to be(true) }
       end
     end
   end

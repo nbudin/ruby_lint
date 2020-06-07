@@ -74,7 +74,7 @@ module RuboCop
         end
 
         def ignored_patterns
-          config.for_cop('Layout/LineLength')['IgnoredPatterns'] || []
+          config.for_rule('Layout/LineLength')['IgnoredPatterns'] || []
         end
 
         def too_long_single_line?(node)

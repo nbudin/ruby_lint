@@ -25,15 +25,15 @@ module RuboCop
       end
 
       def safe_autocorrect?
-        cop_config.fetch('Safe', true) &&
-          cop_config.fetch('SafeAutoCorrect', true)
+        rule_config.fetch('Safe', true) &&
+          rule_config.fetch('SafeAutoCorrect', true)
       end
 
       def autocorrect_enabled?
         # allow turning off autocorrect on a cop by cop basis
-        return true unless cop_config
+        return true unless rule_config
 
-        return false if cop_config['AutoCorrect'] == false
+        return false if rule_config['AutoCorrect'] == false
 
         return safe_autocorrect? if @options.fetch(:safe_auto_correct, false)
 
@@ -78,7 +78,7 @@ module RuboCop
       end
 
       def max_line_length
-        config.for_cop('Layout/LineLength')['Max'] || 80
+        config.for_rule('Layout/LineLength')['Max'] || 80
       end
 
       def disable_offense_at_end_of_line(range, eol_comment)

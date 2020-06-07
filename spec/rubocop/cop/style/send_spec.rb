@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Send do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::Send do
+  subject(:rule) { described_class.new }
 
   context 'with send' do
     context 'and with a receiver' do

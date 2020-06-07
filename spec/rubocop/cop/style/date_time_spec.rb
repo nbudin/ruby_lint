@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::DateTime, :config do
-  let(:cop_config) { { 'AllowCoercion' => false } }
+RSpec.describe RuboCop::Rule::Style::DateTime, :config do
+  let(:rule_config) { { 'AllowCoercion' => false } }
 
   it 'registers an offense when using DateTime for current time' do
     expect_offense(<<~RUBY)
@@ -41,7 +41,7 @@ RSpec.describe Rubocop::Rule::Style::DateTime, :config do
   end
 
   describe 'when configured to not allow #to_datetime' do
-    before { cop_config['AllowCoercion'] = false }
+    before { rule_config['AllowCoercion'] = false }
 
     it 'registers an offense' do
       expect_offense(<<~RUBY)
@@ -52,7 +52,7 @@ RSpec.describe Rubocop::Rule::Style::DateTime, :config do
   end
 
   describe 'when configured to allow #to_datetime' do
-    before { cop_config['AllowCoercion'] = true }
+    before { rule_config['AllowCoercion'] = true }
 
     it 'does not register an offense' do
       expect_no_offenses('thing.to_datetime')

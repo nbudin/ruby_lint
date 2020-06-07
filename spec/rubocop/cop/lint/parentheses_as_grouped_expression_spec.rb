@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Lint::ParenthesesAsGroupedExpression do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Lint::ParenthesesAsGroupedExpression do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects for method call with space before ' \
      'the parenthesis' do

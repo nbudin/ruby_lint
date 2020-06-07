@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Metrics::MethodLength, :config do
-  let(:cop_config) { { 'Max' => 5, 'CountComments' => false } }
+RSpec.describe RuboCop::Rule::Metrics::MethodLength, :config do
+  let(:rule_config) { { 'Max' => 5, 'CountComments' => false } }
 
   context 'when method is an instance method' do
     it 'registers an offense' do
@@ -171,7 +171,7 @@ RSpec.describe Rubocop::Rule::Metrics::MethodLength, :config do
   end
 
   context 'when CountComments is enabled' do
-    before { cop_config['CountComments'] = true }
+    before { rule_config['CountComments'] = true }
 
     it 'also counts commented lines' do
       expect_offense(<<~RUBY)
@@ -189,7 +189,7 @@ RSpec.describe Rubocop::Rule::Metrics::MethodLength, :config do
   end
 
   context 'when method is defined in `ExcludedMethods`' do
-    before { cop_config['ExcludedMethods'] = ['foo'] }
+    before { rule_config['ExcludedMethods'] = ['foo'] }
 
     it 'still rejects other methods with more than 5 lines' do
       expect_offense(<<~RUBY)

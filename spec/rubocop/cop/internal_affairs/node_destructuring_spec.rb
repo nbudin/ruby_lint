@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::InternalAffairs::NodeDestructuring do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::InternalAffairs::NodeDestructuring do
+  subject(:rule) { described_class.new }
 
   context 'when destructuring using `node.children`' do
     it 'registers an offense when receiver is named `node`' do

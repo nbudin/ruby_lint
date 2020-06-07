@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::MethodCalledOnDoEndBlock do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::MethodCalledOnDoEndBlock do
+  subject(:rule) { described_class.new }
 
   context 'with a multi-line do..end block' do
     it 'registers an offense for a chained call' do

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceInsideStringInterpolation, :config do
+RSpec.describe RuboCop::Rule::Layout::SpaceInsideStringInterpolation, :config do
   context 'when EnforcedStyle is no_space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'no_space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'no_space' } }
 
     context 'for ill-formatted string interpolations' do
       it 'registers offenses and autocorrects' do
@@ -116,7 +116,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceInsideStringInterpolation, :config do
   end
 
   context 'when EnforcedStyle is space' do
-    let(:cop_config) { { 'EnforcedStyle' => 'space' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'space' } }
 
     context 'for ill-formatted string interpolations' do
       it 'registers offenses and autocorrects' do

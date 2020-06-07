@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::VariableForce::Scope do
+RSpec.describe RuboCop::Rule::VariableForce::Scope do
   include RuboCop::AST::Sexp
 
   subject(:scope) { described_class.new(scope_node) }

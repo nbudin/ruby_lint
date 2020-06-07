@@ -98,23 +98,23 @@ module RuboCop
         end
 
         def ignore_executable_scripts?
-          cop_config['IgnoreExecutableScripts']
+          rule_config['IgnoreExecutableScripts']
         end
 
         def expect_matching_definition?
-          cop_config['ExpectMatchingDefinition']
+          rule_config['ExpectMatchingDefinition']
         end
 
         def check_definition_path_hierarchy?
-          cop_config['CheckDefinitionPathHierarchy']
+          rule_config['CheckDefinitionPathHierarchy']
         end
 
         def regex
-          cop_config['Regex']
+          rule_config['Regex']
         end
 
         def allowed_acronyms
-          cop_config['AllowedAcronyms'] || []
+          rule_config['AllowedAcronyms'] || []
         end
 
         def filename_good?(basename)

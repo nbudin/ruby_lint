@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::AccessModifierIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::AccessModifierIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
-    c = cop_config.merge('SupportedStyles' => %w[indent outdent])
+    c = rule_config.merge('SupportedStyles' => %w[indent outdent])
     RuboCop::Config
       .new('Layout/AccessModifierIndentation' => c,
            'Layout/IndentationWidth' => { 'Width' => indentation_width })
@@ -12,7 +12,7 @@ RSpec.describe Rubocop::Rule::Layout::AccessModifierIndentation do
   let(:indentation_width) { 2 }
 
   context 'when EnforcedStyle is set to indent' do
-    let(:cop_config) { { 'EnforcedStyle' => 'indent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'indent' } }
 
     it 'registers an offense and corrects misaligned private' do
       expect_offense(<<~RUBY)
@@ -365,7 +365,7 @@ RSpec.describe Rubocop::Rule::Layout::AccessModifierIndentation do
     end
 
     context 'when indentation width is overridden for this cop only' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'indent', 'IndentationWidth' => 4 }
       end
 
@@ -383,7 +383,7 @@ RSpec.describe Rubocop::Rule::Layout::AccessModifierIndentation do
   end
 
   context 'when EnforcedStyle is set to outdent' do
-    let(:cop_config) { { 'EnforcedStyle' => 'outdent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'outdent' } }
 
     it 'registers offense and corrects private indented ' \
       'to method depth in a class' do

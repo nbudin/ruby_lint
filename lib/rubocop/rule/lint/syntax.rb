@@ -16,14 +16,14 @@ module RuboCop
                                                 config, options)
           cop = new(config, options)
 
-          cop.add_offense_from_error(processed_source.parser_error) if processed_source.parser_error
+          rule.add_offense_from_error(processed_source.parser_error) if processed_source.parser_error
 
           processed_source.diagnostics.each do |diagnostic|
-            cop.add_offense_from_diagnostic(diagnostic,
+            rule.add_offense_from_diagnostic(diagnostic,
                                             processed_source.ruby_version)
           end
 
-          cop.offenses
+          rule.offenses
         end
 
         def add_offense_from_diagnostic(diagnostic, ruby_version)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Naming::MethodName, :config do
+RSpec.describe RuboCop::Rule::Naming::MethodName, :config do
   shared_examples 'never accepted' do |enforced_style|
     it 'registers an offense for mixed snake case and camel case in attr.' do
       expect_offense(<<~RUBY)
@@ -133,7 +133,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodName, :config do
     end
 
     context 'when specifying `IgnoredPatterns`' do
-      let(:cop_config) do
+      let(:rule_config) do
         {
           'EnforcedStyle' => enforced_style,
           'IgnoredPatterns' => [
@@ -196,7 +196,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodName, :config do
   end
 
   context 'when configured for snake_case' do
-    let(:cop_config) { { 'EnforcedStyle' => 'snake_case' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'snake_case' } }
 
     it 'registers an offense for camel case method names in attr.' do
       expect_offense(<<~RUBY)
@@ -270,7 +270,7 @@ RSpec.describe Rubocop::Rule::Naming::MethodName, :config do
   end
 
   context 'when configured for camelCase' do
-    let(:cop_config) { { 'EnforcedStyle' => 'camelCase' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'camelCase' } }
 
     it 'accepts camel case names in attr.' do
       expect_no_offenses(<<~RUBY)

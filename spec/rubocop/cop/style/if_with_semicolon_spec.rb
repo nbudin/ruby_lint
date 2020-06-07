@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::IfWithSemicolon do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::IfWithSemicolon do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense and corrects for one line if/;/end' do
     expect_offense(<<~RUBY)

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
+RSpec.describe RuboCop::Rule::Style::YodaCondition, :config do
   let(:error_message) { 'Reverse the order of the operands `%s`.' }
 
   shared_examples 'accepts' do |code|
     let(:source) { code }
 
     it 'does not register an offense' do
-      expect(cop.offenses.empty?).to be(true)
+      expect(rule.offenses.empty?).to be(true)
     end
   end
 
@@ -15,8 +15,8 @@ RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
     let(:source) { code }
 
     it "registers an offense for #{code}" do
-      expect(cop.offenses.size).to eq(1)
-      expect(cop.offenses.first.message).to(
+      expect(rule.offenses.size).to eq(1)
+      expect(rule.offenses.first.message).to(
         eq(format(error_message, code))
       )
     end
@@ -33,7 +33,7 @@ RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
   before { inspect_source(source) }
 
   context 'enforce not yoda' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'forbid_for_all_comparison_operators' }
     end
 
@@ -91,7 +91,7 @@ RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
     end
 
     context 'with EnforcedStyle: forbid_for_equality_operators_only' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'forbid_for_equality_operators_only' }
       end
 
@@ -104,7 +104,7 @@ RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
   end
 
   context 'enforce yoda' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'EnforcedStyle' => 'require_for_all_comparison_operators' }
     end
 
@@ -158,7 +158,7 @@ RSpec.describe Rubocop::Rule::Style::YodaCondition, :config do
     end
 
     context 'with EnforcedStyle: require_for_equality_operators_only' do
-      let(:cop_config) do
+      let(:rule_config) do
         { 'EnforcedStyle' => 'require_for_equality_operators_only' }
       end
 

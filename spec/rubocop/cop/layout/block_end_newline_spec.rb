@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::BlockEndNewline do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Layout::BlockEndNewline do
+  subject(:rule) { described_class.new }
 
   it 'accepts a one-liner' do
     expect_no_offenses('test do foo end')

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::MessageAnnotator do
+RSpec.describe RuboCop::Rule::MessageAnnotator do
   let(:options) { {} }
   let(:config) { RuboCop::Config.new({}) }
   let(:cop_name) { 'Cop/Cop' }
@@ -35,7 +35,7 @@ RSpec.describe Rubocop::Rule::MessageAnnotator do
       let(:options) do
         {
           extra_details: true,
-          display_cop_names: true,
+          display_rule_names: true,
           display_style_guide: true
         }
       end

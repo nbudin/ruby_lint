@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallIndentation do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Layout::MultilineMethodCallIndentation do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
     merged = RuboCop::ConfigLoader
              .default_configuration['Layout/MultilineMethodCallIndentation']
-             .merge(cop_config)
+             .merge(rule_config)
              .merge('IndentationWidth' => cop_indent)
     RuboCop::Config
       .new('Layout/MultilineMethodCallIndentation' => merged,
@@ -225,7 +225,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallIndentation do
   end
 
   context 'when EnforcedStyle is aligned' do
-    let(:cop_config) { { 'EnforcedStyle' => 'aligned' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'aligned' } }
 
     include_examples 'common'
     include_examples 'common for aligned and indented'
@@ -631,7 +631,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallIndentation do
   end
 
   context 'when EnforcedStyle is indented_relative_to_receiver' do
-    let(:cop_config) { { 'EnforcedStyle' => 'indented_relative_to_receiver' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'indented_relative_to_receiver' } }
 
     include_examples 'common'
     include_examples 'both indented* styles'
@@ -760,7 +760,7 @@ RSpec.describe Rubocop::Rule::Layout::MultilineMethodCallIndentation do
   end
 
   context 'when EnforcedStyle is indented' do
-    let(:cop_config) { { 'EnforcedStyle' => 'indented' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'indented' } }
 
     include_examples 'common'
     include_examples 'common for aligned and indented'

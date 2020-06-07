@@ -86,7 +86,7 @@ module RuboCop
         end
 
         def preferred_name(variable_name)
-          preferred_name = cop_config.fetch('PreferredName', 'e')
+          preferred_name = rule_config.fetch('PreferredName', 'e')
           if variable_name.to_s.start_with?('_')
             "_#{preferred_name}"
           else

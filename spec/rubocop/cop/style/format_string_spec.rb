@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::FormatString, :config do
+RSpec.describe RuboCop::Rule::Style::FormatString, :config do
   context 'when enforced style is sprintf' do
-    let(:cop_config) { { 'EnforcedStyle' => 'sprintf' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'sprintf' } }
 
     it 'registers an offense for a string followed by something' do
       expect_offense(<<~RUBY)
@@ -91,7 +91,7 @@ RSpec.describe Rubocop::Rule::Style::FormatString, :config do
   end
 
   context 'when enforced style is format' do
-    let(:cop_config) { { 'EnforcedStyle' => 'format' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'format' } }
 
     it 'registers an offense for a string followed by something' do
       expect_offense(<<~RUBY)
@@ -187,7 +187,7 @@ RSpec.describe Rubocop::Rule::Style::FormatString, :config do
   end
 
   context 'when enforced style is percent' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent' } }
 
     it 'registers an offense for format' do
       expect_offense(<<~RUBY)

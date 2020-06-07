@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
+RSpec.describe RuboCop::Rule::Style::CommandLiteral, :config do
   let(:config) do
     supported_styles = {
       'SupportedStyles' => %w[backticks percent_x mixed]
@@ -8,14 +8,14 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
     RuboCop::Config.new('Style/PercentLiteralDelimiters' =>
                           percent_literal_delimiters_config,
                         'Style/CommandLiteral' =>
-                          cop_config.merge(supported_styles))
+                          rule_config.merge(supported_styles))
   end
   let(:percent_literal_delimiters_config) do
     { 'PreferredDelimiters' => { '%x' => '()' } }
   end
 
   describe '%x commands with other delimiters than parentheses' do
-    let(:cop_config) { { 'EnforcedStyle' => 'backticks' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'backticks' } }
 
     it 'registers an offense' do
       expect_offense(<<~RUBY)
@@ -26,7 +26,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   describe 'when PercentLiteralDelimiters is configured with curly braces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_x' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_x' } }
     let(:percent_literal_delimiters_config) do
       { 'PreferredDelimiters' => { '%x' => '[]' } }
     end
@@ -38,7 +38,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   describe 'when PercentLiteralDelimiters only has a default' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_x' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_x' } }
     let(:percent_literal_delimiters_config) do
       { 'PreferredDelimiters' => { 'default' => '()' } }
     end
@@ -50,7 +50,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   describe 'when PercentLiteralDelimiters is configured and a default exists' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_x' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_x' } }
     let(:percent_literal_delimiters_config) do
       { 'PreferredDelimiters' => { '%x' => '[]', 'default' => '()' } }
     end
@@ -62,7 +62,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   describe 'heredoc commands' do
-    let(:cop_config) { { 'EnforcedStyle' => 'backticks' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'backticks' } }
 
     it 'is ignored' do
       expect_no_offenses(<<~RUBY)
@@ -74,7 +74,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to backticks' do
-    let(:cop_config) { { 'EnforcedStyle' => 'backticks' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'backticks' } }
 
     describe 'a single-line ` string without backticks' do
       it 'is accepted' do
@@ -98,7 +98,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'is accepted' do
           expect_no_offenses('foo = `echo \\`ls\\``')
@@ -143,7 +143,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'is accepted' do
           expect_no_offenses(<<~'RUBY')
@@ -180,7 +180,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)
@@ -247,7 +247,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)
@@ -268,7 +268,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to percent_x' do
-    let(:cop_config) { { 'EnforcedStyle' => 'percent_x' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'percent_x' } }
 
     describe 'a single-line ` string without backticks' do
       let(:source) { 'foo = `ls`' }
@@ -395,7 +395,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   end
 
   context 'when EnforcedStyle is set to mixed' do
-    let(:cop_config) { { 'EnforcedStyle' => 'mixed' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'mixed' } }
 
     describe 'a single-line ` string without backticks' do
       it 'is accepted' do
@@ -419,7 +419,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'is accepted' do
           expect_no_offenses('foo = `echo \\`ls\\``')
@@ -508,7 +508,7 @@ RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
       end
 
       describe 'when configured to allow inner backticks' do
-        before { cop_config['AllowInnerBackticks'] = true }
+        before { rule_config['AllowInnerBackticks'] = true }
 
         it 'registers an offense' do
           expect_offense(<<~RUBY)

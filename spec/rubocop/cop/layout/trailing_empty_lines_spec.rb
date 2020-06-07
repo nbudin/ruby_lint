@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
+RSpec.describe RuboCop::Rule::Layout::TrailingEmptyLines, :config do
   context 'when EnforcedStyle is final_newline' do
-    let(:cop_config) { { 'EnforcedStyle' => 'final_newline' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'final_newline' } }
 
     it 'accepts final newline' do
       expect_no_offenses("x = 0\n")
@@ -36,7 +36,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
 
 
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages).to eq(['3 trailing blank lines detected.'])
     end
 
@@ -47,7 +47,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
 
 
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages).to eq(['3 trailing blank lines detected.'])
     end
 
@@ -95,7 +95,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
   end
 
   context 'when EnforcedStyle is final_blank_line' do
-    let(:cop_config) { { 'EnforcedStyle' => 'final_blank_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'final_blank_line' } }
 
     it 'registers an offense for final newline' do
       inspect_source(<<~RUBY)
@@ -112,7 +112,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
 
 
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(['3 trailing blank lines instead of 1 detected.'])
     end
@@ -124,7 +124,7 @@ RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
 
 
       RUBY
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages)
         .to eq(['3 trailing blank lines instead of 1 detected.'])
     end

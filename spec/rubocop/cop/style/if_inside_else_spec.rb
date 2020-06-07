@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::IfInsideElse, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Style::IfInsideElse, :config do
+  let(:rule_config) do
     { 'AllowIfModifier' => false }
   end
 
@@ -47,7 +47,7 @@ RSpec.describe Rubocop::Rule::Style::IfInsideElse, :config do
   end
 
   context 'when AllowIfModifier is true' do
-    let(:cop_config) do
+    let(:rule_config) do
       { 'AllowIfModifier' => true }
     end
 

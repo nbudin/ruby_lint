@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::ParenthesesAroundCondition, :config do
-  let(:cop_config) { { 'AllowSafeAssignment' => true } }
+RSpec.describe RuboCop::Rule::Style::ParenthesesAroundCondition, :config do
+  let(:rule_config) { { 'AllowSafeAssignment' => true } }
 
   it 'registers an offense for parentheses around condition' do
     expect_offense(<<~RUBY)
@@ -156,7 +156,7 @@ RSpec.describe Rubocop::Rule::Style::ParenthesesAroundCondition, :config do
   end
 
   context 'safe assignment is not allowed' do
-    let(:cop_config) { { 'AllowSafeAssignment' => false } }
+    let(:rule_config) { { 'AllowSafeAssignment' => false } }
 
     it 'does not accept variable assignment in condition surrounded with ' \
        'parentheses' do
@@ -178,7 +178,7 @@ RSpec.describe Rubocop::Rule::Style::ParenthesesAroundCondition, :config do
   end
 
   context 'parentheses in multiline conditions are allowed' do
-    let(:cop_config) { { 'AllowInMultilineConditions' => true } }
+    let(:rule_config) { { 'AllowInMultilineConditions' => true } }
 
     it 'accepts parentheses around multiline condition' do
       expect_no_offenses(<<~RUBY)
@@ -202,7 +202,7 @@ RSpec.describe Rubocop::Rule::Style::ParenthesesAroundCondition, :config do
   end
 
   context 'parentheses in multiline conditions are not allowed' do
-    let(:cop_config) { { 'AllowInMultilineConditions' => false } }
+    let(:rule_config) { { 'AllowInMultilineConditions' => false } }
 
     it 'registers an offense for parentheses around multiline condition' do
       expect_offense(<<~RUBY)

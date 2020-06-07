@@ -45,7 +45,7 @@ module RuboCop
           def allowed_camel_case_method_call?(node)
             node.camel_case_method? &&
               (node.arguments.none? ||
-              cop_config['AllowParenthesesInCamelCaseMethod'])
+              rule_config['AllowParenthesesInCamelCaseMethod'])
           end
 
           def parentheses_at_the_end_of_multiline_call?(node)
@@ -115,11 +115,11 @@ module RuboCop
           end
 
           def allowed_multiline_call_with_parentheses?(node)
-            cop_config['AllowParenthesesInMultilineCall'] && node.multiline?
+            rule_config['AllowParenthesesInMultilineCall'] && node.multiline?
           end
 
           def allowed_chained_call_with_parentheses?(node)
-            return false unless cop_config['AllowParenthesesInChaining']
+            return false unless rule_config['AllowParenthesesInChaining']
 
             previous = node.descendants.first
             return false unless previous&.send_type?

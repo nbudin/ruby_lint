@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::PercentLiteralDelimiters, :config do
-  let(:cop_config) do
+RSpec.describe RuboCop::Rule::Style::PercentLiteralDelimiters, :config do
+  let(:rule_config) do
     { 'PreferredDelimiters' => { 'default' => '[]' } }
   end
 
   context '`default` override' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'PreferredDelimiters' => {
           'default' => '[]',
@@ -25,7 +25,7 @@ RSpec.describe Rubocop::Rule::Style::PercentLiteralDelimiters, :config do
   end
 
   context 'invalid cop config' do
-    let(:cop_config) { { 'PreferredDelimiters' => { 'foobar' => '()' } } }
+    let(:rule_config) { { 'PreferredDelimiters' => { 'foobar' => '()' } } }
 
     it 'raises an error when invalid configuration is specified' do
       expect { inspect_source('%w[string]') }.to raise_error(ArgumentError)

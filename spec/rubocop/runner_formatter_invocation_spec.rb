@@ -175,7 +175,7 @@ RSpec.describe RuboCop::Runner, :isolated_environment do
           else
             raise
           end
-          expect(offenses).to all be_a(Rubocop::Rule::Offense)
+          expect(offenses).to all be_a(RuboCop::Rule::Offense)
         end
 
         run

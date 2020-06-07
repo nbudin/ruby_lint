@@ -98,7 +98,7 @@ module RuboCop
           super
           return unless node.adjacent_def_modifier?
 
-          def_end_config = config.for_cop('Layout/DefEndAlignment')
+          def_end_config = config.for_rule('Layout/DefEndAlignment')
           style = def_end_config['EnforcedStyleAlignWith'] || 'start_of_line'
           base = if style == 'def'
                    node.first_argument
@@ -210,11 +210,11 @@ module RuboCop
         end
 
         def access_modifier_indentation_style
-          config.for_cop('Layout/AccessModifierIndentation')['EnforcedStyle']
+          config.for_rule('Layout/AccessModifierIndentation')['EnforcedStyle']
         end
 
         def indentation_consistency_style
-          config.for_cop('Layout/IndentationConsistency')['EnforcedStyle']
+          config.for_rule('Layout/IndentationConsistency')['EnforcedStyle']
         end
 
         def check_assignment(node, rhs)
@@ -224,7 +224,7 @@ module RuboCop
           rhs = first_part_of_call_chain(rhs)
           return unless rhs
 
-          end_config = config.for_cop('Layout/EndAlignment')
+          end_config = config.for_rule('Layout/EndAlignment')
           style = end_config['EnforcedStyleAlignWith'] || 'keyword'
           base = variable_alignment?(node.loc, rhs, style.to_sym) ? node : rhs
 
@@ -348,7 +348,7 @@ module RuboCop
         end
 
         def configured_indentation_width
-          cop_config['Width']
+          rule_config['Width']
         end
 
         def leftmost_modifier_of(node)

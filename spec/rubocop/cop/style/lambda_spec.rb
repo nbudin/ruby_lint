@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::Lambda, :config do
+RSpec.describe RuboCop::Rule::Style::Lambda, :config do
   shared_examples 'registers an offense' do |message|
     it 'registers an offense' do
       inspect_source(source)
 
-      expect(cop.offenses.size).to eq(1)
+      expect(rule.offenses.size).to eq(1)
       expect(cop.messages).to eq([message])
     end
   end
@@ -19,7 +19,7 @@ RSpec.describe Rubocop::Rule::Style::Lambda, :config do
   end
 
   context 'with enforced `lambda` style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'lambda' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'lambda' } }
 
     context 'with a single line lambda literal' do
       context 'with arguments' do
@@ -87,7 +87,7 @@ RSpec.describe Rubocop::Rule::Style::Lambda, :config do
   end
 
   context 'with enforced `literal` style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'literal' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'literal' } }
 
     context 'with a single line lambda method call' do
       context 'with arguments' do
@@ -151,7 +151,7 @@ RSpec.describe Rubocop::Rule::Style::Lambda, :config do
   end
 
   context 'with default `line_count_dependent` style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'line_count_dependent' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'line_count_dependent' } }
 
     context 'with a single line lambda method call' do
       context 'with arguments' do

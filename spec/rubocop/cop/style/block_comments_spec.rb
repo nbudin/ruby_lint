@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::BlockComments do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::BlockComments do
+  subject(:rule) { described_class.new }
 
   it 'registers an offense for block comments' do
     expect_offense(<<~RUBY)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::RescueEnsureAlignment, :config do
+RSpec.describe RuboCop::Rule::Layout::RescueEnsureAlignment, :config do
   it 'accepts the modifier form' do
     expect_no_offenses('test rescue nil')
   end
@@ -607,7 +607,7 @@ RSpec.describe Rubocop::Rule::Layout::RescueEnsureAlignment, :config do
   end
 
   describe 'excluded file' do
-    subject(:cop) { described_class.new(config) }
+    subject(:rule) { described_class.new(config) }
 
     let(:config) do
       RuboCop::Config.new('Layout/RescueEnsureAlignment' =>
@@ -627,7 +627,7 @@ RSpec.describe Rubocop::Rule::Layout::RescueEnsureAlignment, :config do
   end
 
   context 'allows inline access modifier' do
-    let(:cop_config) do
+    let(:rule_config) do
       {
         'Style/AccessModifierDeclarations' =>
           { 'EnforcedStyle' => 'inline' }

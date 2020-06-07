@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Layout::SpaceBeforeFirstArg, :config do
-  let(:cop_config) { { 'AllowForAlignment' => true } }
+RSpec.describe RuboCop::Rule::Layout::SpaceBeforeFirstArg, :config do
+  let(:rule_config) { { 'AllowForAlignment' => true } }
 
   context 'for method calls without parentheses' do
     it 'registers an offense and corrects method call with two spaces ' \
@@ -123,7 +123,7 @@ RSpec.describe Rubocop::Rule::Layout::SpaceBeforeFirstArg, :config do
     end
 
     context 'when AllowForAlignment is false' do
-      let(:cop_config) { { 'AllowForAlignment' => false } }
+      let(:rule_config) { { 'AllowForAlignment' => false } }
 
       it 'registers an offense and corrects method calls ' \
         'with aligned first arguments' do

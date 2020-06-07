@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EmptyLiteral do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::EmptyLiteral do
+  subject(:rule) { described_class.new }
 
   describe 'Empty Array' do
     it 'registers an offense for Array.new()' do
@@ -159,7 +159,7 @@ RSpec.describe Rubocop::Rule::Style::EmptyLiteral do
     end
 
     context 'when double-quoted string literals are preferred' do
-      subject(:cop) { described_class.new(config) }
+      subject(:rule) { described_class.new(config) }
 
       let(:config) do
         RuboCop::Config.new(

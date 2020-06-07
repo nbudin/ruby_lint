@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe(
-  Rubocop::Rule::Lint::DisjunctiveAssignmentInConstructor,
+  RuboCop::Rule::Lint::DisjunctiveAssignmentInConstructor,
   :config
 ) do
-  subject(:cop) { described_class.new(config) }
+  subject(:rule) { described_class.new(config) }
 
   context 'empty constructor' do
     it 'accepts' do

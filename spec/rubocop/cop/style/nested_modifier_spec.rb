@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::NestedModifier do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::NestedModifier do
+  subject(:rule) { described_class.new }
 
   shared_examples 'avoidable' do |keyword|
     it "registers an offense for modifier #{keyword}" do
       inspect_source("something #{keyword} a if b")
       expect(cop.messages).to eq(['Avoid using nested modifiers.'])
-      expect(cop.highlights).to eq([keyword])
+      expect(rule.highlights).to eq([keyword])
     end
   end
 
@@ -16,14 +16,14 @@ RSpec.describe Rubocop::Rule::Style::NestedModifier do
       source = "something if a #{keyword} b"
       corrected = autocorrect_source(source)
       expect(corrected).to eq source
-      expect(cop.offenses.map(&:corrected?)).to eq [false]
+      expect(rule.offenses.map(&:corrected?)).to eq [false]
     end
 
     it "does not auto-correct when #{keyword} is the inner modifier" do
       source = "something #{keyword} a if b"
       corrected = autocorrect_source(source)
       expect(corrected).to eq source
-      expect(cop.offenses.map(&:corrected?)).to eq [false]
+      expect(rule.offenses.map(&:corrected?)).to eq [false]
     end
   end
 

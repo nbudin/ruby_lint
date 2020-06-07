@@ -14,7 +14,7 @@ shared_examples_for 'multiline literal brace layout method argument' do
       it 'detects closing brace on separate line from last element' do
         inspect_source(source)
 
-        expect(cop.highlights).to eq([close])
+        expect(rule.highlights).to eq([close])
         expect(cop.messages)
           .to eq([described_class::SAME_LINE_MESSAGE])
       end

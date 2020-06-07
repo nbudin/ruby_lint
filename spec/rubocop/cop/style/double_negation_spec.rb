@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::DoubleNegation, :config do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::DoubleNegation, :config do
+  subject(:rule) { described_class.new(config) }
 
-  let(:cop_config) do
+  let(:rule_config) do
     { 'EnforcedStyle' => enforced_style }
   end
 

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::EachForSimpleLoop do
-  subject(:cop) { described_class.new }
+RSpec.describe RuboCop::Rule::Style::EachForSimpleLoop do
+  subject(:rule) { described_class.new }
 
   it 'registers offense for inclusive end range' do
     expect_offense(<<~RUBY)

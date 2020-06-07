@@ -22,7 +22,7 @@ module RuboCop
       end
 
       def ignored_patterns
-        cop_config['IgnoredPatterns'] || []
+        rule_config['IgnoredPatterns'] || []
       end
     end
   end

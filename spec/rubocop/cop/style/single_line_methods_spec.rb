@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::SingleLineMethods do
-  subject(:cop) { described_class.new(config) }
+RSpec.describe RuboCop::Rule::Style::SingleLineMethods do
+  subject(:rule) { described_class.new(config) }
 
   let(:config) do
-    RuboCop::Config.new('Style/SingleLineMethods' => cop_config,
+    RuboCop::Config.new('Style/SingleLineMethods' => rule_config,
                         'Layout/IndentationWidth' => { 'Width' => 2 })
   end
-  let(:cop_config) { { 'AllowIfMethodIsEmpty' => true } }
+  let(:rule_config) { { 'AllowIfMethodIsEmpty' => true } }
 
   it 'registers an offense for a single-line method' do
     expect_offense(<<~RUBY)
@@ -21,7 +21,7 @@ RSpec.describe Rubocop::Rule::Style::SingleLineMethods do
   end
 
   context 'when AllowIfMethodIsEmpty is disabled' do
-    let(:cop_config) { { 'AllowIfMethodIsEmpty' => false } }
+    let(:rule_config) { { 'AllowIfMethodIsEmpty' => false } }
 
     it 'registers an offense for an empty method' do
       expect_offense(<<~RUBY)
@@ -46,7 +46,7 @@ RSpec.describe Rubocop::Rule::Style::SingleLineMethods do
   end
 
   context 'when AllowIfMethodIsEmpty is enabled' do
-    let(:cop_config) { { 'AllowIfMethodIsEmpty' => true } }
+    let(:rule_config) { { 'AllowIfMethodIsEmpty' => true } }
 
     it 'accepts a single-line empty method' do
       expect_no_offenses(<<~RUBY)

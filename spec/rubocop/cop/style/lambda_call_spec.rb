@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Rubocop::Rule::Style::LambdaCall, :config do
+RSpec.describe RuboCop::Rule::Style::LambdaCall, :config do
   context 'when style is set to call' do
-    let(:cop_config) { { 'EnforcedStyle' => 'call' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'call' } }
 
     it 'registers an offense for x.()' do
       expect_offense(<<~RUBY)
@@ -30,7 +30,7 @@ RSpec.describe Rubocop::Rule::Style::LambdaCall, :config do
   end
 
   context 'when style is set to braces' do
-    let(:cop_config) { { 'EnforcedStyle' => 'braces' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'braces' } }
 
     it 'registers an offense for x.call()' do
       expect_offense(<<~RUBY)

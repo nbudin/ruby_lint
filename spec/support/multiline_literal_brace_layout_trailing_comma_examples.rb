@@ -9,7 +9,7 @@ shared_examples_for 'multiline literal brace layout trailing comma' do
   let(:b) { 'b' } # The second element.
 
   context 'symmetrical style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'symmetrical' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'symmetrical' } }
 
     context 'opening brace on same line as first element' do
       context 'last element has a trailing comma' do
@@ -29,7 +29,7 @@ shared_examples_for 'multiline literal brace layout trailing comma' do
   end
 
   context 'same_line style' do
-    let(:cop_config) { { 'EnforcedStyle' => 'same_line' } }
+    let(:rule_config) { { 'EnforcedStyle' => 'same_line' } }
 
     context 'opening brace on same line as first element' do
       context 'last element has a trailing comma' do
