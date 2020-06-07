@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceBeforeComma do
+RSpec.describe Rubocop::Rule::Layout::SpaceBeforeComma do
   subject(:cop) { described_class.new }
 
   it 'registers an offense and corrects block argument ' \

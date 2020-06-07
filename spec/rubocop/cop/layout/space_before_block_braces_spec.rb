@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceBeforeBlockBraces, :config do
+RSpec.describe Rubocop::Rule::Layout::SpaceBeforeBlockBraces, :config do
   let(:cop_config) { { 'EnforcedStyle' => 'space' } }
 
   context 'when EnforcedStyle is space' do

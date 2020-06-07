@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::LineLength, :config do
+RSpec.describe Rubocop::Rule::Layout::LineLength, :config do
   let(:cop_config) { { 'Max' => 80, 'IgnoredPatterns' => nil } }
 
   let(:config) do

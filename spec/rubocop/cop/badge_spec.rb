@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Badge do
+RSpec.describe Rubocop::Rule::Badge do
   subject(:badge) { described_class.new('Test', 'ModuleMustBeAClassCop') }
 
   it 'exposes department name' do
@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Cop::Badge do
 
   describe '.for' do
     it 'parses cop class name' do
-      expect(described_class.for('RuboCop::Cop::Foo::Bar'))
+      expect(described_class.for('Rubocop::Rule::Foo::Bar'))
         .to eq(described_class.new('Foo', 'Bar'))
     end
   end

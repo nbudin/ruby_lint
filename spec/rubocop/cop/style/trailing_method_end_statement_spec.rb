@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
+RSpec.describe Rubocop::Rule::Style::TrailingMethodEndStatement do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do
@@ -72,7 +72,7 @@ RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
     RUBY
     expect(corrected).to eq(<<~RUBY)
       def some_method
-        [] 
+        []
         end
     RUBY
   end
@@ -86,7 +86,7 @@ RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
     expect(corrected).to eq(<<~RUBY)
       def do_this(x)
         y = x + 5
-        y / 2 
+        y / 2
         end
     RUBY
   end
@@ -100,7 +100,7 @@ RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
     expect(corrected).to eq(<<~RUBY)
       def f(x, y)
         process(x)
-        process(y) 
+        process(y)
         end # comment
     RUBY
   end
@@ -116,7 +116,7 @@ RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
       def d
         block do
           foo
-        end 
+        end
         end
     RUBY
   end
@@ -133,10 +133,10 @@ RSpec.describe RuboCop::Cop::Style::TrailingMethodEndStatement do
     expect(corrected).to eq(<<~RUBY)
       class Foo
         def some_method
-          [] 
+          []
         end
         def another_method
-          {} 
+          {}
         end
       end
     RUBY

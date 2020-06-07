@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::ClassLength, :config do
+RSpec.describe Rubocop::Rule::Metrics::ClassLength, :config do
   let(:cop_config) { { 'Max' => 5, 'CountComments' => false } }
 
   it 'rejects a class with more than 5 lines' do

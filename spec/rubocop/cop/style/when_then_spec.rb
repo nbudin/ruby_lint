@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::WhenThen do
+RSpec.describe Rubocop::Rule::Style::WhenThen do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for when x;' do

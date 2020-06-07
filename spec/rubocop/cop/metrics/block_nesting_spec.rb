@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::BlockNesting, :config do
+RSpec.describe Rubocop::Rule::Metrics::BlockNesting, :config do
   let(:cop_config) { { 'Max' => 2 } }
 
   it 'accepts `Max` levels of nesting' do

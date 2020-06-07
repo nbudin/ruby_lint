@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::StructNewOverride do
+RSpec.describe Rubocop::Rule::Lint::StructNewOverride do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }

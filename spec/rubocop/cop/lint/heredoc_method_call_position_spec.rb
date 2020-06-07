@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::HeredocMethodCallPosition do
+RSpec.describe Rubocop::Rule::Lint::HeredocMethodCallPosition do
   subject(:cop) { described_class.new }
 
   context 'correct cases' do

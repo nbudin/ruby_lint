@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ExponentialNotation, :config do
+RSpec.describe Rubocop::Rule::Style::ExponentialNotation, :config do
   context 'EnforcedStyle is scientific' do
     let(:cop_config) { { 'EnforcedStyle' => 'scientific' } }
 

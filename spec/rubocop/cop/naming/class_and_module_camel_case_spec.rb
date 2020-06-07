@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::ClassAndModuleCamelCase, :config do
+RSpec.describe Rubocop::Rule::Naming::ClassAndModuleCamelCase, :config do
   it 'registers an offense for underscore in class and module name' do
     expect_offense(<<~RUBY)
       class My_Class

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MultilineMethodSignature, :config do
+RSpec.describe Rubocop::Rule::Style::MultilineMethodSignature, :config do
   context 'when arguments span a single line' do
     context 'when defining an instance method' do
       it 'registers an offense when closing paren is on the following line' do

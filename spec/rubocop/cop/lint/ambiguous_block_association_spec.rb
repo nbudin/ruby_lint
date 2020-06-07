@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::AmbiguousBlockAssociation do
+RSpec.describe Rubocop::Rule::Lint::AmbiguousBlockAssociation do
   subject(:cop) { described_class.new }
 
   shared_examples 'accepts' do |code|

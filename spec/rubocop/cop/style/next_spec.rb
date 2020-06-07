@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Next, :config do
+RSpec.describe Rubocop::Rule::Style::Next, :config do
   let(:cop_config) { { 'MinBodyLength' => 1 } }
 
   shared_examples 'iterators' do |condition|

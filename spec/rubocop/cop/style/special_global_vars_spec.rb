@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::SpecialGlobalVars, :config do
+RSpec.describe Rubocop::Rule::Style::SpecialGlobalVars, :config do
   context 'when style is use_english_names' do
     let(:cop_config) { { 'EnforcedStyle' => 'use_english_names' } }
 

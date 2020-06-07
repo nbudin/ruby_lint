@@ -21,7 +21,7 @@ RSpec.describe RuboCop::Formatter::PacmanFormatter do
       let(:location) { OpenStruct.new(line: 1, column: 5) }
       let(:expected_character) { Rainbow(described_class::GHOST).red }
       let(:offenses) do
-        [RuboCop::Cop::Offense.new(:error, location, 'message', 'CopA')]
+        [Rubocop::Rule::Offense.new(:error, location, 'message', 'CopA')]
       end
 
       it 'calls the step function with a dot' do

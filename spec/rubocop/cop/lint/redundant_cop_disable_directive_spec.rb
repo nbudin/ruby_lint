@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
+RSpec.describe Rubocop::Rule::Lint::RedundantCopDisableDirective, :config do
   describe '.check' do
     let(:cop_options) { { auto_correct: true } }
     let(:comments) { processed_source.comments }
     let(:corrected_source) do
-      RuboCop::Cop::Corrector
+      Rubocop::Rule::Corrector
         .new(processed_source.buffer, cop.corrections)
         .rewrite
     end
@@ -159,7 +159,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
             end
             let(:offenses) do
               [
-                RuboCop::Cop::Offense.new(:convention,
+                Rubocop::Rule::Offense.new(:convention,
                                           OpenStruct.new(line: 7, column: 0),
                                           'Class has too many lines.',
                                           'Metrics/ClassLength')
@@ -193,7 +193,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
             end
             let(:offenses) do
               [
-                RuboCop::Cop::Offense.new(:convention,
+                Rubocop::Rule::Offense.new(:convention,
                                           OpenStruct.new(line: 7, column: 0),
                                           'Method has too many lines.',
                                           'Metrics/MethodLength')
@@ -225,7 +225,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
               end
               let(:offenses) do
                 [
-                  RuboCop::Cop::Offense.new(:convention,
+                  Rubocop::Rule::Offense.new(:convention,
                                             OpenStruct.new(line: 7, column: 0),
                                             'Method has too many lines.',
                                             'Metrics/MethodLength')
@@ -260,7 +260,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
               end
               let(:offenses) do
                 [
-                  RuboCop::Cop::Offense.new(:convention,
+                  Rubocop::Rule::Offense.new(:convention,
                                             OpenStruct.new(line: 7, column: 0),
                                             'Method has too many lines.',
                                             'Metrics/MethodLength')
@@ -336,7 +336,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
         let(:cop_name) { 'Style/ClassVars' }
         let(:offenses) do
           offense_lines.map do |line|
-            RuboCop::Cop::Offense.new(:convention,
+            Rubocop::Rule::Offense.new(:convention,
                                       OpenStruct.new(line: line, column: 3),
                                       message,
                                       cop_name)
@@ -399,7 +399,7 @@ RSpec.describe RuboCop::Cop::Lint::RedundantCopDisableDirective, :config do
       context 'and there is an offense' do
         let(:offenses) do
           [
-            RuboCop::Cop::Offense.new(:convention,
+            Rubocop::Rule::Offense.new(:convention,
                                       OpenStruct.new(line: 7, column: 0),
                                       'Tab detected.',
                                       'Layout/IndentationStyle')

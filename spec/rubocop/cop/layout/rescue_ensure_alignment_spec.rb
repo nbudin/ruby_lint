@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::RescueEnsureAlignment, :config do
+RSpec.describe Rubocop::Rule::Layout::RescueEnsureAlignment, :config do
   it 'accepts the modifier form' do
     expect_no_offenses('test rescue nil')
   end

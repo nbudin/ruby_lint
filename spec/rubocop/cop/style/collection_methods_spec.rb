@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::CollectionMethods, :config do
+RSpec.describe Rubocop::Rule::Style::CollectionMethods, :config do
   cop_config = {
     'PreferredMethods' => {
       'collect' => 'map',

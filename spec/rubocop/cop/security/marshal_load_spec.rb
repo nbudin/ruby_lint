@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Security::MarshalLoad, :config do
+RSpec.describe Rubocop::Rule::Security::MarshalLoad, :config do
   it 'registers an offense for using Marshal.load' do
     expect_offense(<<~RUBY)
       Marshal.load('{}')

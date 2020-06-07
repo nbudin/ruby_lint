@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::InternalAffairs::NodeTypePredicate do
+RSpec.describe Rubocop::Rule::InternalAffairs::NodeTypePredicate do
   subject(:cop) { described_class.new }
 
   context 'comparison node type check' do

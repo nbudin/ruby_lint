@@ -30,7 +30,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        RuboCop::Cop::Offense.new(:convention, location,
+        Rubocop::Rule::Offense.new(:convention, location,
                                   'This is a message.', 'CopName', status)
       end
 
@@ -53,7 +53,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        RuboCop::Cop::Offense.new(:convention, location,
+        Rubocop::Rule::Offense.new(:convention, location,
                                   'This is a message.', 'CopName', status)
       end
 
@@ -76,7 +76,7 @@ RSpec.describe RuboCop::Formatter::EmacsStyleFormatter, :config do
       let(:file) { '/path/to/file' }
 
       let(:offense) do
-        RuboCop::Cop::Offense.new(:error, location,
+        Rubocop::Rule::Offense.new(:error, location,
                                   "unmatched close parenthesis: /\n   world " \
                                   "# Some comment containing a )\n/",
                                   'CopName', :uncorrected)

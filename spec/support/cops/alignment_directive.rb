@@ -7,7 +7,7 @@ module RuboCop
       # annotated with a comment of the form `# << delta` or `# >> delta` where
       # `delta` is an integer will be shifted by `delta` columns in the
       # indicated direction.
-      class AlignmentDirective < RuboCop::Cop::Cop
+      class AlignmentDirective < Rubocop::Rule::Rule
         MSG = 'Indent this node'
 
         def investigate(processed_source)

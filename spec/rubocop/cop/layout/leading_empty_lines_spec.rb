@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::LeadingEmptyLines, :config do
+RSpec.describe Rubocop::Rule::Layout::LeadingEmptyLines, :config do
   it 'allows an empty input' do
     expect_no_offenses('')
   end
@@ -92,9 +92,9 @@ RSpec.describe RuboCop::Cop::Layout::LeadingEmptyLines, :config do
       let(:cops) do
         cop_classes = [
           described_class,
-          ::RuboCop::Cop::Layout::SpaceAroundEqualsInParameterDefault
+          ::Rubocop::Rule::Layout::SpaceAroundEqualsInParameterDefault
         ]
-        ::RuboCop::Cop::Registry.new(cop_classes)
+        ::Rubocop::Rule::Registry.new(cop_classes)
       end
 
       it 'does not invoke conflicts with other cops' do
@@ -104,7 +104,7 @@ RSpec.describe RuboCop::Cop::Layout::LeadingEmptyLines, :config do
         RUBY
 
         options = { auto_correct: true, stdin: true }
-        team = RuboCop::Cop::Team.mobilize(cops, config, options)
+        team = Rubocop::Rule::Team.mobilize(cops, config, options)
         team.inspect_file(parse_source(source_with_offenses, nil))
         new_source = options[:stdin]
 

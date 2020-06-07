@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::BlockAlignment, :config do
+RSpec.describe Rubocop::Rule::Layout::BlockAlignment, :config do
   let(:cop_config) do
     { 'EnforcedStyleAlignWith' => 'either' }
   end

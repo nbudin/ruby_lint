@@ -922,8 +922,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       end
     end
 
-    let(:cops) { RuboCop::Cop::Cop.all }
-    let(:registry) { RuboCop::Cop::Cop.registry }
+    let(:cops) { Rubocop::Rule::Rule.all }
+    let(:registry) { Rubocop::Rule::Rule.registry }
 
     let(:global_conf) do
       config_path =

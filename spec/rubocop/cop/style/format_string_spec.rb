@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::FormatString, :config do
+RSpec.describe Rubocop::Rule::Style::FormatString, :config do
   context 'when enforced style is sprintf' do
     let(:cop_config) { { 'EnforcedStyle' => 'sprintf' } }
 

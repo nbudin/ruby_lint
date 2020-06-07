@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Gemspec::RubyVersionGlobalsUsage, :config do
+RSpec.describe Rubocop::Rule::Gemspec::RubyVersionGlobalsUsage, :config do
   it 'registers an offense when using `RUBY_VERSION`' do
     expect_offense(<<~RUBY)
       Gem::Specification.new do |spec|

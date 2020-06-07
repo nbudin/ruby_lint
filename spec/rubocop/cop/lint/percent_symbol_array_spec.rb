@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::PercentSymbolArray do
+RSpec.describe Rubocop::Rule::Lint::PercentSymbolArray do
   subject(:cop) { described_class.new }
 
   context 'detecting colons or commas in a %i/%I string' do

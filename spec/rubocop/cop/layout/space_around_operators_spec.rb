@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceAroundOperators do
+RSpec.describe Rubocop::Rule::Layout::SpaceAroundOperators do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

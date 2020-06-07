@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UnusedMethodArgument, :config do
+RSpec.describe Rubocop::Rule::Lint::UnusedMethodArgument, :config do
   let(:cop_config) do
     {
       'AllowUnusedKeywordArguments' => false,

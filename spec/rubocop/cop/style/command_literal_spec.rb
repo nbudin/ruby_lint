@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::CommandLiteral, :config do
+RSpec.describe Rubocop::Rule::Style::CommandLiteral, :config do
   let(:config) do
     supported_styles = {
       'SupportedStyles' => %w[backticks percent_x mixed]

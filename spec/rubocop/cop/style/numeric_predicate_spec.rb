@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::NumericPredicate, :config do
+RSpec.describe Rubocop::Rule::Style::NumericPredicate, :config do
   before do
     inspect_source(source)
   end

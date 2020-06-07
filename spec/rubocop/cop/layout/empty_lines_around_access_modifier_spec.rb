@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundAccessModifier, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAccessModifier, :config do
   context 'EnforcedStyle is `around`' do
     let(:cop_config) { { 'EnforcedStyle' => 'around' } }
 

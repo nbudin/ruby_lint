@@ -148,9 +148,9 @@ module RuboCop
     end
 
     def add_severity_option(opts)
-      table = RuboCop::Cop::Severity::CODE_TABLE.merge(A: :autocorrect)
+      table = Rubocop::Rule::Severity::CODE_TABLE.merge(A: :autocorrect)
       option(opts, '--fail-level SEVERITY',
-             RuboCop::Cop::Severity::NAMES + [:autocorrect],
+             Rubocop::Rule::Severity::NAMES + [:autocorrect],
              table) do |severity|
         @options[:fail_level] = severity
       end

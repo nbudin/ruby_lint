@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::BinaryOperatorParameterName do
+RSpec.describe Rubocop::Rule::Naming::BinaryOperatorParameterName do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for `#+` when argument is not named other' do

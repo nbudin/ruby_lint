@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLineBetweenDefs, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLineBetweenDefs, :config do
   let(:cop_config) { { 'AllowAdjacentOneLineDefs' => false } }
 
   it 'finds offenses in inner classes' do

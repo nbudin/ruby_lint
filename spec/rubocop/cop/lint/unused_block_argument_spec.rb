@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UnusedBlockArgument, :config do
+RSpec.describe Rubocop::Rule::Lint::UnusedBlockArgument, :config do
   let(:cop_config) { { 'AllowUnusedKeywordArguments' => false } }
 
   shared_examples 'auto-correction' do |name, old_source, new_source|

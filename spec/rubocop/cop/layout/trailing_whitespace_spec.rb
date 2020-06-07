@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::TrailingWhitespace, :config do
+RSpec.describe Rubocop::Rule::Layout::TrailingWhitespace, :config do
   let(:cop_config) { { 'AllowInHeredoc' => false } }
 
   it 'registers an offense for a line ending with space' do

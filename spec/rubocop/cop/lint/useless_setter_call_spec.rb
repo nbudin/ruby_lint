@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UselessSetterCall do
+RSpec.describe Rubocop::Rule::Lint::UselessSetterCall do
   subject(:cop) { described_class.new }
 
   context 'with method ending with setter call on local object' do

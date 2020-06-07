@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MethodCalledOnDoEndBlock do
+RSpec.describe Rubocop::Rule::Style::MethodCalledOnDoEndBlock do
   subject(:cop) { described_class.new }
 
   context 'with a multi-line do..end block' do

@@ -102,7 +102,7 @@ shared_examples_for 'multiline literal brace layout' do
       end
 
       unless described_class ==
-             RuboCop::Cop::Layout::MultilineMethodDefinitionBraceLayout
+             Rubocop::Rule::Layout::MultilineMethodDefinitionBraceLayout
         context 'with a chained call on the closing brace' do
           let(:suffix) { '.any?' }
           let(:source) { construct(false, true) }
@@ -274,7 +274,7 @@ shared_examples_for 'multiline literal brace layout' do
       end
 
       unless described_class ==
-             RuboCop::Cop::Layout::MultilineMethodDefinitionBraceLayout
+             Rubocop::Rule::Layout::MultilineMethodDefinitionBraceLayout
         context 'with a chained call on the closing brace' do
           let(:suffix) { '.any?' }
           let(:source) { construct(false, true) }

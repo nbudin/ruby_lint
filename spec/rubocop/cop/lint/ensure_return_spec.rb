@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::EnsureReturn do
+RSpec.describe Rubocop::Rule::Lint::EnsureReturn do
   subject(:cop) { described_class.new }
 
   it 'registers an offense and corrects for return in ensure' do

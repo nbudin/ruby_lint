@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::InternalAffairs::MethodNameEqual do
+RSpec.describe Rubocop::Rule::InternalAffairs::MethodNameEqual do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::LambdaCall, :config do
+RSpec.describe Rubocop::Rule::Style::LambdaCall, :config do
   context 'when style is set to call' do
     let(:cop_config) { { 'EnforcedStyle' => 'call' } }
 

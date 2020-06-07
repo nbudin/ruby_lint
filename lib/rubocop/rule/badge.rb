@@ -5,7 +5,7 @@ module RuboCop
     # Identifier of all cops containing a department and cop name.
     #
     # All cops are identified by their badge. For example, the badge for
-    # `RuboCop::Cop::Layout::IndentationStyle` is `Layout/IndentationStyle`.
+    # `Rubocop::Rule::Layout::IndentationStyle` is `Layout/IndentationStyle`.
     # Badges can be parsed as either `Department/CopName` or just `CopName` to
     # allow for badge references in source files that omit the department for
     # RuboCop to infer.

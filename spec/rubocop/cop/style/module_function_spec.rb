@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ModuleFunction, :config do
+RSpec.describe Rubocop::Rule::Style::ModuleFunction, :config do
   context 'when enforced style is `module_function`' do
     let(:cop_config) { { 'EnforcedStyle' => 'module_function' } }
 

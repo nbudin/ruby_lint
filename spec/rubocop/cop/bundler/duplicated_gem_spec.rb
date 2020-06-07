@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Bundler::DuplicatedGem, :config do
+RSpec.describe Rubocop::Rule::Bundler::DuplicatedGem, :config do
   let(:cop_config) { { 'Include' => ['**/Gemfile'] } }
 
   context 'when investigating Ruby files' do

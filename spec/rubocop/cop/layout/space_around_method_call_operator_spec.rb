@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
+RSpec.describe Rubocop::Rule::Layout::SpaceAroundMethodCallOperator do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }
@@ -371,7 +371,7 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
       RuboCop:: Cop
                ^ Avoid using spaces around a method call operator.
     OFFENSE
-      RuboCop::Cop
+      Rubocop::Rule
     CORRECTION
 
     include_examples 'offense', 'spaces after method call',
@@ -381,7 +381,7 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
       RuboCop::  Cop
                ^^ Avoid using spaces around a method call operator.
     OFFENSE
-      RuboCop::Cop
+      Rubocop::Rule
     CORRECTION
 
     context 'when multi line method call' do
@@ -408,29 +408,29 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
 
     it 'does not register an offense when no space around method call' do
       expect_no_offenses(<<~RUBY)
-        RuboCop::Cop
+        Rubocop::Rule
       RUBY
     end
 
     include_examples 'offense', 'space after last method call operator',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop::Cop:: Cop
+      Rubocop::Rule:: Cop
     CODE
-      RuboCop::Cop:: Cop
+      Rubocop::Rule:: Cop
                     ^ Avoid using spaces around a method call operator.
     OFFENSE
-      RuboCop::Cop::Cop
+      Rubocop::Rule::Rule
     CORRECTION
 
     include_examples 'offense',
                      'space around intermediate method call operator',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop::Cop:: Cop::Cop
+      Rubocop::Rule:: Cop::Cop
     CODE
-      RuboCop::Cop:: Cop::Cop
+      Rubocop::Rule:: Cop::Cop
                     ^ Avoid using spaces around a method call operator.
     OFFENSE
-      RuboCop::Cop::Cop::Cop
+      Rubocop::Rule::Rule::Cop
     CORRECTION
 
     include_examples 'offense', 'space around multiple method call operator',
@@ -442,36 +442,36 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
                   ^ Avoid using spaces around a method call operator.
         ^ Avoid using spaces around a method call operator.
     OFFENSE
-      ::RuboCop::Cop::Cop::Cop
+      ::Rubocop::Rule::Rule::Cop
     CORRECTION
 
     include_examples 'offense', 'space after first operator with assignment',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      klass = :: RuboCop::Cop
+      klass = :: Rubocop::Rule
     CODE
-      klass = :: RuboCop::Cop
+      klass = :: Rubocop::Rule
                 ^ Avoid using spaces around a method call operator.
     OFFENSE
-      klass = ::RuboCop::Cop
+      klass = ::Rubocop::Rule
     CORRECTION
 
     it 'does not register an offense when no space around any `.` operators' do
       expect_no_offenses(<<~RUBY)
-        RuboCop::Cop::Cop
+        Rubocop::Rule::Rule
       RUBY
     end
 
     it 'does not register an offense if no space before `::`
       operator with assignment' do
       expect_no_offenses(<<~RUBY)
-        klass = ::RuboCop::Cop
+        klass = ::Rubocop::Rule
       RUBY
     end
 
     it 'does not register an offense if no space before `::`
       operator with inheritance' do
       expect_no_offenses(<<~RUBY)
-        class Test <  ::RuboCop::Cop
+        class Test <  ::Rubocop::Rule
         end
       RUBY
     end
@@ -479,7 +479,7 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
     it 'does not register an offense if no space with
       conditionals' do
       expect_no_offenses(<<~RUBY)
-        ::RuboCop::Cop || ::RuboCop
+        ::Rubocop::Rule || ::RuboCop
       RUBY
     end
 
@@ -492,7 +492,7 @@ RSpec.describe RuboCop::Cop::Layout::SpaceAroundMethodCallOperator do
                   ^ Avoid using spaces around a method call operator.
         ^ Avoid using spaces around a method call operator.
     OFFENSE
-      ::RuboCop::Cop || ::RuboCop
+      ::Rubocop::Rule || ::RuboCop
     CORRECTION
   end
 

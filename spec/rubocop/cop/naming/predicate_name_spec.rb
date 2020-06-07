@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::PredicateName, :config do
+RSpec.describe Rubocop::Rule::Naming::PredicateName, :config do
   context 'with restricted prefixes' do
     let(:cop_config) do
       { 'NamePrefix' => %w[has_ is_],

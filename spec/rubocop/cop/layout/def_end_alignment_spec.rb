@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::DefEndAlignment, :config do
+RSpec.describe Rubocop::Rule::Layout::DefEndAlignment, :config do
   let(:source) do
     <<~RUBY
       foo def a

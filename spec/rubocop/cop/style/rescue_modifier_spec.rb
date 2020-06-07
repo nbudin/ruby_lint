@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RescueModifier do
+RSpec.describe Rubocop::Rule::Style::RescueModifier do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

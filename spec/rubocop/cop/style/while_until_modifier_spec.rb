@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::WhileUntilModifier do
+RSpec.describe Rubocop::Rule::Style::WhileUntilModifier do
   include StatementModifierHelper
 
   subject(:cop) { described_class.new(config) }
@@ -124,7 +124,7 @@ RSpec.describe RuboCop::Cop::Style::WhileUntilModifier do
       expect_offense(<<~RUBY)
         while foo
         ^^^^^ Favor modifier `while` usage when having a single-line body.
-          "This string would make the line longer than eighty characters if combined with the statement." 
+          "This string would make the line longer than eighty characters if combined with the statement."
         end
       RUBY
     end

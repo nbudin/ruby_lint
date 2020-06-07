@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ClassAndModuleChildren, :config do
+RSpec.describe Rubocop::Rule::Style::ClassAndModuleChildren, :config do
   context 'nested style' do
     let(:cop_config) { { 'EnforcedStyle' => 'nested' } }
 

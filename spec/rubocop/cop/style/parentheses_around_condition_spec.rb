@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ParenthesesAroundCondition, :config do
+RSpec.describe Rubocop::Rule::Style::ParenthesesAroundCondition, :config do
   let(:cop_config) { { 'AllowSafeAssignment' => true } }
 
   it 'registers an offense for parentheses around condition' do

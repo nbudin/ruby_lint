@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Migration::DepartmentName do
+RSpec.describe Rubocop::Rule::Migration::DepartmentName do
   subject(:cop) { described_class.new }
 
   context 'when todo/enable comments have cop names without departments' do

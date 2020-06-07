@@ -21,7 +21,7 @@ RSpec.describe RuboCop::Formatter::QuietFormatter do
     let(:file) { '/path/to/file' }
 
     let(:offense) do
-      RuboCop::Cop::Offense.new(:convention, location,
+      Rubocop::Rule::Offense.new(:convention, location,
                                 'This is a message with `colored text`.',
                                 'CopName', status)
     end

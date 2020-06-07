@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::ModuleLength, :config do
+RSpec.describe Rubocop::Rule::Metrics::ModuleLength, :config do
   let(:cop_config) { { 'Max' => 5, 'CountComments' => false } }
 
   it 'rejects a module with more than 5 lines' do

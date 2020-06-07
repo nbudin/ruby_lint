@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::IndentationConsistency, :config do
+RSpec.describe Rubocop::Rule::Layout::IndentationConsistency, :config do
   let(:cop_config) { { 'EnforcedStyle' => 'normal' } }
 
   context 'with top-level code' do

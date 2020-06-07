@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::TrailingEmptyLines, :config do
+RSpec.describe Rubocop::Rule::Layout::TrailingEmptyLines, :config do
   context 'when EnforcedStyle is final_newline' do
     let(:cop_config) { { 'EnforcedStyle' => 'final_newline' } }
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::LeadingCommentSpace, :config do
+RSpec.describe Rubocop::Rule::Layout::LeadingCommentSpace, :config do
   it 'registers an offense and corrects comment without leading space' do
     expect_offense(<<~RUBY)
       #missing space

@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Force do
+RSpec.describe Rubocop::Rule::Force do
   subject(:force) { described_class.new(cops) }
 
   let(:cops) do
     [
-      instance_double(RuboCop::Cop::Cop),
-      instance_double(RuboCop::Cop::Cop)
+      instance_double(Rubocop::Rule::Rule),
+      instance_double(Rubocop::Rule::Rule)
     ]
   end
 
   describe '.force_name' do
     it 'returns the class name without namespace' do
-      expect(RuboCop::Cop::VariableForce.force_name).to eq('VariableForce')
+      expect(Rubocop::Rule::VariableForce.force_name).to eq('VariableForce')
     end
   end
 

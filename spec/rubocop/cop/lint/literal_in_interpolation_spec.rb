@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::LiteralInInterpolation do
+RSpec.describe Rubocop::Rule::Lint::LiteralInInterpolation do
   subject(:cop) { described_class.new }
 
   it 'accepts empty interpolation' do
@@ -192,11 +192,11 @@ RSpec.describe RuboCop::Cop::Lint::LiteralInInterpolation do
     RUBY
 
     expect_correction(<<~'RUBY')
-      "this is 
+      "this is
        silly"
-      "this is 
+      "this is
        silly"
-      "this is 
+      "this is
        silly"
     RUBY
   end

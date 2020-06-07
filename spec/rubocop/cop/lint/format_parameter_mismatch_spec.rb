@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::FormatParameterMismatch do
+RSpec.describe Rubocop::Rule::Lint::FormatParameterMismatch do
   subject(:cop) { described_class.new }
 
   shared_examples 'variables' do |variable|

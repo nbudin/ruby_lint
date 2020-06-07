@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::WordArray, :config do
+RSpec.describe Rubocop::Rule::Style::WordArray, :config do
   before do
     # Reset data which is shared by all instances of WordArray
     described_class.largest_brackets = -Float::INFINITY

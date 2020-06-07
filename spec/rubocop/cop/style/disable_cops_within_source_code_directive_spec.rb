@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::DisableCopsWithinSourceCodeDirective do
+RSpec.describe Rubocop::Rule::Style::DisableCopsWithinSourceCodeDirective do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for disabled cop within source code' do

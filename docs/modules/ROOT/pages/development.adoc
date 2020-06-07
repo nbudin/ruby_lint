@@ -244,7 +244,7 @@ Update the spec to cover the expected syntax:
 
 [source,ruby]
 ----
-describe RuboCop::Cop::Style::SimplifyNotEmptyWithAny do
+describe Rubocop::Rule::Style::SimplifyNotEmptyWithAny do
   let(:config) { RuboCop::Config.new }
   subject(:cop) { described_class.new(config) }
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceInsideRangeLiteral do
+RSpec.describe Rubocop::Rule::Layout::SpaceInsideRangeLiteral do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for space inside .. literal' do

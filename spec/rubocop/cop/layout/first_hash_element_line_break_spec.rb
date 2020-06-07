@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::FirstHashElementLineBreak do
+RSpec.describe Rubocop::Rule::Layout::FirstHashElementLineBreak do
   subject(:cop) { described_class.new }
 
   it 'registers an offense and corrects elements listed on the first line' do
@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Cop::Layout::FirstHashElementLineBreak do
     RUBY
 
     expect_correction(<<~RUBY)
-      a = { 
+      a = {
       a: 1,
             b: 2 }
     RUBY
@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Cop::Layout::FirstHashElementLineBreak do
     RUBY
 
     expect_correction(<<~RUBY)
-      method({ 
+      method({
       foo: 1,
                bar: 2 })
     RUBY

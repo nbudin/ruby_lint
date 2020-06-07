@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::AbcSize, :config do
+RSpec.describe Rubocop::Rule::Metrics::AbcSize, :config do
   context 'when Max is 0' do
     let(:cop_config) { { 'Max' => 0 } }
 

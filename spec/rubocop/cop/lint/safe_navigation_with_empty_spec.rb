@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::SafeNavigationWithEmpty do
+RSpec.describe Rubocop::Rule::Lint::SafeNavigationWithEmpty do
   subject(:cop) { described_class.new }
 
   context 'in a conditional' do

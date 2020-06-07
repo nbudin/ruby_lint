@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::EmptyLiteral do
+RSpec.describe Rubocop::Rule::Style::EmptyLiteral do
   subject(:cop) { described_class.new }
 
   describe 'Empty Array' do

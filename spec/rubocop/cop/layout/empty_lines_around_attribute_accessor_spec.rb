@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundAttributeAccessor, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundAttributeAccessor, :config do
   subject(:cop) { described_class.new(config) }
 
   it 'registers an offense and corrects for code ' \

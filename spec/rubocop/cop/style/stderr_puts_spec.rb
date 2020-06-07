@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::StderrPuts do
+RSpec.describe Rubocop::Rule::Style::StderrPuts do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::LiteralAsCondition do
+RSpec.describe Rubocop::Rule::Lint::LiteralAsCondition do
   subject(:cop) { described_class.new }
 
   %w(1 2.0 [1] {} :sym :"#{a}").each do |lit|

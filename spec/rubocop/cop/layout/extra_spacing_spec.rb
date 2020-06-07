@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::ExtraSpacing, :config do
+RSpec.describe Rubocop::Rule::Layout::ExtraSpacing, :config do
   shared_examples 'common behavior' do
     it 'registers an offense and corrects alignment with token ' \
       'not preceded by space' do

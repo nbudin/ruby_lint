@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::HashAlignment, :config do
+RSpec.describe Rubocop::Rule::Layout::HashAlignment, :config do
   let(:cop_config) do
     {
       'EnforcedHashRocketStyle' => 'key',

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::ClosingParenthesisIndentation do
+RSpec.describe Rubocop::Rule::Layout::ClosingParenthesisIndentation do
   subject(:cop) { described_class.new }
 
   context 'for method calls' do

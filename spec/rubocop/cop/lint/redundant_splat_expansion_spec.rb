@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::RedundantSplatExpansion do
+RSpec.describe Rubocop::Rule::Lint::RedundantSplatExpansion do
   subject(:cop) { described_class.new }
 
   let(:message) { 'Replace splat expansion with comma separated values.' }

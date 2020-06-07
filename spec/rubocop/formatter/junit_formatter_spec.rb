@@ -4,7 +4,7 @@ RSpec.describe RuboCop::Formatter::JUnitFormatter, :config do
   subject(:formatter) { described_class.new(output) }
 
   let(:output) { StringIO.new }
-  let(:cop_class) { RuboCop::Cop::Layout::SpaceInsideBlockBraces }
+  let(:cop_class) { Rubocop::Rule::Layout::SpaceInsideBlockBraces }
   let(:source) { %w[foo bar baz].join("\n") }
 
   describe '#file_finished' do

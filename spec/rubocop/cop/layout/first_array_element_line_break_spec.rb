@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::FirstArrayElementLineBreak do
+RSpec.describe Rubocop::Rule::Layout::FirstArrayElementLineBreak do
   subject(:cop) { described_class.new }
 
   context 'elements listed on the first line' do
@@ -92,7 +92,7 @@ RSpec.describe RuboCop::Cop::Layout::FirstArrayElementLineBreak do
 
       expect(corrected).to eq(<<~RUBY)
         a, b,
-        c = 
+        c =
         1,
         2, 3
       RUBY
@@ -118,7 +118,7 @@ RSpec.describe RuboCop::Cop::Layout::FirstArrayElementLineBreak do
 
       expect(new_source).to eq(<<~RUBY)
         a
-        .c = 
+        .c =
         1,
         2, 3
       RUBY

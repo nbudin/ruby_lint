@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::ParameterAlignment do
+RSpec.describe Rubocop::Rule::Layout::ParameterAlignment do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MethodDefParentheses, :config do
+RSpec.describe Rubocop::Rule::Style::MethodDefParentheses, :config do
   context 'require_parentheses' do
     let(:cop_config) { { 'EnforcedStyle' => 'require_parentheses' } }
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::PercentLiteralDelimiters, :config do
+RSpec.describe Rubocop::Rule::Style::PercentLiteralDelimiters, :config do
   let(:cop_config) do
     { 'PreferredDelimiters' => { 'default' => '[]' } }
   end

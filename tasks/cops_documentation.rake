@@ -113,7 +113,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   def configurable_values(pars, name)
     case name
     when /^Enforced/
-      supported_style_name = RuboCop::Cop::Util.to_supported_styles(name)
+      supported_style_name = Rubocop::Rule::Util.to_supported_styles(name)
       format_table_value(pars[supported_style_name])
     when 'IndentationWidth'
       'Integer'
@@ -176,7 +176,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
 
   def references(config, cop)
     cop_config = config.for_cop(cop)
-    urls = RuboCop::Cop::MessageAnnotator.new(
+    urls = Rubocop::Rule::MessageAnnotator.new(
       config, cop.name, cop_config, {}
     ).urls
     return '' if urls.empty?
@@ -218,7 +218,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
 
   def cop_code(cop)
     YARD::Registry.all(:class).detect do |code_object|
-      next unless RuboCop::Cop::Badge.for(code_object.to_s) == cop.badge
+      next unless Rubocop::Rule::Badge.for(code_object.to_s) == cop.badge
 
       yield code_object
     end
@@ -281,7 +281,7 @@ task generate_cops_documentation: :yard_for_generate_documentation do
   end
 
   def main
-    cops   = RuboCop::Cop::Cop.registry
+    cops   = Rubocop::Rule::Rule.registry
     config = RuboCop::ConfigLoader.default_configuration
 
     YARD::Registry.load!

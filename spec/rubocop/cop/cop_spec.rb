@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Cop, :config do
+RSpec.describe Rubocop::Rule::Rule, :config do
   let(:location) do
     source_range(0...1)
   end
@@ -43,7 +43,7 @@ RSpec.describe RuboCop::Cop::Cop, :config do
     # there were no cop whose names overlapped.
     xit 'raises an error if the cop name is in more than one namespace' do
       expect { described_class.qualified_cop_name('SafeNavigation', '--only') }
-        .to raise_error(RuboCop::Cop::AmbiguousCopName)
+        .to raise_error(Rubocop::Rule::AmbiguousCopName)
     end
 
     it 'returns the given cop name if it already has a namespace even when ' \
@@ -115,7 +115,7 @@ RSpec.describe RuboCop::Cop::Cop, :config do
   end
 
   describe 'for a cop with a name' do
-    let(:cop_class) { RuboCop::Cop::Style::For }
+    let(:cop_class) { Rubocop::Rule::Style::For }
 
     it 'registers offense with its name' do
       cop.add_offense(nil, location: location, message: 'message')
@@ -166,7 +166,7 @@ RSpec.describe RuboCop::Cop::Cop, :config do
     end
 
     context 'when cop supports autocorrection' do
-      let(:cop_class) { RuboCop::Cop::Style::Alias }
+      let(:cop_class) { Rubocop::Rule::Style::Alias }
 
       context 'when offense was corrected' do
         before do
@@ -213,14 +213,14 @@ RSpec.describe RuboCop::Cop::Cop, :config do
   end
 
   context 'with style cops' do
-    let(:cop_class) { RuboCop::Cop::Style::For }
+    let(:cop_class) { Rubocop::Rule::Style::For }
 
     it('has right name') { expect(cop_class.cop_name).to eq('Style/For') }
     it('has right department') { expect(cop_class.department).to eq(:Style) }
   end
 
   context 'with lint cops' do
-    let(:cop_class) { RuboCop::Cop::Lint::Loop }
+    let(:cop_class) { Rubocop::Rule::Lint::Loop }
 
     it('has right name') { expect(cop_class.cop_name).to eq('Lint/Loop') }
     it('has right department') { expect(cop_class.department).to eq(:Lint) }

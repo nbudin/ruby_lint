@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundBlockBody, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
   # Test blocks using both {} and do..end
   [%w[{ }], %w[do end]].each do |open, close|
     context "when EnforcedStyle is no_empty_lines for #{open} #{close} block" do
@@ -46,7 +46,7 @@ RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundBlockBody, :config do
       it 'accepts block body starting with a line with spaces' do
         expect_no_offenses(<<~RUBY)
           some_method #{open}
-            
+
             do_something
           #{close}
         RUBY

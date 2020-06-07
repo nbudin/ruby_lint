@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::TrailingBodyOnClass do
+RSpec.describe Rubocop::Rule::Style::TrailingBodyOnClass do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do
@@ -46,12 +46,12 @@ RSpec.describe RuboCop::Cop::Style::TrailingBodyOnClass do
 
   it 'auto-corrects body after class definition' do
     corrected = autocorrect_source(<<~RUBY)
-      class Foo; body 
+      class Foo; body
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      class Foo 
-        body 
+      class Foo
+        body
       end
     RUBY
   end
@@ -63,8 +63,8 @@ RSpec.describe RuboCop::Cop::Style::TrailingBodyOnClass do
     RUBY
     expect(corrected).to eq(<<~RUBY)
       # comment
-      class BarQux 
-        foo 
+      class BarQux
+        foo
       end
     RUBY
   end
@@ -75,7 +75,7 @@ RSpec.describe RuboCop::Cop::Style::TrailingBodyOnClass do
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      class Bar 
+      class Bar
         def bar; end
       end
     RUBY

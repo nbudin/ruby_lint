@@ -1,27 +1,27 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Registry do
+RSpec.describe Rubocop::Rule::Registry do
   subject(:registry) { described_class.new(cops, options) }
 
   let(:cops) do
     [
-      RuboCop::Cop::Lint::BooleanSymbol,
-      RuboCop::Cop::Lint::DuplicateMethods,
-      RuboCop::Cop::Layout::FirstArrayElementIndentation,
-      RuboCop::Cop::Metrics::MethodLength,
-      RuboCop::Cop::RSpec::Foo,
-      RuboCop::Cop::Test::FirstArrayElementIndentation
+      Rubocop::Rule::Lint::BooleanSymbol,
+      Rubocop::Rule::Lint::DuplicateMethods,
+      Rubocop::Rule::Layout::FirstArrayElementIndentation,
+      Rubocop::Rule::Metrics::MethodLength,
+      Rubocop::Rule::RSpec::Foo,
+      Rubocop::Rule::Test::FirstArrayElementIndentation
     ]
   end
 
   let(:options) { {} }
 
   before do
-    stub_const('RuboCop::Cop::Test::FirstArrayElementIndentation', Class.new(RuboCop::Cop::Cop))
-    stub_const('RuboCop::Cop::RSpec::Foo', Class.new(RuboCop::Cop::Cop))
+    stub_const('Rubocop::Rule::Test::FirstArrayElementIndentation', Class.new(Rubocop::Rule::Rule))
+    stub_const('Rubocop::Rule::RSpec::Foo', Class.new(Rubocop::Rule::Rule))
   end
 
-  # `RuboCop::Cop::Cop` mutates its `registry` when inherited from.
+  # `Rubocop::Rule::Rule` mutates its `registry` when inherited from.
   # This can introduce nondeterministic failures in other parts of the
   # specs if this mutation occurs before code that depends on this global cop
   # store. The workaround is to replace the global cop store with a temporary
@@ -31,7 +31,7 @@ RSpec.describe RuboCop::Cop::Registry do
   end
 
   it 'can be cloned' do
-    klass = ::RuboCop::Cop::Metrics::AbcSize
+    klass = ::Rubocop::Rule::Metrics::AbcSize
     copy = registry.dup
     copy.enlist(klass)
     expect(copy.cops).to include(klass)
@@ -39,7 +39,7 @@ RSpec.describe RuboCop::Cop::Registry do
   end
 
   context 'when dismissing a cop class' do
-    let(:cop_class) { ::RuboCop::Cop::Metrics::AbcSize }
+    let(:cop_class) { ::Rubocop::Rule::Metrics::AbcSize }
 
     before { registry.enlist(cop_class) }
 
@@ -137,7 +137,7 @@ RSpec.describe RuboCop::Cop::Registry do
     it 'raises an error when a cop name is ambiguous' do
       cop_name = 'FirstArrayElementIndentation'
       expect { registry.qualified_cop_name(cop_name, origin) }
-        .to raise_error(RuboCop::Cop::AmbiguousCopName)
+        .to raise_error(Rubocop::Rule::AmbiguousCopName)
         .with_message(
           'Ambiguous cop name `FirstArrayElementIndentation` used in ' \
           '/app/.rubocop.yml needs department qualifier. Did you mean ' \
@@ -155,16 +155,16 @@ RSpec.describe RuboCop::Cop::Registry do
 
   it 'exposes a mapping of cop names to cop classes' do
     expect(registry.to_h).to eql(
-      'Lint/BooleanSymbol' => [RuboCop::Cop::Lint::BooleanSymbol],
-      'Lint/DuplicateMethods' => [RuboCop::Cop::Lint::DuplicateMethods],
+      'Lint/BooleanSymbol' => [Rubocop::Rule::Lint::BooleanSymbol],
+      'Lint/DuplicateMethods' => [Rubocop::Rule::Lint::DuplicateMethods],
       'Layout/FirstArrayElementIndentation' => [
-        RuboCop::Cop::Layout::FirstArrayElementIndentation
+        Rubocop::Rule::Layout::FirstArrayElementIndentation
       ],
-      'Metrics/MethodLength' => [RuboCop::Cop::Metrics::MethodLength],
+      'Metrics/MethodLength' => [Rubocop::Rule::Metrics::MethodLength],
       'Test/FirstArrayElementIndentation' => [
-        RuboCop::Cop::Test::FirstArrayElementIndentation
+        Rubocop::Rule::Test::FirstArrayElementIndentation
       ],
-      'RSpec/Foo' => [RuboCop::Cop::RSpec::Foo]
+      'RSpec/Foo' => [Rubocop::Rule::RSpec::Foo]
     )
   end
 
@@ -197,7 +197,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
     it 'selects only safe cops if :safe passed' do
       enabled_cops = registry.enabled(config, [], true)
-      expect(enabled_cops).not_to include(RuboCop::Cop::RSpec::Foo)
+      expect(enabled_cops).not_to include(Rubocop::Rule::RSpec::Foo)
     end
 
     context 'when new cops are introduced' do
@@ -209,7 +209,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
       it 'does not include them' do
         result = registry.enabled(config, [])
-        expect(result).not_to include(RuboCop::Cop::Lint::BooleanSymbol)
+        expect(result).not_to include(Rubocop::Rule::Lint::BooleanSymbol)
       end
 
       it 'overrides config if :only includes the cop' do
@@ -224,7 +224,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
         it 'does not include them' do
           result = registry.enabled(config, [])
-          expect(result).not_to include(RuboCop::Cop::Lint::BooleanSymbol)
+          expect(result).not_to include(Rubocop::Rule::Lint::BooleanSymbol)
         end
 
         context 'when specifying `NewCops: enable` option in .rubocop.yml' do
@@ -238,7 +238,7 @@ RSpec.describe RuboCop::Cop::Registry do
           it 'does not include them because command-line option takes ' \
              'precedence over .rubocop.yml' do
             result = registry.enabled(config, [])
-            expect(result).not_to include(RuboCop::Cop::Lint::BooleanSymbol)
+            expect(result).not_to include(Rubocop::Rule::Lint::BooleanSymbol)
           end
         end
       end
@@ -250,7 +250,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
         it 'includes them' do
           result = registry.enabled(config, [])
-          expect(result).to include(RuboCop::Cop::Lint::BooleanSymbol)
+          expect(result).to include(Rubocop::Rule::Lint::BooleanSymbol)
         end
 
         context 'when specifying `NewCops: disable` option in .rubocop.yml' do
@@ -264,7 +264,7 @@ RSpec.describe RuboCop::Cop::Registry do
           it 'includes them because command-line option takes ' \
              'precedence over .rubocop.yml' do
             result = registry.enabled(config, [])
-            expect(result).to include(RuboCop::Cop::Lint::BooleanSymbol)
+            expect(result).to include(Rubocop::Rule::Lint::BooleanSymbol)
           end
         end
       end
@@ -279,7 +279,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
         it 'does not include them' do
           result = registry.enabled(config, [])
-          expect(result).not_to include(RuboCop::Cop::Lint::BooleanSymbol)
+          expect(result).not_to include(Rubocop::Rule::Lint::BooleanSymbol)
         end
       end
 
@@ -293,7 +293,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
         it 'does not include them' do
           result = registry.enabled(config, [])
-          expect(result).not_to include(RuboCop::Cop::Lint::BooleanSymbol)
+          expect(result).not_to include(Rubocop::Rule::Lint::BooleanSymbol)
         end
       end
 
@@ -307,7 +307,7 @@ RSpec.describe RuboCop::Cop::Registry do
 
         it 'includes them' do
           result = registry.enabled(config, [])
-          expect(result).to include(RuboCop::Cop::Lint::BooleanSymbol)
+          expect(result).to include(Rubocop::Rule::Lint::BooleanSymbol)
         end
       end
     end

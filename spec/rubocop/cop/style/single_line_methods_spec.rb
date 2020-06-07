@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::SingleLineMethods do
+RSpec.describe Rubocop::Rule::Style::SingleLineMethods do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do
@@ -39,7 +39,7 @@ RSpec.describe RuboCop::Cop::Style::SingleLineMethods do
         def x; end
       RUBY
       expect(corrected).to eq(<<~RUBY)
-        def x; 
+        def x;
         end
       RUBY
     end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::TernaryParentheses, :config do
+RSpec.describe Rubocop::Rule::Style::TernaryParentheses, :config do
   before do
     inspect_source(source)
   end

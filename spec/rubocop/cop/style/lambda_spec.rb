@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Lambda, :config do
+RSpec.describe Rubocop::Rule::Style::Lambda, :config do
   shared_examples 'registers an offense' do |message|
     it 'registers an offense' do
       inspect_source(source)

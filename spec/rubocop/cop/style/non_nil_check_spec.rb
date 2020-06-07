@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::NonNilCheck, :config do
+RSpec.describe Rubocop::Rule::Style::NonNilCheck, :config do
   context 'when not allowing semantic changes' do
     let(:cop_config) do
       {

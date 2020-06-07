@@ -19,7 +19,7 @@ RSpec.describe RuboCop::Formatter::AutoGenConfigFormatter do
     def offense_with_severity(severity)
       source_buffer = Parser::Source::Buffer.new('test', 1)
       source_buffer.source = "a\n"
-      RuboCop::Cop::Offense.new(severity,
+      Rubocop::Rule::Offense.new(severity,
                                 Parser::Source::Range.new(source_buffer, 0, 1),
                                 'message',
                                 'CopName')
@@ -81,7 +81,7 @@ RSpec.describe RuboCop::Formatter::AutoGenConfigFormatter do
         formatter.file_finished(
           files[0],
           [
-            RuboCop::Cop::Offense.new(
+            Rubocop::Rule::Offense.new(
               :convention,
               Parser::Source::Range.new(source_buffer,
                                         line_length + 2,

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::MultilineArrayBraceLayout, :config do
+RSpec.describe Rubocop::Rule::Layout::MultilineArrayBraceLayout, :config do
   let(:cop_config) { { 'EnforcedStyle' => 'symmetrical' } }
 
   it 'ignores implicit arrays' do

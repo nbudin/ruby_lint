@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::GuardClause, :config do
+RSpec.describe Rubocop::Rule::Style::GuardClause, :config do
   let(:other_cops) do
     {
       'Layout/LineLength' => {

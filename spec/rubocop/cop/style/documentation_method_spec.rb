@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::DocumentationMethod, :config do
+RSpec.describe Rubocop::Rule::Style::DocumentationMethod, :config do
   let(:require_for_non_public_methods) { false }
 
   let(:config) do

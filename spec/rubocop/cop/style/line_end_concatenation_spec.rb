@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::LineEndConcatenation do
+RSpec.describe Rubocop::Rule::Style::LineEndConcatenation do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for string concat at line end' do
@@ -143,7 +143,7 @@ RSpec.describe RuboCop::Cop::Style::LineEndConcatenation do
 
   it 'autocorrects in the simple case by replacing + with \\' do
     corrected = autocorrect_source(<<~RUBY)
-      top = "test" + 
+      top = "test" +
       "top"
     RUBY
     expect(corrected).to eq(<<~RUBY)

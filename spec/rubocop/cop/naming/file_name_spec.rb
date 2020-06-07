@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::FileName do
+RSpec.describe Rubocop::Rule::Naming::FileName do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

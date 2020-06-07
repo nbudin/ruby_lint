@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::VariableNumber, :config do
+RSpec.describe Rubocop::Rule::Naming::VariableNumber, :config do
   shared_examples 'offense' do |style, variable, style_to_allow_offenses|
     it "registers an offense for #{Array(variable).first} in #{style}" do
       inspect_source(Array(variable).map { |v| "#{v} = 1" }.join("\n"))

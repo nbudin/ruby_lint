@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceInsideHashLiteralBraces, :config do
+RSpec.describe Rubocop::Rule::Layout::SpaceInsideHashLiteralBraces, :config do
   let(:cop_config) { { 'EnforcedStyle' => 'space' } }
 
   context 'with space inside empty braces not allowed' do

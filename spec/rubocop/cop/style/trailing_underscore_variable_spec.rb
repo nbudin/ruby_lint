@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::TrailingUnderscoreVariable do
+RSpec.describe Rubocop::Rule::Style::TrailingUnderscoreVariable do
   subject(:cop) { described_class.new(config) }
 
   shared_examples 'common functionality' do

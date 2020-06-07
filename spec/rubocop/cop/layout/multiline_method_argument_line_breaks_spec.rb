@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::MultilineMethodArgumentLineBreaks do
+RSpec.describe Rubocop::Rule::Layout::MultilineMethodArgumentLineBreaks do
   subject(:cop) { described_class.new }
 
   context 'when one argument on same line' do

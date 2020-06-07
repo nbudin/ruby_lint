@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::BlockLength, :config do
+RSpec.describe Rubocop::Rule::Metrics::BlockLength, :config do
   let(:cop_config) { { 'Max' => 2, 'CountComments' => false } }
 
   shared_examples 'ignoring an offense on an excluded method' do |excluded|

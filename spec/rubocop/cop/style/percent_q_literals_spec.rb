@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::PercentQLiterals, :config do
+RSpec.describe Rubocop::Rule::Style::PercentQLiterals, :config do
   shared_examples 'accepts quote characters' do
     it 'accepts single quotes' do
       expect_no_offenses("'hi'")

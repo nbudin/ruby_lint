@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceInLambdaLiteral, :config do
+RSpec.describe Rubocop::Rule::Layout::SpaceInLambdaLiteral, :config do
   context 'when configured to enforce spaces' do
     let(:cop_config) { { 'EnforcedStyle' => 'require_space' } }
 

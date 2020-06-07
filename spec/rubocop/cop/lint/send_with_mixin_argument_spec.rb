@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::SendWithMixinArgument do
+RSpec.describe Rubocop::Rule::Lint::SendWithMixinArgument do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }

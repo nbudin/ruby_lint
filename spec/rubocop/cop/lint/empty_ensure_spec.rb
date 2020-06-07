@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::EmptyEnsure do
+RSpec.describe Rubocop::Rule::Lint::EmptyEnsure do
   subject(:cop) { described_class.new }
 
   it 'registers an offense and corrects empty ensure' do

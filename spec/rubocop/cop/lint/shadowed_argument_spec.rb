@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::ShadowedArgument, :config do
+RSpec.describe Rubocop::Rule::Lint::ShadowedArgument, :config do
   let(:cop_config) { { 'IgnoreImplicitReferences' => false } }
 
   describe 'method argument shadowing' do

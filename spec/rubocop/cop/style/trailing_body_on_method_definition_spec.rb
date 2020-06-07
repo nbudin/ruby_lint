@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::TrailingBodyOnMethodDefinition do
+RSpec.describe Rubocop::Rule::Style::TrailingBodyOnMethodDefinition do
   subject(:cop) { described_class.new(config) }
 
   let(:config) do

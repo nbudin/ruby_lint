@@ -45,10 +45,10 @@ RSpec.shared_context 'config', :config do # rubocop:disable Metrics/BlockLength
   let(:source) { 'code = {some: :ruby}' }
 
   let(:cop_class) do
-    if described_class.is_a?(Class) && described_class < RuboCop::Cop::Cop
+    if described_class.is_a?(Class) && described_class < Rubocop::Rule::Rule
       described_class
     else
-      RuboCop::Cop::Cop
+      Rubocop::Rule::Rule
     end
   end
 

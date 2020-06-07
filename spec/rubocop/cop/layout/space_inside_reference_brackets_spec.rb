@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceInsideReferenceBrackets, :config do
+RSpec.describe Rubocop::Rule::Layout::SpaceInsideReferenceBrackets, :config do
   context 'with space inside empty brackets not allowed' do
     let(:cop_config) { { 'EnforcedStyleForEmptyBrackets' => 'no_space' } }
 

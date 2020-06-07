@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::MultilineArrayLineBreaks do
+RSpec.describe Rubocop::Rule::Layout::MultilineArrayLineBreaks do
   subject(:cop) { described_class.new }
 
   context 'when on same line' do

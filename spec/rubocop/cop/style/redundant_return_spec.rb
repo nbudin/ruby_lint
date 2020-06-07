@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RedundantReturn, :config do
+RSpec.describe Rubocop::Rule::Style::RedundantReturn, :config do
   let(:cop_config) { { 'AllowMultipleReturnValues' => false } }
 
   it 'reports an offense for def with only a return' do

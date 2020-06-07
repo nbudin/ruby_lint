@@ -7,10 +7,10 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
     described_class.new(file, team, options, config_store, cache_root)
   end
 
-  let(:cops) { RuboCop::Cop::Cop.all }
-  let(:registry) { RuboCop::Cop::Cop.registry }
+  let(:cops) { Rubocop::Rule::Rule.all }
+  let(:registry) { Rubocop::Rule::Rule.registry }
   let(:team) do
-    RuboCop::Cop::Team.mobilize(
+    Rubocop::Rule::Team.mobilize(
       registry,
       RuboCop::ConfigLoader.default_configuration,
       options
@@ -24,7 +24,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
   end
   let(:cache_root) { "#{Dir.pwd}/rubocop_cache" }
   let(:offenses) do
-    [RuboCop::Cop::Offense.new(:warning, location, 'unused var',
+    [Rubocop::Rule::Offense.new(:warning, location, 'unused var',
                                'Lint/UselessAssignment')]
   end
   let(:location) do
@@ -63,12 +63,12 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
     # Fixes https://github.com/rubocop-hq/rubocop/issues/6274
     context 'when offenses are saved by autocorrect run' do
       let(:corrected_offense) do
-        RuboCop::Cop::Offense.new(
+        Rubocop::Rule::Offense.new(
           :warning, location, 'unused var', 'Lint/UselessAssignment', :corrected
         )
       end
       let(:uncorrected_offense) do
-        RuboCop::Cop::Offense.new(
+        Rubocop::Rule::Offense.new(
           corrected_offense.severity.name,
           corrected_offense.location,
           corrected_offense.message,
@@ -255,7 +255,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
           "unused var \xF0",
           (+'unused var あ').force_encoding(::Encoding::ASCII_8BIT)
         ].map do |message|
-          RuboCop::Cop::Offense.new(:warning, location, message,
+          Rubocop::Rule::Offense.new(:warning, location, message,
                                     'Lint/UselessAssignment')
         end
       end

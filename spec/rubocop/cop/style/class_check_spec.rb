@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ClassCheck, :config do
+RSpec.describe Rubocop::Rule::Style::ClassCheck, :config do
   context 'when enforced style is is_a?' do
     let(:cop_config) { { 'EnforcedStyle' => 'is_a?' } }
 

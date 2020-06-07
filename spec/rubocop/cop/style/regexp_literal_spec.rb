@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RegexpLiteral, :config do
+RSpec.describe Rubocop::Rule::Style::RegexpLiteral, :config do
   let(:config) do
     supported_styles = {
       'SupportedStyles' => %w[slashes percent_r mixed]

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::SuppressedException, :config do
+RSpec.describe Rubocop::Rule::Lint::SuppressedException, :config do
   context 'with AllowComments set to false' do
     let(:cop_config) { { 'AllowComments' => false } }
 

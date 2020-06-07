@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::MethodLength, :config do
+RSpec.describe Rubocop::Rule::Metrics::MethodLength, :config do
   let(:cop_config) { { 'Max' => 5, 'CountComments' => false } }
 
   context 'when method is an instance method' do

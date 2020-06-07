@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Test
-      class ModuleMustBeAClassCop < RuboCop::Cop::Cop
+      class ModuleMustBeAClassCop < Rubocop::Rule::Rule
         def on_module(node)
           add_offense(node, message: 'Module must be a Class')
         end

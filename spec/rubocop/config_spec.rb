@@ -750,7 +750,7 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = RuboCop::Cop::Layout::TrailingWhitespace
+          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled(cop_class)).to be false
         end
       end
@@ -766,7 +766,7 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = RuboCop::Cop::Layout::TrailingWhitespace
+          cop_class = Rubocop::Rule::Layout::TrailingWhitespace
           expect(cop_enabled(cop_class)).to be false
         end
       end
@@ -780,7 +780,7 @@ RSpec.describe RuboCop::Config do
       end
 
       it 'enables the cop by default' do
-        cop_class = RuboCop::Cop::Layout::TrailingWhitespace
+        cop_class = Rubocop::Rule::Layout::TrailingWhitespace
         expect(cop_enabled(cop_class)).to be true
       end
     end

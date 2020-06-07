@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Dir, :config do
+RSpec.describe Rubocop::Rule::Style::Dir, :config do
   shared_examples 'auto-correct' do |original, expected|
     it 'auto-corrects' do
       new_source = autocorrect_source(original)

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RedundantFreeze do
+RSpec.describe Rubocop::Rule::Style::RedundantFreeze do
   subject(:cop) { described_class.new }
 
   let(:prefix) { nil }

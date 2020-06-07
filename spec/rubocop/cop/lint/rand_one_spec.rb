@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::RandOne do
+RSpec.describe Rubocop::Rule::Lint::RandOne do
   subject(:cop) { described_class.new }
 
   shared_examples 'offenses' do |source|

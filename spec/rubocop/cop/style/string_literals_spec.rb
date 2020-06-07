@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::StringLiterals, :config do
+RSpec.describe Rubocop::Rule::Style::StringLiterals, :config do
   context 'configured with single quotes preferred' do
     let(:cop_config) { { 'EnforcedStyle' => 'single_quotes' } }
 

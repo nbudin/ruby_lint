@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MultilineMemoization, :config do
+RSpec.describe Rubocop::Rule::Style::MultilineMemoization, :config do
   let(:message) { 'Wrap multiline memoization blocks in `begin` and `end`.' }
 
   before do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::UnpackFirst, :config do
+RSpec.describe Rubocop::Rule::Style::UnpackFirst, :config do
   context 'registers offense' do
     it 'when using `#unpack` with `#first`' do
       expect_offense(<<~RUBY)

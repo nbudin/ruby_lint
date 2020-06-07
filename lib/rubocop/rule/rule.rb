@@ -3,27 +3,27 @@
 require 'uri'
 
 module RuboCop
-  module Cop
-    # A scaffold for concrete cops.
+  module Rule
+    # A scaffold for concrete rules.
     #
-    # The Cop class is meant to be extended.
+    # The Rule class is meant to be extended.
     #
-    # Cops track offenses and can autocorrect them on the fly.
+    # Rules track offenses and can autocorrect them on the fly.
     #
     # A commissioner object is responsible for traversing the AST and invoking
-    # the specific callbacks on each cop.
-    # If a cop needs to do its own processing of the AST or depends on
+    # the specific callbacks on each rule.
+    # If a rule needs to do its own processing of the AST or depends on
     # something else, it should define the `#investigate` method and do
     # the processing there.
     #
     # @example
     #
-    #   class CustomCop < Cop
+    #   class CustomRule < Rule
     #     def investigate(processed_source)
     #       # Do custom processing
     #     end
     #   end
-    class Cop # rubocop:disable Metrics/ClassLength
+    class Rule # rubocop:disable Metrics/ClassLength
       extend RuboCop::AST::Sexp
       extend NodePattern::Macros
       include RuboCop::AST::Sexp
@@ -31,12 +31,12 @@ module RuboCop
       include IgnoredNode
       include AutocorrectLogic
 
-      Correction = Struct.new(:lambda, :node, :cop) do
+      Correction = Struct.new(:lambda, :node, :rule) do
         def call(corrector)
           lambda.call(corrector)
         rescue StandardError => e
           raise ErrorWithAnalyzedFileLocation.new(
-            cause: e, node: node, cop: cop
+            cause: e, node: node, rule: rule
           )
         end
       end
@@ -56,8 +56,13 @@ module RuboCop
         @badge ||= Badge.for(name)
       end
 
-      def self.cop_name
+      def self.rule_name
         badge.to_s
+      end
+
+      # Backward compatibility
+      class << self
+        alias cop_name rule_name
       end
 
       def self.department
@@ -68,19 +73,19 @@ module RuboCop
         department == :Lint
       end
 
-      # Returns true if the cop name or the cop namespace matches any of the
+      # Returns true if the rule name or the rule namespace matches any of the
       # given names.
       def self.match?(given_names)
         return false unless given_names
 
-        given_names.include?(cop_name) ||
+        given_names.include?(rule_name) ||
           given_names.include?(department.to_s)
       end
 
-      # List of cops that should not try to autocorrect at the same
-      # time as this cop
+      # List of rules that should not try to autocorrect at the same
+      # time as this rule
       #
-      # @return [Array<RuboCop::Cop::Cop>]
+      # @return [Array<RuboCop::Rule::Rule>]
       #
       # @api public
       def self.autocorrect_incompatible_with
@@ -102,11 +107,11 @@ module RuboCop
         false
       end
 
-      def cop_config
-        # Use department configuration as basis, but let individual cop
+      def rule_config
+        # Use department configuration as basis, but let individual rule
         # configuration override.
-        @cop_config ||= @config.for_cop(self.class.department.to_s)
-                               .merge(@config.for_cop(self))
+        @rule_config ||= @config.for_rule(self.class.department.to_s)
+                                .merge(@config.for_rule(self))
       end
 
       def message(_node = nil)
@@ -181,11 +186,11 @@ module RuboCop
 
       def config_to_allow_offenses
         Formatter::DisabledConfigFormatter
-          .config_to_allow_offenses[cop_name] ||= {}
+          .config_to_allow_offenses[rule_name] ||= {}
       end
 
       def config_to_allow_offenses=(hash)
-        Formatter::DisabledConfigFormatter.config_to_allow_offenses[cop_name] =
+        Formatter::DisabledConfigFormatter.config_to_allow_offenses[rule_name] =
           hash
       end
 
@@ -201,11 +206,12 @@ module RuboCop
         ProcessedSource.new(source, target_ruby_version, path)
       end
 
-      def cop_name
-        @cop_name ||= self.class.cop_name
+      def rule_name
+        @rule_name ||= self.class.rule_name
       end
 
-      alias name cop_name
+      alias name rule_name
+      alias cop_name rule_name
 
       def relevant_file?(file)
         file == RuboCop::AST::ProcessedSource::STRING_SOURCE_NAME ||
@@ -248,9 +254,9 @@ module RuboCop
         Registry.all
       end
 
-      # @deprecated Use Registry.qualified_cop_name
-      def self.qualified_cop_name(name, origin)
-        Registry.qualified_cop_name(name, origin)
+      # @deprecated Use Registry.qualified_rule_name
+      def self.qualified_rule_name(name, origin)
+        Registry.qualified_rule_name(name, origin)
       end
 
       private
@@ -260,8 +266,8 @@ module RuboCop
       end
 
       def annotate(message)
-        RuboCop::Cop::MessageAnnotator.new(
-          config, cop_name, cop_config, @options
+        Rubocop::Rule::MessageAnnotator.new(
+          config, rule_name, cop_config, @options
         ).annotate(message)
       end
 

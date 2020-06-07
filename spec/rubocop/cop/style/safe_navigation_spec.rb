@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::SafeNavigation, :config do
+RSpec.describe Rubocop::Rule::Style::SafeNavigation, :config do
   let(:cop_config) { { 'ConvertCodeThatCanStartToReturnNil' => false } }
 
   let(:message) do

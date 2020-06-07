@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::InterpolationCheck do
+RSpec.describe Rubocop::Rule::Lint::InterpolationCheck do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for interpolation in single quoted string' do

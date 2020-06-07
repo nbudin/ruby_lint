@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UriRegexp do
+RSpec.describe Rubocop::Rule::Lint::UriRegexp do
   subject(:cop) { described_class.new(config) }
 
   let(:config) { RuboCop::Config.new }

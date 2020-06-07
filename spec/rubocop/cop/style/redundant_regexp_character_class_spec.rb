@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RedundantRegexpCharacterClass do
+RSpec.describe Rubocop::Rule::Style::RedundantRegexpCharacterClass do
   subject(:cop) { described_class.new }
 
   context 'with a character class containing a single character' do

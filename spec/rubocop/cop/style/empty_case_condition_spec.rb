@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::EmptyCaseCondition do
+RSpec.describe Rubocop::Rule::Style::EmptyCaseCondition do
   subject(:cop) { described_class.new }
 
   let(:message) do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::SingleLineBlockParams, :config do
+RSpec.describe Rubocop::Rule::Style::SingleLineBlockParams, :config do
   let(:cop_config) do
     { 'Methods' =>
       [{ 'reduce' => %w[a e] },

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Utils::FormatString do
+RSpec.describe Rubocop::Rule::Utils::FormatString do
   def format_sequences(string)
     described_class.new(string).format_sequences
   end

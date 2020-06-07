@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::NilComparison, :config do
+RSpec.describe Rubocop::Rule::Style::NilComparison, :config do
   context 'configured with predicate preferred' do
     let(:cop_config) { { 'EnforcedStyle' => 'predicate' } }
 

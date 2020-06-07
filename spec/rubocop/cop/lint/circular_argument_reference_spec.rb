@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::CircularArgumentReference do
+RSpec.describe Rubocop::Rule::Lint::CircularArgumentReference do
   subject(:cop) { described_class.new }
 
   describe 'circular argument references in ordinal arguments' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::RaiseArgs, :config do
+RSpec.describe Rubocop::Rule::Style::RaiseArgs, :config do
   context 'when enforced style is compact' do
     let(:cop_config) { { 'EnforcedStyle' => 'compact' } }
 

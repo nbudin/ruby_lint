@@ -8,7 +8,7 @@ module RuboCop
     # @see #initialize
     #
     # @example
-    #   RuboCop::Cop::MessageAnnotator.new(
+    #   Rubocop::Rule::MessageAnnotator.new(
     #     config, cop_name, cop_config, @options
     #   ).annotate('message')
     #  #=> 'Cop/CopName: message (http://example.org/styleguide)'

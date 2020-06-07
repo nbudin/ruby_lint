@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::AndOr, :config do
+RSpec.describe Rubocop::Rule::Style::AndOr, :config do
   context 'when style is conditionals' do
     cop_config = {
       'EnforcedStyle' => 'conditionals'

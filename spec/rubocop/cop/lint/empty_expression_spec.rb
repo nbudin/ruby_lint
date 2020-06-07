@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::EmptyExpression do
+RSpec.describe Rubocop::Rule::Lint::EmptyExpression do
   subject(:cop) { described_class.new }
 
   context 'when used as a standalone expression' do

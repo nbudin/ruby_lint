@@ -123,7 +123,7 @@ module RuboCop
           iteration += 1
 
           corrector =
-            RuboCop::Cop::Corrector.new(@processed_source.buffer, cop.corrections)
+            Rubocop::Rule::Corrector.new(@processed_source.buffer, cop.corrections)
           corrected_source = corrector.rewrite
 
           break corrected_source unless loop
@@ -156,7 +156,7 @@ module RuboCop
         # we need to run the actual corrections
 
         corrector =
-          RuboCop::Cop::Corrector.new(@processed_source.buffer, cop.corrections)
+          Rubocop::Rule::Corrector.new(@processed_source.buffer, cop.corrections)
         new_source = corrector.rewrite
 
         expect(new_source).to eq(@processed_source.buffer.source)
@@ -249,7 +249,7 @@ module RuboCop
 
         # Annotate the source code with the RuboCop offenses provided
         #
-        # @param offenses [Array<RuboCop::Cop::Offense>]
+        # @param offenses [Array<Rubocop::Rule::Offense>]
         #
         # @return [self]
         def with_offense_annotations(offenses)

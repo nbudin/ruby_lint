@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Encoding, :config do
+RSpec.describe Rubocop::Rule::Style::Encoding, :config do
   it 'registers no offense when no encoding present' do
     expect_no_offenses(<<~RUBY)
       def foo() end

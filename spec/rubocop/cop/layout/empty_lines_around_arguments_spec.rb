@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundArguments, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundArguments, :config do
   context 'when extra lines' do
     it 'registers offense for empty line before arg' do
       inspect_source(<<~RUBY)

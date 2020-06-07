@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundMethodBody do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundMethodBody do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for method body starting with a blank' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::ImplicitStringConcatenation do
+RSpec.describe Rubocop::Rule::Lint::ImplicitStringConcatenation do
   subject(:cop) { described_class.new }
 
   context 'on a single string literal' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::NestedModifier do
+RSpec.describe Rubocop::Rule::Style::NestedModifier do
   subject(:cop) { described_class.new }
 
   shared_examples 'avoidable' do |keyword|

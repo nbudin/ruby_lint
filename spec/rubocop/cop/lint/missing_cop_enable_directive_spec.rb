@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::MissingCopEnableDirective, :config do
+RSpec.describe Rubocop::Rule::Lint::MissingCopEnableDirective, :config do
   context 'when the maximum range size is infinite' do
     let(:cop_config) { { 'MaximumRangeSize' => Float::INFINITY } }
 

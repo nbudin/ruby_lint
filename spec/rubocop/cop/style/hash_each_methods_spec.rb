@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::HashEachMethods do
+RSpec.describe Rubocop::Rule::Style::HashEachMethods do
   subject(:cop) { described_class.new }
 
   context 'when node matches a keys#each or values#each' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::BlockDelimiters, :config do
+RSpec.describe Rubocop::Rule::Style::BlockDelimiters, :config do
   shared_examples 'syntactic styles' do
     it 'registers an offense for a single line block with do-end' do
       expect_offense(<<~RUBY)

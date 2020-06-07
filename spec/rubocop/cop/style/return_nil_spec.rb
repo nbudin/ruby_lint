@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::ReturnNil do
+RSpec.describe Rubocop::Rule::Style::ReturnNil do
   subject(:cop) { described_class.new(config) }
 
   context 'when enforced style is `return`' do

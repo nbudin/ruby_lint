@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Send do
+RSpec.describe Rubocop::Rule::Style::Send do
   subject(:cop) { described_class.new }
 
   context 'with send' do

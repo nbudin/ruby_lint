@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::RedundantCopEnableDirective do
+RSpec.describe Rubocop::Rule::Lint::RedundantCopEnableDirective do
   subject(:cop) { described_class.new }
 
   it 'registers offense and corrects unnecessary enable' do

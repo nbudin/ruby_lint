@@ -183,7 +183,7 @@ module RuboCop
     def autocorrect_redundant_disables(file, source, cop, offenses)
       cop.processed_source = source
 
-      team = Cop::Team.mobilize(RuboCop::Cop::Registry.new, nil, @options)
+      team = Cop::Team.mobilize(Rubocop::Rule::Registry.new, nil, @options)
       team.autocorrect(source.buffer, [cop])
 
       return [] unless team.updated_source_file?
@@ -355,7 +355,7 @@ module RuboCop
     def minimum_severity_to_fail
       @minimum_severity_to_fail ||= begin
         name = @options[:fail_level] || :refactor
-        RuboCop::Cop::Severity.new(name)
+        Rubocop::Rule::Severity.new(name)
       end
     end
 

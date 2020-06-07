@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::Semicolon, :config do
+RSpec.describe Rubocop::Rule::Style::Semicolon, :config do
   let(:cop_config) { { 'AllowAsExpressionSeparator' => false } }
 
   it 'registers an offense for a single expression' do

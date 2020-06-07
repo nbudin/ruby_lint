@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::NumericLiterals, :config do
+RSpec.describe Rubocop::Rule::Style::NumericLiterals, :config do
   let(:cop_config) { { 'MinDigits' => 5 } }
 
   it 'registers an offense for a long undelimited integer' do

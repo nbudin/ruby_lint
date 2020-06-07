@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Security::Open do
+RSpec.describe Rubocop::Rule::Security::Open do
   subject(:cop) { described_class.new }
 
   it 'registers an offense for open' do

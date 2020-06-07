@@ -137,8 +137,8 @@ RSpec.describe RuboCop::CommentConfig do
        'with keyword all' do
       expected_part = (7..8).to_a
 
-      cops = RuboCop::Cop::Cop.all.reject do |klass|
-        klass == RuboCop::Cop::Lint::RedundantCopDisableDirective
+      cops = Rubocop::Rule::Rule.all.reject do |klass|
+        klass == Rubocop::Rule::Lint::RedundantCopDisableDirective
       end
 
       cops.each do |cop|

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Bundler::GemComment, :config do
+RSpec.describe Rubocop::Rule::Bundler::GemComment, :config do
   let(:cop_config) do
     {
       'Include' => ['**/Gemfile'],

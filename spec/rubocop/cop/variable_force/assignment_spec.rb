@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::VariableForce::Assignment do
+RSpec.describe Rubocop::Rule::VariableForce::Assignment do
   include RuboCop::AST::Sexp
 
   let(:ast) do
@@ -26,15 +26,15 @@ RSpec.describe RuboCop::Cop::VariableForce::Assignment do
   let(:lvasgn_node) { ast.each_node.find(&:lvasgn_type?) }
 
   let(:name) { lvasgn_node.children.first }
-  let(:scope) { RuboCop::Cop::VariableForce::Scope.new(def_node) }
+  let(:scope) { Rubocop::Rule::VariableForce::Scope.new(def_node) }
   let(:variable) do
-    RuboCop::Cop::VariableForce::Variable.new(name, lvasgn_node, scope)
+    Rubocop::Rule::VariableForce::Variable.new(name, lvasgn_node, scope)
   end
   let(:assignment) { described_class.new(lvasgn_node, variable) }
 
   describe '.new' do
     let(:variable) do
-      instance_double(RuboCop::Cop::VariableForce::Variable)
+      instance_double(Rubocop::Rule::VariableForce::Variable)
     end
 
     context 'when an assignment node is passed' do

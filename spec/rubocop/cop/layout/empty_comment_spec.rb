@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyComment, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyComment, :config do
   let(:cop_config) do
     { 'AllowBorderComment' => true, 'AllowMarginComment' => true }
   end

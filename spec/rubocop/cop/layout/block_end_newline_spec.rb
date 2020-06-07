@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::BlockEndNewline do
+RSpec.describe Rubocop::Rule::Layout::BlockEndNewline do
   subject(:cop) { described_class.new }
 
   it 'accepts a one-liner' do

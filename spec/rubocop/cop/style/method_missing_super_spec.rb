@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MethodMissingSuper do
+RSpec.describe Rubocop::Rule::Style::MethodMissingSuper do
   subject(:cop) { described_class.new }
 
   describe 'method_missing defined as an instance method' do

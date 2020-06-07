@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::HeredocDelimiterCase, :config do
+RSpec.describe Rubocop::Rule::Naming::HeredocDelimiterCase, :config do
   let(:config) do
     RuboCop::Config.new(described_class.badge.to_s => cop_config)
   end

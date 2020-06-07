@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::SymbolProc, :config do
+RSpec.describe Rubocop::Rule::Style::SymbolProc, :config do
   let(:cop_config) { { 'IgnoredMethods' => %w[respond_to] } }
 
   it 'registers an offense for a block with parameterless method call on ' \

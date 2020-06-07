@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EndAlignment, :config do
+RSpec.describe Rubocop::Rule::Layout::EndAlignment, :config do
   let(:cop_config) do
     { 'EnforcedStyleAlignWith' => 'keyword', 'AutoCorrect' => true }
   end

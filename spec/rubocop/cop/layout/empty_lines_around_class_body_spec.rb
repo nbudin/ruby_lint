@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::EmptyLinesAroundClassBody, :config do
+RSpec.describe Rubocop::Rule::Layout::EmptyLinesAroundClassBody, :config do
   let(:extra_begin) { 'Extra empty line detected at class body beginning.' }
   let(:extra_end) { 'Extra empty line detected at class body end.' }
   let(:missing_begin) { 'Empty line missing at class body beginning.' }

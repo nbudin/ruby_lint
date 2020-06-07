@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::PerceivedComplexity, :config do
+RSpec.describe Rubocop::Rule::Metrics::PerceivedComplexity, :config do
   context 'when Max is 1' do
     let(:cop_config) { { 'Max' => 1 } }
 

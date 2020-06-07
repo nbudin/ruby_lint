@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Metrics::ParameterLists, :config do
+RSpec.describe Rubocop::Rule::Metrics::ParameterLists, :config do
   let(:cop_config) do
     {
       'Max' => 4,

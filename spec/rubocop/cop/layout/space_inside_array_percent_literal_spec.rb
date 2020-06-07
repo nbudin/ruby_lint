@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceInsideArrayPercentLiteral do
+RSpec.describe Rubocop::Rule::Layout::SpaceInsideArrayPercentLiteral do
   subject(:cop) { described_class.new }
 
   let(:message) do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::Debugger, :config do
+RSpec.describe Rubocop::Rule::Lint::Debugger, :config do
   shared_examples_for 'debugger' do |name, src|
     it "reports an offense for a #{name} call" do
       inspect_source(src)

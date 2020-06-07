@@ -155,7 +155,7 @@ module RuboCop
         styles = @config[name].select { |key, _| key.start_with?('Enforced') }
 
         styles.each do |style_name, style|
-          supported_key = RuboCop::Cop::Util.to_supported_styles(style_name)
+          supported_key = Rubocop::Rule::Util.to_supported_styles(style_name)
           valid = ConfigLoader.default_configuration[name][supported_key]
 
           next unless valid

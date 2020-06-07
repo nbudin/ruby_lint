@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::PreferredHashMethods, :config do
+RSpec.describe Rubocop::Rule::Style::PreferredHashMethods, :config do
   context 'with enforced `short` style' do
     let(:cop_config) { { 'EnforcedStyle' => 'short' } }
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::VariableName, :config do
+RSpec.describe Rubocop::Rule::Naming::VariableName, :config do
   shared_examples 'always accepted' do
     it 'accepts screaming snake case globals' do
       expect_no_offenses('$MY_GLOBAL = 0')

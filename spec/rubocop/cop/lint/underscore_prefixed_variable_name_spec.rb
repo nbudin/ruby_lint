@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UnderscorePrefixedVariableName, :config do
+RSpec.describe Rubocop::Rule::Lint::UnderscorePrefixedVariableName, :config do
   let(:cop_config) { { 'AllowKeywordBlockArguments' => false } }
 
   context 'when an underscore-prefixed variable is used' do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Generator::RequireFileInjector do
+RSpec.describe Rubocop::Rule::Generator::RequireFileInjector do
   let(:stdout) { StringIO.new }
   let(:root_file_path) { 'lib/root.rb' }
   let(:injector) do

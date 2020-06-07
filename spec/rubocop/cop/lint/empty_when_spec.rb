@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::EmptyWhen, :config do
+RSpec.describe Rubocop::Rule::Lint::EmptyWhen, :config do
   before do
     inspect_source(source)
   end

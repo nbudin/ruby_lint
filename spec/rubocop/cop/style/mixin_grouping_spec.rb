@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::MixinGrouping, :config do
+RSpec.describe Rubocop::Rule::Style::MixinGrouping, :config do
   before do
     inspect_source(source)
   end

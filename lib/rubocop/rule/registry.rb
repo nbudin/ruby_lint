@@ -72,23 +72,23 @@ module RuboCop
       #
       # @example gives back a correctly qualified cop name
       #
-      #   cops = RuboCop::Cop::Cop.all
+      #   cops = Rubocop::Rule::Rule.all
       #   cops.
       #     qualified_cop_name('Layout/EndOfLine') # => 'Layout/EndOfLine'
       #
       # @example fixes incorrect namespaces
       #
-      #   cops = RuboCop::Cop::Cop.all
+      #   cops = Rubocop::Rule::Rule.all
       #   cops.qualified_cop_name('Lint/EndOfLine') # => 'Layout/EndOfLine'
       #
       # @example namespaces bare cop identifiers
       #
-      #   cops = RuboCop::Cop::Cop.all
+      #   cops = Rubocop::Rule::Rule.all
       #   cops.qualified_cop_name('EndOfLine') # => 'Layout/EndOfLine'
       #
       # @example passes back unrecognized cop names
       #
-      #   cops = RuboCop::Cop::Cop.all
+      #   cops = Rubocop::Rule::Rule.all
       #   cops.qualified_cop_name('NotACop') # => 'NotACop'
       #
       # @param name [String] Cop name extracted from config

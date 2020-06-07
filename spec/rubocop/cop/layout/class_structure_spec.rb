@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::ClassStructure, :config do
+RSpec.describe Rubocop::Rule::Layout::ClassStructure, :config do
   let(:config) do
     RuboCop::Config.new(
       'Layout/ClassStructure' => {

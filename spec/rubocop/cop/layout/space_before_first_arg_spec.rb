@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::SpaceBeforeFirstArg, :config do
+RSpec.describe Rubocop::Rule::Layout::SpaceBeforeFirstArg, :config do
   let(:cop_config) { { 'AllowForAlignment' => true } }
 
   context 'for method calls without parentheses' do

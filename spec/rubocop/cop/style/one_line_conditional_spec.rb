@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::OneLineConditional do
+RSpec.describe Rubocop::Rule::Style::OneLineConditional do
   subject(:cop) { described_class.new }
 
   shared_examples 'offense' do |condition|

@@ -13,7 +13,7 @@ RSpec.describe RuboCop::Formatter::WorstOffendersFormatter do
 
   describe '#finished' do
     context 'when there are many offenses' do
-      let(:offense) { instance_double(RuboCop::Cop::Offense) }
+      let(:offense) { instance_double(Rubocop::Rule::Offense) }
 
       before do
         formatter.started(files)

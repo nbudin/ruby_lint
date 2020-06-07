@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::IneffectiveAccessModifier do
+RSpec.describe Rubocop::Rule::Lint::IneffectiveAccessModifier do
   subject(:cop) { described_class.new }
 
   context 'when `private` is applied to a class method' do

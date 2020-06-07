@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::FormatStringToken, :config do
+RSpec.describe Rubocop::Rule::Style::FormatStringToken, :config do
   let(:enforced_style) { :annotated }
 
   let(:cop_config) do

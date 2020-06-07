@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::DeprecatedClassMethods do
+RSpec.describe Rubocop::Rule::Lint::DeprecatedClassMethods do
   subject(:cop) { described_class.new }
 
   context 'prefer `File.exist?` over `File.exists?`' do

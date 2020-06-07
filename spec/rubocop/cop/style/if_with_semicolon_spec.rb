@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::IfWithSemicolon do
+RSpec.describe Rubocop::Rule::Style::IfWithSemicolon do
   subject(:cop) { described_class.new }
 
   it 'registers an offense and corrects for one line if/;/end' do

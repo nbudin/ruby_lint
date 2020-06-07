@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::InheritException, :config do
+RSpec.describe Rubocop::Rule::Lint::InheritException, :config do
   context 'when class inherits from `Exception`' do
     context 'with enforced style set to `runtime_error`' do
       let(:cop_config) { { 'EnforcedStyle' => 'runtime_error' } }

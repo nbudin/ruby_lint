@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::ErbNewArguments, :config do
+RSpec.describe Rubocop::Rule::Lint::ErbNewArguments, :config do
   context '<= Ruby 2.5', :ruby25 do
     it 'does not register an offense when using `ERB.new` ' \
        'with non-keyword arguments' do

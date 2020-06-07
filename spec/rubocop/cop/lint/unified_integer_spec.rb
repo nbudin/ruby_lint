@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Lint::UnifiedInteger, :config do
+RSpec.describe Rubocop::Rule::Lint::UnifiedInteger, :config do
   shared_examples 'registers an offense' do |klass|
     context "when #{klass}" do
       context 'without any decorations' do

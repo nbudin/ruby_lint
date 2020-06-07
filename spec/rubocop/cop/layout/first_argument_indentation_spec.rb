@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Layout::FirstArgumentIndentation, :config do
+RSpec.describe Rubocop::Rule::Layout::FirstArgumentIndentation, :config do
   let(:cop_config) do
     { 'EnforcedStyle' => style }
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Corrector do
+RSpec.describe Rubocop::Rule::Corrector do
   describe '#rewrite' do
     let(:source) do
       <<~RUBY.strip

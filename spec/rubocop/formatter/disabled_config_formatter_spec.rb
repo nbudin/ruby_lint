@@ -16,8 +16,8 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
   end
 
   let(:offenses) do
-    [RuboCop::Cop::Offense.new(:convention, location, 'message', 'Cop1'),
-     RuboCop::Cop::Offense.new(:convention, location, 'message', 'Cop2')]
+    [Rubocop::Rule::Offense.new(:convention, location, 'message', 'Cop1'),
+     Rubocop::Rule::Offense.new(:convention, location, 'message', 'Cop2')]
   end
 
   let(:location) { OpenStruct.new(line: 1, column: 5) }
@@ -108,7 +108,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
       formatter.file_finished('test_b.rb', [offenses.first])
 
       # Cop1 and Cop2 are unknown cops and would raise an validation error
-      allow(RuboCop::Cop::Cop.registry).to receive(:contains_cop_matching?)
+      allow(Rubocop::Rule::Rule.registry).to receive(:contains_cop_matching?)
         .and_return(true)
       formatter.finished(['test_a.rb', 'test_b.rb'])
     end
@@ -252,7 +252,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
   context 'with auto-correct supported cop' do
     before do
       stub_const('Test::Cop3',
-                 Class.new(::RuboCop::Cop::Cop) do
+                 Class.new(::Rubocop::Rule::Rule) do
                    def autocorrect
                      # Dummy method to respond to #support_autocorrect?
                    end
@@ -276,7 +276,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
 
     let(:offenses) do
       [
-        RuboCop::Cop::Offense.new(
+        Rubocop::Rule::Offense.new(
           :convention,
           location,
           'message',

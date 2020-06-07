@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Naming::BlockParameterName, :config do
+RSpec.describe Rubocop::Rule::Naming::BlockParameterName, :config do
   let(:cop_config) do
     {
       'MinNameLength' => 2,

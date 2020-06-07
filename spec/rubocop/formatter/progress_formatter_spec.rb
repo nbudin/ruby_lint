@@ -33,7 +33,7 @@ RSpec.describe RuboCop::Formatter::ProgressFormatter do
 
     context 'when any offenses are detected' do
       let(:offenses) do
-        [instance_double(RuboCop::Cop::Offense).as_null_object]
+        [instance_double(Rubocop::Rule::Offense).as_null_object]
       end
 
       include_examples 'calls #report_file_as_mark'
@@ -48,7 +48,7 @@ RSpec.describe RuboCop::Formatter::ProgressFormatter do
     def offense_with_severity(severity)
       source_buffer = Parser::Source::Buffer.new('test', 1)
       source_buffer.source = "a\n"
-      RuboCop::Cop::Offense.new(severity,
+      Rubocop::Rule::Offense.new(severity,
                                 Parser::Source::Range.new(source_buffer, 0, 1),
                                 'message',
                                 'CopName')
@@ -110,7 +110,7 @@ RSpec.describe RuboCop::Formatter::ProgressFormatter do
         formatter.file_finished(
           files[0],
           [
-            RuboCop::Cop::Offense.new(
+            Rubocop::Rule::Offense.new(
               :convention,
               Parser::Source::Range.new(source_buffer,
                                         line_length + 2,
@@ -128,7 +128,7 @@ RSpec.describe RuboCop::Formatter::ProgressFormatter do
         formatter.file_finished(
           files[2],
           [
-            RuboCop::Cop::Offense.new(
+            Rubocop::Rule::Offense.new(
               :error,
               Parser::Source::Range.new(source_buffer,
                                         4 * line_length + 1,
@@ -136,7 +136,7 @@ RSpec.describe RuboCop::Formatter::ProgressFormatter do
               'bar',
               'Cop'
             ),
-            RuboCop::Cop::Offense.new(
+            Rubocop::Rule::Offense.new(
               :convention,
               Parser::Source::Range.new(source_buffer,
                                         5 * line_length,

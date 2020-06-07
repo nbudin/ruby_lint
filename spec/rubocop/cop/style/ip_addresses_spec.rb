@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Style::IpAddresses, :config do
+RSpec.describe Rubocop::Rule::Style::IpAddresses, :config do
   let(:cop_config) { {} }
 
   it 'does not register an offense on an empty string' do

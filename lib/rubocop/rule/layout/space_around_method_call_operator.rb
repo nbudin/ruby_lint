@@ -20,7 +20,7 @@ module RuboCop
       #   foo &. bar&. buzz
       #   RuboCop:: Cop
       #   RuboCop:: Cop:: Cop
-      #   :: RuboCop::Cop
+      #   :: Rubocop::Rule
       #
       #   # good
       #   foo.bar
@@ -30,9 +30,9 @@ module RuboCop
       #     .buzz
       #   foo&.bar
       #   foo&.bar&.buzz
-      #   RuboCop::Cop
-      #   RuboCop::Cop::Cop
-      #   ::RuboCop::Cop
+      #   Rubocop::Rule
+      #   Rubocop::Rule::Rule
+      #   ::Rubocop::Rule
       #
       class SpaceAroundMethodCallOperator < Cop
         include SurroundingSpace
