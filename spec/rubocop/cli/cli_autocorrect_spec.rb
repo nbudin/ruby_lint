@@ -454,7 +454,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
   it 'corrects Style/Next and Style/SafeNavigation offenses' do
     create_file('.rubocop.yml', <<~YAML)
-      AllCops:
+      AllRules:
         TargetRubyVersion: 2.4
     YAML
     source = <<~'RUBY'
@@ -1369,7 +1369,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       end
     RUBY
     create_file('.rubocop.yml', <<~YAML)
-      AllCops:
+      AllRules:
         TargetRubyVersion: 2.4
     YAML
     create_file('example.rb', src)

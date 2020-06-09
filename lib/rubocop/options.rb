@@ -233,24 +233,24 @@ module RuboCop
       def validate_cop_list(names)
         return unless names
 
-        cop_names = Cop::Cop.registry.names
+        rule_names = Cop::Cop.registry.names
         departments = Cop::Cop.registry.departments.map(&:to_s)
 
         names.each do |name|
-          next if cop_names.include?(name)
+          next if rule_names.include?(name)
           next if departments.include?(name)
           next if %w[Syntax Lint/Syntax].include?(name)
 
-          raise IncorrectCopNameError, format_message_from(name, cop_names)
+          raise IncorrectCopNameError, format_message_from(name, rule_names)
         end
       end
 
       private
 
-      def format_message_from(name, cop_names)
+      def format_message_from(name, rule_names)
         message = 'Unrecognized cop or department: %<name>s.'
         message_with_candidate = "%<message>s\nDid you mean? %<candidate>s"
-        corrections = NameSimilarity.find_similar_names(name, cop_names)
+        corrections = NameSimilarity.find_similar_names(name, rule_names)
 
         if corrections.empty?
           format(message, name: name)
@@ -421,11 +421,11 @@ module RuboCop
                                          'configuration `Exclude` even if they are',
                                          'explicitly passed as arguments.'],
       only_recognized_file_types:       ['Inspect files given on the command line only if',
-                                         'they are listed in AllCops/Include parameters',
+                                         'they are listed in AllRules/Include parameters',
                                          'of user configuration or default configuration.'],
       ignore_disable_comments:          ['Run cops even when they are disabled locally',
                                          'with a comment.'],
-      ignore_parent_exclusion:          ['Prevent from inheriting AllCops/Exclude from',
+      ignore_parent_exclusion:          ['Prevent from inheriting AllRules/Exclude from',
                                          'parent folders.'],
       force_default_config:             ['Use default configuration even if configuration',
                                          'files are present in the directory tree.'],
@@ -454,7 +454,7 @@ module RuboCop
                                          'containing offenses.'],
       cache:                            ["Use result caching (FLAG=true) or don't",
                                          '(FLAG=false), default determined by',
-                                         'configuration parameter AllCops: UseCache.'],
+                                         'configuration parameter AllRules: UseCache.'],
       debug:                            'Display debug info.',
       display_rule_names:                ['Display cop names in offense messages.',
                                          'Default is true.'],

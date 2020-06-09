@@ -5,7 +5,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
 
   let(:config) do
     RuboCop::Config.new(
-      { 'AllCops' => { 'Include' => includes },
+      { 'AllRules' => { 'Include' => includes },
         described_class.badge.to_s => rule_config },
       '/some/.rubocop.yml'
     )
@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
   before do
     allow(processed_source.buffer)
       .to receive(:name).and_return(filename)
-    _investigate(cop, processed_source)
+    _investigate(rule, processed_source)
   end
 
   context 'with camelCase file names ending in .rb' do
@@ -112,7 +112,7 @@ RSpec.describe RuboCop::Rule::Naming::FileName do
     end
   end
 
-  context 'when the file is specified in AllCops/Include' do
+  context 'when the file is specified in AllRules/Include' do
     let(:includes) { ['**/Gemfile'] }
 
     context 'with a non-snake_case file name' do

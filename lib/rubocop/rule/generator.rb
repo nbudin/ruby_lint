@@ -54,7 +54,7 @@ module RuboCop
               #   # good
               #   good_foo_method(args)
               #
-              class %<cop_name>s < Rule
+              class %<rule_name>s < Rule
                 # TODO: Implement the cop in here.
                 #
                 # In many cases, you can use a node matcher for matching node pattern.
@@ -81,7 +81,7 @@ module RuboCop
       SPEC_TEMPLATE = <<~SPEC
         # frozen_string_literal: true
 
-        RSpec.describe RuboCop::Rule::%<department>s::%<cop_name>s do
+        RSpec.describe RuboCop::Rule::%<department>s::%<rule_name>s do
           subject(:rule) { described_class.new(config) }
 
           let(:config) { RuboCop::Config.new }
@@ -181,7 +181,7 @@ module RuboCop
       end
 
       def generate(template)
-        format(template, department: badge.department, cop_name: badge.cop_name)
+        format(template, department: badge.department, rule_name: badge.rule_name)
       end
 
       def spec_path
@@ -190,7 +190,7 @@ module RuboCop
           'rubocop',
           'cop',
           snake_case(badge.department.to_s),
-          "#{snake_case(badge.cop_name.to_s)}_spec.rb"
+          "#{snake_case(badge.rule_name.to_s)}_spec.rb"
         )
       end
 
@@ -200,7 +200,7 @@ module RuboCop
           'rubocop',
           'cop',
           snake_case(badge.department.to_s),
-          "#{snake_case(badge.cop_name.to_s)}.rb"
+          "#{snake_case(badge.rule_name.to_s)}.rb"
         )
       end
 

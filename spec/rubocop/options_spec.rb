@@ -44,9 +44,9 @@ RSpec.describe RuboCop::Options, :isolated_environment do
                                                configuration `Exclude` even if they are
                                                explicitly passed as arguments.
                   --only-recognized-file-types Inspect files given on the command line only if
-                                               they are listed in AllCops/Include parameters
+                                               they are listed in AllRules/Include parameters
                                                of user configuration or default configuration.
-                  --ignore-parent-exclusion    Prevent from inheriting AllCops/Exclude from
+                  --ignore-parent-exclusion    Prevent from inheriting AllRules/Exclude from
                                                parent folders.
                   --force-default-config       Use default configuration even if configuration
                                                files are present in the directory tree.
@@ -108,7 +108,7 @@ RSpec.describe RuboCop::Options, :isolated_environment do
                                                containing offenses.
               -C, --cache FLAG                 Use result caching (FLAG=true) or don't
                                                (FLAG=false), default determined by
-                                               configuration parameter AllCops: UseCache.
+                                               configuration parameter AllRules: UseCache.
               -d, --debug                      Display debug info.
               -D, --[no-]display-cop-names     Display cop names in offense messages.
                                                Default is true.

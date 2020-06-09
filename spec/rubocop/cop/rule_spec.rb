@@ -115,11 +115,11 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   describe 'for a cop with a name' do
-    let(:cop_class) { RuboCop::Rule::Style::For }
+    let(:rule_class) { RuboCop::Rule::Style::For }
 
     it 'registers offense with its name' do
       rule.add_offense(nil, location: location, message: 'message')
-      expect(rule.offenses.first.cop_name).to eq('Style/For')
+      expect(rule.offenses.first.rule_name).to eq('Style/For')
     end
   end
 
@@ -166,7 +166,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     context 'when cop supports autocorrection' do
-      let(:cop_class) { RuboCop::Rule::Style::Alias }
+      let(:rule_class) { RuboCop::Rule::Style::Alias }
 
       context 'when offense was corrected' do
         before do
@@ -208,22 +208,22 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   context 'with no submodule' do
-    it('has right name') { expect(cop_class.cop_name).to eq('Cop/Cop') }
-    it('has right department') { expect(cop_class.department).to eq(:Cop) }
+    it('has right name') { expect(rule_class.rule_name).to eq('Cop/Cop') }
+    it('has right department') { expect(rule_class.department).to eq(:Cop) }
   end
 
   context 'with style cops' do
-    let(:cop_class) { RuboCop::Rule::Style::For }
+    let(:rule_class) { RuboCop::Rule::Style::For }
 
-    it('has right name') { expect(cop_class.cop_name).to eq('Style/For') }
-    it('has right department') { expect(cop_class.department).to eq(:Style) }
+    it('has right name') { expect(rule_class.rule_name).to eq('Style/For') }
+    it('has right department') { expect(rule_class.department).to eq(:Style) }
   end
 
   context 'with lint cops' do
-    let(:cop_class) { RuboCop::Rule::Lint::Loop }
+    let(:rule_class) { RuboCop::Rule::Lint::Loop }
 
-    it('has right name') { expect(cop_class.cop_name).to eq('Lint/Loop') }
-    it('has right department') { expect(cop_class.department).to eq(:Lint) }
+    it('has right name') { expect(rule_class.rule_name).to eq('Lint/Loop') }
+    it('has right department') { expect(rule_class.department).to eq(:Lint) }
   end
 
   describe 'Registry' do

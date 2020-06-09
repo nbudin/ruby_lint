@@ -34,7 +34,7 @@ module RuboCop
       private
 
       def find_version
-        @config.for_all_cops['TargetRubyVersion']&.to_f
+        @config.for_all_rules['TargetRubyVersion']&.to_f
       end
     end
 

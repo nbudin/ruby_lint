@@ -50,7 +50,7 @@ module RuboCop
         def print_cop_details(cops)
           cops.each do |cop|
             puts '# Supports --auto-correct' if cop.new(@config).support_autocorrect?
-            puts "#{cop.cop_name}:"
+            puts "#{cop.rule_name}:"
             puts config_lines(cop)
             puts
           end
@@ -58,7 +58,7 @@ module RuboCop
 
         def selected_cops_of_department(cops, department)
           cops_of_department(cops, department).select do |cop|
-            @options[:show_cops].include?(cop.cop_name)
+            @options[:show_cops].include?(cop.rule_name)
           end
         end
 

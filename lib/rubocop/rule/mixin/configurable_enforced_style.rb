@@ -50,11 +50,11 @@ module RuboCop
       end
 
       def detected_style
-        Formatter::DisabledConfigFormatter.detected_styles[cop_name] ||= nil
+        Formatter::DisabledConfigFormatter.detected_styles[rule_name] ||= nil
       end
 
       def detected_style=(style)
-        Formatter::DisabledConfigFormatter.detected_styles[cop_name] = style
+        Formatter::DisabledConfigFormatter.detected_styles[rule_name] = style
       end
 
       alias conflicting_styles_detected no_acceptable_style!

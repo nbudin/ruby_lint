@@ -198,7 +198,7 @@ RSpec.describe RuboCop::Rule::Style::RaiseArgs, :config do
             ^^^^^^^^^^^^^^^^^ Provide an exception class and message as arguments to `raise`.
           end
         RUBY
-        expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+        expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
       end
 
       it 'auto-corrects to exploded style' do

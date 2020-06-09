@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      test do
+      test do 
         foo
       end
     RUBY
@@ -26,7 +26,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      test {
+      test { 
         foo
       }
     RUBY
@@ -41,7 +41,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      test do |x|
+      test do |x| 
         foo
       end
     RUBY
@@ -56,7 +56,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      test { |x|
+      test { |x| 
         foo
       }
     RUBY
@@ -116,7 +116,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      -> (x) do
+      -> (x) do 
         foo
         bar
       end
@@ -132,7 +132,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      -> x do
+      -> x do 
         foo
         bar
       end
@@ -192,7 +192,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      test do |foo|
+      test do |foo| 
         bar
         test
       end
@@ -209,7 +209,7 @@ RSpec.describe RuboCop::Rule::Layout::MultilineBlockLayout do
     RUBY
 
     expect_correction(<<~RUBY)
-      x = -> (y) {
+      x = -> (y) { 
             foo
         bar
       }

@@ -155,7 +155,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     expect($stdout.string)
       .to eq(["#{abs('example.rb')}:3:1: E: Lint/Syntax: unexpected " \
               'token $end (Using Ruby 2.4 parser; configure using ' \
-              '`TargetRubyVersion` parameter, under `AllCops`)',
+              '`TargetRubyVersion` parameter, under `AllRules`)',
               ''].join("\n"))
   end
 
@@ -488,10 +488,10 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             RESULT
         end
 
-        it 'overrides configuration of AllCops/StyleGuideCopsOnly' do
+        it 'overrides configuration of AllRules/StyleGuideCopsOnly' do
           create_file('example.rb', 'raise')
           create_file('.rubocop.yml', <<~YAML)
-            AllCops:
+            AllRules:
               StyleGuideCopsOnly: false
             Layout/LineLength:
               Enabled: true
@@ -513,7 +513,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
           end
         RUBY
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             StyleGuideCopsOnly: #{guide_cops_only}
             DisabledByDefault: #{disabled_by_default}
           Layout/LineLength:
@@ -525,7 +525,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         YAML
       end
 
-      describe 'AllCops/StyleGuideCopsOnly' do
+      describe 'AllRules/StyleGuideCopsOnly' do
         let(:disabled_by_default) { 'false' }
 
         context 'when it is true' do
@@ -562,7 +562,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         end
       end
 
-      describe 'AllCops/DisabledByDefault' do
+      describe 'AllRules/DisabledByDefault' do
         let(:guide_cops_only) { 'false' }
 
         context 'when it is true' do
@@ -845,7 +845,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
       create_file('dir/example2.rb', source)
       create_file('dir/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           DisplayCopNames: false
       YAML
 
@@ -869,7 +869,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
       create_file('dir/example2.rb', source)
       create_file('dir/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           DisplayStyleGuide: true
       YAML
 
@@ -890,7 +890,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       source = ['# frozen_string_literal: true', '', 'x = 0 ', 'puts x']
       create_file('example1.rb', source)
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           DefaultFormatter: offenses
       YAML
 
@@ -914,7 +914,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file('.dot2/file.rb', 'x=0') # Hidden, excluded by default
       create_file('.dot3/file.rake', 'x=0') # Hidden, not included by wildcard
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Include:
             - "**/.irbrc"
             - example
@@ -938,7 +938,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file('regexp.rb', ['x = 0', 'puts x'])
       create_file('exclude_glob.rb', ['#!/usr/bin/env ruby', 'x = 0', 'puts x'])
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - example.rb
             - !ruby/regexp /regexp.rb$/
@@ -972,7 +972,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
           Enabled: false
       YAML
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Include:
             - .other/**/*
       YAML
@@ -994,7 +994,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         x=0
       RUBY
       create_file('dir/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Include:
             - "*.ruby3"
       YAML
@@ -1019,7 +1019,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         setup { "stuff" }
       RUBY
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Include:
             - "*.dsl"
           Exclude:
@@ -1040,7 +1040,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       end
 
       create_file('example/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - ignored/**
       YAML
@@ -1314,7 +1314,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       RUBY
 
       create_file('example/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - src/**
             - etc/**/*
@@ -1335,7 +1335,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file(
         'vendor/bundle/ruby/1.9.1/gems/parser-2.0.0/.rubocop.yml',
         <<~YAML
-          AllCops:
+          AllRules:
             Exclude:
               - lib/parser/lexer.rb
         YAML
@@ -1345,7 +1345,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                   '#' * 90)
 
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - vendor/**/*
       YAML
@@ -1378,7 +1378,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                   '#' * 130)
 
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - vendor/**/*
       YAML
@@ -1397,7 +1397,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file(
         'vendor/bundle/ruby/1.9.1/gems/parser-2.0.0/.rubocop.yml',
         <<~YAML
-          AllCops:
+          AllRules:
             Exclude:
               - lib/parser/lexer.rb
         YAML
@@ -1410,7 +1410,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                   ['inherit_from: config/default.yml'])
 
       create_file('config/default.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - vendor/**/*
       YAML
@@ -1485,7 +1485,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file('example/example1.rb', '#' * 90)
 
       create_file('rubocop.yml', <<~'YAML')
-        AllCops:
+        AllRules:
           Exclude:
             - !ruby/regexp /example1\.rb$/
       YAML
@@ -1501,7 +1501,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       create_file('example/example1.rb', '#' * 90)
 
       create_file('rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - example/**
       YAML
@@ -1563,7 +1563,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
     it 'fails when a configuration file has invalid YAML syntax' do
       create_file('example/.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           Exclude:
             - **/*_old.rb
       YAML
@@ -1629,7 +1629,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     context 'when configured with an unknown version' do
       it 'fails with an error message' do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             TargetRubyVersion: 2.8
         YAML
         expect(cli.run([])).to eq(2)
@@ -1645,7 +1645,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     context 'when configured with an unsupported ruby' do
       it 'fails with an error message' do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             TargetRubyVersion: 2.0
         YAML
 

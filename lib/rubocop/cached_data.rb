@@ -30,7 +30,7 @@ module RuboCop
           end_pos: offense.location.end_pos
         },
         message:  message(offense),
-        cop_name: offense.cop_name,
+        rule_name: offense.rule_name,
         status:   :uncorrected
       }
     end
@@ -51,7 +51,7 @@ module RuboCop
                                              o['location']['end_pos'])
         Cop::Offense.new(o['severity'], location,
                          o['message'],
-                         o['cop_name'], o['status'].to_sym)
+                         o['rule_name'], o['status'].to_sym)
       end
     end
   end

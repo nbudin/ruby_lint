@@ -21,9 +21,9 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         end
       end
     else
-      context 'combined with AllCops:UseCache:false' do
+      context 'combined with AllRules:UseCache:false' do
         before do
-          create_file('.rubocop.yml', ['AllCops:',
+          create_file('.rubocop.yml', ['AllRules:',
                                        '  UseCache: false'])
         end
 
@@ -31,7 +31,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
           cli.run %w[-P]
           expect($stderr.string)
             .to include('-P/--parallel uses caching to speed up execution, ' \
-                        'so combining with AllCops: UseCache: false is not ' \
+                        'so combining with AllRules: UseCache: false is not ' \
                         'allowed.')
         end
       end
@@ -50,10 +50,10 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
       context 'in combination with --ignore-parent-exclusion' do
         before do
-          create_file('.rubocop.yml', ['AllCops:',
+          create_file('.rubocop.yml', ['AllRules:',
                                        '  Exclude:',
                                        '    - subdir/*'])
-          create_file('subdir/.rubocop.yml', ['AllCops:',
+          create_file('subdir/.rubocop.yml', ['AllRules:',
                                               '  Exclude:',
                                               '    - foobar'])
           create_file('subdir/test.rb', 'puts 1')
@@ -120,7 +120,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       context 'when there is an include and exclude' do
         before do
           create_file('.rubocop.yml', <<~YAML)
-            AllCops:
+            AllRules:
               Exclude:
                 - Gemfile
               Include:
@@ -309,7 +309,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             create_file('.rubocop.yml', <<~YAML)
               require: rubocop_ext
 
-              AllCops:
+              AllRules:
                 DefaultFormatter: progress
                 #{new_cops_option}
 
@@ -380,8 +380,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             end
           end
 
-          context 'when specifying `NewCops: pending` in .rubocop.yml' do
-            let(:new_cops_option) { 'NewCops: pending' }
+          context 'when specifying `NewRules: pending` in .rubocop.yml' do
+            let(:new_cops_option) { 'NewRules: pending' }
 
             let(:output) do
               `ruby -I . "#{rubocop}" --require redirect.rb`
@@ -392,8 +392,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             end
           end
 
-          context 'when specifying `NewCops: disable` in .rubocop.yml' do
-            let(:new_cops_option) { 'NewCops: disable' }
+          context 'when specifying `NewRules: disable` in .rubocop.yml' do
+            let(:new_cops_option) { 'NewRules: disable' }
 
             let(:output) do
               `ruby -I . "#{rubocop}" --require redirect.rb`
@@ -404,8 +404,8 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
             end
           end
 
-          context 'when specifying `NewCops: enable` in .rubocop.yml' do
-            let(:new_cops_option) { 'NewCops: enable' }
+          context 'when specifying `NewRules: enable` in .rubocop.yml' do
+            let(:new_cops_option) { 'NewRules: enable' }
 
             let(:output) do
               `ruby -I . "#{rubocop}" --require redirect.rb`
@@ -683,17 +683,17 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
     context 'when several cops are given' do
       %w[RedundantCopDisableDirective
-         Lint/RedundantCopDisableDirective Lint].each do |cop_name|
-        it "disables the given cops including #{cop_name}" do
+         Lint/RedundantCopDisableDirective Lint].each do |rule_name|
+        it "disables the given cops including #{rule_name}" do
           create_file('example.rb', ['if x== 100000000000000 ',
                                      "\ty",
                                      'end # rubocop:disable all'])
           expect(cli.run(['--format', 'offenses',
                           '--except',
                           'Style/IfUnlessModifier,Layout/IndentationStyle,' \
-                          "Layout/SpaceAroundOperators,#{cop_name}",
+                          "Layout/SpaceAroundOperators,#{rule_name}",
                           'example.rb'])).to eq(1)
-          if cop_name == 'RedundantCopDisableDirective'
+          if rule_name == 'RedundantCopDisableDirective'
             expect($stderr.string.chomp)
               .to eq('--except option: Warning: no department given for ' \
                      'RedundantCopDisableDirective.')
@@ -802,7 +802,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     context 'DisplayCopNames: false in .rubocop.yml' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             DisplayCopNames: false
         YAML
       end
@@ -912,10 +912,10 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       it 'prints the current configuration' do
         out = stdout.lines.to_a
         printed_config = YAML.load(out.join) # rubocop:disable Security/YAMLLoad
-        cop_names = (arguments[0] || '').split(',')
-        cop_names.each do |cop_name|
-          global_conf[cop_name].each do |key, value|
-            printed_value = printed_config[cop_name][key]
+        rule_names = (arguments[0] || '').split(',')
+        rule_names.each do |rule_name|
+          global_conf[rule_name].each do |key, value|
+            printed_value = printed_config[rule_name][key]
             expect(printed_value).to eq(value)
           end
         end
@@ -959,7 +959,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
       it 'prints all available cops and their description' do
         cops.each do |cop|
-          expect(stdout).to include cop.cop_name
+          expect(stdout).to include cop.rule_name
           # Because of line breaks, we will only find the beginning.
           expect(stdout).to include short_description_of_cop(cop)[0..60]
         end
@@ -980,13 +980,13 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
 
           # all cops in their department listing
           registry.with_department(current).each do |cop|
-            expect(slice.any? { |l| l.include? cop.cop_name }).to be_truthy
+            expect(slice.any? { |l| l.include? cop.rule_name }).to be_truthy
           end
 
           # no cop in wrong department listing
           departments.each do |department|
             registry.with_department(department).each do |cop|
-              expect(slice.any? { |l| l.include? cop.cop_name }).to be_falsey
+              expect(slice.any? { |l| l.include? cop.rule_name }).to be_falsey
             end
           end
         end
@@ -1079,7 +1079,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                     'severity' => 'convention',
                     'location' => { 'begin_pos' => 18, 'end_pos' => 21 },
                     'message' => message_from_cache,
-                    'cop_name' => 'Metrics/CyclomaticComplexity',
+                    'rule_name' => 'Metrics/CyclomaticComplexity',
                     'status' => 'unsupported'
                   }
                 ]
@@ -1526,7 +1526,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
         create_file(target_file, '#' * 130)
 
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Exclude:
               - #{target_file}
         YAML
@@ -1563,7 +1563,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     context 'when explicitly included' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Include:
               - #{target_file}
         YAML

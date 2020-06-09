@@ -4,7 +4,7 @@ RSpec.describe RuboCop::Rule::Style::HashSyntax, :config do
   context 'configured to enforce ruby19 style' do
     context 'with SpaceAroundOperators enabled' do
       let(:config) do
-        RuboCop::Config.new('AllCops' => {
+        RuboCop::Config.new('AllRules' => {
                               'TargetRubyVersion' => ruby_version
                             },
                             'Style/HashSyntax' => rule_config,
@@ -165,7 +165,7 @@ RSpec.describe RuboCop::Rule::Style::HashSyntax, :config do
 
     context 'with SpaceAroundOperators disabled' do
       let(:config) do
-        RuboCop::Config.new('AllCops' => {
+        RuboCop::Config.new('AllRules' => {
                               'TargetRubyVersion' => ruby_version
                             },
                             'Style/HashSyntax' => {

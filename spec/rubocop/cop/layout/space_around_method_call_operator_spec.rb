@@ -366,9 +366,9 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
   context ':: operator' do
     include_examples 'offense', 'space after method call',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop:: Cop
+      RuboCop:: Rule
     CODE
-      RuboCop:: Cop
+      RuboCop:: Rule
                ^ Avoid using spaces around a method call operator.
     OFFENSE
       RuboCop::Rule
@@ -376,9 +376,9 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
 
     include_examples 'offense', 'spaces after method call',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop::  Cop
+      RuboCop::  Rule
     CODE
-      RuboCop::  Cop
+      RuboCop::  Rule
                ^^ Avoid using spaces around a method call operator.
     OFFENSE
       RuboCop::Rule
@@ -388,20 +388,20 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
       include_examples 'offense', 'space before method call',
                        <<-CODE, <<-OFFENSE, <<-CORRECTION
         RuboCop
-          :: Cop
+          :: Rule
       CODE
         RuboCop
-          :: Cop
+          :: Rule
             ^ Avoid using spaces around a method call operator.
       OFFENSE
         RuboCop
-          ::Cop
+          ::Rule
       CORRECTION
 
       it 'does not register an offense when no space after the `::`' do
         expect_no_offenses(<<~RUBY)
           RuboCop
-            ::Cop
+            ::Rule
         RUBY
       end
     end
@@ -414,9 +414,9 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
 
     include_examples 'offense', 'space after last method call operator',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop::Rule:: Cop
+      RuboCop::Rule:: Rule
     CODE
-      RuboCop::Rule:: Cop
+      RuboCop::Rule:: Rule
                     ^ Avoid using spaces around a method call operator.
     OFFENSE
       RuboCop::Rule::Rule
@@ -425,24 +425,24 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
     include_examples 'offense',
                      'space around intermediate method call operator',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      RuboCop::Rule:: Cop::Cop
+      RuboCop::Rule:: Rule::Rule
     CODE
-      RuboCop::Rule:: Cop::Cop
+      RuboCop::Rule:: Rule::Rule
                     ^ Avoid using spaces around a method call operator.
     OFFENSE
-      RuboCop::Rule::Rule::Cop
+      RuboCop::Rule::Rule::Rule
     CORRECTION
 
     include_examples 'offense', 'space around multiple method call operator',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      :: RuboCop:: Cop:: Cop::Cop
+      :: RuboCop:: Rule:: Rule::Rule
     CODE
-      :: RuboCop:: Cop:: Cop::Cop
+      :: RuboCop:: Rule:: Rule::Rule
                         ^ Avoid using spaces around a method call operator.
                   ^ Avoid using spaces around a method call operator.
         ^ Avoid using spaces around a method call operator.
     OFFENSE
-      ::RuboCop::Rule::Rule::Cop
+      ::RuboCop::Rule::Rule::Rule
     CORRECTION
 
     include_examples 'offense', 'space after first operator with assignment',

@@ -11,7 +11,7 @@ RSpec.describe RuboCop::Rule::Layout::FirstHashElementLineBreak do
     RUBY
 
     expect_correction(<<~RUBY)
-      a = {
+      a = { 
       a: 1,
             b: 2 }
     RUBY
@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Rule::Layout::FirstHashElementLineBreak do
     RUBY
 
     expect_correction(<<~RUBY)
-      method({
+      method({ 
       foo: 1,
                bar: 2 })
     RUBY

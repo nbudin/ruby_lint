@@ -89,7 +89,7 @@ module RuboCop
 
         config = load_file(config_file)
         if ignore_parent_exclusion?
-          print 'Ignoring AllCops/Exclude from parent folders' if debug?
+          print 'Ignoring AllRules/Exclude from parent folders' if debug?
         else
           add_excludes_from_files(config, config_file)
         end
@@ -112,7 +112,7 @@ module RuboCop
         return if PathUtil.relative_path(found_files.last) ==
                   PathUtil.relative_path(config_file)
 
-        print 'AllCops/Exclude ' if debug?
+        print 'AllRules/Exclude ' if debug?
         config.add_excludes_from_higher_level(load_file(found_files.last))
       end
 
@@ -140,9 +140,9 @@ module RuboCop
       end
 
       # Merges the given configuration with the default one. If
-      # AllCops:DisabledByDefault is true, it changes the Enabled params so
+      # AllRules:DisabledByDefault is true, it changes the Enabled params so
       # that only cops from user configuration are enabled.
-      # If AllCops::EnabledByDefault is true, it changes the Enabled params
+      # If AllRules::EnabledByDefault is true, it changes the Enabled params
       # so that only cops explicitly disabled in user configuration are
       # disabled.
       def merge_with_default(config, config_file, unset_nil: true)

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Rule::Team do
-  subject(:team) { described_class.mobilize(cop_classes, config, options) }
+  subject(:team) { described_class.mobilize(rule_classes, config, options) }
 
-  let(:cop_classes) { RuboCop::Rule::Rule.registry }
+  let(:rule_classes) { RuboCop::Rule::Rule.registry }
   let(:config) { RuboCop::ConfigLoader.default_configuration }
   let(:options) { nil }
   let(:ruby_version) { RuboCop::TargetRuby.supported_versions.last }
@@ -59,7 +59,7 @@ RSpec.describe RuboCop::Rule::Team do
     subject { team.autocorrect? }
 
     context 'when the option argument of .new is omitted' do
-      subject { described_class.new(cop_classes, config).autocorrect? }
+      subject { described_class.new(rule_classes, config).autocorrect? }
 
       it { is_expected.to be_falsey }
     end
@@ -75,7 +75,7 @@ RSpec.describe RuboCop::Rule::Team do
     subject { team.debug? }
 
     context 'when the option argument of .new is omitted' do
-      subject { described_class.new(cop_classes, config).debug? }
+      subject { described_class.new(rule_classes, config).debug? }
 
       it { is_expected.to be_falsey }
     end
@@ -113,14 +113,14 @@ RSpec.describe RuboCop::Rule::Team do
         create_file(file_path, ['#' * 130, 'puts *test'])
       end
 
-      let(:cop_names) { offenses.map(&:cop_name) }
+      let(:rule_names) { offenses.map(&:rule_name) }
 
       it 'returns Parser warning offenses' do
-        expect(cop_names).to include('Lint/AmbiguousOperator')
+        expect(rule_names).to include('Lint/AmbiguousOperator')
       end
 
       it 'returns offenses from cops' do
-        expect(cop_names).to include('Layout/LineLength')
+        expect(rule_names).to include('Layout/LineLength')
       end
 
       context 'when a cop has no interest in the file' do
@@ -128,8 +128,8 @@ RSpec.describe RuboCop::Rule::Team do
           allow_any_instance_of(RuboCop::Rule::Layout::LineLength)
             .to receive(:excluded_file?).and_return(true)
 
-          expect(cop_names).to include('Lint/AmbiguousOperator')
-          expect(cop_names).not_to include('Layout/LineLength')
+          expect(rule_names).to include('Lint/AmbiguousOperator')
+          expect(rule_names).not_to include('Layout/LineLength')
         end
       end
     end
@@ -152,7 +152,7 @@ RSpec.describe RuboCop::Rule::Team do
       end
 
       it 'still returns offenses' do
-        expect(offenses[1].cop_name).to eq('Style/StringLiterals')
+        expect(offenses[1].rule_name).to eq('Style/StringLiterals')
       end
     end
 
@@ -221,7 +221,7 @@ RSpec.describe RuboCop::Rule::Team do
     end
 
     context 'when only some cop classes are passed to .new' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new(
           [RuboCop::Rule::Lint::Void, RuboCop::Rule::Layout::LineLength]
         )
@@ -240,19 +240,19 @@ RSpec.describe RuboCop::Rule::Team do
         %w[
           Lint/Void
           Layout/LineLength
-        ].each_with_object(RuboCop::Config.new) do |cop_name, accum|
-          accum[cop_name] = { 'Enabled' => false }
+        ].each_with_object(RuboCop::Config.new) do |rule_name, accum|
+          accum[rule_name] = { 'Enabled' => false }
         end
       end
       let(:config) do
         RuboCop::ConfigLoader.merge_with_default(disabled_config, '')
       end
-      let(:cop_names) { cops.map(&:name) }
+      let(:rule_names) { cops.map(&:name) }
 
       it 'does not return instances of the classes' do
         expect(cops.empty?).to be(false)
-        expect(cop_names).not_to include('Lint/Void')
-        expect(cop_names).not_to include('Layout/LineLength')
+        expect(rule_names).not_to include('Lint/Void')
+        expect(rule_names).not_to include('Layout/LineLength')
       end
     end
   end
@@ -260,7 +260,7 @@ RSpec.describe RuboCop::Rule::Team do
   describe '#forces' do
     subject(:forces) { team.forces }
 
-    let(:cop_classes) { RuboCop::Rule::Rule.registry }
+    let(:rule_classes) { RuboCop::Rule::Rule.registry }
 
     it 'returns force instances' do
       expect(forces.empty?).to be(false)
@@ -271,7 +271,7 @@ RSpec.describe RuboCop::Rule::Team do
     end
 
     context 'when a cop joined a force' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new([RuboCop::Rule::Lint::UselessAssignment])
       end
 
@@ -282,7 +282,7 @@ RSpec.describe RuboCop::Rule::Team do
     end
 
     context 'when multiple cops joined a same force' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new(
           [
             RuboCop::Rule::Lint::UselessAssignment,
@@ -297,7 +297,7 @@ RSpec.describe RuboCop::Rule::Team do
     end
 
     context 'when no cops joined force' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new([RuboCop::Rule::Style::For])
       end
 
@@ -308,14 +308,14 @@ RSpec.describe RuboCop::Rule::Team do
   end
 
   describe '#external_dependency_checksum' do
-    let(:cop_classes) { RuboCop::Rule::Registry.new }
+    let(:rule_classes) { RuboCop::Rule::Registry.new }
 
     it 'does not error with no cops' do
       expect(team.external_dependency_checksum.is_a?(String)).to be(true)
     end
 
     context 'when a cop joins' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new([RuboCop::Rule::Lint::UselessAssignment])
       end
 
@@ -325,7 +325,7 @@ RSpec.describe RuboCop::Rule::Team do
     end
 
     context 'when multiple cops join' do
-      let(:cop_classes) do
+      let(:rule_classes) do
         RuboCop::Rule::Registry.new(
           [
             RuboCop::Rule::Lint::UselessAssignment,
@@ -349,7 +349,7 @@ RSpec.describe RuboCop::Rule::Team do
                    end)
       end
 
-      let(:new_cop_classes) do
+      let(:new_rule_classes) do
         RuboCop::Rule::Registry.new(
           [
             Test::CopWithExternalDeps,
@@ -361,7 +361,7 @@ RSpec.describe RuboCop::Rule::Team do
 
       it 'has a different checksum for the whole team' do
         original_checksum = team.external_dependency_checksum
-        new_team = described_class.mobilize(new_cop_classes, config, options)
+        new_team = described_class.mobilize(new_rule_classes, config, options)
         new_checksum = new_team.external_dependency_checksum
         expect(original_checksum).not_to eq(new_checksum)
       end
@@ -370,8 +370,8 @@ RSpec.describe RuboCop::Rule::Team do
 
   describe '.new' do
     it 'calls mobilize when passed classes' do
-      expect(described_class).to receive(:mobilize).with(cop_classes, config, options)
-      described_class.new(cop_classes, config, options)
+      expect(described_class).to receive(:mobilize).with(rule_classes, config, options)
+      described_class.new(rule_classes, config, options)
     end
 
     it 'accepts cops directly classes' do

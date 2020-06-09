@@ -110,7 +110,7 @@ RSpec.describe RuboCop::RakeTask do
     it 'uses the default formatter from .rubocop.yml if no formatter ' \
        'option is given', :isolated_environment do
       create_file('.rubocop.yml', <<~YAML)
-        AllCops:
+        AllRules:
           DefaultFormatter: offenses
       YAML
       create_file('test.rb', '$:')

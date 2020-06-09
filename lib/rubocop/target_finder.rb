@@ -102,7 +102,7 @@ module RuboCop
     end
 
     def excluded_dirs(base_dir)
-      all_cops_config = @config_store.for(base_dir).for_all_cops
+      all_cops_config = @config_store.for(base_dir).for_all_rules
       dir_tree_excludes = all_cops_config['Exclude'].select do |pattern|
         pattern.is_a?(String) && pattern.end_with?('/**/*')
       end
@@ -132,7 +132,7 @@ module RuboCop
     end
 
     def all_cops_include
-      @config_store.for('.').for_all_cops['Include'].map(&:to_s)
+      @config_store.for('.').for_all_rules['Include'].map(&:to_s)
     end
 
     def ruby_executable?(file)
@@ -147,7 +147,7 @@ module RuboCop
     end
 
     def ruby_interpreters(file)
-      @config_store.for(file).for_all_cops['RubyInterpreters']
+      @config_store.for(file).for_all_rules['RubyInterpreters']
     end
 
     def stdin?

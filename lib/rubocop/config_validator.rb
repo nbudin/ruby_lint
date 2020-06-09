@@ -15,7 +15,7 @@ module RuboCop
                          Reference Safe SafeAutoCorrect].freeze
     NEW_COPS_VALUES = %w[pending disable enable].freeze
 
-    def_delegators :@config, :smart_loaded_path, :for_all_cops
+    def_delegators :@config, :smart_loaded_path, :for_all_rules
 
     def initialize(config)
       @config = config
@@ -31,17 +31,17 @@ module RuboCop
       # Don't validate RuboCop's own files further. Avoids infinite recursion.
       return if @config.internal?
 
-      valid_cop_names, invalid_cop_names = @config.keys.partition do |key|
+      valid_rule_names, invalid_rule_names = @config.keys.partition do |key|
         ConfigLoader.default_configuration.key?(key)
       end
 
       @config_obsoletion.reject_obsolete_cops_and_parameters
 
-      alert_about_unrecognized_cops(invalid_cop_names)
+      alert_about_unrecognized_cops(invalid_rule_names)
       check_target_ruby
       validate_new_cops_parameter
-      validate_parameter_names(valid_cop_names)
-      validate_enforced_styles(valid_cop_names)
+      validate_parameter_names(valid_rule_names)
+      validate_enforced_styles(valid_rule_names)
       validate_syntax_cop
       reject_mutually_exclusive_defaults
     end
@@ -82,9 +82,9 @@ module RuboCop
       raise ValidationError, msg
     end
 
-    def alert_about_unrecognized_cops(invalid_cop_names)
+    def alert_about_unrecognized_cops(invalid_rule_names)
       unknown_cops = []
-      invalid_cop_names.each do |name|
+      invalid_rule_names.each do |name|
         # There could be a custom cop with this name. If so, don't warn
         next if Cop::Cop.registry.contains_cop_matching?([name])
 
@@ -112,19 +112,19 @@ module RuboCop
     end
 
     def validate_new_cops_parameter
-      new_cop_parameter = @config.for_all_cops['NewCops']
+      new_cop_parameter = @config.for_all_rules['NewRules']
       return if new_cop_parameter.nil? ||
                 NEW_COPS_VALUES.include?(new_cop_parameter)
 
-      message = "invalid #{new_cop_parameter} for `NewCops` found in" \
+      message = "invalid #{new_cop_parameter} for `NewRules` found in" \
                 "#{smart_loaded_path}\n" \
                 "Valid choices are: #{NEW_COPS_VALUES.join(', ')}"
 
       raise ValidationError, message
     end
 
-    def validate_parameter_names(valid_cop_names)
-      valid_cop_names.each do |name|
+    def validate_parameter_names(valid_rule_names)
+      valid_rule_names.each do |name|
         validate_section_presence(name)
         each_invalid_parameter(name) do |param, supported_params|
           warn Rainbow(<<~MESSAGE).yellow
@@ -138,10 +138,10 @@ module RuboCop
       end
     end
 
-    def each_invalid_parameter(cop_name)
-      default_config = ConfigLoader.default_configuration[cop_name]
+    def each_invalid_parameter(rule_name)
+      default_config = ConfigLoader.default_configuration[rule_name]
 
-      @config[cop_name].each_key do |param|
+      @config[rule_name].each_key do |param|
         next if COMMON_PARAMS.include?(param) || default_config.key?(param)
 
         supported_params = default_config.keys - INTERNAL_PARAMS
@@ -150,8 +150,8 @@ module RuboCop
       end
     end
 
-    def validate_enforced_styles(valid_cop_names)
-      valid_cop_names.each do |name|
+    def validate_enforced_styles(valid_rule_names)
+      valid_rule_names.each do |name|
         styles = @config[name].select { |key, _| key.start_with?('Enforced') }
 
         styles.each do |style_name, style|
@@ -177,8 +177,8 @@ module RuboCop
     end
 
     def reject_mutually_exclusive_defaults
-      disabled_by_default = for_all_cops['DisabledByDefault']
-      enabled_by_default = for_all_cops['EnabledByDefault']
+      disabled_by_default = for_all_rules['DisabledByDefault']
+      enabled_by_default = for_all_rules['EnabledByDefault']
       return unless disabled_by_default && enabled_by_default
 
       msg = 'Cops cannot be both enabled by default and disabled by default'

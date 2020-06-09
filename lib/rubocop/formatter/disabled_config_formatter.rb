@@ -2,7 +2,7 @@
 
 module RuboCop
   module Formatter
-    # This formatter displays a YAML configuration file where all cops that
+    # This formatter displays a YAML configuration file where all rules that
     # detected any offenses are configured to not detect the offense.
     class DisabledConfigFormatter < BaseFormatter
       HEADING = <<~COMMENTS
@@ -24,7 +24,7 @@ module RuboCop
 
       def initialize(output, options = {})
         super
-        @cops_with_offenses ||= Hash.new(0)
+        @rules_with_offenses ||= Hash.new(0)
         @files_with_offenses ||= {}
       end
 
@@ -37,17 +37,17 @@ module RuboCop
 
       def file_finished(file, offenses)
         offenses.each do |o|
-          @cops_with_offenses[o.cop_name] += 1
-          @files_with_offenses[o.cop_name] ||= Set.new
-          @files_with_offenses[o.cop_name] << file
+          @rules_with_offenses[o.rule_name] += 1
+          @files_with_offenses[o.rule_name] ||= Set.new
+          @files_with_offenses[o.rule_name] << file
         end
       end
 
       def finished(_inspected_files)
         output.puts format(HEADING, command: command, timestamp: timestamp)
 
-        # Syntax isn't a real cop and it can't be disabled.
-        @cops_with_offenses.delete('Lint/Syntax')
+        # Syntax isn't a real rule and it can't be disabled.
+        @rules_with_offenses.delete('Lint/Syntax')
 
         output_offenses
 
@@ -78,32 +78,32 @@ module RuboCop
       end
 
       def output_offenses
-        @cops_with_offenses.sort.each do |cop_name, offense_count|
-          output_cop(cop_name, offense_count)
+        @rules_with_offenses.sort.each do |rule_name, offense_count|
+          output_rule(rule_name, offense_count)
         end
       end
 
-      def output_cop(cop_name, offense_count)
+      def output_rule(rule_name, offense_count)
         output.puts
-        cfg = self.class.config_to_allow_offenses[cop_name] || {}
-        set_max(cfg, cop_name)
+        cfg = self.class.config_to_allow_offenses[rule_name] || {}
+        set_max(cfg, rule_name)
 
         # To avoid malformed YAML when potentially reading the config in
         # #excludes, we use an output buffer and append it to the actual output
         # only when it results in valid YAML.
         output_buffer = StringIO.new
-        output_cop_comments(output_buffer, cfg, cop_name, offense_count)
-        output_rule_config(output_buffer, cfg, cop_name)
+        output_rule_comments(output_buffer, cfg, rule_name, offense_count)
+        output_rule_config(output_buffer, cfg, rule_name)
         output.puts(output_buffer.string)
       end
 
-      def set_max(cfg, cop_name)
+      def set_max(cfg, rule_name)
         return unless cfg[:exclude_limit]
 
         # In case auto_gen_only_exclude is set, only modify the maximum if the
         # files are not excluded one by one.
         if !@options[:auto_gen_only_exclude] ||
-           @files_with_offenses[cop_name].size > @exclude_limit
+           @files_with_offenses[rule_name].size > @exclude_limit
           cfg.merge!(cfg[:exclude_limit])
         end
 
@@ -111,19 +111,19 @@ module RuboCop
         cfg.reject! { |key| key == :exclude_limit }
       end
 
-      def output_cop_comments(output_buffer, cfg, cop_name, offense_count)
+      def output_rule_comments(output_buffer, cfg, rule_name, offense_count)
         output_buffer.puts "# Offense count: #{offense_count}" if @show_offense_counts
 
-        cop_class = Cop::Cop.registry.find_by_cop_name(cop_name)
-        output_buffer.puts '# Cop supports --auto-correct.' if cop_class&.new&.support_autocorrect?
+        rule_class = Rule::Rule.registry.find_by_rule_name(rule_name)
+        output_buffer.puts '# Rule supports --auto-correct.' if rule_class&.new&.support_autocorrect?
 
-        default_cfg = default_config(cop_name)
+        default_cfg = default_config(rule_name)
         return unless default_cfg
 
         params = rule_config_params(default_cfg, cfg)
         return if params.empty?
 
-        output_cop_param_comments(output_buffer, params, default_cfg)
+        output_rule_param_comments(output_buffer, params, default_cfg)
       end
 
       def rule_config_params(default_cfg, cfg)
@@ -133,7 +133,7 @@ module RuboCop
           cfg.keys
       end
 
-      def output_cop_param_comments(output_buffer, params, default_cfg)
+      def output_rule_param_comments(output_buffer, params, default_cfg)
         config_params = params.reject { |p| p.start_with?('Supported') }
         output_buffer.puts(
           "# Configuration parameters: #{config_params.join(', ')}."
@@ -148,53 +148,53 @@ module RuboCop
         end
       end
 
-      def default_config(cop_name)
-        RuboCop::ConfigLoader.default_configuration[cop_name]
+      def default_config(rule_name)
+        RuboCop::ConfigLoader.default_configuration[rule_name]
       end
 
-      def output_rule_config(output_buffer, cfg, cop_name)
+      def output_rule_config(output_buffer, cfg, rule_name)
         # 'Enabled' option will be put into file only if exclude
         # limit is exceeded.
         cfg_without_enabled = cfg.reject { |key| key == 'Enabled' }
 
-        output_buffer.puts "#{cop_name}:"
+        output_buffer.puts "#{rule_name}:"
         cfg_without_enabled.each do |key, value|
           value = value[0] if value.is_a?(Array)
           output_buffer.puts "  #{key}: #{value}"
         end
 
-        output_offending_files(output_buffer, cfg_without_enabled, cop_name)
+        output_offending_files(output_buffer, cfg_without_enabled, rule_name)
       end
 
-      def output_offending_files(output_buffer, cfg, cop_name)
+      def output_offending_files(output_buffer, cfg, rule_name)
         return unless cfg.empty?
 
-        offending_files = @files_with_offenses[cop_name].sort
+        offending_files = @files_with_offenses[rule_name].sort
         if offending_files.count > @exclude_limit
           output_buffer.puts '  Enabled: false'
         else
-          output_exclude_list(output_buffer, offending_files, cop_name)
+          output_exclude_list(output_buffer, offending_files, rule_name)
         end
       end
 
-      def output_exclude_list(output_buffer, offending_files, cop_name)
+      def output_exclude_list(output_buffer, offending_files, rule_name)
         require 'pathname'
         parent = Pathname.new(Dir.pwd)
 
         output_buffer.puts '  Exclude:'
-        excludes(offending_files, cop_name, parent).each do |exclude_path|
+        excludes(offending_files, rule_name, parent).each do |exclude_path|
           output_exclude_path(output_buffer, exclude_path, parent)
         end
       end
 
-      def excludes(offending_files, cop_name, parent)
+      def excludes(offending_files, rule_name, parent)
         # Exclude properties in .rubocop_todo.yml override default ones, as well
         # as any custom excludes in .rubocop.yml, so in order to retain those
-        # excludes we must copy them.
+        # excludes we must ruley them.
         # There can be multiple .rubocop.yml files in subdirectories, but we
         # just look at the current working directory
         config = ConfigStore.new.for(parent)
-        cfg = config[cop_name] || {}
+        cfg = config[rule_name] || {}
 
         ((cfg['Exclude'] || []) + offending_files).uniq
       end

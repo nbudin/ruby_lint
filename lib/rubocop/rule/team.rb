@@ -39,20 +39,20 @@ module RuboCop
         super
       end
 
-      # @return [Team] with cops assembled from the given `cop_classes`
-      def self.mobilize(cop_classes, config, options = nil)
+      # @return [Team] with cops assembled from the given `rule_classes`
+      def self.mobilize(rule_classes, config, options = nil)
         options ||= DEFAULT_OPTIONS
-        cops = mobilize_cops(cop_classes, config, options)
+        cops = mobilize_cops(rule_classes, config, options)
         new(cops, config, options)
       end
 
       # @return [Array<Cop::Cop>]
-      def self.mobilize_cops(cop_classes, config, options = nil)
+      def self.mobilize_cops(rule_classes, config, options = nil)
         options ||= DEFAULT_OPTIONS
         only = options.fetch(:only, [])
         safe = options.fetch(:safe, false)
-        cop_classes.enabled(config, only, safe).map do |cop_class|
-          cop_class.new(config, options)
+        rule_classes.enabled(config, only, safe).map do |rule_class|
+          rule_class.new(config, options)
         end
       end
 

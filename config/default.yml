@@ -1,6 +1,6 @@
 # Common configuration.
 
-AllCops:
+AllRules:
   RubyInterpreters:
     - ruby
     - macruby
@@ -101,12 +101,12 @@ AllCops:
   DisabledByDefault: false
   # New cops introduced between major versions are set to a special pending status
   # and are not enabled by default with warning message.
-  # Change this behavior by overriding either `NewCops: enable` or `NewCops: disable`.
-  # When `NewCops` is `enable`, pending cops are enabled in bulk. Can be overridden by
+  # Change this behavior by overriding either `NewRules: enable` or `NewRules: disable`.
+  # When `NewRules` is `enable`, pending cops are enabled in bulk. Can be overridden by
   # the `--enable-pending-cops` command-line option.
-  # When `NewCops` is `disable`, pending cops are disabled in bulk. Can be overridden by
+  # When `NewRules` is `disable`, pending cops are disabled in bulk. Can be overridden by
   # the `--disable-pending-cops` command-line option.
-  NewCops: pending
+  NewRules: pending
   # Enables the result cache if `true`. Can be overridden by the `--cache` command
   # line option.
   UseCache: true
@@ -2028,8 +2028,8 @@ Naming/FileName:
   StyleGuide: '#snake-case-files'
   Enabled: true
   VersionAdded: '0.50'
-  # Camel case file names listed in `AllCops:Include` and all file names listed
-  # in `AllCops:Exclude` are excluded by default. Add extra excludes here.
+  # Camel case file names listed in `AllRules:Include` and all file names listed
+  # in `AllRules:Exclude` are excluded by default. Add extra excludes here.
   Exclude: []
   # When `true`, requires that each source file should define a class or module
   # with a name which matches the file name (converted to ... case).

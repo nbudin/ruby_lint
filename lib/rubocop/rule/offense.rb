@@ -7,7 +7,7 @@ module RuboCop
       include Comparable
 
       # @api private
-      COMPARISON_ATTRIBUTES = %i[line column cop_name
+      COMPARISON_ATTRIBUTES = %i[line column rule_name
                                  message severity].freeze
 
       # @api public
@@ -41,26 +41,26 @@ module RuboCop
 
       # @api public
       #
-      # @!attribute [r] cop_name
+      # @!attribute [r] rule_name
       #
       # @return [String]
-      #   a cop class name without department.
+      #   a rule class name without department.
       #   i.e. type of the violation.
       #
       # @example
       #   'LineLength'
-      attr_reader :cop_name
+      attr_reader :rule_name
 
       # @api private
       attr_reader :status
 
       # @api private
-      def initialize(severity, location, message, cop_name,
+      def initialize(severity, location, message, rule_name,
                      status = :uncorrected)
         @severity = RuboCop::Rule::Severity.new(severity)
         @location = location
         @message = message.freeze
-        @cop_name = cop_name.freeze
+        @rule_name = rule_name.freeze
         @status = status
         freeze
       end

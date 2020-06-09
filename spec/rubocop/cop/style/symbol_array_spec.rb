@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::SymbolArray, :config do
     described_class.largest_brackets = -Float::INFINITY
   end
 
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Style/PercentLiteralDelimiters' => {
         'PreferredDelimiters' => {
@@ -85,21 +85,21 @@ RSpec.describe RuboCop::Rule::Style::SymbolArray, :config do
         %i(a b c d)
       RUBY
 
-      expect(cop.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
+      expect(rule.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
                                                  'MinSize' => 4)
     end
 
-    it 'detects when the cop must be disabled to avoid offenses' do
+    it 'detects when the rule must be disabled to avoid offenses' do
       inspect_source(<<~RUBY)
         [:one, :two, :three]
         %i(a b)
       RUBY
 
-      expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+      expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
     end
 
     context 'when PreferredDelimiters is specified' do
-      let(:other_cops) do
+      let(:other_rules) do
         {
           'Style/PercentLiteralDelimiters' => {
             'PreferredDelimiters' => {

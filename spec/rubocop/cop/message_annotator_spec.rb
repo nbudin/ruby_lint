@@ -3,9 +3,9 @@
 RSpec.describe RuboCop::Rule::MessageAnnotator do
   let(:options) { {} }
   let(:config) { RuboCop::Config.new({}) }
-  let(:cop_name) { 'Cop/Cop' }
+  let(:rule_name) { 'Rule/Rule' }
   let(:annotator) do
-    described_class.new(config, cop_name, config[cop_name], options)
+    described_class.new(config, rule_name, config[rule_name], options)
   end
 
   describe '#annotate' do
@@ -41,7 +41,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
       end
       let(:config) do
         RuboCop::Config.new(
-          'Cop/Cop' => {
+          'Rule/Rule' => {
             'Details' => 'my cop details',
             'StyleGuide' => 'http://example.org/styleguide'
           }
@@ -50,7 +50,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
 
       it 'returns an annotated message' do
         expect(annotate).to eq(
-          'Cop/Cop: message my cop details (http://example.org/styleguide)'
+          'Rule/Rule: message my cop details (http://example.org/styleguide)'
         )
       end
     end
@@ -61,7 +61,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
       annotator.annotate('')
     end
 
-    let(:cop_name) { 'Cop/Cop' }
+    let(:rule_name) { 'Rule/Rule' }
     let(:options) do
       {
         display_style_guide: true
@@ -79,7 +79,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     context 'when StyleGuide is set in the config' do
       let(:config) do
         RuboCop::Config.new(
-          'Cop/Cop' => { 'StyleGuide' => 'http://example.org/styleguide' }
+          'Rule/Rule' => { 'StyleGuide' => 'http://example.org/styleguide' }
         )
       end
 
@@ -91,26 +91,26 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     context 'when a base URL is specified' do
       let(:config) do
         RuboCop::Config.new(
-          'AllCops' => {
+          'AllRules' => {
             'StyleGuideBaseURL' => 'http://example.org/styleguide'
           }
         )
       end
 
       it 'does not specify a URL if a cop does not have one' do
-        config['Cop/Cop'] = { 'StyleGuide' => nil }
+        config['Rule/Rule'] = { 'StyleGuide' => nil }
         expect(annotate).to eq('')
       end
 
       it 'combines correctly with a target-based setting' do
-        config['Cop/Cop'] = { 'StyleGuide' => '#target_based_url' }
+        config['Rule/Rule'] = { 'StyleGuide' => '#target_based_url' }
         expect(annotate).to include('http://example.org/styleguide#target_based_url')
       end
 
-      context 'when a department other than AllCops is specified' do
+      context 'when a department other than AllRules is specified' do
         let(:config) do
           RuboCop::Config.new(
-            'AllCops' => {
+            'AllRules' => {
               'StyleGuideBaseURL' => 'http://example.org/styleguide'
             },
             'Foo' => {
@@ -119,33 +119,33 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
           )
         end
 
-        let(:cop_name) { 'Foo/Cop' }
+        let(:rule_name) { 'Foo/Rule' }
         let(:urls) { annotator.urls }
 
         it 'returns style guide url when it is specified' do
-          config['Foo/Cop'] = { 'StyleGuide' => '#target_style_guide' }
+          config['Foo/Rule'] = { 'StyleGuide' => '#target_style_guide' }
 
           expect(urls).to eq(%w[http://foo.example.org#target_style_guide])
         end
       end
 
       it 'can use a path-based setting' do
-        config['Cop/Cop'] = { 'StyleGuide' => 'cop/path/rule#target_based_url' }
+        config['Rule/Rule'] = { 'StyleGuide' => 'cop/path/rule#target_based_url' }
         expect(annotate).to include('http://example.org/cop/path/rule#target_based_url')
       end
 
       it 'can accept relative paths if base has a full path' do
-        config['AllCops'] = {
+        config['AllRules'] = {
           'StyleGuideBaseURL' => 'https://github.com/rubocop-hq/ruby-style-guide/'
         }
-        config['Cop/Cop'] = {
+        config['Rule/Rule'] = {
           'StyleGuide' => '../rails-style-guide#target_based_url'
         }
         expect(annotate).to include('https://github.com/rubocop-hq/rails-style-guide#target_based_url')
       end
 
       it 'allows absolute URLs in the cop config' do
-        config['Cop/Cop'] = { 'StyleGuide' => 'http://other.org#absolute_url' }
+        config['Rule/Rule'] = { 'StyleGuide' => 'http://other.org#absolute_url' }
         expect(annotate).to include('http://other.org#absolute_url')
       end
     end
@@ -155,7 +155,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     let(:urls) { annotator.urls }
     let(:config) do
       RuboCop::Config.new(
-        'AllCops' => {
+        'AllRules' => {
           'StyleGuideBaseURL' => 'http://example.org/styleguide'
         }
       )
@@ -166,19 +166,19 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     end
 
     it 'returns style guide url when it is specified' do
-      config['Cop/Cop'] = { 'StyleGuide' => '#target_based_url' }
+      config['Rule/Rule'] = { 'StyleGuide' => '#target_based_url' }
       expect(urls).to eq(%w[http://example.org/styleguide#target_based_url])
     end
 
     it 'returns reference url when it is specified' do
-      config['Cop/Cop'] = {
+      config['Rule/Rule'] = {
         'Reference' => 'https://example.com/some_style_guide'
       }
       expect(urls).to eq(%w[https://example.com/some_style_guide])
     end
 
     it 'returns an empty array if the reference url is blank' do
-      config['Cop/Cop'] = {
+      config['Rule/Rule'] = {
         'Reference' => ''
       }
 
@@ -186,7 +186,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     end
 
     it 'returns multiple reference urls' do
-      config['Cop/Cop'] = {
+      config['Rule/Rule'] = {
         'Reference' => ['https://example.com/some_style_guide',
                         'https://example.com/some_other_guide',
                         '']
@@ -197,7 +197,7 @@ RSpec.describe RuboCop::Rule::MessageAnnotator do
     end
 
     it 'returns style guide and reference url when they are specified' do
-      config['Cop/Cop'] = {
+      config['Rule/Rule'] = {
         'StyleGuide' => '#target_based_url',
         'Reference' => 'https://example.com/some_style_guide'
       }

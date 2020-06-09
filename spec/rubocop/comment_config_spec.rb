@@ -88,8 +88,8 @@ RSpec.describe RuboCop::CommentConfig do
         'Style/Send' => 40..42,
         'Lint/RandOne' => 40..43,
         'Layout/BlockAlignment' => 41..42
-      }.each do |cop_name, expected|
-        actual = disabled_lines_of_cop(cop_name)
+      }.each do |rule_name, expected|
+        actual = disabled_lines_of_cop(rule_name)
         expect(actual & expected.to_a).to eq(expected.to_a)
       end
     end

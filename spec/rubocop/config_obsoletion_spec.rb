@@ -199,7 +199,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
           (obsolete configuration found in example/.rubocop.yml, please update it)
           The `Lint/SpaceBeforeFirstArg` rule has been removed since it was a duplicate of `Layout/SpaceBeforeFirstArg`. Please use `Layout/SpaceBeforeFirstArg` instead.
           (obsolete configuration found in example/.rubocop.yml, please update it)
-          The `Style/MethodMissing` cop has been split into `Style/MethodMissingSuper` and `Style/MissingRespondToMissing`.
+          The `Style/MethodMissing` rule has been split into `Style/MethodMissingSuper` and `Style/MissingRespondToMissing`.
           (obsolete configuration found in example/.rubocop.yml, please update it)
         OUTPUT
       end
@@ -230,7 +230,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
           },
           'Style/IfUnlessModifier' => { 'MaxLineLength' => 100 },
           'Style/WhileUntilModifier' => { 'MaxLineLength' => 100 },
-          'AllCops' => { 'RunRailsCops' => true },
+          'AllRules' => { 'RunRailsCops' => true },
           'Layout/CaseIndentation' => { 'IndentWhenRelativeTo' => 'end' },
           'Layout/BlockAlignment' => { 'AlignWith' => 'end' },
           'Layout/EndAlignment' => { 'AlignWith' => 'end' },
@@ -265,7 +265,7 @@ RSpec.describe RuboCop::ConfigObsoletion do
           `Style/IfUnlessModifier: MaxLineLength` has been removed. Use `Layout/LineLength: Max` instead
           obsolete parameter MaxLineLength (for Style/WhileUntilModifier) found in example/.rubocop.yml
           `Style/WhileUntilModifier: MaxLineLength` has been removed. Use `Layout/LineLength: Max` instead
-          obsolete parameter RunRailsCops (for AllCops) found in example/.rubocop.yml
+          obsolete parameter RunRailsCops (for AllRules) found in example/.rubocop.yml
           Use the following configuration instead:
           Rails:
             Enabled: true

@@ -173,7 +173,7 @@ $ rubocop -h
 | Force excluding files specified in the configuration `Exclude` even if they are explicitly passed as arguments.
 
 | `   --only-recognized-file-types`
-| Inspect files given on the command line only if they are listed in `AllCops`/`Include` parameters of user configuration or default configuration.
+| Inspect files given on the command line only if they are listed in `AllRules`/`Include` parameters of user configuration or default configuration.
 
 | `-h/--help`
 | Print usage information.

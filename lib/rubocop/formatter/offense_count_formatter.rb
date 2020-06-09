@@ -36,7 +36,7 @@ module RuboCop
       end
 
       def file_finished(_file, offenses)
-        offenses.each { |o| @offense_counts[o.cop_name] += 1 }
+        offenses.each { |o| @offense_counts[o.rule_name] += 1 }
         @progressbar.increment if instance_variable_defined?(:@progressbar)
       end
 
@@ -51,9 +51,9 @@ module RuboCop
 
         output.puts
 
-        per_cop_counts.each do |cop_name, count|
+        per_cop_counts.each do |rule_name, count|
           output.puts "#{count.to_s.ljust(total_count.to_s.length + 2)}" \
-                      "#{cop_name}\n"
+                      "#{rule_name}\n"
         end
         output.puts '--'
         output.puts "#{total_count}  Total"

@@ -62,7 +62,7 @@ module RuboCop
 
       # Backward compatibility
       class << self
-        alias cop_name rule_name
+        alias rule_name rule_name
       end
 
       def self.department
@@ -211,7 +211,7 @@ module RuboCop
       end
 
       alias name rule_name
-      alias cop_name rule_name
+      alias rule_name rule_name
 
       def relevant_file?(file)
         file == RuboCop::AST::ProcessedSource::STRING_SOURCE_NAME ||

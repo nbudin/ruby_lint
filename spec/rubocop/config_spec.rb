@@ -50,14 +50,14 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    context 'when the empty section is AllCops' do
+    context 'when the empty section is AllRules' do
       before do
-        create_file(configuration_path, ['AllCops:'])
+        create_file(configuration_path, ['AllRules:'])
       end
 
       it 'raises validation error' do
         expect { configuration.validate }
-          .to raise_error(RuboCop::ValidationError, /^empty section AllCops/)
+          .to raise_error(RuboCop::ValidationError, /^empty section AllRules/)
       end
     end
 
@@ -286,12 +286,12 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    shared_examples 'obsolete MaxLineLength parameter' do |cop_name|
-      context "when the configuration includes the obsolete #{cop_name}: " \
+    shared_examples 'obsolete MaxLineLength parameter' do |rule_name|
+      context "when the configuration includes the obsolete #{rule_name}: " \
               'MaxLineLength parameter' do
         before do
           create_file(configuration_path, <<~YAML)
-            #{cop_name}:
+            #{rule_name}:
               MaxLineLength: 100
           YAML
         end
@@ -299,7 +299,7 @@ RSpec.describe RuboCop::Config do
         it 'raises validation error' do
           expect { configuration.validate }
             .to raise_error(RuboCop::ValidationError,
-                            /`#{cop_name}: MaxLineLength` has been removed./)
+                            /`#{rule_name}: MaxLineLength` has been removed./)
         end
       end
     end
@@ -338,7 +338,7 @@ RSpec.describe RuboCop::Config do
     context 'when all cops are both Enabled and Disabled by default' do
       before do
         create_file(configuration_path, <<~YAML)
-          AllCops:
+          AllRules:
             EnabledByDefault: true
             DisabledByDefault: true
         YAML
@@ -430,7 +430,7 @@ RSpec.describe RuboCop::Config do
     context 'when config is in root directory' do
       let(:hash) do
         {
-          'AllCops' => {
+          'AllRules' => {
             'Exclude' => [
               'config/environment',
               'spec'
@@ -447,7 +447,7 @@ RSpec.describe RuboCop::Config do
       end
 
       it 'generates valid absolute directory' do
-        excludes = configuration['AllCops']['Exclude']
+        excludes = configuration['AllRules']['Exclude']
                    .map { |e| e.sub(/^[A-Z]:/i, '') }
         expect(excludes)
           .to eq [
@@ -460,7 +460,7 @@ RSpec.describe RuboCop::Config do
     context 'when config is in subdirectory' do
       let(:hash) do
         {
-          'AllCops' => {
+          'AllRules' => {
             'Exclude' => [
               '../../config/environment',
               '../../spec'
@@ -477,7 +477,7 @@ RSpec.describe RuboCop::Config do
       end
 
       it 'generates valid absolute directory' do
-        excludes = configuration['AllCops']['Exclude']
+        excludes = configuration['AllRules']['Exclude']
                    .map { |e| e.sub(/^[A-Z]:/i, '') }
         expect(excludes)
           .to eq [
@@ -491,7 +491,7 @@ RSpec.describe RuboCop::Config do
   describe '#file_to_include?' do
     let(:hash) do
       {
-        'AllCops' => {
+        'AllRules' => {
           'Include' => ['**/Gemfile', 'config/unicorn.rb.example']
         }
       }
@@ -521,7 +521,7 @@ RSpec.describe RuboCop::Config do
 
     let(:hash) do
       {
-        'AllCops' => {
+        'AllRules' => {
           'Exclude' => [
             "#{Dir.pwd}/log/**/*",
             '**/bar.rb'
@@ -560,7 +560,7 @@ RSpec.describe RuboCop::Config do
 
     let(:hash) do
       {
-        'AllCops' => {
+        'AllRules' => {
           'Include' => ['**/Gemfile']
         }
       }
@@ -595,10 +595,10 @@ RSpec.describe RuboCop::Config do
 
     let(:loaded_path) { 'example/.rubocop.yml' }
 
-    context 'when config file has AllCops => Include key' do
+    context 'when config file has AllRules => Include key' do
       let(:hash) do
         {
-          'AllCops' => {
+          'AllRules' => {
             'Include' => ['**/Gemfile', 'config/unicorn.rb.example']
           }
         }
@@ -621,7 +621,7 @@ RSpec.describe RuboCop::Config do
     let(:loaded_path) { 'example/.rubocop.yml' }
 
     it 'returns true when Include config only includes regular paths' do
-      configuration['AllCops'] = {
+      configuration['AllRules'] = {
         'Include' => ['**/Gemfile', 'config/unicorn.rb.example']
       }
 
@@ -629,19 +629,19 @@ RSpec.describe RuboCop::Config do
     end
 
     it 'returns true when Include config includes a regex' do
-      configuration['AllCops'] = { 'Include' => [/foo/] }
+      configuration['AllRules'] = { 'Include' => [/foo/] }
 
       expect(configuration.possibly_include_hidden?).to be(true)
     end
 
     it 'returns true when Include config includes a toplevel dotfile' do
-      configuration['AllCops'] = { 'Include' => ['.foo'] }
+      configuration['AllRules'] = { 'Include' => ['.foo'] }
 
       expect(configuration.possibly_include_hidden?).to be(true)
     end
 
     it 'returns true when Include config includes a dotfile in a path' do
-      configuration['AllCops'] = { 'Include' => ['foo/.bar'] }
+      configuration['AllRules'] = { 'Include' => ['foo/.bar'] }
 
       expect(configuration.possibly_include_hidden?).to be(true)
     end
@@ -655,10 +655,10 @@ RSpec.describe RuboCop::Config do
 
     let(:loaded_path) { 'example/.rubocop.yml' }
 
-    context 'when config file has AllCops => Exclude key' do
+    context 'when config file has AllRules => Exclude key' do
       let(:hash) do
         {
-          'AllCops' => {
+          'AllRules' => {
             'Exclude' => ['log/*']
           }
         }
@@ -678,7 +678,7 @@ RSpec.describe RuboCop::Config do
     let(:loaded_path) { 'example/.rubocop.yml' }
 
     context 'when a deprecated configuration is detected' do
-      let(:hash) { { 'AllCops' => { 'Includes' => [] } } }
+      let(:hash) { { 'AllRules' => { 'Includes' => [] } } }
 
       before { $stderr = StringIO.new }
 
@@ -687,14 +687,14 @@ RSpec.describe RuboCop::Config do
       it 'prints a warning message for the loaded path' do
         configuration.check
         expect($stderr.string).to include(
-          "#{loaded_path} - AllCops/Includes was renamed"
+          "#{loaded_path} - AllRules/Includes was renamed"
         )
       end
     end
   end
 
   describe '#deprecation_check' do
-    context 'when there is no AllCops configuration' do
+    context 'when there is no AllRules configuration' do
       let(:hash) { {} }
 
       it 'does not yield' do
@@ -702,9 +702,9 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    context 'when there is AllCops configuration' do
+    context 'when there is AllRules configuration' do
       context 'if there are no Excludes or Includes keys' do
-        let(:hash) { { 'AllCops' => { 'Exclude' => [], 'Include' => [] } } }
+        let(:hash) { { 'AllRules' => { 'Exclude' => [], 'Include' => [] } } }
 
         it 'does not yield' do
           expect do |b|
@@ -714,7 +714,7 @@ RSpec.describe RuboCop::Config do
       end
 
       context 'if there are is an Includes key' do
-        let(:hash) { { 'AllCops' => { 'Includes' => [] } } }
+        let(:hash) { { 'AllRules' => { 'Includes' => [] } } }
 
         it 'yields' do
           expect do |b|
@@ -724,7 +724,7 @@ RSpec.describe RuboCop::Config do
       end
 
       context 'if there are is an Excludes key' do
-        let(:hash) { { 'AllCops' => { 'Excludes' => [] } } }
+        let(:hash) { { 'AllRules' => { 'Excludes' => [] } } }
 
         it 'yields' do
           expect do |b|
@@ -736,8 +736,8 @@ RSpec.describe RuboCop::Config do
   end
 
   context 'whether the cop is enabled' do
-    def cop_enabled(cop_class)
-      configuration.for_rule(cop_class).fetch('Enabled')
+    def cop_enabled(rule_class)
+      configuration.for_rule(rule_class).fetch('Enabled')
     end
 
     context 'when an entire cop department is disabled' do
@@ -750,8 +750,8 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
-          expect(cop_enabled(cop_class)).to be false
+          rule_class = RuboCop::Rule::Layout::TrailingWhitespace
+          expect(cop_enabled(rule_class)).to be false
         end
       end
     end
@@ -766,8 +766,8 @@ RSpec.describe RuboCop::Config do
         end
 
         it 'still disables the cop' do
-          cop_class = RuboCop::Rule::Layout::TrailingWhitespace
-          expect(cop_enabled(cop_class)).to be false
+          rule_class = RuboCop::Rule::Layout::TrailingWhitespace
+          expect(cop_enabled(rule_class)).to be false
         end
       end
     end
@@ -780,8 +780,8 @@ RSpec.describe RuboCop::Config do
       end
 
       it 'enables the cop by default' do
-        cop_class = RuboCop::Rule::Layout::TrailingWhitespace
-        expect(cop_enabled(cop_class)).to be true
+        rule_class = RuboCop::Rule::Layout::TrailingWhitespace
+        expect(cop_enabled(rule_class)).to be true
       end
     end
 
@@ -797,7 +797,7 @@ RSpec.describe RuboCop::Config do
       context 'when all cops are disabled by default' do
         let(:hash) do
           {
-            'AllCops' => { 'DisabledByDefault' => true }
+            'AllRules' => { 'DisabledByDefault' => true }
           }
         end
 
@@ -809,7 +809,7 @@ RSpec.describe RuboCop::Config do
       context 'when all cops are explicitly enabled by default' do
         let(:hash) do
           {
-            'AllCops' => { 'EnabledByDefault' => true }
+            'AllRules' => { 'EnabledByDefault' => true }
           }
         end
 

@@ -16,7 +16,7 @@ RSpec.describe RuboCop::TargetRuby, :isolated_environment do
 
     let(:hash) do
       {
-        'AllCops' => {
+        'AllRules' => {
           'TargetRubyVersion' => ruby_version
         }
       }

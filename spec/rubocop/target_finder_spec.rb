@@ -124,14 +124,14 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
             'and they are explicitly passed as arguments' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Exclude:
               - dir1/ruby1.rb
               - 'dir2/*'
         YAML
 
         create_file('dir1/.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Exclude:
               - executable
         YAML
@@ -210,7 +210,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
             'as arguments' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Include:
               - dir1/file
         YAML
@@ -274,10 +274,10 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
           .to eq(ruby_extensions.map { |ext| "file#{ext}" })
       end
 
-      context 'when local AllCops/Include lists two patterns' do
+      context 'when local AllRules/Include lists two patterns' do
         before do
           create_file('.rubocop.yml', <<-YAML)
-            AllCops:
+            AllRules:
               Include:
                 - '**/*.rb'
                 - '**/*.arb'
@@ -288,10 +288,10 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
           expect(found_basenames).to eq(%w[file.rb file.arb])
         end
 
-        context 'when a subdirectory AllCops/Include only lists one pattern' do
+        context 'when a subdirectory AllRules/Include only lists one pattern' do
           before do
             create_file('dir2/.rubocop.yml', <<-YAML)
-              AllCops:
+              AllRules:
                 Include:
                   - '**/*.ruby'
             YAML
@@ -313,7 +313,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
             'as arguments' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Include:
               - '**/*.rb'
               - dir1/file
@@ -360,10 +360,10 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
 
       include_examples 'picks all the ruby files'
 
-      context 'when local AllCops/Include lists two patterns' do
+      context 'when local AllRules/Include lists two patterns' do
         before do
           create_file('.rubocop.yml', <<-YAML)
-            AllCops:
+            AllRules:
               Include:
                 - '**/*.rb'
                 - '**/*.arb'
@@ -372,10 +372,10 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
 
         include_examples 'picks all the ruby files'
 
-        context 'when a subdirectory AllCops/Include only lists one pattern' do
+        context 'when a subdirectory AllRules/Include only lists one pattern' do
           before do
             create_file('dir2/.rubocop.yml', <<-YAML)
-              AllCops:
+              AllRules:
                 Include:
                   - '**/*.ruby'
             YAML
@@ -391,7 +391,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
             'as arguments' do
       before do
         create_file('.rubocop.yml', <<~YAML)
-          AllCops:
+          AllRules:
             Include:
               - '**/*.rb'
               - dir1/file
@@ -421,7 +421,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
     it 'does not search excluded top level directories' do
       config = instance_double(RuboCop::Config)
       exclude_property = { 'Exclude' => [File.expand_path('dir1/**/*')] }
-      allow(config).to receive(:for_all_cops).and_return(exclude_property)
+      allow(config).to receive(:for_all_rules).and_return(exclude_property)
       allow(config_store).to receive(:for).and_return(config)
 
       expect(found_basenames).not_to include('ruby1.rb')
@@ -433,7 +433,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
 
       config = instance_double(RuboCop::Config)
       exclude_property = { 'Exclude' => [File.expand_path('dir1/**/*')] }
-      allow(config).to receive(:for_all_cops).and_return(exclude_property)
+      allow(config).to receive(:for_all_rules).and_return(exclude_property)
       allow(config_store).to receive(:for).and_return(config)
 
       expect(found_basenames).not_to include('ruby1.rb')
@@ -472,7 +472,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
         File.basename(file) == 'file'
       end
       allow(config)
-        .to receive(:for_all_cops).and_return('Exclude' => [],
+        .to receive(:for_all_rules).and_return('Exclude' => [],
                                               'Include' => [],
                                               'RubyInterpreters' => [])
       allow(config).to receive(:[]).and_return([])
@@ -485,7 +485,7 @@ RSpec.describe RuboCop::TargetFinder, :isolated_environment do
     it 'does not pick files specified to be excluded in config' do
       config = instance_double(RuboCop::Config).as_null_object
       allow(config)
-        .to receive(:for_all_cops).and_return('Exclude' => [],
+        .to receive(:for_all_rules).and_return('Exclude' => [],
                                               'Include' => [],
                                               'RubyInterpreters' => [])
       allow(config).to receive(:file_to_include?).and_return(false)

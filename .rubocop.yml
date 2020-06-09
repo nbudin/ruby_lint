@@ -6,8 +6,8 @@ require:
   - rubocop-performance
   - rubocop-rspec
 
-AllCops:
-  NewCops: enable
+AllRules:
+  NewRules: enable
   Exclude:
     - 'vendor/**/*'
     - 'spec/fixtures/**/*'

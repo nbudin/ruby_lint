@@ -26,7 +26,7 @@ RSpec.describe RuboCop::Formatter::OffenseCountFormatter do
 
     context 'when any offenses are detected' do
       let(:offenses) do
-        [instance_double(RuboCop::Rule::Offense, cop_name: 'OffendedCop')]
+        [instance_double(RuboCop::Rule::Offense, rule_name: 'OffendedCop')]
       end
 
       it 'increments the count for the cop in offense_counts' do
@@ -52,7 +52,7 @@ RSpec.describe RuboCop::Formatter::OffenseCountFormatter do
     context 'when there are many offenses' do
       let(:offenses) do
         %w[CopB CopA CopC CopC].map do |cop|
-          instance_double(RuboCop::Rule::Offense, cop_name: cop)
+          instance_double(RuboCop::Rule::Offense, rule_name: cop)
         end
       end
 
@@ -79,7 +79,7 @@ RSpec.describe RuboCop::Formatter::OffenseCountFormatter do
     context 'when output tty is true' do
       let(:offenses) do
         %w[CopB CopA CopC CopC].map do |cop|
-          instance_double(RuboCop::Rule::Offense, cop_name: cop)
+          instance_double(RuboCop::Rule::Offense, rule_name: cop)
         end
       end
 

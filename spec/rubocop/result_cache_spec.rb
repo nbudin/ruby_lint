@@ -72,7 +72,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
           corrected_offense.severity.name,
           corrected_offense.location,
           corrected_offense.message,
-          corrected_offense.cop_name,
+          corrected_offense.rule_name,
           :uncorrected
         )
       end
@@ -194,7 +194,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
           before do
             allow(config_store).to receive(:for_dir).with('.').and_return(
               RuboCop::Config.new(
-                'AllCops' => {
+                'AllRules' => {
                   'AllowSymlinksInCacheRootDirectory' => true
                 }
               )
@@ -301,7 +301,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
 
   describe '.cleanup' do
     before do
-      cfg = RuboCop::Config.new('AllCops' => { 'MaxFilesInCache' => 1 })
+      cfg = RuboCop::Config.new('AllRules' => { 'MaxFilesInCache' => 1 })
       allow(config_store).to receive(:for_dir).with('.').and_return(cfg)
       allow(config_store).to receive(:for_file).with('other.rb').and_return(cfg)
       create_file('other.rb', ['x = 1'])
@@ -338,7 +338,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
 
     before do
       all_cops = {
-        'AllCops' => { 'CacheRootDirectory' => cache_root_directory }
+        'AllRules' => { 'CacheRootDirectory' => cache_root_directory }
       }
       config = RuboCop::Config.new(all_cops)
       allow(config_store).to receive(:for_dir).with('.').and_return(config)

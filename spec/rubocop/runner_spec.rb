@@ -191,7 +191,7 @@ RSpec.describe RuboCop::Runner, :isolated_environment do
   describe '#run with cops autocorrecting each-other' do
     subject(:runner) do
       runner_class = Class.new(RuboCop::Runner) do
-        def mobilized_cop_classes(_config)
+        def mobilized_rule_classes(_config)
           RuboCop::Rule::Registry.new(
             [
               RuboCop::Rule::Test::ClassMustBeAModuleCop,

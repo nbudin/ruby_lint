@@ -42,23 +42,23 @@ task :bench_cop, %i[cop srcpath times] do |_task, args|
   include RuboCop
   include RuboCop::Formatter::TextUtil
 
-  cop_name = args[:cop]
+  rule_name = args[:cop]
   src_path = args[:srcpath]
   iterations = args[:times] ? Integer(args[:times]) : 1
 
-  cop_class = if cop_name.include?('/')
-                Cop::Cop.all.find { |klass| klass.cop_name == cop_name }
+  rule_class = if rule_name.include?('/')
+                Cop::Cop.all.find { |klass| klass.rule_name == rule_name }
               else
                 Cop::Cop.all.find do |klass|
-                  klass.cop_name[/[a-zA-Z]+$/] == cop_name
+                  klass.rule_name[/[a-zA-Z]+$/] == rule_name
                 end
               end
-  raise "No such cop: #{cop_name}" if cop_class.nil?
+  raise "No such cop: #{rule_name}" if rule_class.nil?
 
   config = ConfigLoader.load_file(ConfigLoader::DEFAULT_FILE)
-  cop = cop_class.new(config)
+  cop = rule_class.new(config)
 
-  puts "Benchmarking #{cop.cop_name} on #{src_path} (using default config)"
+  puts "Benchmarking #{cop.rule_name} on #{src_path} (using default config)"
 
   files = if File.directory?(src_path)
             Dir[File.join(src_path, '**', '*.rb')]
@@ -89,12 +89,12 @@ task documentation_syntax_check: :yard_for_generate_documentation do
 
   ok = true
   YARD::Registry.load!
-  cops = RuboCop::Rule::Rule.registry
-  cops.each do |cop|
-    next if %i[RSpec Capybara FactoryBot].include?(cop.department)
+  rules = RuboCop::Rule::Rule.registry
+  rules.each do |rule|
+    next if %i[RSpec Capybara FactoryBot].include?(rule.department)
 
     examples = YARD::Registry.all(:class).find do |code_object|
-      next unless RuboCop::Rule::Badge.for(code_object.to_s) == cop.badge
+      next unless RuboCop::Rule::Badge.for(code_object.to_s) == rule.badge
 
       break code_object.tags('example')
     end
@@ -105,12 +105,12 @@ task documentation_syntax_check: :yard_for_generate_documentation do
         buffer.source = example.text
 
         # Ruby 2.6 or higher does not support a syntax used in
-        # `Lint/UselessElseWithoutRescue` cop's example.
-        parser = if cop == RuboCop::Rule::Lint::UselessElseWithoutRescue
+        # `Lint/UselessElseWithoutRescue` rule's example.
+        parser = if rule == RuboCop::Rule::Lint::UselessElseWithoutRescue
                    Parser::Ruby25.new(RuboCop::AST::Builder.new)
                  # Ruby 2.7 raises an syntax error in
-                 # `Lint/CircularArgumentReference` cop's example.
-                 elsif cop == RuboCop::Rule::Lint::CircularArgumentReference
+                 # `Lint/CircularArgumentReference` rule's example.
+                 elsif rule == RuboCop::Rule::Lint::CircularArgumentReference
                    Parser::Ruby26.new(RuboCop::AST::Builder.new)
                  else
                    Parser::Ruby27.new(RuboCop::AST::Builder.new)

@@ -49,7 +49,7 @@ module RuboCop
 
         def find_target_line
           configuration_entries.find.with_index do |line, index|
-            next unless cop_name_line?(line)
+            next unless rule_name_line?(line)
 
             return index if badge.to_s < line
           end
@@ -57,7 +57,7 @@ module RuboCop
           nil
         end
 
-        def cop_name_line?(yaml)
+        def rule_name_line?(yaml)
           yaml !~ /^[\s#]/
         end
       end

@@ -219,7 +219,7 @@ The JSON structure is like the following example:
       "offenses": [{
           "severity": "convention",
           "message": "Line is too long. [81/80]",
-          "cop_name": "LineLength",
+          "rule_name": "LineLength",
           "corrected": true,
           "location": {
             "line": 546,
@@ -229,7 +229,7 @@ The JSON structure is like the following example:
         }, {
           "severity": "warning",
           "message": "Unreachable code detected.",
-          "cop_name": "UnreachableCode",
+          "rule_name": "UnreachableCode",
           "corrected": false,
           "location": {
             "line": 15,

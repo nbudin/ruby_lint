@@ -7,8 +7,8 @@ RSpec.describe RuboCop::Rule::Badge do
     expect(badge.department).to be(:Test)
   end
 
-  it 'exposes cop name' do
-    expect(badge.cop_name).to eql('ModuleMustBeAClassCop')
+  it 'exposes rule name' do
+    expect(badge.rule_name).to eql('ModuleMustBeAClassCop')
   end
 
   describe '.parse' do
@@ -24,7 +24,7 @@ RSpec.describe RuboCop::Rule::Badge do
   end
 
   describe '.for' do
-    it 'parses cop class name' do
+    it 'parses rule class name' do
       expect(described_class.for('RuboCop::Rule::Foo::Bar'))
         .to eq(described_class.new('Foo', 'Bar'))
     end

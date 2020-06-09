@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
+RSpec.describe RuboCop::Rule::Lint::RedundantRuleEnableDirective do
   subject(:rule) { described_class.new }
 
   it 'registers offense and corrects unnecessary enable' do
@@ -16,7 +16,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
     RUBY
   end
 
-  it 'registers an offense and corrects when the first cop is ' \
+  it 'registers an offense and corrects when the first rule is ' \
     'unnecessarily enabled' do
     expect_offense(<<~RUBY)
       # rubocop:disable Layout/LineLength
@@ -65,7 +65,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
     RUBY
   end
 
-  it 'registers offense and corrects redundant enabling of same cop' do
+  it 'registers offense and corrects redundant enabling of same rule' do
     expect_offense(<<~RUBY)
       # rubocop:disable Layout/LineLength
       fooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo = barrrrrrrrrrrrrrrrrrrrrrrrrr
@@ -95,7 +95,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
       expect_offense(<<~RUBY)
         foo
         # rubocop:enable all
-                         ^^^ Unnecessary enabling of all cops.
+                         ^^^ Unnecessary enabling of all rules.
       RUBY
 
       expect_correction(<<~RUBY)
@@ -104,7 +104,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
       RUBY
     end
 
-    context 'when at least one cop was disabled' do
+    context 'when at least one rule was disabled' do
       it 'does not register offense' do
         expect_no_offenses(<<~RUBY)
           # rubocop:disable Layout/LineLength
@@ -115,7 +115,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
     end
   end
 
-  context 'when last cop is unnecessarily enabled' do
+  context 'when last rule is unnecessarily enabled' do
     it 'registers an offense and corrects' do
       expect_offense(<<~RUBY)
         # rubocop:disable Layout/LineLength
@@ -132,7 +132,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
     end
 
     it 'registers an offense and corrects when there is no space ' \
-      'between the cops and the comma' do
+      'between the rules and the comma' do
       expect_offense(<<~RUBY)
         # rubocop:disable Layout/LineLength
         foo
@@ -148,7 +148,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopEnableDirective do
     end
   end
 
-  context 'when middle cop is unnecessarily enabled' do
+  context 'when middle rule is unnecessarily enabled' do
     it 'registers an offense and corrects' do
       expect_offense(<<~RUBY)
         # rubocop:disable Layout/LineLength, Lint/Debugger

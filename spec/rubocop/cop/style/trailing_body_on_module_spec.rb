@@ -47,12 +47,12 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnModule do
 
   it 'auto-corrects body after module definition' do
     corrected = autocorrect_source(<<~RUBY)
-      module Foo extend self
+      module Foo extend self 
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      module Foo
-        extend self
+      module Foo 
+        extend self 
       end
     RUBY
   end
@@ -64,8 +64,8 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnModule do
     RUBY
     expect(corrected).to eq(<<~RUBY)
       # comment
-      module BarQux
-        foo
+      module BarQux 
+        foo 
       end
     RUBY
   end
@@ -76,7 +76,7 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnModule do
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      module Bar
+      module Bar 
         def bar; end
       end
     RUBY
@@ -86,13 +86,13 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnModule do
     it 'auto-correct offense' do
       corrected = autocorrect_source(<<~RUBY)
 
-        module Foo; body
+        module Foo; body 
         end
       RUBY
       expect(corrected).to eq(<<~RUBY)
 
-        module Foo
-          body
+        module Foo 
+          body 
         end
       RUBY
     end

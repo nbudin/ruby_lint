@@ -46,12 +46,12 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnClass do
 
   it 'auto-corrects body after class definition' do
     corrected = autocorrect_source(<<~RUBY)
-      class Foo; body
+      class Foo; body 
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      class Foo
-        body
+      class Foo 
+        body 
       end
     RUBY
   end
@@ -75,7 +75,7 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnClass do
       end
     RUBY
     expect(corrected).to eq(<<~RUBY)
-      class Bar
+      class Bar 
         def bar; end
       end
     RUBY

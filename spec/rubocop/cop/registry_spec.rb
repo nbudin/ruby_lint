@@ -39,25 +39,25 @@ RSpec.describe RuboCop::Rule::Registry do
   end
 
   context 'when dismissing a cop class' do
-    let(:cop_class) { ::RuboCop::Rule::Metrics::AbcSize }
+    let(:rule_class) { ::RuboCop::Rule::Metrics::AbcSize }
 
-    before { registry.enlist(cop_class) }
+    before { registry.enlist(rule_class) }
 
     it 'allows it if done rapidly' do
-      registry.dismiss(cop_class)
-      expect(registry.cops).not_to include(cop_class)
+      registry.dismiss(rule_class)
+      expect(registry.cops).not_to include(rule_class)
     end
 
     it 'disallows it if done too late' do
-      expect(registry.cops).to include(cop_class)
-      expect { registry.dismiss(cop_class) }.to raise_error(RuntimeError)
+      expect(registry.cops).to include(rule_class)
+      expect { registry.dismiss(rule_class) }.to raise_error(RuntimeError)
     end
 
     it 'allows re-listing' do
-      registry.dismiss(cop_class)
-      expect(registry.cops).not_to include(cop_class)
-      registry.enlist(cop_class)
-      expect(registry.cops).to include(cop_class)
+      registry.dismiss(rule_class)
+      expect(registry.cops).not_to include(rule_class)
+      registry.enlist(rule_class)
+      expect(registry.cops).to include(rule_class)
     end
   end
 
@@ -135,8 +135,8 @@ RSpec.describe RuboCop::Rule::Registry do
     end
 
     it 'raises an error when a cop name is ambiguous' do
-      cop_name = 'FirstArrayElementIndentation'
-      expect { registry.qualified_rule_name(cop_name, origin) }
+      rule_name = 'FirstArrayElementIndentation'
+      expect { registry.qualified_rule_name(rule_name, origin) }
         .to raise_error(RuboCop::Rule::AmbiguousCopName)
         .with_message(
           'Ambiguous cop name `FirstArrayElementIndentation` used in ' \
@@ -227,10 +227,10 @@ RSpec.describe RuboCop::Rule::Registry do
           expect(result).not_to include(RuboCop::Rule::Lint::BooleanSymbol)
         end
 
-        context 'when specifying `NewCops: enable` option in .rubocop.yml' do
+        context 'when specifying `NewRules: enable` option in .rubocop.yml' do
           let(:config) do
             RuboCop::Config.new(
-              'AllCops' => { 'NewCops' => 'enable' },
+              'AllRules' => { 'NewRules' => 'enable' },
               'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
             )
           end
@@ -253,10 +253,10 @@ RSpec.describe RuboCop::Rule::Registry do
           expect(result).to include(RuboCop::Rule::Lint::BooleanSymbol)
         end
 
-        context 'when specifying `NewCops: disable` option in .rubocop.yml' do
+        context 'when specifying `NewRules: disable` option in .rubocop.yml' do
           let(:config) do
             RuboCop::Config.new(
-              'AllCops' => { 'NewCops' => 'disable' },
+              'AllRules' => { 'NewRules' => 'disable' },
               'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
             )
           end
@@ -269,10 +269,10 @@ RSpec.describe RuboCop::Rule::Registry do
         end
       end
 
-      context 'when specifying `NewCops: pending` option in .rubocop.yml' do
+      context 'when specifying `NewRules: pending` option in .rubocop.yml' do
         let(:config) do
           RuboCop::Config.new(
-            'AllCops' => { 'NewCops' => 'pending' },
+            'AllRules' => { 'NewRules' => 'pending' },
             'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
           )
         end
@@ -283,10 +283,10 @@ RSpec.describe RuboCop::Rule::Registry do
         end
       end
 
-      context 'when specifying `NewCops: disable` option in .rubocop.yml' do
+      context 'when specifying `NewRules: disable` option in .rubocop.yml' do
         let(:config) do
           RuboCop::Config.new(
-            'AllCops' => { 'NewCops' => 'disable' },
+            'AllRules' => { 'NewRules' => 'disable' },
             'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
           )
         end
@@ -297,10 +297,10 @@ RSpec.describe RuboCop::Rule::Registry do
         end
       end
 
-      context 'when specifying `NewCops: enable` option in .rubocop.yml' do
+      context 'when specifying `NewRules: enable` option in .rubocop.yml' do
         let(:config) do
           RuboCop::Config.new(
-            'AllCops' => { 'NewCops' => 'enable' },
+            'AllRules' => { 'NewRules' => 'enable' },
             'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
           )
         end

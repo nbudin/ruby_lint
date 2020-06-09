@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 RSpec.describe 'RuboCop Project', type: :feature do
-  let(:cop_names) do
+  let(:rule_names) do
     RuboCop::Rule::Rule
       .registry
       .without_department(:Test)
       .without_department(:InternalAffairs)
       .cops
-      .map(&:cop_name)
+      .map(&:rule_name)
   end
 
   describe 'default configuration file' do
@@ -16,11 +16,11 @@ RSpec.describe 'RuboCop Project', type: :feature do
     let(:configuration_keys) { config.keys }
 
     it 'has configuration for all cops' do
-      expect(configuration_keys).to match_array(%w[AllCops] + cop_names)
+      expect(configuration_keys).to match_array(%w[AllRules] + rule_names)
     end
 
     it 'has a nicely formatted description for all cops' do
-      cop_names.each do |name|
+      rule_names.each do |name|
         description = config[name]['Description']
         expect(description.nil?).to be(false)
         expect(description).not_to include("\n")
@@ -28,7 +28,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
     end
 
     it 'requires a nicely formatted `VersionAdded` metadata for all cops' do
-      cop_names.each do |name|
+      rule_names.each do |name|
         version = config[name]['VersionAdded']
         expect(version.nil?).to(be(false),
                                 "VersionAdded is required for #{name}.")
@@ -38,7 +38,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
     end
 
     it 'has a period at EOL of description' do
-      cop_names.each do |name|
+      rule_names.each do |name|
         description = config[name]['Description']
 
         expect(description).to match(/\.\z/)
@@ -55,7 +55,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
     it 'has a SupportedStyles for all EnforcedStyle ' \
       'and EnforcedStyle is valid' do
       errors = []
-      cop_names.each do |name|
+      rule_names.each do |name|
         enforced_styles = config[name]
                           .select { |key, _| key.start_with?('Enforced') }
         enforced_styles.each do |style_name, style|

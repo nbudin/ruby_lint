@@ -152,7 +152,7 @@ module RuboCop
 
     def add_redundant_disables(file, offenses, source)
       if check_for_redundant_disables?(source)
-        redundant_cop_disable_directive(file) do |cop|
+        redundant_rule_disable_directive(file) do |cop|
           cop.check(offenses, source.disabled_line_ranges, source.comments)
           offenses += rule.offenses
           offenses += autocorrect_redundant_disables(file, source, cop,
@@ -167,7 +167,7 @@ module RuboCop
       !source.disabled_line_ranges.empty? && !filtered_run?
     end
 
-    def redundant_cop_disable_directive(file)
+    def redundant_rule_disable_directive(file)
       config = @config_store.for_file(file)
       if config.for_rule(Cop::Lint::RedundantCopDisableDirective)
                .fetch('Enabled')
@@ -214,7 +214,7 @@ module RuboCop
       @cached_run ||=
         (@options[:cache] == 'true' ||
          @options[:cache] != 'false' &&
-         @config_store.for_dir(Dir.pwd).for_all_cops['UseCache']) &&
+         @config_store.for_dir(Dir.pwd).for_all_rules['UseCache']) &&
         # When running --auto-gen-config, there's some processing done in the
         # cops related to calculating the Max parameters for Metrics cops. We
         # need to do that processing and cannot use caching.
@@ -295,41 +295,41 @@ module RuboCop
 
     def inspect_file(processed_source)
       config = @config_store.for_file(processed_source.path)
-      team = Cop::Team.mobilize(mobilized_cop_classes(config), config, @options)
+      team = Cop::Team.mobilize(mobilized_rule_classes(config), config, @options)
       offenses = team.inspect_file(processed_source)
       @errors.concat(team.errors)
       @warnings.concat(team.warnings)
       [offenses, team.updated_source_file?]
     end
 
-    def mobilized_cop_classes(config)
-      @mobilized_cop_classes ||= {}
-      @mobilized_cop_classes[config.object_id] ||= begin
-        cop_classes = Cop::Cop.all
+    def mobilized_rule_classes(config)
+      @mobilized_rule_classes ||= {}
+      @mobilized_rule_classes[config.object_id] ||= begin
+        rule_classes = Cop::Cop.all
 
         OptionsValidator.new(@options).validate_cop_options
 
         if @options[:only]
-          cop_classes.select! { |c| c.match?(@options[:only]) }
+          rule_classes.select! { |c| c.match?(@options[:only]) }
         else
-          filter_cop_classes(cop_classes, config)
+          filter_rule_classes(rule_classes, config)
         end
 
-        cop_classes.reject! { |c| c.match?(@options[:except]) }
+        rule_classes.reject! { |c| c.match?(@options[:except]) }
 
-        Cop::Registry.new(cop_classes, @options)
+        Cop::Registry.new(rule_classes, @options)
       end
     end
 
-    def filter_cop_classes(cop_classes, config)
+    def filter_rule_classes(rule_classes, config)
       # use only cops that link to a style guide if requested
       return unless style_guide_cops_only?(config)
 
-      cop_classes.select! { |cop| config.for_rule(cop)['StyleGuide'] }
+      rule_classes.select! { |cop| config.for_rule(cop)['StyleGuide'] }
     end
 
     def style_guide_cops_only?(config)
-      @options[:only_guide_cops] || config.for_all_cops['StyleGuideCopsOnly']
+      @options[:only_guide_cops] || config.for_all_rules['StyleGuideCopsOnly']
     end
 
     def formatter_set
@@ -380,7 +380,7 @@ module RuboCop
     def standby_team(config)
       @team_by_config ||= {}
       @team_by_config[config.object_id] ||=
-        Cop::Team.mobilize(mobilized_cop_classes(config), config, @options)
+        Cop::Team.mobilize(mobilized_rule_classes(config), config, @options)
     end
   end
 end

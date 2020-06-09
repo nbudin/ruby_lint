@@ -29,11 +29,11 @@ module RuboCop
       end
 
       def file_finished(file, offenses)
-        # TODO: Returns all cops with the same behavior as
+        # TODO: Returns all rules with the same behavior as
         # the original rubocop-junit-formatter.
         # https://github.com/mikian/rubocop-junit-formatter/blob/v0.1.4/lib/rubocop/formatter/junit_formatter.rb#L9
         #
-        # In the future, it would be preferable to return only enabled cops.
+        # In the future, it would be preferable to return only enabled rules.
         Rule::Rule.all.each do |rule|
           target_offenses = offenses_for_rule(offenses, rule)
 
@@ -52,9 +52,9 @@ module RuboCop
         !options[:display_only_failed] || target_offenses.any?
       end
 
-      def offenses_for_rule(all_offenses, cop)
+      def offenses_for_rule(all_offenses, rule)
         all_offenses.select do |offense|
-          offense.rule_name == cop.rule_name
+          offense.rule_name == rule.rule_name
         end
       end
 

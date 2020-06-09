@@ -42,7 +42,7 @@ module RuboCop
 
       def disable_offense(node)
         range = node.location.expression
-        eol_comment = " # rubocop:todo #{cop_name}"
+        eol_comment = " # rubocop:todo #{rule_name}"
         needed_line_length = (range.source_line + eol_comment).length
         if needed_line_length <= max_line_length
           disable_offense_at_end_of_line(range_of_first_line(range),
@@ -92,11 +92,11 @@ module RuboCop
 
           corrector.insert_before(
             range_with_newline,
-            "#{leading_whitespace}# rubocop:todo #{cop_name}\n"
+            "#{leading_whitespace}# rubocop:todo #{rule_name}\n"
           )
           corrector.insert_after(
             range_with_newline,
-            "#{leading_whitespace}# rubocop:enable #{cop_name}\n"
+            "#{leading_whitespace}# rubocop:enable #{rule_name}\n"
           )
         end
       end

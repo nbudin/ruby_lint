@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Rule::AlignmentCorrector, :config do
-  let(:cop_class) { RuboCop::Rule::Test::AlignmentDirective }
+  let(:rule_class) { RuboCop::Rule::Test::AlignmentDirective }
 
   describe '#correct' do
     context 'simple indentation' do

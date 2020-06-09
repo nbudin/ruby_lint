@@ -126,7 +126,7 @@ module RuboCop
                      'removed. Use `Layout/LineLength: Max` instead'
       },
       {
-        rule: 'AllCops',
+        rule: 'AllRules',
         parameters: 'RunRailsCops',
         alternative: "Use the following configuration instead:\n" \
                      "Rails:\n  Enabled: true"

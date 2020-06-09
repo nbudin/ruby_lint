@@ -28,7 +28,7 @@ module RuboCop
 
           if hash.key?(k)
             v = merge(v, hash[k],
-                      cop_name: k, file: file, debug: debug,
+                      rule_name: k, file: file, debug: debug,
                       inherited_file: inherited_files[index],
                       inherit_mode: determine_inherit_mode(hash, k))
           end
@@ -55,15 +55,15 @@ module RuboCop
     end
 
     # Merges the given configuration with the default one. If
-    # AllCops:DisabledByDefault is true, it changes the Enabled params so that
+    # AllRules:DisabledByDefault is true, it changes the Enabled params so that
     # only cops from user configuration are enabled. If
-    # AllCops::EnabledByDefault is true, it changes the Enabled params so that
+    # AllRules::EnabledByDefault is true, it changes the Enabled params so that
     # only cops explicitly disabled in user configuration are disabled.
     def merge_with_default(config, config_file, unset_nil:)
       default_configuration = ConfigLoader.default_configuration
 
-      disabled_by_default = config.for_all_cops['DisabledByDefault']
-      enabled_by_default = config.for_all_cops['EnabledByDefault']
+      disabled_by_default = config.for_all_rules['DisabledByDefault']
+      enabled_by_default = config.for_all_rules['EnabledByDefault']
 
       if disabled_by_default || enabled_by_default
         default_configuration = transform(default_configuration) do |params|
@@ -144,7 +144,7 @@ module RuboCop
                 inherit_mode && inherit_mode.include?(key)
 
       puts "#{PathUtil.smart_path(opts[:file])}: " \
-           "#{opts[:cop_name]}:#{key} overrides " \
+           "#{opts[:rule_name]}:#{key} overrides " \
            "the same parameter in #{opts[:inherited_file]}"
     end
 
@@ -196,15 +196,15 @@ module RuboCop
     end
 
     def handle_disabled_by_default(config, new_default_configuration)
-      department_config = config.to_hash.reject { |cop| cop.include?('/') }
+      department_config = config.to_hash.reject { |rule| rule.include?('/') }
       department_config.each do |dept, dept_params|
         next unless dept_params['Enabled']
 
-        new_default_configuration.each do |cop, params|
-          next unless cop.start_with?(dept + '/')
+        new_default_configuration.each do |rule, params|
+          next unless rule.start_with?(dept + '/')
 
-          # Retain original default configuration for cops in the department.
-          params['Enabled'] = ConfigLoader.default_configuration[cop]['Enabled']
+          # Retain original default configuration for rules in the department.
+          params['Enabled'] = ConfigLoader.default_configuration[rule]['Enabled']
         end
       end
 

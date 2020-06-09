@@ -28,7 +28,7 @@ module RuboCop
               trimmed_name = name.strip
 
               unless valid_content_token?(trimmed_name)
-                check_cop_name(trimmed_name, comment, offset)
+                check_rule_name(trimmed_name, comment, offset)
               end
 
               break if contain_unexpected_character_for_department_name?(name)
@@ -40,7 +40,7 @@ module RuboCop
 
         def autocorrect(range)
           shall_warn = false
-          cop_name = range.source
+          rule_name = range.source
           qualified_rule_name = Rule.registry.qualified_rule_name(rule_name,
                                                                nil, shall_warn)
           unless qualified_rule_name.include?('/')
@@ -56,7 +56,7 @@ module RuboCop
           Regexp.last_match(1).length
         end
 
-        def check_cop_name(name, comment, offset)
+        def check_rule_name(name, comment, offset)
           start = comment.location.expression.begin_pos + offset
           range = range_between(start, start + name.length)
 

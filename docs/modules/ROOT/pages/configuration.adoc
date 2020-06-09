@@ -81,7 +81,7 @@ Style/CollectionMethods:
     collect: ~
 ----
 
-Other types, such as `AllCops` / `Include` (an array), are overridden by the
+Other types, such as `AllRules` / `Include` (an array), are overridden by the
 child setting.
 
 Arrays override because if they were merged, there would be no way to
@@ -201,7 +201,7 @@ inherit_mode:
   merge:
     - Exclude
 
-AllCops:
+AllRules:
   Exclude:
     - 'generated/**/*.rb'
 
@@ -219,7 +219,7 @@ Style/For:
 ----
 
 The list of ``Exclude``s for the `Style/For` cop in this example will be
-`['foo.rb', 'bar.rb']`. Similarly, the `AllCops:Exclude` list will contain all
+`['foo.rb', 'bar.rb']`. Similarly, the `AllRules:Exclude` list will contain all
 the default patterns plus the `+generated/**/*.rb+` entry that was added locally.
 
 The directive can also be used on individual cop configurations to override
@@ -253,7 +253,7 @@ ignored by Git.
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   Exclude:
   <% `git status --ignored --porcelain`.lines.grep(/^!! /).each do |path| %>
     - <%= path.sub(/^!! /, '') %>
@@ -272,18 +272,18 @@ directories, `config/default.yml` will be used.
 
 RuboCop does a recursive file search starting from the directory it is
 run in, or directories given as command line arguments. Files that
-match any pattern listed under `AllCops`/`Include` and extensionless
+match any pattern listed under `AllRules`/`Include` and extensionless
 files with a hash-bang (`#!`) declaration containing one of the known
-ruby interpreters listed under `AllCops`/`RubyInterpreters` are
+ruby interpreters listed under `AllRules`/`RubyInterpreters` are
 inspected, unless the file also matches a pattern in
-`AllCops`/`Exclude`. Hidden directories (i.e., directories whose names
+`AllRules`/`Exclude`. Hidden directories (i.e., directories whose names
 start with a dot) are not searched by default.
 
 Here is an example that might be used for a Rails project:
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   Exclude:
     - 'db/**/*'
     - 'config/**/*'
@@ -297,8 +297,8 @@ AllCops:
 
 NOTE: When inspecting a certain directory(or file)
 given as RuboCop's command line arguments,
-patterns listed under `AllCops` / `Exclude` are also inspected.
-If you want to apply `AllCops` / `Exclude` rules in this circumstance,
+patterns listed under `AllRules` / `Exclude` are also inspected.
+If you want to apply `AllRules` / `Exclude` rules in this circumstance,
 add `--force-exclusion` to the command line argument.
 
 Here is an example:
@@ -306,7 +306,7 @@ Here is an example:
 [source,yaml]
 ----
 # .rubocop.yml
-AllCops:
+AllRules:
   Exclude:
     - foo.rb
 ----
@@ -335,14 +335,14 @@ e.g. `our_company_defaults.yml`, paths are relative to the directory where
 RuboCop comes with a comprehensive list of common ruby file names and
 extensions. But, if you'd like RuboCop to check files that are not included by
 default, you'll need to pass them in on the command line, or to add entries for
-them under `AllCops`/`Include`. Remember that your configuration files override
+them under `AllRules`/`Include`. Remember that your configuration files override
 https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml[RuboCops's defaults]. In the following example, we want to include
 `foo.unusual_extension`, but we also must copy any other patterns we need from
 the overridden `default.yml`.
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   Include:
     - foo.unusual_extension
     - '**/*.rb'
@@ -368,7 +368,7 @@ inherit_mode:
   merge:
     - Include
 
-AllCops:
+AllRules:
   Include:
     - foo.unusual_extension
 ----
@@ -446,7 +446,7 @@ setting `DisabledByDefault` or `EnabledByDefault` (but not both) to `true`.
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   DisabledByDefault: true
 ----
 
@@ -544,7 +544,7 @@ supports with:
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   TargetRubyVersion: 2.5
 ----
 
@@ -667,11 +667,11 @@ Do not write anything other than cop name in the disabling comment. E.g.:
 == Setting the style guide URL
 
 You can specify the base URL of the style guide using `StyleGuideBaseURL`.
-If specified under `AllCops`, all cops are targeted.
+If specified under `AllRules`, all cops are targeted.
 
 [source,yaml]
 ----
-AllCops:
+AllRules:
   StyleGuideBaseURL: https://rubystyle.guide
 ----
 
@@ -685,7 +685,7 @@ Lint/UselessAssignment:
 
 The style guide URL is https://rubystyle.guide#underscore-unused-vars.
 
-If specified under a specific department, it takes precedence over `AllCops`.
+If specified under a specific department, it takes precedence over `AllRules`.
 The following is an example of specifying `Rails` department.
 
 [source,yaml]

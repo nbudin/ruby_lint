@@ -24,7 +24,7 @@ module RuboCop
       end
 
       def default_rule_config
-        ConfigLoader.default_configuration[cop_name]
+        ConfigLoader.default_configuration[rule_name]
       end
     end
   end

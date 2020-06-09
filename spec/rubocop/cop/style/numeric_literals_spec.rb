@@ -30,7 +30,7 @@ RSpec.describe RuboCop::Rule::Style::NumericLiterals, :config do
       b = 1_8192
     RUBY
     expect(rule.offenses.size).to eq(2)
-    expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+    expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
   end
 
   it 'accepts long numbers with underscore' do

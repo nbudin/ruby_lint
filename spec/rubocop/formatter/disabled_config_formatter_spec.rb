@@ -16,8 +16,8 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
   end
 
   let(:offenses) do
-    [RuboCop::Rule::Offense.new(:convention, location, 'message', 'Cop1'),
-     RuboCop::Rule::Offense.new(:convention, location, 'message', 'Cop2')]
+    [RuboCop::Rule::Offense.new(:convention, location, 'message', 'Rule1'),
+     RuboCop::Rule::Offense.new(:convention, location, 'message', 'Rule2')]
   end
 
   let(:location) { OpenStruct.new(line: 1, column: 5) }
@@ -92,10 +92,10 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
   context "when there's .rubocop.yml" do
     before do
       create_file('.rubocop.yml', <<~YAML)
-        Cop1:
+        Rule1:
           Exclude:
             - Gemfile
-        Cop2:
+        Rule2:
           Exclude:
             - "**/*.blah"
             - !ruby/regexp /.*/bar/*/foo\.rb$/
@@ -107,8 +107,8 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
       formatter.file_started('test_b.rb', {})
       formatter.file_finished('test_b.rb', [offenses.first])
 
-      # Cop1 and Cop2 are unknown cops and would raise an validation error
-      allow(RuboCop::Rule::Rule.registry).to receive(:contains_cop_matching?)
+      # Rule1 and Rule2 are unknown rules and would raise an validation error
+      allow(RuboCop::Rule::Rule.registry).to receive(:contains_rule_matching?)
         .and_return(true)
       formatter.finished(['test_a.rb', 'test_b.rb'])
     end
@@ -116,14 +116,14 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     let(:expected_rubocop_todo) do
       [heading,
        '# Offense count: 2',
-       'Cop1:',
+       'Rule1:',
        '  Exclude:',
        "    - 'Gemfile'",
        "    - 'test_a.rb'",
        "    - 'test_b.rb'",
        '',
        '# Offense count: 1',
-       'Cop2:',
+       'Rule2:',
        '  Exclude:',
        "    - '**/*.blah'",
        "    - !ruby/regexp /.*/bar/*/foo\.rb$/",
@@ -160,11 +160,11 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     let(:expected_rubocop_todo) do
       [heading,
        '# Offense count: 16',
-       'Cop1:',
+       'Rule1:',
        '  Enabled: false',
        '',
        '# Offense count: 15',
-       'Cop2:',
+       'Rule2:',
        '  Exclude:',
        "    - 'test_01.rb'",
        "    - 'test_02.rb'",
@@ -219,11 +219,11 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     let(:expected_rubocop_todo) do
       [heading,
        '# Offense count: 6',
-       'Cop1:',
+       'Rule1:',
        '  Enabled: false',
        '',
        '# Offense count: 5',
-       'Cop2:',
+       'Rule2:',
        '  Exclude:',
        "    - 'test_01.rb'",
        "    - 'test_02.rb'",
@@ -251,7 +251,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
 
   context 'with auto-correct supported cop' do
     before do
-      stub_const('Test::Cop3',
+      stub_const('Test::Rule3',
                  Class.new(::RuboCop::Rule::Rule) do
                    def autocorrect
                      # Dummy method to respond to #support_autocorrect?
@@ -267,8 +267,8 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     let(:expected_rubocop_todo) do
       [heading,
        '# Offense count: 1',
-       '# Cop supports --auto-correct.',
-       'Test/Cop3:',
+       '# Rule supports --auto-correct.',
+       'Test/Rule3:',
        '  Exclude:',
        "    - 'test_auto_correct.rb'",
        ''].join("\n")
@@ -280,7 +280,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
           :convention,
           location,
           'message',
-          'Test/Cop3'
+          'Test/Rule3'
         )
       ]
     end

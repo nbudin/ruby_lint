@@ -9,7 +9,7 @@ module RuboCop
       end
 
       def disabled_line_ranges
-        comment_config.cop_disabled_line_ranges
+        comment_config.rule_disabled_line_ranges
       end
     end
   end

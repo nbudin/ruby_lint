@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-# The Lint/RedundantCopEnableDirective and Lint/RedundantCopDisableDirective
-# cops need to be disabled so as to be able to provide a (bad) example of an
+# The Lint/RedundantRuleEnableDirective and Lint/RedundantRuleDisableDirective
+# rules need to be disabled so as to be able to provide a (bad) example of an
 # unneeded enable.
 
-# rubocop:disable Lint/RedundantCopEnableDirective
-# rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Lint/RedundantRuleEnableDirective
+# rubocop:disable Lint/RedundantRuleDisableDirective
 module RuboCop
   module Rule
     module Lint
-      # This cop detects instances of rubocop:enable comments that can be
+      # This rule detects instances of rubocop:enable comments that can be
       # removed.
       #
-      # When comment enables all cops at once `rubocop:enable all`
-      # that cop checks whether any cop was actually enabled.
+      # When comment enables all rules at once `rubocop:enable all`
+      # that rule checks whether any rule was actually enabled.
       # @example
       #   # bad
       #   foo = 1
@@ -34,11 +34,11 @@ module RuboCop
       #   foo = "1"
       #   # rubocop:enable all
       #   baz
-      class RedundantCopEnableDirective < Rule
+      class RedundantRuleEnableDirective < Rule
         include RangeHelp
         include SurroundingSpace
 
-        MSG = 'Unnecessary enabling of %<cop>s.'
+        MSG = 'Unnecessary enabling of %<rule>s.'
 
         def investigate(processed_source)
           return if processed_source.blank?
@@ -48,7 +48,7 @@ module RuboCop
             add_offense(
               [comment, name],
               location: range_of_offense(comment, name),
-              message: format(MSG, cop: all_or_name(name))
+              message: format(MSG, rule: all_or_name(name))
             )
           end
         end
@@ -62,7 +62,7 @@ module RuboCop
         private
 
         def range_of_offense(comment, name)
-          start_pos = comment_start(comment) + cop_name_indention(comment, name)
+          start_pos = comment_start(comment) + rule_name_indention(comment, name)
           range_between(start_pos, start_pos + name.size)
         end
 
@@ -70,14 +70,14 @@ module RuboCop
           comment.loc.expression.begin_pos
         end
 
-        def cop_name_indention(comment, name)
+        def rule_name_indention(comment, name)
           comment.text.index(name)
         end
 
         def range_with_comma(comment, name)
           source = comment.loc.expression.source
 
-          begin_pos = cop_name_indention(comment, name)
+          begin_pos = rule_name_indention(comment, name)
           end_pos = begin_pos + name.size
           begin_pos = reposition(source, begin_pos, -1)
           end_pos = reposition(source, end_pos, 1)
@@ -108,12 +108,12 @@ module RuboCop
         end
 
         def all_or_name(name)
-          name == 'all' ? 'all cops' : name
+          name == 'all' ? 'all rules' : name
         end
       end
     end
   end
 end
 
-# rubocop:enable Lint/RedundantCopDisableDirective
-# rubocop:enable Lint/RedundantCopEnableDirective
+# rubocop:enable Lint/RedundantRuleDisableDirective
+# rubocop:enable Lint/RedundantRuleEnableDirective

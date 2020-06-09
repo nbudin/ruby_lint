@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
+RSpec.describe RuboCop::Rule::Lint::RedundantRuleDisableDirective, :config do
   describe '.check' do
     let(:rule_options) { { auto_correct: true } }
     let(:comments) { processed_source.comments }
@@ -44,7 +44,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
             end
 
             it 'gives the right rule name' do
-              expect(rule.name).to eq('Lint/RedundantCopDisableDirective')
+              expect(rule.name).to eq('Lint/RedundantRuleDisableDirective')
             end
 
             it 'autocorrects' do
@@ -68,10 +68,10 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
 
           context 'itself' do
             let(:source) do
-              '# rubocop:disable Lint/RedundantCopDisableDirective'
+              '# rubocop:disable Lint/RedundantRuleDisableDirective'
             end
             let(:rule_disabled_line_ranges) do
-              { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY] }
+              { 'Lint/RedundantRuleDisableDirective' => [1..Float::INFINITY] }
             end
 
             it 'does not return an offense' do
@@ -82,12 +82,12 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
           context 'itself and another rule' do
             context 'disabled on the same range' do
               let(:source) do
-                '# rubocop:disable Lint/RedundantCopDisableDirective, ' \
+                '# rubocop:disable Lint/RedundantRuleDisableDirective, ' \
                 'Metrics/ClassLength'
               end
 
               let(:rule_disabled_line_ranges) do
-                { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
+                { 'Lint/RedundantRuleDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [1..Float::INFINITY] }
               end
 
@@ -98,12 +98,12 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
 
             context 'disabled on different ranges' do
               let(:source) do
-                ['# rubocop:disable Lint/RedundantCopDisableDirective',
+                ['# rubocop:disable Lint/RedundantRuleDisableDirective',
                  '# rubocop:disable Metrics/ClassLength'].join("\n")
               end
 
               let(:rule_disabled_line_ranges) do
-                { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
+                { 'Lint/RedundantRuleDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [2..Float::INFINITY] }
               end
 
@@ -114,13 +114,13 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
 
             context 'and the other rule is disabled a second time' do
               let(:source) do
-                ['# rubocop:disable Lint/RedundantCopDisableDirective',
+                ['# rubocop:disable Lint/RedundantRuleDisableDirective',
                  '# rubocop:disable Metrics/ClassLength',
                  '# rubocop:disable Metrics/ClassLength'].join("\n")
               end
 
               let(:rule_disabled_line_ranges) do
-                { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
+                { 'Lint/RedundantRuleDisableDirective' => [1..Float::INFINITY],
                   'Metrics/ClassLength' => [(2..3), (3..Float::INFINITY)] }
               end
 
@@ -312,12 +312,12 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
           context 'itself and all rules' do
             context 'disabled on different ranges' do
               let(:source) do
-                ['# rubocop:disable Lint/RedundantCopDisableDirective',
+                ['# rubocop:disable Lint/RedundantRuleDisableDirective',
                  '# rubocop:disable all'].join("\n")
               end
 
               let(:rule_disabled_line_ranges) do
-                { 'Lint/RedundantCopDisableDirective' => [1..Float::INFINITY],
+                { 'Lint/RedundantRuleDisableDirective' => [1..Float::INFINITY],
                   'all' => [2..Float::INFINITY] }
               end
 
@@ -333,13 +333,13 @@ RSpec.describe RuboCop::Rule::Lint::RedundantCopDisableDirective, :config do
         let(:message) do
           'Replace class var @@class_var with a class instance var.'
         end
-        let(:cop_name) { 'Style/ClassVars' }
+        let(:rule_name) { 'Style/ClassVars' }
         let(:offenses) do
           offense_lines.map do |line|
             RuboCop::Rule::Offense.new(:convention,
                                       OpenStruct.new(line: line, column: 3),
                                       message,
-                                      cop_name)
+                                      rule_name)
           end
         end
 

@@ -105,7 +105,7 @@ module RuboCop
     end
 
     def for_rule(rule)
-      @for_rule[rule.respond_to?(:cop_name) ? rule.cop_name : rule]
+      @for_rule[rule.respond_to?(:rule_name) ? rule.rule_name : rule]
     end
 
     def for_department(department_name)

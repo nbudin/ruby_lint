@@ -15,7 +15,7 @@ shared_examples_for 'misaligned' do |annotated_source, used_style|
 
     it "registers an offense for mismatched #{name}" do
       expect_offense(chunk)
-      expect(cop.config_to_allow_offenses).to eq(config_to_allow_offenses)
+      expect(rule.config_to_allow_offenses).to eq(config_to_allow_offenses)
     end
 
     it "auto-corrects mismatched #{name}" do
