@@ -18,36 +18,36 @@ RSpec.describe RuboCop::Rule::Rule, :config do
       $stderr = STDERR
     end
 
-    it 'adds namespace if the cop name is found in exactly one namespace' do
+    it 'adds namespace if the rule name is found in exactly one namespace' do
       expect(described_class.qualified_rule_name('LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
-    it 'returns the given cop name if it is not found in any namespace' do
+    it 'returns the given rule name if it is not found in any namespace' do
       expect(described_class.qualified_rule_name('UnknownCop', '--only'))
         .to eq('UnknownCop')
     end
 
-    it 'returns the given cop name if it already has a namespace' do
+    it 'returns the given rule name if it already has a namespace' do
       expect(described_class.qualified_rule_name('Layout/LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
-    it 'returns the cop name in a different namespace if the provided ' \
+    it 'returns the rule name in a different namespace if the provided ' \
        'namespace is incorrect' do
       expect(described_class.qualified_rule_name('Style/LineLength', '--only'))
         .to eq('Layout/LineLength')
     end
 
     # `Rails/SafeNavigation` was extracted to rubocop-rails gem,
-    # there were no cop whose names overlapped.
-    xit 'raises an error if the cop name is in more than one namespace' do
+    # there were no rule whose names overlapped.
+    xit 'raises an error if the rule name is in more than one namespace' do
       expect { described_class.qualified_rule_name('SafeNavigation', '--only') }
         .to raise_error(RuboCop::Rule::AmbiguousCopName)
     end
 
-    it 'returns the given cop name if it already has a namespace even when ' \
-       'the cop exists in multiple namespaces' do
+    it 'returns the given rule name if it already has a namespace even when ' \
+       'the rule exists in multiple namespaces' do
       qualified_rule_name =
         described_class.qualified_rule_name('Style/SafeNavigation', '--only')
 
@@ -74,14 +74,14 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   it 'will set custom severity if present' do
-    cop.config[cop.name] = { 'Severity' => 'warning' }
+    rule.config[rule.name] = { 'Severity' => 'warning' }
     rule.add_offense(nil, location: location, message: 'message')
 
     expect(rule.offenses.first.severity).to eq(:warning)
   end
 
   it 'will warn if custom severity is invalid' do
-    cop.config[cop.name] = { 'Severity' => 'superbad' }
+    rule.config[rule.name] = { 'Severity' => 'superbad' }
     expect { rule.add_offense(nil, location: location, message: 'message') }
       .to output(/Warning: Invalid severity 'superbad'./).to_stderr
   end
@@ -98,7 +98,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     context 'ignore_disable_comments is false' do
-      let(:cop_options) { { ignore_disable_comments: false } }
+      let(:rule_options) { { ignore_disable_comments: false } }
 
       it 'will set offense as disabled' do
         expect(offense_status).to eq :disabled
@@ -106,7 +106,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     context 'ignore_disable_comments is true' do
-      let(:cop_options) { { ignore_disable_comments: true } }
+      let(:rule_options) { { ignore_disable_comments: true } }
 
       it 'will not set offense as disabled' do
         expect(offense_status).not_to eq :disabled
@@ -114,7 +114,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
   end
 
-  describe 'for a cop with a name' do
+  describe 'for a rule with a name' do
     let(:rule_class) { RuboCop::Rule::Style::For }
 
     it 'registers offense with its name' do
@@ -124,9 +124,9 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   describe 'setting of Offense#corrected attribute' do
-    context 'when cop does not support autocorrection' do
+    context 'when rule does not support autocorrection' do
       before do
-        allow(cop).to receive(:support_autocorrect?).and_return(false)
+        allow(rule).to receive(:support_autocorrect?).and_return(false)
       end
 
       it 'is not specified (set to nil)' do
@@ -136,7 +136,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
 
       context 'when autocorrect is requested' do
         before do
-          allow(cop).to receive(:autocorrect_requested?).and_return(true)
+          allow(rule).to receive(:autocorrect_requested?).and_return(true)
         end
 
         it 'is not specified (set to nil)' do
@@ -146,7 +146,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
 
         context 'when disable_uncorrectable is enabled' do
           before do
-            allow(cop).to receive(:disable_uncorrectable?).and_return(true)
+            allow(rule).to receive(:disable_uncorrectable?).and_return(true)
           end
 
           let(:node) do
@@ -165,13 +165,13 @@ RSpec.describe RuboCop::Rule::Rule, :config do
       end
     end
 
-    context 'when cop supports autocorrection' do
+    context 'when rule supports autocorrection' do
       let(:rule_class) { RuboCop::Rule::Style::Alias }
 
       context 'when offense was corrected' do
         before do
-          allow(cop).to receive(:autocorrect?).and_return(true)
-          allow(cop).to receive(:autocorrect).and_return(lambda do |corrector|
+          allow(rule).to receive(:autocorrect?).and_return(true)
+          allow(rule).to receive(:autocorrect).and_return(lambda do |corrector|
             corrector.insert_before(location, 'hi!')
           end)
         end
@@ -184,7 +184,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
 
       context 'when autocorrection is not needed' do
         before do
-          allow(cop).to receive(:autocorrect?).and_return(false)
+          allow(rule).to receive(:autocorrect?).and_return(false)
         end
 
         it 'is set to false' do
@@ -195,8 +195,8 @@ RSpec.describe RuboCop::Rule::Rule, :config do
 
       context 'when offense was not corrected because of an error' do
         before do
-          allow(cop).to receive(:autocorrect?).and_return(true)
-          allow(cop).to receive(:autocorrect).and_return(false)
+          allow(rule).to receive(:autocorrect?).and_return(true)
+          allow(rule).to receive(:autocorrect).and_return(false)
         end
 
         it 'is set to false' do
@@ -208,18 +208,18 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   context 'with no submodule' do
-    it('has right name') { expect(rule_class.rule_name).to eq('Cop/Cop') }
-    it('has right department') { expect(rule_class.department).to eq(:Cop) }
+    it('has right name') { expect(rule_class.rule_name).to eq('Rule/Rule') }
+    it('has right department') { expect(rule_class.department).to eq(:Rule) }
   end
 
-  context 'with style cops' do
+  context 'with style rules' do
     let(:rule_class) { RuboCop::Rule::Style::For }
 
     it('has right name') { expect(rule_class.rule_name).to eq('Style/For') }
     it('has right department') { expect(rule_class.department).to eq(:Style) }
   end
 
-  context 'with lint cops' do
+  context 'with lint rules' do
     let(:rule_class) { RuboCop::Rule::Lint::Loop }
 
     it('has right name') { expect(rule_class.rule_name).to eq('Lint/Loop') }
@@ -242,13 +242,13 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     describe '#with_department' do
       let(:departments) { described_class.registry.departments }
 
-      it 'has at least one cop per department' do
+      it 'has at least one rule per department' do
         departments.each do |c|
           expect(described_class.registry.with_department(c).length).to be > 0
         end
       end
 
-      it 'has each cop in exactly one type' do
+      it 'has each rule in exactly one type' do
         sum = 0
         departments.each do |c|
           sum += described_class.registry.with_department(c).length
@@ -263,16 +263,16 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   describe '#autocorrect?' do
-    # dummy config for a generic cop instance
+    # dummy config for a generic rule instance
 
-    subject { cop.autocorrect? }
+    subject { rule.autocorrect? }
 
     let(:support_autocorrect) { true }
     let(:disable_uncorrectable) { false }
 
     before do
-      allow(cop).to receive(:support_autocorrect?) { support_autocorrect }
-      allow(cop).to receive(:disable_uncorrectable?) { disable_uncorrectable }
+      allow(rule).to receive(:support_autocorrect?) { support_autocorrect }
+      allow(rule).to receive(:disable_uncorrectable?) { disable_uncorrectable }
     end
 
     context 'when the option is not given' do
@@ -282,11 +282,11 @@ RSpec.describe RuboCop::Rule::Rule, :config do
     end
 
     context 'when the option is given' do
-      let(:cop_options) { { auto_correct: true } }
+      let(:rule_options) { { auto_correct: true } }
 
       it { is_expected.to be(true) }
 
-      context 'when cop does not support autocorrection' do
+      context 'when rule does not support autocorrection' do
         let(:support_autocorrect) { false }
 
         it { is_expected.to be(false) }
@@ -298,8 +298,8 @@ RSpec.describe RuboCop::Rule::Rule, :config do
         end
       end
 
-      context 'when the cop is set to not autocorrect' do
-        let(:cop_options) { { 'AutoCorrect' => false } }
+      context 'when the rule is set to not autocorrect' do
+        let(:rule_options) { { 'AutoCorrect' => false } }
 
         it { is_expected.to be(false) }
       end
@@ -307,7 +307,7 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   describe '#relevant_file?' do
-    subject { cop.relevant_file?(file) }
+    subject { rule.relevant_file?(file) }
 
     let(:rule_config) { { 'Include' => ['foo.rb'] } }
 
@@ -331,15 +331,15 @@ RSpec.describe RuboCop::Rule::Rule, :config do
   end
 
   describe '#safe_autocorrect?' do
-    subject { cop.safe_autocorrect? }
+    subject { rule.safe_autocorrect? }
 
-    context 'when cop is declared unsafe' do
+    context 'when rule is declared unsafe' do
       let(:rule_config) { { 'Safe' => false } }
 
       it { is_expected.to be(false) }
     end
 
-    context 'when auto-correction of the cop is declared unsafe' do
+    context 'when auto-correction of the rule is declared unsafe' do
       let(:rule_config) { { 'SafeAutoCorrect' => false } }
 
       it { is_expected.to be(false) }

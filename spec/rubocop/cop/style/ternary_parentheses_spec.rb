@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::TernaryParentheses, :config do
   end
 
   let(:redundant_parens_enabled) { false }
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Style/RedundantParentheses' => { 'Enabled' => redundant_parens_enabled }
     }

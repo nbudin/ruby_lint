@@ -39,7 +39,7 @@ RSpec.describe RuboCop::Rule::Style::SingleLineMethods do
         def x; end
       RUBY
       expect(corrected).to eq(<<~RUBY)
-        def x;
+        def x; 
         end
       RUBY
     end

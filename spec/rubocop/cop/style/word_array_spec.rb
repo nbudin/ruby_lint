@@ -6,7 +6,7 @@ RSpec.describe RuboCop::Rule::Style::WordArray, :config do
     described_class.largest_brackets = -Float::INFINITY
   end
 
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Style/PercentLiteralDelimiters' => {
         'PreferredDelimiters' => {
@@ -203,30 +203,30 @@ RSpec.describe RuboCop::Rule::Style::WordArray, :config do
         %w(a b c d)
       RUBY
 
-      expect(cop.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
+      expect(rule.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
                                                  'MinSize' => 4)
     end
 
-    it 'detects when the cop must be disabled to avoid offenses' do
+    it 'detects when the rule must be disabled to avoid offenses' do
       inspect_source(<<~RUBY)
         ['one', 'two', 'three']
         %w(a b)
       RUBY
 
-      expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+      expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
     end
 
-    it "doesn't fail in wacky ways when multiple cop instances are used" do
+    it "doesn't fail in wacky ways when multiple rule instances are used" do
       # Regression test for GH issue #2740
-      cop1 = described_class.new(config)
-      cop2 = described_class.new(config)
+      rule1 = described_class.new(config)
+      rule2 = described_class.new(config)
       RuboCop::Formatter::DisabledConfigFormatter.config_to_allow_offenses = {}
       RuboCop::Formatter::DisabledConfigFormatter.detected_styles = {}
       # Don't use `inspect_source`; it resets `config_to_allow_offenses` each
       #   time, which suppresses the bug we are checking for
-      _investigate(cop1, parse_source("['g', 'h']"))
-      _investigate(cop2, parse_source('%w(a b c)'))
-      expect(cop2.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
+      _investigate(rule1, parse_source("['g', 'h']"))
+      _investigate(rule2, parse_source('%w(a b c)'))
+      expect(rule2.config_to_allow_offenses).to eq('EnforcedStyle' => 'percent',
                                                   'MinSize' => 3)
     end
   end
@@ -363,7 +363,7 @@ RSpec.describe RuboCop::Rule::Style::WordArray, :config do
     end
 
     context 'when PreferredDelimiters is specified' do
-      let(:other_cops) do
+      let(:other_rules) do
         {
           'Style/PercentLiteralDelimiters' => {
             'PreferredDelimiters' => {

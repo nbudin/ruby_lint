@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Rule::Style::GuardClause, :config do
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Layout/LineLength' => {
         'Enabled' => line_length_enabled,

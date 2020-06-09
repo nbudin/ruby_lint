@@ -71,19 +71,19 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     let(:expected_rubocop_todo) do
       [heading,
        '# Offense count: 2',
-       'Cop1:',
+       'Rule1:',
        '  Exclude:',
        "    - 'test_a.rb'",
        "    - 'test_b.rb'",
        '',
        '# Offense count: 1',
-       'Cop2:',
+       'Rule2:',
        '  Exclude:',
        "    - 'test_a.rb'",
        ''].join("\n")
     end
 
-    it 'displays YAML configuration disabling all cops with offenses' do
+    it 'displays YAML configuration disabling all rules with offenses' do
       expect(output.string).to eq(expected_rubocop_todo)
       expect($stdout.string).to eq("Created .rubocop_todo.yml.\n")
     end
@@ -184,7 +184,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
        ''].join("\n")
     end
 
-    it 'disables the cop with 15 offending files' do
+    it 'disables the rule with 15 offending files' do
       expect(output.string).to eq(expected_rubocop_todo)
     end
   end
@@ -249,7 +249,7 @@ RSpec.describe RuboCop::Formatter::DisabledConfigFormatter, :isolated_environmen
     end
   end
 
-  context 'with auto-correct supported cop' do
+  context 'with auto-correct supported rule' do
     before do
       stub_const('Test::Rule3',
                  Class.new(::RuboCop::Rule::Rule) do

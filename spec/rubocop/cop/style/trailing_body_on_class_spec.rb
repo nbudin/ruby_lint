@@ -63,8 +63,8 @@ RSpec.describe RuboCop::Rule::Style::TrailingBodyOnClass do
     RUBY
     expect(corrected).to eq(<<~RUBY)
       # comment
-      class BarQux
-        foo
+      class BarQux 
+        foo 
       end
     RUBY
   end

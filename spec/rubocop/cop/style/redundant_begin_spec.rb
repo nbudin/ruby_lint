@@ -88,12 +88,12 @@ RSpec.describe RuboCop::Rule::Style::RedundantBegin, :config do
 
     result_src = <<~RUBY
       def func
-
+        
           foo
           bar
         rescue
           baz
-
+        
       end
     RUBY
 
@@ -129,7 +129,7 @@ RSpec.describe RuboCop::Rule::Style::RedundantBegin, :config do
 
     result_src = <<~RUBY
       def method
-
+          
           BlockA do |strategy|
             foo
           end
@@ -140,7 +140,7 @@ RSpec.describe RuboCop::Rule::Style::RedundantBegin, :config do
 
         rescue => e # some problem
           bar
-
+        
       end
     RUBY
 

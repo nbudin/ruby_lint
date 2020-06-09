@@ -3,7 +3,7 @@
 require 'pathname'
 
 module RuboCop
-  # Handles validation of configuration, for example cop names, parameter
+  # Handles validation of configuration, for example rule names, parameter
   # names, and Ruby versions.
   class ConfigValidator
     extend Forwardable
@@ -35,14 +35,14 @@ module RuboCop
         ConfigLoader.default_configuration.key?(key)
       end
 
-      @config_obsoletion.reject_obsolete_cops_and_parameters
+      @config_obsoletion.reject_obsolete_rules_and_parameters
 
-      alert_about_unrecognized_cops(invalid_rule_names)
+      alert_about_unrecognized_rules(invalid_rule_names)
       check_target_ruby
-      validate_new_cops_parameter
+      validate_new_rules_parameter
       validate_parameter_names(valid_rule_names)
       validate_enforced_styles(valid_rule_names)
-      validate_syntax_cop
+      validate_syntax_rule
       reject_mutually_exclusive_defaults
     end
     # rubocop:enable Metrics/AbcSize
@@ -82,24 +82,24 @@ module RuboCop
       raise ValidationError, msg
     end
 
-    def alert_about_unrecognized_cops(invalid_rule_names)
-      unknown_cops = []
+    def alert_about_unrecognized_rules(invalid_rule_names)
+      unknown_rules = []
       invalid_rule_names.each do |name|
-        # There could be a custom cop with this name. If so, don't warn
-        next if Cop::Cop.registry.contains_cop_matching?([name])
+        # There could be a custom rule with this name. If so, don't warn
+        next if Cop::Cop.registry.contains_rule_matching?([name])
 
         # Special case for inherit_mode, which is a directive that we keep in
-        # the configuration (even though it's not a cop), because it's easier
+        # the configuration (even though it's not a rule), because it's easier
         # to do so than to pass the value around to various methods.
         next if name == 'inherit_mode'
 
-        unknown_cops << "unrecognized cop #{name} found in " \
+        unknown_rules << "unrecognized rule #{name} found in " \
           "#{smart_loaded_path}"
       end
-      raise ValidationError, unknown_cops.join(', ') if unknown_cops.any?
+      raise ValidationError, unknown_rules.join(', ') if unknown_rules.any?
     end
 
-    def validate_syntax_cop
+    def validate_syntax_rule
       syntax_config = @config['Lint/Syntax']
       default_config = ConfigLoader.default_configuration['Lint/Syntax']
 
@@ -107,16 +107,16 @@ module RuboCop
                     default_config.merge(syntax_config) != default_config
 
       raise ValidationError,
-            "configuration for Syntax cop found in #{smart_loaded_path}\n" \
-            'It\'s not possible to disable this cop.'
+            "configuration for Syntax rule found in #{smart_loaded_path}\n" \
+            'It\'s not possible to disable this rule.'
     end
 
-    def validate_new_cops_parameter
-      new_cop_parameter = @config.for_all_rules['NewRules']
-      return if new_cop_parameter.nil? ||
-                NEW_COPS_VALUES.include?(new_cop_parameter)
+    def validate_new_rules_parameter
+      new_rule_parameter = @config.for_all_rules['NewRules']
+      return if new_rule_parameter.nil? ||
+                NEW_COPS_VALUES.include?(new_rule_parameter)
 
-      message = "invalid #{new_cop_parameter} for `NewRules` found in" \
+      message = "invalid #{new_rule_parameter} for `NewRules` found in" \
                 "#{smart_loaded_path}\n" \
                 "Valid choices are: #{NEW_COPS_VALUES.join(', ')}"
 
@@ -191,7 +191,7 @@ module RuboCop
         next unless rule_config['Safe'] == false &&
                     rule_config['SafeAutoCorrect'] == true
 
-        msg = 'Unsafe cops cannot have a safe auto-correction ' \
+        msg = 'Unsafe rules cannot have a safe auto-correction ' \
               "(section #{name} in #{smart_loaded_path})"
         raise ValidationError, msg
       end
@@ -216,7 +216,7 @@ module RuboCop
     # FIXME: Handling colors in exception messages like this is ugly.
     def msg_not_boolean(parent, key, value)
       "#{Rainbow('').reset}" \
-        "Property #{Rainbow(key).yellow} of cop #{Rainbow(parent).yellow}" \
+        "Property #{Rainbow(key).yellow} of rule #{Rainbow(parent).yellow}" \
         " is supposed to be a boolean and #{Rainbow(value).yellow} is not."
     end
   end

@@ -122,7 +122,7 @@ RSpec.describe RuboCop::Rule::Style::RaiseArgs, :config do
             raise Ex.new(msg)
             ^^^^^^^^^^^^^^^^^ Provide an exception class and message as arguments to `raise`.
           RUBY
-          expect(cop.config_to_allow_offenses)
+          expect(rule.config_to_allow_offenses)
             .to eq('EnforcedStyle' => 'compact')
         end
 
@@ -138,7 +138,7 @@ RSpec.describe RuboCop::Rule::Style::RaiseArgs, :config do
             raise Ex.new
             ^^^^^^^^^^^^ Provide an exception class and message as arguments to `raise`.
           RUBY
-          expect(cop.config_to_allow_offenses)
+          expect(rule.config_to_allow_offenses)
             .to eq('EnforcedStyle' => 'compact')
         end
 

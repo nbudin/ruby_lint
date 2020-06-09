@@ -192,11 +192,11 @@ RSpec.describe RuboCop::Rule::Lint::LiteralInInterpolation do
     RUBY
 
     expect_correction(<<~'RUBY')
-      "this is
+      "this is 
        silly"
-      "this is
+      "this is 
        silly"
-      "this is
+      "this is 
        silly"
     RUBY
   end

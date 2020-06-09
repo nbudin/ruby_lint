@@ -123,7 +123,7 @@ module RuboCop
         # run the other cops when no corrections are left
         on_duty = roundup_relevant_cops(processed_source.file_path)
 
-        autocorrect_cops, other_cops = on_duty.partition(&:autocorrect?)
+        autocorrect_cops, other_rules = on_duty.partition(&:autocorrect?)
 
         autocorrect = investigate(autocorrect_cops, processed_source)
 
@@ -134,7 +134,7 @@ module RuboCop
           return autocorrect.offenses
         end
 
-        other = investigate(other_cops, processed_source)
+        other = investigate(other_rules, processed_source)
 
         errors = [*autocorrect.errors, *other.errors]
         process_errors(processed_source.path, errors)

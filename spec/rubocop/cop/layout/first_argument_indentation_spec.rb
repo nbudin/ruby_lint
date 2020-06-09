@@ -5,7 +5,7 @@ RSpec.describe RuboCop::Rule::Layout::FirstArgumentIndentation, :config do
     { 'EnforcedStyle' => style }
   end
 
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Layout/IndentationWidth' => {
         'Width' => indentation_width

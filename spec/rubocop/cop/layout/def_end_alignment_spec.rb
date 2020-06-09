@@ -48,7 +48,7 @@ RSpec.describe RuboCop::Rule::Layout::DefEndAlignment, :config do
         expect(rule.messages.first)
           .to eq('`end` at 7, 4 is not aligned with `foo def` at 5, 0.')
         expect(rule.highlights.first).to eq('end')
-        expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+        expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
       end
 
       it 'does auto-correction' do

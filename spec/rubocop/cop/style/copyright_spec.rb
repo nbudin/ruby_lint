@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-def expect_copyright_offense(cop, source)
+def expect_copyright_offense(rule, source)
   inspect_source(source)
   expect(rule.offenses.size).to eq(1)
 end
@@ -46,7 +46,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     RUBY
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do
@@ -86,7 +86,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     RUBY
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do
@@ -106,7 +106,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     let(:source) { '' }
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do
@@ -126,7 +126,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     RUBY
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do
@@ -150,7 +150,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     RUBY
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do
@@ -176,7 +176,7 @@ RSpec.describe RuboCop::Rule::Style::Copyright, :config do
     RUBY
 
     it 'adds an offense' do
-      expect_copyright_offense(cop, source)
+      expect_copyright_offense(rule, source)
     end
 
     it 'correctly autocorrects the source code' do

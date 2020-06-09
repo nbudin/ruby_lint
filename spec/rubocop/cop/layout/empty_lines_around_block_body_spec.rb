@@ -46,7 +46,7 @@ RSpec.describe RuboCop::Rule::Layout::EmptyLinesAroundBlockBody, :config do
       it 'accepts block body starting with a line with spaces' do
         expect_no_offenses(<<~RUBY)
           some_method #{open}
-
+            
             do_something
           #{close}
         RUBY

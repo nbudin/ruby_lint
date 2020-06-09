@@ -2,7 +2,7 @@
 
 RSpec.describe RuboCop::Rule::Layout::HeredocIndentation, :config do
   let(:allow_heredoc) { true }
-  let(:other_cops) do
+  let(:other_rules) do
     {
       'Layout/LineLength' => { 'Max' => 5, 'AllowHeredoc' => allow_heredoc }
     }
