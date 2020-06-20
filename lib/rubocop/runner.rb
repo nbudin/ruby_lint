@@ -307,7 +307,7 @@ module RuboCop
       @mobilized_rule_classes[config.object_id] ||= begin
         rule_classes = Rule::Rule.all
 
-        OptionsValidator.new(@options).validate_cop_options
+        OptionsValidator.new(@options).validate_rule_options
 
         if @options[:only]
           rule_classes.select! { |c| c.match?(@options[:only]) }

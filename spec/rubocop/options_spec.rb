@@ -37,7 +37,7 @@ RSpec.describe RuboCop::Options, :isolated_environment do
               -L, --list-target-files          List all files RuboCop will inspect.
                   --except [COP1,COP2,...]     Disable the given cop(s).
                   --only [COP1,COP2,...]       Run only the given cop(s).
-                  --only-guide-cops            Run only cops for rules that link to a
+                  --only-guide-rules           Run only rules for rules that link to a
                                                style guide.
               -c, --config FILE                Specify configuration file.
                   --force-exclusion            Force excluding files specified in the
@@ -93,14 +93,14 @@ RSpec.describe RuboCop::Options, :isolated_environment do
                                                specified --format, or the default format
                                                if no format is specified.
                   --display-only-failed        Only output offense messages. Omit passing
-                                               cops. Only valid for --format junit.
+                                               rules. Only valid for --format junit.
               -r, --require FILE               Require Ruby file.
                   --fail-level SEVERITY        Minimum severity (A/R/C/W/E/F) for exit
                                                with error code.
                   --display-only-fail-level-offenses
                                                Only output offense messages at
                                                the specified --fail-level or above
-                  --show-cops [COP1,COP2,...]  Shows the given cops, or all cops by
+                  --show-rules [RULE1,RULE2,...]  Shows the given rules, or all rules by
                                                default, and their configurations for the
                                                current directory.
               -F, --fail-fast                  Inspect files in order of modification
@@ -115,18 +115,18 @@ RSpec.describe RuboCop::Options, :isolated_environment do
               -E, --extra-details              Display extra details in offense messages.
               -S, --display-style-guide        Display style guide URLs in offense messages.
               -a, --auto-correct               Auto-correct offenses.
-                  --disable-pending-cops       Run without pending cops.
-                  --enable-pending-cops        Run with pending cops.
-                  --ignore-disable-comments    Run cops even when they are disabled locally
+                  --disable-pending-rules       Run without pending rules.
+                  --enable-pending-rules        Run with pending rules.
+                  --ignore-disable-comments    Run rules even when they are disabled locally
                                                with a comment.
-                  --safe                       Run only safe cops.
+                  --safe                       Run only safe rules.
                   --[no-]color                 Force color output on or off.
               -v, --version                    Display version.
               -V, --verbose-version            Display verbose version.
               -P, --parallel                   Use available CPUs to execute inspection in
                                                parallel.
-              -l, --lint                       Run only lint cops.
-              -x, --fix-layout                 Run only layout cops, with auto-correct on.
+              -l, --lint                       Run only lint rules.
+              -x, --fix-layout                 Run only layout rules, with auto-correct on.
                   --safe-auto-correct          Run auto-correct only when it's safe.
               -s, --stdin FILE                 Pipe source from STDIN, using FILE in offense
                                                reports. This is useful for editor integration.
@@ -169,22 +169,22 @@ RSpec.describe RuboCop::Options, :isolated_environment do
           .to raise_error(RuboCop::OptionArgumentError, msg)
       end
 
-      it 'rejects using -v with --show-cops' do
-        msg = 'Incompatible cli options: [:version, :show_cops]'
-        expect { options.parse %w[-v --show-cops] }
+      it 'rejects using -v with --show-rules' do
+        msg = 'Incompatible cli options: [:version, :show_rules]'
+        expect { options.parse %w[-v --show-rules] }
           .to raise_error(RuboCop::OptionArgumentError, msg)
       end
 
-      it 'rejects using -V with --show-cops' do
-        msg = 'Incompatible cli options: [:verbose_version, :show_cops]'
-        expect { options.parse %w[-V --show-cops] }
+      it 'rejects using -V with --show-rules' do
+        msg = 'Incompatible cli options: [:verbose_version, :show_rules]'
+        expect { options.parse %w[-V --show-rules] }
           .to raise_error(RuboCop::OptionArgumentError, msg)
       end
 
       it 'mentions all incompatible options when more than two are used' do
         msg = 'Incompatible cli options: [:version, :verbose_version,' \
-              ' :show_cops]'
-        expect { options.parse %w[-vV --show-cops] }
+              ' :show_rules]'
+        expect { options.parse %w[-vV --show-rules] }
           .to raise_error(RuboCop::OptionArgumentError, msg)
       end
     end

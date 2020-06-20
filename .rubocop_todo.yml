@@ -29,8 +29,8 @@ Metrics/ModuleLength:
 RSpec/AnyInstance:
   Exclude:
     - 'spec/rubocop/cli_spec.rb'
-    - 'spec/rubocop/cop/lint/duplicate_methods_spec.rb'
-    - 'spec/rubocop/cop/team_spec.rb'
+    - 'spec/rubocop/rule/lint/duplicate_methods_spec.rb'
+    - 'spec/rubocop/rule/team_spec.rb'
     - 'spec/rubocop/target_finder_spec.rb'
 
 # Offense count: 972
@@ -50,7 +50,7 @@ RSpec/ExpectOutput:
     - 'spec/rubocop/cli/cli_auto_gen_config_spec.rb'
     - 'spec/rubocop/cli/cli_options_spec.rb'
     - 'spec/rubocop/config_spec.rb'
-    - 'spec/rubocop/cop/cop_spec.rb'
+    - 'spec/rubocop/rule/rule_spec.rb'
     - 'spec/rubocop/formatter/disabled_config_formatter_spec.rb'
     - 'spec/rubocop/formatter/formatter_set_spec.rb'
     - 'spec/rubocop/options_spec.rb'

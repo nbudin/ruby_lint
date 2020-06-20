@@ -137,7 +137,7 @@ RSpec.describe RuboCop::Rule::Registry do
     it 'raises an error when a rule name is ambiguous' do
       rule_name = 'FirstArrayElementIndentation'
       expect { registry.qualified_rule_name(rule_name, origin) }
-        .to raise_error(RuboCop::Rule::AmbiguousCopName)
+        .to raise_error(RuboCop::Rule::AmbiguousRuleName)
         .with_message(
           'Ambiguous rule name `FirstArrayElementIndentation` used in ' \
           '/app/.rubocop.yml needs department qualifier. Did you mean ' \

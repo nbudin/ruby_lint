@@ -49,7 +49,7 @@ module RuboCop
         location = Parser::Source::Range.new(source_buffer,
                                              o['location']['begin_pos'],
                                              o['location']['end_pos'])
-        Cop::Offense.new(o['severity'], location,
+        Rule::Offense.new(o['severity'], location,
                          o['message'],
                          o['rule_name'], o['status'].to_sym)
       end

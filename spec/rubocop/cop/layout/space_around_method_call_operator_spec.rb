@@ -417,7 +417,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
       RuboCop::Rule:: Rule
     CODE
       RuboCop::Rule:: Rule
-                    ^ Avoid using spaces around a method call operator.
+                     ^ Avoid using spaces around a method call operator.
     OFFENSE
       RuboCop::Rule::Rule
     CORRECTION
@@ -428,7 +428,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
       RuboCop::Rule:: Rule::Rule
     CODE
       RuboCop::Rule:: Rule::Rule
-                    ^ Avoid using spaces around a method call operator.
+                     ^ Avoid using spaces around a method call operator.
     OFFENSE
       RuboCop::Rule::Rule::Rule
     CORRECTION
@@ -438,7 +438,7 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
       :: RuboCop:: Rule:: Rule::Rule
     CODE
       :: RuboCop:: Rule:: Rule::Rule
-                        ^ Avoid using spaces around a method call operator.
+                         ^ Avoid using spaces around a method call operator.
                   ^ Avoid using spaces around a method call operator.
         ^ Avoid using spaces around a method call operator.
     OFFENSE

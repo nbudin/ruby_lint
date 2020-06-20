@@ -16,7 +16,7 @@ RSpec.describe RuboCop::Config do
 
     let(:configuration_path) { '.rubocop.yml' }
 
-    context 'when the configuration includes any unrecognized cop name' do
+    context 'when the configuration includes any unrecognized rule name' do
       before do
         create_file(configuration_path, <<~YAML)
           LyneLenth:
@@ -33,7 +33,7 @@ RSpec.describe RuboCop::Config do
       it 'raises an validation error' do
         expect { configuration }.to raise_error(
           RuboCop::ValidationError,
-          'unrecognized cop LyneLenth found in .rubocop.yml'
+          'unrecognized rule LyneLenth found in .rubocop.yml'
         )
       end
     end
@@ -102,7 +102,7 @@ RSpec.describe RuboCop::Config do
 
     context 'when the configuration includes any common parameter' do
       # Common parameters are parameters that are not in the default
-      # configuration, but are nonetheless allowed for any cop.
+      # configuration, but are nonetheless allowed for any rule.
       before do
         create_file(configuration_path, <<~YAML)
           Metrics/ModuleLength:
@@ -241,7 +241,7 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    context 'when the configuration includes an obsolete cop' do
+    context 'when the configuration includes an obsolete rule' do
       before do
         create_file(configuration_path, <<~YAML)
           Style/MethodCallParentheses:
@@ -309,7 +309,7 @@ RSpec.describe RuboCop::Config do
     include_examples 'obsolete MaxLineLength parameter',
                      'Style/IfUnlessModifier'
 
-    context 'when the configuration includes obsolete parameters and cops' do
+    context 'when the configuration includes obsolete parameters and rules' do
       before do
         create_file(configuration_path, <<~YAML)
           Rails/UniqBeforePluck:
@@ -335,7 +335,7 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    context 'when all cops are both Enabled and Disabled by default' do
+    context 'when all rules are both Enabled and Disabled by default' do
       before do
         create_file(configuration_path, <<~YAML)
           AllRules:
@@ -353,7 +353,7 @@ RSpec.describe RuboCop::Config do
       end
     end
 
-    context 'when the configuration includes Lint/Syntax cop' do
+    context 'when the configuration includes Lint/Syntax rule' do
       before do
         # Force reloading default configuration
         RuboCop::ConfigLoader.default_configuration = nil
@@ -384,14 +384,14 @@ RSpec.describe RuboCop::Config do
           expect { configuration.validate }
             .to raise_error(
               RuboCop::ValidationError,
-              /configuration for Syntax cop found/
+              /configuration for Syntax rule found/
             )
         end
       end
     end
 
     describe 'conflicting Safe settings' do
-      context 'when the configuration includes an unsafe cop that is ' \
+      context 'when the configuration includes an unsafe rule that is ' \
               'explicitly declared to have a safe auto-correction' do
         before do
           create_file(configuration_path, <<~YAML)
@@ -405,12 +405,12 @@ RSpec.describe RuboCop::Config do
           expect { configuration.validate }
             .to raise_error(
               RuboCop::ValidationError,
-              /Unsafe cops cannot have a safe auto-correction/
+              /Unsafe rules cannot have a safe auto-correction/
             )
         end
       end
 
-      context 'when the configuration includes an unsafe cop without ' \
+      context 'when the configuration includes an unsafe rule without ' \
               'a declaration of its auto-correction' do
         before do
           create_file(configuration_path, <<~YAML)
@@ -735,13 +735,13 @@ RSpec.describe RuboCop::Config do
     end
   end
 
-  context 'whether the cop is enabled' do
-    def cop_enabled(rule_class)
+  context 'whether the rule is enabled' do
+    def rule_enabled(rule_class)
       configuration.for_rule(rule_class).fetch('Enabled')
     end
 
-    context 'when an entire cop department is disabled' do
-      context 'but an individual cop is enabled' do
+    context 'when an entire rule department is disabled' do
+      context 'but an individual rule is enabled' do
         let(:hash) do
           {
             'Layout' => { 'Enabled' => false },
@@ -749,15 +749,15 @@ RSpec.describe RuboCop::Config do
           }
         end
 
-        it 'still disables the cop' do
+        it 'still disables the rule' do
           rule_class = RuboCop::Rule::Layout::TrailingWhitespace
-          expect(cop_enabled(rule_class)).to be false
+          expect(rule_enabled(rule_class)).to be false
         end
       end
     end
 
-    context 'when an entire cop department is enabled' do
-      context 'but an individual cop is disabled' do
+    context 'when an entire rule department is enabled' do
+      context 'but an individual rule is disabled' do
         let(:hash) do
           {
             'Style' => { 'Enabled' => true },
@@ -765,56 +765,56 @@ RSpec.describe RuboCop::Config do
           }
         end
 
-        it 'still disables the cop' do
+        it 'still disables the rule' do
           rule_class = RuboCop::Rule::Layout::TrailingWhitespace
-          expect(cop_enabled(rule_class)).to be false
+          expect(rule_enabled(rule_class)).to be false
         end
       end
     end
 
-    context 'when a cop has configuration but no explicit Enabled setting' do
+    context 'when a rule has configuration but no explicit Enabled setting' do
       let(:hash) do
         {
           'Layout/TrailingWhitespace' => { 'Exclude' => ['foo'] }
         }
       end
 
-      it 'enables the cop by default' do
+      it 'enables the rule by default' do
         rule_class = RuboCop::Rule::Layout::TrailingWhitespace
-        expect(cop_enabled(rule_class)).to be true
+        expect(rule_enabled(rule_class)).to be true
       end
     end
 
-    context 'when configuration has no mention of a cop' do
+    context 'when configuration has no mention of a rule' do
       let(:hash) do
         {}
       end
 
-      it 'enables the cop that is not mentioned' do
-        expect(cop_enabled('VeryCustomDepartment/CustomCop')).to be true
+      it 'enables the rule that is not mentioned' do
+        expect(rule_enabled('VeryCustomDepartment/CustomCop')).to be true
       end
 
-      context 'when all cops are disabled by default' do
+      context 'when all rules are disabled by default' do
         let(:hash) do
           {
             'AllRules' => { 'DisabledByDefault' => true }
           }
         end
 
-        it 'disables the cop that is not mentioned' do
-          expect(cop_enabled('VeryCustomDepartment/CustomCop')).to be false
+        it 'disables the rule that is not mentioned' do
+          expect(rule_enabled('VeryCustomDepartment/CustomCop')).to be false
         end
       end
 
-      context 'when all cops are explicitly enabled by default' do
+      context 'when all rules are explicitly enabled by default' do
         let(:hash) do
           {
             'AllRules' => { 'EnabledByDefault' => true }
           }
         end
 
-        it 'enables the cop that is not mentioned' do
-          expect(cop_enabled('VeryCustomDepartment/CustomCop')).to be true
+        it 'enables the rule that is not mentioned' do
+          expect(rule_enabled('VeryCustomDepartment/CustomCop')).to be true
         end
       end
     end

@@ -6,7 +6,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
       .registry
       .without_department(:Test)
       .without_department(:InternalAffairs)
-      .cops
+      .rules
       .map(&:rule_name)
   end
 
@@ -15,11 +15,11 @@ RSpec.describe 'RuboCop Project', type: :feature do
 
     let(:configuration_keys) { config.keys }
 
-    it 'has configuration for all cops' do
+    it 'has configuration for all rules' do
       expect(configuration_keys).to match_array(%w[AllRules] + rule_names)
     end
 
-    it 'has a nicely formatted description for all cops' do
+    it 'has a nicely formatted description for all rules' do
       rule_names.each do |name|
         description = config[name]['Description']
         expect(description.nil?).to be(false)
@@ -27,7 +27,7 @@ RSpec.describe 'RuboCop Project', type: :feature do
       end
     end
 
-    it 'requires a nicely formatted `VersionAdded` metadata for all cops' do
+    it 'requires a nicely formatted `VersionAdded` metadata for all rules' do
       rule_names.each do |name|
         version = config[name]['VersionAdded']
         expect(version.nil?).to(be(false),
@@ -84,13 +84,13 @@ RSpec.describe 'RuboCop Project', type: :feature do
     end
   end
 
-  describe 'cop message' do
-    let(:cops) { RuboCop::Rule::Rule.all }
+  describe 'rule message' do
+    let(:rules) { RuboCop::Rule::Rule.all }
 
     it 'end with a period or a question mark' do
-      cops.each do |cop|
+      rules.each do |rule|
         begin
-          msg = cop.const_get(:MSG)
+          msg = rule.const_get(:MSG)
         rescue NameError
           next
         end

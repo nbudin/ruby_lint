@@ -589,7 +589,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       it 'displays how to use `--only` option' do
         expect(cli.run(%w[--except -a Lint/NumberConverion])).to eq(2)
         expect($stderr.string).to eq(<<~MESSAGE)
-          --except argument should be [COP1,COP2,...].
+          --except argument should be [RULE1,RULE2,...].
         MESSAGE
       end
     end

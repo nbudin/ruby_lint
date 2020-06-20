@@ -11,9 +11,9 @@ module RuboCop
   class Options
     E_STDIN_NO_PATH = '-s/--stdin requires exactly one path, relative to the ' \
       'root of the project. RuboCop will use this path to determine which ' \
-      'cops are enabled (via eg. Include/Exclude), and so that certain cops ' \
+      'rules are enabled (via eg. Include/Exclude), and so that certain rules ' \
       'like Naming/FileName can be checked.'
-    EXITING_OPTIONS = %i[version verbose_version show_cops].freeze
+    EXITING_OPTIONS = %i[version verbose_version show_rules].freeze
     DEFAULT_MAXIMUM_EXCLUSION_ITEMS = 15
 
     def initialize
@@ -76,15 +76,15 @@ module RuboCop
     end
 
     def add_only_options(opts)
-      add_cop_selection_csv_option('except', opts)
-      add_cop_selection_csv_option('only', opts)
-      option(opts, '--only-guide-cops')
+      add_rule_selection_csv_option('except', opts)
+      add_rule_selection_csv_option('only', opts)
+      option(opts, '--only-guide-rules')
     end
 
-    def add_cop_selection_csv_option(option, opts)
-      option(opts, "--#{option} [COP1,COP2,...]") do |list|
+    def add_rule_selection_csv_option(option, opts)
+      option(opts, "--#{option} [RULE1,RULE2,...]") do |list|
         unless list
-          message = "--#{option} argument should be [COP1,COP2,...]."
+          message = "--#{option} argument should be [RULE1,RULE2,...]."
 
           raise OptionArgumentError, message
         end
@@ -94,7 +94,7 @@ module RuboCop
             ['']
           else
             list.split(',').map do |c|
-              Cop::Cop.qualified_rule_name(c, "--#{option} option")
+              Rule::Rule.qualified_rule_name(c, "--#{option} option")
             end
           end
       end
@@ -158,8 +158,8 @@ module RuboCop
     end
 
     def add_flags_with_optional_args(opts)
-      option(opts, '--show-cops [COP1,COP2,...]') do |list|
-        @options[:show_cops] = list.nil? ? [] : list.split(',')
+      option(opts, '--show-rules [COP1,COP2,...]') do |list|
+        @options[:show_rules] = list.nil? ? [] : list.split(',')
       end
     end
 
@@ -172,8 +172,8 @@ module RuboCop
       option(opts, '-E', '--extra-details')
       option(opts, '-S', '--display-style-guide')
       option(opts, '-a', '--auto-correct')
-      option(opts, '--disable-pending-cops')
-      option(opts, '--enable-pending-cops')
+      option(opts, '--disable-pending-rules')
+      option(opts, '--enable-pending-rules')
       option(opts, '--ignore-disable-comments')
 
       option(opts, '--safe')
@@ -228,13 +228,13 @@ module RuboCop
   # Validates option arguments and the options' compatibility with each other.
   class OptionsValidator
     class << self
-      # Cop name validation must be done later than option parsing, so it's not
+      # Rule name validation must be done later than option parsing, so it's not
       # called from within Options.
-      def validate_cop_list(names)
+      def validate_rule_list(names)
         return unless names
 
-        rule_names = Cop::Cop.registry.names
-        departments = Cop::Cop.registry.departments.map(&:to_s)
+        rule_names = Rule::Rule.registry.names
+        departments = Rule::Rule.registry.departments.map(&:to_s)
 
         names.each do |name|
           next if rule_names.include?(name)
@@ -248,7 +248,7 @@ module RuboCop
       private
 
       def format_message_from(name, rule_names)
-        message = 'Unrecognized cop or department: %<name>s.'
+        message = 'Unrecognized rule or department: %<name>s.'
         message_with_candidate = "%<message>s\nDid you mean? %<candidate>s"
         corrections = NameSimilarity.find_similar_names(name, rule_names)
 
@@ -265,9 +265,9 @@ module RuboCop
       @options = options
     end
 
-    def validate_cop_options
+    def validate_rule_options
       %i[only except].each do |opt|
-        OptionsValidator.validate_cop_list(@options[opt])
+        OptionsValidator.validate_rule_list(@options[opt])
       end
     end
 
@@ -392,10 +392,10 @@ module RuboCop
     FORMATTER_OPTION_LIST = RuboCop::Formatter::FormatterSet::BUILTIN_FORMATTERS_FOR_KEYS.keys
 
     TEXT = {
-      only:                             'Run only the given cop(s).',
-      only_guide_cops:                  ['Run only cops for rules that link to a',
+      only:                             'Run only the given rule(s).',
+      only_guide_rules:                  ['Run only rules for rules that link to a',
                                          'style guide.'],
-      except:                           'Disable the given cop(s).',
+      except:                           'Disable the given rule(s).',
       require:                          'Require Ruby file.',
       config:                           'Specify configuration file.',
       auto_gen_config:                  ['Generate a configuration file acting as a',
@@ -423,7 +423,7 @@ module RuboCop
       only_recognized_file_types:       ['Inspect files given on the command line only if',
                                          'they are listed in AllRules/Include parameters',
                                          'of user configuration or default configuration.'],
-      ignore_disable_comments:          ['Run cops even when they are disabled locally',
+      ignore_disable_comments:          ['Run rules even when they are disabled locally',
                                          'with a comment.'],
       ignore_parent_exclusion:          ['Prevent from inheriting AllRules/Exclude from',
                                          'parent folders.'],
@@ -442,11 +442,11 @@ module RuboCop
       fail_level:                       ['Minimum severity (A/R/C/W/E/F) for exit',
                                          'with error code.'],
       display_only_failed:              ['Only output offense messages. Omit passing',
-                                         'cops. Only valid for --format junit.'],
+                                         'rules. Only valid for --format junit.'],
       display_only_fail_level_offenses:
                                         ['Only output offense messages at',
                                          'the specified --fail-level or above'],
-      show_cops:                        ['Shows the given cops, or all cops by',
+      show_rules:                        ['Shows the given rules, or all rules by',
                                          'default, and their configurations for the',
                                          'current directory.'],
       fail_fast:                        ['Inspect files in order of modification',
@@ -456,18 +456,18 @@ module RuboCop
                                          '(FLAG=false), default determined by',
                                          'configuration parameter AllRules: UseCache.'],
       debug:                            'Display debug info.',
-      display_rule_names:                ['Display cop names in offense messages.',
+      display_rule_names:                ['Display rule names in offense messages.',
                                          'Default is true.'],
-      disable_pending_cops:             'Run without pending cops.',
+      disable_pending_rules:             'Run without pending rules.',
       display_style_guide:              'Display style guide URLs in offense messages.',
-      enable_pending_cops:              'Run with pending cops.',
+      enable_pending_rules:              'Run with pending rules.',
       extra_details:                    'Display extra details in offense messages.',
-      lint:                             'Run only lint cops.',
-      safe:                             'Run only safe cops.',
+      lint:                             'Run only lint rules.',
+      safe:                             'Run only safe rules.',
       list_target_files:                'List all files RuboCop will inspect.',
       auto_correct:                     'Auto-correct offenses.',
       safe_auto_correct:                'Run auto-correct only when it\'s safe.',
-      fix_layout:                       'Run only layout cops, with auto-correct on.',
+      fix_layout:                       'Run only layout rules, with auto-correct on.',
       color:                            'Force color output on or off.',
       version:                          'Display version.',
       verbose_version:                  'Display verbose version.',
