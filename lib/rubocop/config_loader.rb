@@ -9,7 +9,7 @@ module RuboCop
   end
 
   # This class represents the configuration of the RuboCop application
-  # and all its cops. A Config is associated with a YAML configuration
+  # and all its rules. A Config is associated with a YAML configuration
   # file from which it was read. Several different Configs can be used
   # during a run of the rubocop program, if files in several
   # directories are inspected.
@@ -24,7 +24,7 @@ module RuboCop
       include FileFinder
 
       attr_accessor :debug, :auto_gen_config, :ignore_parent_exclusion,
-                    :options_config, :disable_pending_cops, :enable_pending_cops
+                    :options_config, :disable_pending_rules, :enable_pending_rules
       attr_writer :default_configuration
 
       alias debug? debug
@@ -41,12 +41,12 @@ module RuboCop
 
         hash = load_yaml_configuration(path)
 
-        # Resolve requires first in case they define additional cops
+        # Resolve requires first in case they define additional rules
         resolver.resolve_requires(path, hash)
 
         add_missing_namespaces(path, hash)
 
-        resolver.override_department_setting_for_cops({}, hash)
+        resolver.override_department_setting_for_rules({}, hash)
         resolver.resolve_inheritance_from_gems(hash)
         resolver.resolve_inheritance(path, hash, file, debug?)
 
@@ -95,13 +95,13 @@ module RuboCop
         end
 
         merge_with_default(config, config_file).tap do |merged_config|
-          warn_on_pending_cops(merged_config.pending_cops) unless possible_new_cops?(config)
+          warn_on_pending_rules(merged_config.pending_rules) unless possible_new_rules?(config)
         end
       end
 
-      def possible_new_cops?(config)
-        disable_pending_cops || enable_pending_cops ||
-          config.disabled_new_cops? || config.enabled_new_cops?
+      def possible_new_rules?(config)
+        disable_pending_rules || enable_pending_rules ||
+          config.disabled_new_rules? || config.enabled_new_rules?
       end
 
       def add_excludes_from_files(config, config_file)
@@ -123,17 +123,17 @@ module RuboCop
                                    end
       end
 
-      def warn_on_pending_cops(pending_cops)
-        return if pending_cops.empty?
+      def warn_on_pending_rules(pending_rules)
+        return if pending_rules.empty?
 
-        warn Rainbow('The following cops were added to RuboCop, but are not ' \
+        warn Rainbow('The following rules were added to RuboCop, but are not ' \
                      'configured. Please set Enabled to either `true` or ' \
                      '`false` in your `.rubocop.yml` file:').yellow
 
-        pending_cops.each do |cop|
-          version = cop.metadata['VersionAdded'] || 'N/A'
+        pending_rules.each do |rule|
+          version = rule.metadata['VersionAdded'] || 'N/A'
 
-          warn Rainbow(" - #{cop.name} (#{version})").yellow
+          warn Rainbow(" - #{rule.name} (#{version})").yellow
         end
 
         warn Rainbow('For more information: https://docs.rubocop.org/rubocop/versioning.html').yellow
@@ -141,9 +141,9 @@ module RuboCop
 
       # Merges the given configuration with the default one. If
       # AllRules:DisabledByDefault is true, it changes the Enabled params so
-      # that only cops from user configuration are enabled.
+      # that only rules from user configuration are enabled.
       # If AllRules::EnabledByDefault is true, it changes the Enabled params
-      # so that only cops explicitly disabled in user configuration are
+      # so that only rules explicitly disabled in user configuration are
       # disabled.
       def merge_with_default(config, config_file, unset_nil: true)
         resolver.merge_with_default(config, config_file, unset_nil: unset_nil)

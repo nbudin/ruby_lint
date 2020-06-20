@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# rubocop:disable Lint/RedundantCopDisableDirective
+# rubocop:disable Lint/RedundantRuleDisableDirective
 
 module RuboCop
   module Rule
@@ -20,8 +20,8 @@ module RuboCop
       #   def fixed_method_name_and_no_rubocop_comments
       #   end
       #
-      class DisableCopsWithinSourceCodeDirective < Rule
-        # rubocop:enable Lint/RedundantCopDisableDirective
+      class DisableRulesWithinSourceCodeDirective < Rule
+        # rubocop:enable Lint/RedundantRuleDisableDirective
         MSG = 'Comment to disable/enable RuboCop.'
 
         def investigate(processed_source)

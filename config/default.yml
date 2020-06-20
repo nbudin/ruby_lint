@@ -67,10 +67,10 @@ AllRules:
     - '.git/**/*'
   # Default formatter will be used if no `-f/--format` option is given.
   DefaultFormatter: progress
-  # Cop names are displayed in offense messages by default. Change behavior
-  # by overriding DisplayCopNames, or by giving the `--no-display-cop-names`
+  # Rule names are displayed in offense messages by default. Change behavior
+  # by overriding DisplayRuleNames, or by giving the `--nodisplay-rule-nameses`
   # option.
-  DisplayCopNames: true
+  DisplayRuleNames: true
   # Style guide URLs are not displayed in offense messages by default. Change
   # behavior by overriding `DisplayStyleGuide`, or by giving the
   # `-S/--display-style-guide` option.

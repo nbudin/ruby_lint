@@ -57,13 +57,13 @@ RSpec.describe RuboCop::RakeTask do
         task.patterns = ['lib/**/*.rb']
         task.formatters = ['files']
         task.fail_on_error = false
-        task.options = ['--display-cop-names']
+        task.options = ['--display-rule-names']
         task.verbose = false
       end
 
       cli = instance_double(RuboCop::CLI, run: 0)
       allow(RuboCop::CLI).to receive(:new).and_return(cli)
-      options = ['--format', 'files', '--display-cop-names', 'lib/**/*.rb']
+      options = ['--format', 'files', '--display-rule-names', 'lib/**/*.rb']
 
       expect(cli).to receive(:run).with(options)
 
@@ -74,13 +74,13 @@ RSpec.describe RuboCop::RakeTask do
       described_class.new do |task|
         task.formatters = [['files']]
         task.requires = [['library']]
-        task.options = [['--display-cop-names']]
+        task.options = [['--display-rule-names']]
       end
 
       cli = instance_double(RuboCop::CLI, run: 0)
       allow(RuboCop::CLI).to receive(:new).and_return(cli)
       options = ['--format', 'files', '--require', 'library',
-                 '--display-cop-names']
+                 '--display-rule-names']
 
       expect(cli).to receive(:run).with(options)
 

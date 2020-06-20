@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Rule::Style::DoubleCopDisableDirective do
+RSpec.describe RuboCop::Rule::Style::DoubleRuleDisableDirective do
   subject(:rule) { described_class.new }
 
   it 'registers an offense for duplicate disable directives' do
@@ -27,7 +27,7 @@ RSpec.describe RuboCop::Rule::Style::DoubleCopDisableDirective do
     RUBY
   end
 
-  it 'does not register an offense for cops with single cop directive' do
+  it 'does not register an offense for cops with single rule directive' do
     expect_no_offenses(<<~RUBY)
       def choose_move(who_to_move) # rubocop:disable Metrics/CyclomaticComplexity, Metrics/AbcSize
       end

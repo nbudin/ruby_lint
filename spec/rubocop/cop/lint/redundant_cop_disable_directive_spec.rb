@@ -288,7 +288,7 @@ RSpec.describe RuboCop::Rule::Lint::RedundantRuleDisableDirective, :config do
             it 'returns an offense' do
               expect(rule.messages)
                 .to eq(['Unnecessary disabling of `KlassLength` (unknown ' \
-                        'cop), `Metrics/MethodLenght` (did you mean ' \
+                        'rule), `Metrics/MethodLenght` (did you mean ' \
                         '`Metrics/MethodLength`?).'])
             end
           end

@@ -168,7 +168,7 @@ module RuboCop
       option(opts, '-F', '--fail-fast')
       option(opts, '-C', '--cache FLAG')
       option(opts, '-d', '--debug')
-      option(opts, '-D', '--[no-]display-cop-names')
+      option(opts, '-D', '--[no-]display-rule-namess')
       option(opts, '-E', '--extra-details')
       option(opts, '-S', '--display-style-guide')
       option(opts, '-a', '--auto-correct')

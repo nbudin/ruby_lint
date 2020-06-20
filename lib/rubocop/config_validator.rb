@@ -86,7 +86,7 @@ module RuboCop
       unknown_rules = []
       invalid_rule_names.each do |name|
         # There could be a custom rule with this name. If so, don't warn
-        next if Cop::Cop.registry.contains_rule_matching?([name])
+        next if Rule::Rule.registry.contains_rule_matching?([name])
 
         # Special case for inherit_mode, which is a directive that we keep in
         # the configuration (even though it's not a rule), because it's easier

@@ -13,7 +13,7 @@ RSpec.describe RuboCop::Rule::Naming::VariableNumber, :config do
         else
           { 'Enabled' => false }
         end
-      expect(cop.config_to_allow_offenses).to eq(config_to_allow_offenses)
+      expect(rule.config_to_allow_offenses).to eq(config_to_allow_offenses)
     end
   end
 

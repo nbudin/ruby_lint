@@ -37,7 +37,7 @@ RSpec.describe RuboCop::Rule::Style::FormatStringToken, :config do
       it 'sets the enforced style to annotated after inspecting "%<a>s"' do
         inspect_source('"%<a>s"')
 
-        expect(cop.config_to_allow_offenses).to eq(
+        expect(rule.config_to_allow_offenses).to eq(
           'EnforcedStyle' => 'annotated'
         )
       end
@@ -45,7 +45,7 @@ RSpec.describe RuboCop::Rule::Style::FormatStringToken, :config do
       it 'configures the enforced style to template after inspecting "%{a}"' do
         inspect_source('"%{a}"')
 
-        expect(cop.config_to_allow_offenses).to eq(
+        expect(rule.config_to_allow_offenses).to eq(
           'EnforcedStyle' => 'template'
         )
       end

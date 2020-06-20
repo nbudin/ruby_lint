@@ -15,7 +15,7 @@ RSpec.describe RuboCop::Rule::Style::StringLiterals, :config do
         z = "a\\"
             ^^^^^ Prefer single-quoted strings when you don't need string interpolation or special symbols.
       RUBY
-      expect(cop.config_to_allow_offenses).to eq('EnforcedStyle' =>
+      expect(rule.config_to_allow_offenses).to eq('EnforcedStyle' =>
                                                  'double_quotes')
     end
 
@@ -175,7 +175,7 @@ RSpec.describe RuboCop::Rule::Style::StringLiterals, :config do
         s = 'abc'
             ^^^^^ Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.
       RUBY
-      expect(cop.config_to_allow_offenses).to eq('EnforcedStyle' =>
+      expect(rule.config_to_allow_offenses).to eq('EnforcedStyle' =>
                                                  'single_quotes')
     end
 
@@ -185,7 +185,7 @@ RSpec.describe RuboCop::Rule::Style::StringLiterals, :config do
         x = 'abc'
             ^^^^^ Prefer double-quoted strings unless you need single quotes to avoid extra backslashes for escaping.
       RUBY
-      expect(cop.config_to_allow_offenses).to eq('Enabled' => false)
+      expect(rule.config_to_allow_offenses).to eq('Enabled' => false)
     end
 
     it 'registers offense for escaped single quote in single quotes' do

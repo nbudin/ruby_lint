@@ -448,7 +448,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
                                      'end'])
 
           expect(cli.run(['--format', 'simple',
-                          '--display-cop-names',
+                          '--display-rule-names',
                           '--only', 'IfUnlessModifier',
                           'example.rb'])).to eq(1)
           expect($stdout.string)
@@ -768,7 +768,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     end
   end
 
-  describe '-D/--display-cop-names' do
+  describe '-D/--display-rule-names' do
     before do
       create_file('example1.rb', 'puts 0 # rubocop:disable NumericLiterals ')
     end
@@ -776,7 +776,7 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
     let(:file) { abs('example1.rb') }
 
     it 'shows cop names' do
-      expect(cli.run(['--format', 'emacs', '--display-cop-names',
+      expect(cli.run(['--format', 'emacs', '--display-rule-names',
                       'example1.rb'])).to eq(1)
       expect($stdout.string).to eq(<<~RESULT)
         #{file}:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
@@ -786,9 +786,9 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       RESULT
     end
 
-    context '--no-display-cop-names' do
+    context '--no-display-rule-names' do
       it 'does not show cop names' do
-        expect(cli.run(['--format', 'emacs', '--no-display-cop-names',
+        expect(cli.run(['--format', 'emacs', '--no-display-rule-names',
                         'example1.rb'])).to eq(1)
         expect($stdout.string).to eq(<<~RESULT)
           #{file}:1:1: C: Missing frozen string literal comment.
@@ -808,17 +808,17 @@ RSpec.describe RuboCop::CLI, :isolated_environment do
       end
 
       it 'shows cop names' do
-        expect(cli.run(['--format', 'emacs', '--display-cop-names',
+        expect(cli.run(['--format', 'emacs', '--display-rule-names',
                         'example1.rb'])).to eq(1)
         expect($stdout.string).to eq(<<~RESULT)
           #{file}:1:1: C: Style/FrozenStringLiteralComment: Missing frozen string literal comment.
-          #{file}:1:8: W: Lint/RedundantCopDisableDirective: Unnecessary disabling of `Style/NumericLiterals`.
+          #{file}:1:8: W: Lint/RedundantRuleDisableDirective: Unnecessary disabling of `Style/NumericLiterals`.
           #{file}:1:26: C: Migration/DepartmentName: Department name is missing.
           #{file}:1:41: C: Layout/TrailingWhitespace: Trailing whitespace detected.
         RESULT
       end
 
-      context 'without --display-cop-names' do
+      context 'without --display-rule-names' do
         it 'does not show cop names' do
           expect(cli.run(['--format', 'emacs', 'example1.rb'])).to eq(1)
           expect($stdout.string).to eq(<<~RESULT)

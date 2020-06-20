@@ -4,13 +4,13 @@
 module RuboCop
   module Rule
     module Lint
-      # This cop checks that there is an `# rubocop:enable ...` statement
+      # This rule checks that there is an `# rubocop:enable ...` statement
       # after a `# rubocop:disable ...` statement. This will prevent leaving
-      # cop disables on wide ranges of code, that latter contributors to
+      # rule disables on wide ranges of code, that latter contributors to
       # a file wouldn't be aware of.
       #
       # @example
-      #   # Lint/MissingCopEnableDirective:
+      #   # Lint/MissingRuleEnableDirective:
       #   #   MaximumRangeSize: .inf
       #
       #   # good
@@ -26,33 +26,33 @@ module RuboCop
       #   # EOF
       #
       # @example
-      #   # Lint/MissingCopEnableDirective:
+      #   # Lint/MissingRuleEnableDirective:
       #   #   MaximumRangeSize: 2
       #
       #   # good
       #   # rubocop:disable Layout/SpaceAroundOperators
       #   x= 0
-      #   # With the previous, there are 2 lines on which cop is disabled.
+      #   # With the previous, there are 2 lines on which rule is disabled.
       #   # rubocop:enable Layout/SpaceAroundOperators
       #
       #   # bad
       #   # rubocop:disable Layout/SpaceAroundOperators
       #   x= 0
       #   x += 1
-      #   # Including this, that's 3 lines on which the cop is disabled.
+      #   # Including this, that's 3 lines on which the rule is disabled.
       #   # rubocop:enable Layout/SpaceAroundOperators
       #
-      class MissingCopEnableDirective < Rule
+      class MissingRuleEnableDirective < Rule
         include RangeHelp
 
-        MSG = 'Re-enable %<cop>s cop with `# rubocop:enable` after ' \
+        MSG = 'Re-enable %<rule>s rule with `# rubocop:enable` after ' \
               'disabling it.'
-        MSG_BOUND = 'Re-enable %<cop>s cop within %<max_range>s lines after ' \
+        MSG_BOUND = 'Re-enable %<rule>s rule within %<max_range>s lines after ' \
                     'disabling it.'
 
         def investigate(processed_source)
           max_range = rule_config['MaximumRangeSize']
-          processed_source.disabled_line_ranges.each do |cop, line_ranges|
+          processed_source.disabled_line_ranges.each do |rule, line_ranges|
             line_ranges.each do |line_range|
               # This has to remain a strict inequality to handle
               # the case when max_range is Float::INFINITY
@@ -63,22 +63,22 @@ module RuboCop
                                    (0..0))
               add_offense(range,
                           location: range,
-                          message: message(max_range: max_range, cop: cop))
+                          message: message(max_range: max_range, rule: rule))
             end
           end
         end
 
         private
 
-        def message(max_range:, cop:)
+        def message(max_range:, rule:)
           if max_range == Float::INFINITY
-            format(MSG, cop: cop)
+            format(MSG, rule: rule)
           else
-            format(MSG_BOUND, cop: cop, max_range: max_range)
+            format(MSG_BOUND, rule: rule, max_range: max_range)
           end
         end
       end
     end
   end
 end
-# rubocop:enable Lint/RedundantCopDisableDirective, Layout/SpaceAroundOperators
+# rubocop:enable Lint/RedundantRuleDisableDirective, Layout/SpaceAroundOperators

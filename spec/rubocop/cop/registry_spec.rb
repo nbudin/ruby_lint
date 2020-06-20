@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Rule::Registry do
-  subject(:registry) { described_class.new(cops, options) }
+  subject(:registry) { described_class.new(rules, options) }
 
-  let(:cops) do
+  let(:rules) do
     [
       RuboCop::Rule::Lint::BooleanSymbol,
       RuboCop::Rule::Lint::DuplicateMethods,
@@ -23,8 +23,8 @@ RSpec.describe RuboCop::Rule::Registry do
 
   # `RuboCop::Rule::Rule` mutates its `registry` when inherited from.
   # This can introduce nondeterministic failures in other parts of the
-  # specs if this mutation occurs before code that depends on this global cop
-  # store. The workaround is to replace the global cop store with a temporary
+  # specs if this mutation occurs before code that depends on this global rule
+  # store. The workaround is to replace the global rule store with a temporary
   # store during these tests
   around do |test|
     described_class.with_temporary_global { test.run }
@@ -34,57 +34,57 @@ RSpec.describe RuboCop::Rule::Registry do
     klass = ::RuboCop::Rule::Metrics::AbcSize
     copy = registry.dup
     copy.enlist(klass)
-    expect(copy.cops).to include(klass)
-    expect(registry.cops).not_to include(klass)
+    expect(copy.rules).to include(klass)
+    expect(registry.rules).not_to include(klass)
   end
 
-  context 'when dismissing a cop class' do
+  context 'when dismissing a rule class' do
     let(:rule_class) { ::RuboCop::Rule::Metrics::AbcSize }
 
     before { registry.enlist(rule_class) }
 
     it 'allows it if done rapidly' do
       registry.dismiss(rule_class)
-      expect(registry.cops).not_to include(rule_class)
+      expect(registry.rules).not_to include(rule_class)
     end
 
     it 'disallows it if done too late' do
-      expect(registry.cops).to include(rule_class)
+      expect(registry.rules).to include(rule_class)
       expect { registry.dismiss(rule_class) }.to raise_error(RuntimeError)
     end
 
     it 'allows re-listing' do
       registry.dismiss(rule_class)
-      expect(registry.cops).not_to include(rule_class)
+      expect(registry.rules).not_to include(rule_class)
       registry.enlist(rule_class)
-      expect(registry.cops).to include(rule_class)
+      expect(registry.rules).to include(rule_class)
     end
   end
 
-  it 'exposes cop departments' do
+  it 'exposes rule departments' do
     expect(registry.departments).to eql(%i[Lint Layout Metrics RSpec Test])
   end
 
   it 'can filter down to one type' do
     expect(registry.with_department(:Lint))
-      .to eq(described_class.new(cops.first(2)))
+      .to eq(described_class.new(rules.first(2)))
   end
 
   it 'can filter down to all but one type' do
     expect(registry.without_department(:Lint))
-      .to eq(described_class.new(cops.drop(2)))
+      .to eq(described_class.new(rules.drop(2)))
   end
 
-  describe '#contains_cop_matching?' do
-    it 'can find cops matching a given name' do
-      result = registry.contains_cop_matching?(
+  describe '#contains_rule_matching?' do
+    it 'can find rules matching a given name' do
+      result = registry.contains_rule_matching?(
         ['Test/FirstArrayElementIndentation']
       )
       expect(result).to be(true)
     end
 
-    it 'returns false for cops not included in the store' do
-      expect(registry.contains_cop_matching?(['Style/NotReal'])).to be(false)
+    it 'returns false for rules not included in the store' do
+      expect(registry.contains_rule_matching?(['Style/NotReal'])).to be(false)
     end
   end
 
@@ -134,12 +134,12 @@ RSpec.describe RuboCop::Rule::Registry do
       expect(qualified).to eql('Metrics/MethodLength')
     end
 
-    it 'raises an error when a cop name is ambiguous' do
+    it 'raises an error when a rule name is ambiguous' do
       rule_name = 'FirstArrayElementIndentation'
       expect { registry.qualified_rule_name(rule_name, origin) }
         .to raise_error(RuboCop::Rule::AmbiguousCopName)
         .with_message(
-          'Ambiguous cop name `FirstArrayElementIndentation` used in ' \
+          'Ambiguous rule name `FirstArrayElementIndentation` used in ' \
           '/app/.rubocop.yml needs department qualifier. Did you mean ' \
           'Layout/FirstArrayElementIndentation or ' \
           'Test/FirstArrayElementIndentation?'
@@ -153,7 +153,7 @@ RSpec.describe RuboCop::Rule::Registry do
     end
   end
 
-  it 'exposes a mapping of cop names to cop classes' do
+  it 'exposes a mapping of rule names to rule classes' do
     expect(registry.to_h).to eql(
       'Lint/BooleanSymbol' => [RuboCop::Rule::Lint::BooleanSymbol],
       'Lint/DuplicateMethods' => [RuboCop::Rule::Lint::DuplicateMethods],
@@ -168,13 +168,13 @@ RSpec.describe RuboCop::Rule::Registry do
     )
   end
 
-  describe '#cops' do
-    it 'exposes a list of cops' do
-      expect(registry.cops).to eql(cops)
+  describe '#rules' do
+    it 'exposes a list of rules' do
+      expect(registry.rules).to eql(rules)
     end
   end
 
-  it 'exposes the number of stored cops' do
+  it 'exposes the number of stored rules' do
     expect(registry.length).to be(6)
   end
 
@@ -186,21 +186,21 @@ RSpec.describe RuboCop::Rule::Registry do
       )
     end
 
-    it 'selects cops which are enabled in the config' do
-      expect(registry.enabled(config, [])).to eql(cops.first(5))
+    it 'selects rules which are enabled in the config' do
+      expect(registry.enabled(config, [])).to eql(rules.first(5))
     end
 
-    it 'overrides config if :only includes the cop' do
+    it 'overrides config if :only includes the rule' do
       result = registry.enabled(config, ['Test/FirstArrayElementIndentation'])
-      expect(result).to eql(cops)
+      expect(result).to eql(rules)
     end
 
-    it 'selects only safe cops if :safe passed' do
-      enabled_cops = registry.enabled(config, [], true)
-      expect(enabled_cops).not_to include(RuboCop::Rule::RSpec::Foo)
+    it 'selects only safe rules if :safe passed' do
+      enabled_rules = registry.enabled(config, [], true)
+      expect(enabled_rules).not_to include(RuboCop::Rule::RSpec::Foo)
     end
 
-    context 'when new cops are introduced' do
+    context 'when new rules are introduced' do
       let(:config) do
         RuboCop::Config.new(
           'Lint/BooleanSymbol' => { 'Enabled' => 'pending' }
@@ -212,14 +212,14 @@ RSpec.describe RuboCop::Rule::Registry do
         expect(result).not_to include(RuboCop::Rule::Lint::BooleanSymbol)
       end
 
-      it 'overrides config if :only includes the cop' do
+      it 'overrides config if :only includes the rule' do
         result = registry.enabled(config, ['Lint/BooleanSymbol'])
-        expect(result).to eql(cops)
+        expect(result).to eql(rules)
       end
 
-      context 'when specifying `--disable-pending-cops` command-line option' do
+      context 'when specifying `--disable-pending-rules` command-line option' do
         let(:options) do
-          { disable_pending_cops: true }
+          { disable_pending_rules: true }
         end
 
         it 'does not include them' do
@@ -243,9 +243,9 @@ RSpec.describe RuboCop::Rule::Registry do
         end
       end
 
-      context 'when specifying `--enable-pending-cops` command-line option' do
+      context 'when specifying `--enable-pending-rules` command-line option' do
         let(:options) do
-          { enable_pending_cops: true }
+          { enable_pending_rules: true }
         end
 
         it 'includes them' do
@@ -313,7 +313,7 @@ RSpec.describe RuboCop::Rule::Registry do
     end
   end
 
-  it 'exposes a list of cop names' do
+  it 'exposes a list of rule names' do
     expect(registry.names).to eql(
       [
         'Lint/BooleanSymbol',

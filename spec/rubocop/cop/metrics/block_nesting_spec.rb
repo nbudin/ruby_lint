@@ -25,7 +25,7 @@ RSpec.describe RuboCop::Rule::Metrics::BlockNesting, :config do
           end
         end
       RUBY
-      expect(cop.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 3)
+      expect(rule.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 3)
     end
   end
 
@@ -43,7 +43,7 @@ RSpec.describe RuboCop::Rule::Metrics::BlockNesting, :config do
           end
         end
       RUBY
-      expect(cop.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 4)
+      expect(rule.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 4)
     end
   end
 
@@ -65,7 +65,7 @@ RSpec.describe RuboCop::Rule::Metrics::BlockNesting, :config do
           end
         end
       RUBY
-      expect(cop.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 3)
+      expect(rule.config_to_allow_offenses[:exclude_limit]).to eq('Max' => 3)
     end
   end
 

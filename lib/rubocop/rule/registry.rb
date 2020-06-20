@@ -3,7 +3,7 @@
 module RuboCop
   module Rule
     # Error raised when an unqualified rule name is used that could
-    # refer to two or more cops under different departments
+    # refer to two or more rules under different departments
     class AmbiguousRuleName < RuboCop::Error
       MSG = 'Ambiguous rule name `%<name>s` used in %<origin>s needs ' \
             'department qualifier. Did you mean %<options>s?'
@@ -20,7 +20,7 @@ module RuboCop
       end
     end
 
-    # Registry that tracks all cops by their badge and department.
+    # Registry that tracks all rules by their badge and department.
     class Registry
       include Enumerable
 
@@ -195,7 +195,7 @@ module RuboCop
       end
 
       def each(&block)
-        cops.each(&block)
+        rules.each(&block)
       end
 
       # @param [String] rule_name

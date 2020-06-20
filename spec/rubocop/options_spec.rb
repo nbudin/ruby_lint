@@ -110,7 +110,7 @@ RSpec.describe RuboCop::Options, :isolated_environment do
                                                (FLAG=false), default determined by
                                                configuration parameter AllRules: UseCache.
               -d, --debug                      Display debug info.
-              -D, --[no-]display-cop-names     Display cop names in offense messages.
+              -D, --[no-]display-rule-names     Display cop names in offense messages.
                                                Default is true.
               -E, --extra-details              Display extra details in offense messages.
               -S, --display-style-guide        Display style guide URLs in offense messages.

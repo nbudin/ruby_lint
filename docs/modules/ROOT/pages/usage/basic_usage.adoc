@@ -136,20 +136,20 @@ $ rubocop -h
 | `-d/--debug`
 | Displays some extra debug output.
 
-| `   --disable-pending-cops`
-| Run without pending cops.
+| `   --disable-pending-rules`
+| Run without pending rules.
 
 | `   --disable-uncorrectable`
 | Used with --auto-correct to annotate any offenses that do not support autocorrect with `rubocop:todo` comments.
 
-| `-D/--[no-]display-cop-names`
-| Displays cop names in offense messages. Default is true.
+| `-D/--[no-]display-rule-namess`
+| Displays rule names in offense messages. Default is true.
 
 | `   --display-only-fail-level-offenses`
 | Only output offense messages at the specified `--fail-level` or above
 
-| `   --enable-pending-cops`
-| Run with pending cops.
+| `   --enable-pending-rules`
+| Run with pending rules.
 
 | `   --except`
 | Run all cops enabled by configuration except the specified cop(s) and/or departments.

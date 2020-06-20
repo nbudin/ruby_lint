@@ -485,10 +485,10 @@ RSpec.describe RuboCop::Rule::Layout::SpaceAroundMethodCallOperator do
 
     include_examples 'offense', 'multiple spaces with assignment',
                      <<-CODE, <<-OFFENSE, <<-CORRECTION
-      :: RuboCop:: Cop || :: RuboCop
+      :: RuboCop:: Rule || :: RuboCop
     CODE
-      :: RuboCop:: Cop || :: RuboCop
-                            ^ Avoid using spaces around a method call operator.
+      :: RuboCop:: Rule || :: RuboCop
+                             ^ Avoid using spaces around a method call operator.
                   ^ Avoid using spaces around a method call operator.
         ^ Avoid using spaces around a method call operator.
     OFFENSE

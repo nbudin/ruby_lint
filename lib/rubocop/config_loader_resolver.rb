@@ -22,7 +22,7 @@ module RuboCop
       inherited_files = Array(hash['inherit_from'])
       base_configs(path, inherited_files, file)
         .reverse.each_with_index do |base_config, index|
-        override_department_setting_for_cops(base_config, hash)
+        override_department_setting_for_rules(base_config, hash)
         base_config.each do |k, v|
           next unless v.is_a?(Hash)
 
@@ -56,9 +56,9 @@ module RuboCop
 
     # Merges the given configuration with the default one. If
     # AllRules:DisabledByDefault is true, it changes the Enabled params so that
-    # only cops from user configuration are enabled. If
+    # only rules from user configuration are enabled. If
     # AllRules::EnabledByDefault is true, it changes the Enabled params so that
-    # only cops explicitly disabled in user configuration are disabled.
+    # only rules explicitly disabled in user configuration are disabled.
     def merge_with_default(config, config_file, unset_nil:)
       default_configuration = ConfigLoader.default_configuration
 
@@ -103,7 +103,7 @@ module RuboCop
 
     # An `Enabled: true` setting in user configuration for a cop overrides an
     # `Enabled: false` setting for its department.
-    def override_department_setting_for_cops(base_hash, derived_hash)
+    def override_department_setting_for_rules(base_hash, derived_hash)
       derived_hash.each_key do |key|
         next unless key =~ %r{(.*)/.*}
 

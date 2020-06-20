@@ -228,7 +228,7 @@ RSpec.describe RuboCop::ResultCache, :isolated_environment do
       end
     end
 
-    context 'when --display-cop-names is given' do
+    context 'when --display-rule-names is given' do
       it 'is invalid' do
         cache.save(offenses)
         cache2 = described_class.new(file, team, { display_rule_names: true },

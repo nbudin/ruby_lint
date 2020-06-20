@@ -28,7 +28,7 @@ RSpec.describe RuboCop::Rule::Lint::Syntax do
         expect(offense.severity).to eq(:error)
       end
 
-      context 'with --display-cop-names option' do
+      context 'with --display-rule-names option' do
         let(:options) { { display_rule_names: true } }
 
         it 'returns an offense with cop name' do
@@ -72,7 +72,7 @@ RSpec.describe RuboCop::Rule::Lint::Syntax do
         expect(offense.location).to eq(described_class::ERROR_SOURCE_RANGE)
       end
 
-      context 'with --display-cop-names option' do
+      context 'with --display-rule-names option' do
         let(:options) { { display_rule_names: true } }
 
         it 'returns an offense with cop name' do

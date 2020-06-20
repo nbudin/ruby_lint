@@ -169,9 +169,9 @@ module RuboCop
 
     def redundant_rule_disable_directive(file)
       config = @config_store.for_file(file)
-      if config.for_rule(Cop::Lint::RedundantCopDisableDirective)
+      if config.for_rule(Rule::Lint::RedundantCopDisableDirective)
                .fetch('Enabled')
-        cop = Cop::Lint::RedundantCopDisableDirective.new(config, @options)
+        cop = Rule::Lint::RedundantCopDisableDirective.new(config, @options)
         yield cop if cop.relevant_file?(file)
       end
     end
@@ -183,7 +183,7 @@ module RuboCop
     def autocorrect_redundant_disables(file, source, cop, offenses)
       cop.processed_source = source
 
-      team = Cop::Team.mobilize(RuboCop::Rule::Registry.new, nil, @options)
+      team = Rule::Team.mobilize(RuboCop::Rule::Registry.new, nil, @options)
       team.autocorrect(source.buffer, [cop])
 
       return [] unless team.updated_source_file?
@@ -295,7 +295,7 @@ module RuboCop
 
     def inspect_file(processed_source)
       config = @config_store.for_file(processed_source.path)
-      team = Cop::Team.mobilize(mobilized_rule_classes(config), config, @options)
+      team = Rule::Team.mobilize(mobilized_rule_classes(config), config, @options)
       offenses = team.inspect_file(processed_source)
       @errors.concat(team.errors)
       @warnings.concat(team.warnings)
@@ -305,7 +305,7 @@ module RuboCop
     def mobilized_rule_classes(config)
       @mobilized_rule_classes ||= {}
       @mobilized_rule_classes[config.object_id] ||= begin
-        rule_classes = Cop::Cop.all
+        rule_classes = Rule::Rule.all
 
         OptionsValidator.new(@options).validate_cop_options
 
@@ -317,7 +317,7 @@ module RuboCop
 
         rule_classes.reject! { |c| c.match?(@options[:except]) }
 
-        Cop::Registry.new(rule_classes, @options)
+        Rule::Registry.new(rule_classes, @options)
       end
     end
 
@@ -373,14 +373,14 @@ module RuboCop
       end
     end
 
-    # A Cop::Team instance is stateful and may change when inspecting.
+    # A Rule::Team instance is stateful and may change when inspecting.
     # The "standby" team for a given config is an initialized but
     # otherwise dormant team that can be used for config- and option-
     # level caching in ResultCache.
     def standby_team(config)
       @team_by_config ||= {}
       @team_by_config[config.object_id] ||=
-        Cop::Team.mobilize(mobilized_rule_classes(config), config, @options)
+        Rule::Team.mobilize(mobilized_rule_classes(config), config, @options)
     end
   end
 end
