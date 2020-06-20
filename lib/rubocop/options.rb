@@ -158,7 +158,7 @@ module RuboCop
     end
 
     def add_flags_with_optional_args(opts)
-      option(opts, '--show-rules [COP1,COP2,...]') do |list|
+      option(opts, '--show-rules [RULE1,RULE2,...]') do |list|
         @options[:show_rules] = list.nil? ? [] : list.split(',')
       end
     end

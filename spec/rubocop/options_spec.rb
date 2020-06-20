@@ -35,8 +35,8 @@ RSpec.describe RuboCop::Options, :isolated_environment do
         expected_help = <<~OUTPUT
           Usage: rubocop [options] [file1, file2, ...]
               -L, --list-target-files          List all files RuboCop will inspect.
-                  --except [COP1,COP2,...]     Disable the given cop(s).
-                  --only [COP1,COP2,...]       Run only the given cop(s).
+                  --except [RULE1,RULE2,...]   Disable the given rule(s).
+                  --only [RULE1,RULE2,...]     Run only the given rule(s).
                   --only-guide-rules           Run only rules for rules that link to a
                                                style guide.
               -c, --config FILE                Specify configuration file.
